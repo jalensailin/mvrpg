@@ -177,4 +177,14 @@
 
 .codename {
   grid-area: codename;
+  align-items: center;
+  justify-items: center;
+}
+
+.codename > .codename-input {
+  border: none;
+  background: none;
+  font-family: KomikaTextSmallCaps;
+  font-size: 1.8rem;
+  text-align: center;
 }
