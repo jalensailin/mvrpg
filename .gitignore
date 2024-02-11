@@ -1,0 +1,5 @@
+# Ignore npm modules
+node_modules
+
+# Ignore files from Tiled
+tiled-project
