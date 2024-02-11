@@ -1,0 +1,36 @@
+{
+  "id": "mvrpg",
+  "title": "MV RPG",
+  "description": "An unofficial (and in-progress system) for playing Marvel Multiverse RPG. Note: No game assets are provided. All characters information must be inputted manually.",
+  "version": "0.0.1",
+  "compatibility": {
+    "minimum": "11",
+    "verified": "11",
+    "maximum": "11"
+  },
+  "authors": [
+    {
+      "name": "Jalen Michals Levy",
+      "url": "https://github.com/jalensailin",
+      "discord": "jalensailin"
+    }
+  ],
+  "esmodules": ["modules/mvrpg.js"],
+  "styles": ["styles/main.css"],
+  "languages": [
+    {
+      "lang": "en",
+      "name": "English",
+      "path": "lang/en.json"
+    }
+  ],
+  "socket": false,
+  "initiative": "3d6",
+  "gridDistance": 5,
+  "gridUnits": "ft",
+  "primaryTokenAttribute": "lifepool.health",
+  "secondaryTokenAttribute": "lifepool.focus",
+  "url": "https://github.com/jalensailin/mvrpg",
+  "manifest": "https://github.com/jalensailin/mvrpg/system.json",
+  "download": "https://github.com/jalensailin/mvrpg/download/archive.zip"
+}

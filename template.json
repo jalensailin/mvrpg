@@ -1,0 +1,39 @@
+{
+  "Actor": {
+    "types": ["super"],
+    "super": {
+      "codename": "Superhero",
+      "lifepool": {
+        "health": {
+          "min": 0,
+          "value": 90,
+          "max": 90
+        },
+        "focus": {
+          "min": 0,
+          "value": 90,
+          "max": 90
+        }
+      },
+      "abilities": {
+        "melee": 0,
+        "agility": 0,
+        "resilience": 0,
+        "vigilance": 0,
+        "ego": 0,
+        "logic": 0
+      },
+      "speed": {
+        "run": 5,
+        "climb": 3,
+        "swim": 3,
+        "jump": 3
+      },
+      "rank": 4,
+      "karma": 4
+    }
+  },
+  "Item": {
+    "types": ["power", "trait", "tag"]
+  }
+}
