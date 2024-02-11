@@ -1,0 +1,121 @@
+.mvrpg section.window-content {
+  background:
+    radial-gradient(
+      circle,
+      rgba(255, 137, 180, 0.1) 0%,
+      rgba(255, 235, 242, 1) 100%
+    ),
+    url(/ui/parchment.jpg) repeat;
+}
+
+.container {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-rows: 1fr 1fr 1fr;
+  gap: 8px 14px;
+  grid-auto-flow: row;
+  grid-template-areas:
+    "codename-pane health-pane rank-pane"
+    "abilities-pane powers-pane powers-pane"
+    "abilities-pane powers-pane powers-pane";
+}
+
+.container > .comic-book-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  margin: auto;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  opacity: 0.08;
+  background-repeat: repeat;
+  background-size: 30rem;
+  background-image: url("../assets/sheets/comic-book-overlay.svg");
+}
+
+.comic-box-shadow {
+  border-style: solid;
+  border-width: 3px;
+  border-radius: 1px;
+  border-color: black;
+  box-shadow: 5px 5px;
+}
+
+.powers-pane {
+  grid-area: powers-pane;
+}
+
+.health-pane {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 1fr 1fr;
+  gap: 0px 0px;
+  grid-auto-flow: row;
+  grid-template-areas:
+    "health"
+    "focus";
+  grid-area: health-pane;
+}
+
+.health {
+  grid-area: health;
+}
+
+.focus {
+  grid-area: focus;
+}
+
+.rank-pane {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
+  gap: 0px 0px;
+  grid-auto-flow: row;
+  grid-template-areas:
+    "speed karma"
+    "init rank";
+  grid-area: rank-pane;
+}
+
+.speed {
+  grid-area: speed;
+}
+
+.karma {
+  grid-area: karma;
+}
+
+.init {
+  grid-area: init;
+}
+
+.rank {
+  grid-area: rank;
+}
+
+.abilities-pane {
+  grid-area: abilities-pane;
+}
+
+.codename-pane {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 0.3fr 1fr;
+  gap: 8px 0px;
+  grid-auto-flow: row;
+  grid-template-areas:
+    "codename"
+    "image";
+  grid-area: codename-pane;
+}
+
+.image {
+  grid-area: image;
+}
+
+.codename {
+  grid-area: codename;
+}
