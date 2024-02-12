@@ -1,14 +1,14 @@
 <form class="container">
   <div class="comic-book-overlay"></div>
   <div class="codename-panel">
-    <div class="codename comic-box-shadow flexrow">
+    <div class="codename comic-frame flexrow">
       <input class="codename-input" name="name" type="text" value="{{actor.name}}">
     </div>
-    <div class="portrait comic-box-shadow">
+    <div class="portrait comic-frame">
       <img class="portrait" src="{{actor.img}}" data-edit="img" title="{{actor.name}}" />
     </div>
   </div>
-  <div class="health-panel comic-box-shadow">
+  <div class="health-panel comic-frame">
     <div class="health flexcol">
       <div class="panel-title panel-header">{{localize "MVRPG.heroSheet.health.title"}}</div>
       <div></div>
@@ -19,7 +19,7 @@
       <div class="panel-title panel-footer">{{localize "MVRPG.heroSheet.focus.title"}}</div>
     </div>
   </div>
-  <div class="rank-panel comic-box-shadow">
+  <div class="rank-panel comic-frame">
     <div class="speed flexcol">
       <div class="panel-title panel-header">{{localize "MVRPG.heroSheet.speed.title"}}</div>
       <div></div>
@@ -40,9 +40,9 @@
       <div class="panel-title panel-footer">{{localize "MVRPG.heroSheet.rank.title"}}</div>
     </div>
   </div>
-  <div class="abilities-panel comic-box-shadow flexcol">
+  <div class="abilities-panel comic-frame flexcol">
     <div class="panel-title panel-header">{{localize "MVRPG.heroSheet.abilities.title"}}</div>
     <div></div>
   </div>
-  <div class="powers-panel comic-box-shadow"></div>
+  <div class="powers-panel comic-frame"></div>
 </form>
