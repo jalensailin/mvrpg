@@ -187,6 +187,23 @@
   border-top: 1px solid;
 }
 
+.rank-bubble {
+  padding: 4px;
+  background-image: url(../assets/sheets/actor/star.svg);
+  background-origin: content-box;
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center;
+  align-items: center;
+  text-align: center;
+}
+
+.rank-bubble > .rank-input {
+  border: none;
+  background: none;
+  font-size: 1.6rem;
+}
+
 .abilities-pane {
   grid-area: abilities-pane;
 }
