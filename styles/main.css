@@ -37,7 +37,7 @@
 }
 @font-face {
   font-family: KomikaTextSmallCaps;
-  src: url(../assets/fonts/komika-text/KOMTXTKBI.ttf) format("truetype");
+  src: url(../assets/fonts/komika-text/KOMTXKBI.ttf) format("truetype");
   font-style: italic;
   font-weight: bold;
 }
@@ -103,6 +103,28 @@
   box-shadow: 5px 5px;
 }
 
+.panel-title {
+  flex: 0;
+  font-family: KomikaTextSmallCaps;
+  line-height: 1.4rem;
+  font-size: 1.4rem;
+  font-weight: bold;
+  font-style: italic;
+  text-align: center;
+
+  background-color: #ffed8f;
+}
+
+.panel-header {
+  border-bottom: 3px solid #000000;
+  background: linear-gradient(180deg, #ffed8f 0%, rgba(253, 212, 0, 0.15) 100%);
+}
+
+.panel-footer {
+  border-top: 3px solid #000000;
+  background: linear-gradient(180deg, rgba(253, 212, 0, 0.15) 0%, #ffed8f 100%);
+}
+
 .powers-pane {
   grid-area: powers-pane;
 }
@@ -121,10 +143,12 @@
 
 .health {
   grid-area: health;
+  border-bottom: 2px solid;
 }
 
 .focus {
   grid-area: focus;
+  border-top: 1px solid;
 }
 
 .rank-pane {
@@ -141,18 +165,26 @@
 
 .speed {
   grid-area: speed;
+  border-right: 2px solid;
+  border-bottom: 2px solid;
 }
 
 .karma {
   grid-area: karma;
+  border-left: 1px solid;
+  border-bottom: 2px solid;
 }
 
 .init {
   grid-area: init;
+  border-right: 2px solid;
+  border-top: 1px solid;
 }
 
 .rank {
   grid-area: rank;
+  border-left: 1px solid;
+  border-top: 1px solid;
 }
 
 .abilities-pane {

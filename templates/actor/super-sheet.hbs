@@ -4,18 +4,43 @@
     <div class="codename comic-box-shadow flexrow">
       <input class="codename-input" name="name" type="text" value="{{actor.name}}">
     </div>
-    <div class="image comic-box-shadow"></div>
+
+    <div class="image comic-box-shadow">
+    </div>
   </div>
   <div class="health-pane comic-box-shadow">
-    <div class="health"></div>
-    <div class="focus"></div>
+    <div class="health flexcol">
+      <div class="panel-title panel-header">{{localize "MVRPG.heroSheet.health.title"}}</div>
+      <div></div>
+    </div>
+
+    <div class="focus flexcol">
+      <div></div>
+      <div class="panel-title panel-footer">{{localize "MVRPG.heroSheet.focus.title"}}</div>
+    </div>
   </div>
   <div class="rank-pane comic-box-shadow">
-    <div class="speed"></div>
-    <div class="karma"></div>
-    <div class="init"></div>
-    <div class="rank"></div>
+    <div class="speed flexcol">
+      <div class="panel-title panel-header">{{localize "MVRPG.heroSheet.speed.title"}}</div>
+      <div></div>
+    </div>
+    <div class="karma flexcol">
+      <div class="panel-title panel-header">{{localize "MVRPG.heroSheet.karma.title"}}</div>
+      <div></div>
+    </div>
+
+    <div class="init flexcol">
+      <div></div>
+      <div class="panel-title panel-footer">{{localize "MVRPG.heroSheet.initiative.title"}}</div>
+    </div>
+    <div class="rank flexcol">
+      <div></div>
+      <div class="panel-title panel-footer">{{localize "MVRPG.heroSheet.rank.title"}}</div>
+    </div>
   </div>
-  <div class="abilities-pane comic-box-shadow"></div>
+  <div class="abilities-pane comic-box-shadow flexcol">
+    <div class="panel-title panel-header">{{localize "MVRPG.heroSheet.abilities.title"}}</div>
+    <div></div>
+  </div>
   <div class="powers-pane comic-box-shadow"></div>
 </form>
