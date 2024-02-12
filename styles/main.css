@@ -74,9 +74,9 @@
   gap: 8px 14px;
   grid-auto-flow: row;
   grid-template-areas:
-    "codename-pane health-pane rank-pane"
-    "abilities-pane powers-pane powers-pane"
-    "abilities-pane powers-pane powers-pane";
+    "codename-panel health-panel rank-panel"
+    "abilities-panel powers-panel powers-panel"
+    "abilities-panel powers-panel powers-panel";
 }
 
 .container > .comic-book-overlay {
@@ -125,11 +125,11 @@
   background: linear-gradient(180deg, rgba(253, 212, 0, 0.15) 0%, #ffed8f 100%);
 }
 
-.powers-pane {
-  grid-area: powers-pane;
+.powers-panel {
+  grid-area: powers-panel;
 }
 
-.health-pane {
+.health-panel {
   display: grid;
   grid-template-columns: 1fr;
   grid-template-rows: 1fr 1fr;
@@ -138,7 +138,7 @@
   grid-template-areas:
     "health"
     "focus";
-  grid-area: health-pane;
+  grid-area: health-panel;
 }
 
 .health {
@@ -151,7 +151,7 @@
   border-top: 1px solid;
 }
 
-.rank-pane {
+.rank-panel {
   display: grid;
   grid-template-columns: 1fr 1fr;
   grid-template-rows: 1fr 1fr;
@@ -160,7 +160,7 @@
   grid-template-areas:
     "speed karma"
     "init rank";
-  grid-area: rank-pane;
+  grid-area: rank-panel;
 }
 
 .speed {
@@ -204,11 +204,11 @@
   font-size: 1.6rem;
 }
 
-.abilities-pane {
-  grid-area: abilities-pane;
+.abilities-panel {
+  grid-area: abilities-panel;
 }
 
-.codename-pane {
+.codename-panel {
   display: grid;
   grid-template-columns: 1fr;
   grid-template-rows: 1fr 74%;
@@ -217,7 +217,7 @@
   grid-template-areas:
     "codename"
     "portrait";
-  grid-area: codename-pane;
+  grid-area: codename-panel;
 }
 
 .portrait {
