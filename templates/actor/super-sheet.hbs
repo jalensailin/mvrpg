@@ -1,5 +1,6 @@
 <form class="container">
   <div class="comic-book-overlay"></div>
+
   <div class="codename-panel">
     <div class="codename comic-frame flexrow">
       <input class="codename-input" name="name" type="text" value="{{actor.name}}">
@@ -8,41 +9,75 @@
       <img class="portrait" src="{{actor.img}}" data-edit="img" title="{{actor.name}}" />
     </div>
   </div>
+
   <div class="health-panel comic-frame">
     <div class="health flexcol">
-      <div class="panel-title panel-header">{{localize "MVRPG.heroSheet.health.title"}}</div>
-      <div></div>
+      <div class="panel-title panel-header">
+        {{localize "MVRPG.heroSheet.health.title"}}
+      </div>
+      <div>
+        <!-- Health Points Go Here -->
+      </div>
     </div>
 
     <div class="focus flexcol">
-      <div></div>
-      <div class="panel-title panel-footer">{{localize "MVRPG.heroSheet.focus.title"}}</div>
+      <div>
+        <!-- Focus Points Go Here -->
+      </div>
+      <div class="panel-title panel-footer">
+        {{localize "MVRPG.heroSheet.focus.title"}}
+      </div>
     </div>
   </div>
+
   <div class="rank-panel comic-frame">
     <div class="speed flexcol">
-      <div class="panel-title panel-header">{{localize "MVRPG.heroSheet.speed.title"}}</div>
-      <div></div>
+      <div class="panel-title panel-header">
+        {{localize "MVRPG.heroSheet.speed.title"}}
+        </div>
+      <div>
+        <!-- Speed Info Goes Here -->
+      </div>
     </div>
+
     <div class="karma flexcol">
-      <div class="panel-title panel-header">{{localize "MVRPG.heroSheet.karma.title"}}</div>
-      <div></div>
+      <div class="panel-title panel-header">
+        {{localize "MVRPG.heroSheet.karma.title"}}
+      </div>
+      <div>
+        <!-- Karma Goes Here -->
+      </div>
     </div>
 
     <div class="init flexcol">
-      <div></div>
-      <div class="panel-title panel-footer">{{localize "MVRPG.heroSheet.initiative.title"}}</div>
+      <div>
+        <!-- Init Goes Here -->
+      </div>
+      <div class="panel-title panel-footer">
+        {{localize "MVRPG.heroSheet.initiative.title"}}
+      </div>
     </div>
+
     <div class="rank flexcol">
       <div class="rank-bubble flexrow">
         <input class="rank-input" name="system.rank" type="text" value="{{actor.system.rank}}">
       </div>
-      <div class="panel-title panel-footer">{{localize "MVRPG.heroSheet.rank.title"}}</div>
+      <div class="panel-title panel-footer">
+        {{localize "MVRPG.heroSheet.rank.title"}}
+      </div>
     </div>
   </div>
+
   <div class="abilities-panel comic-frame flexcol">
-    <div class="panel-title panel-header">{{localize "MVRPG.heroSheet.abilities.title"}}</div>
-    <div></div>
+    <div class="panel-title panel-header">
+      {{localize "MVRPG.heroSheet.abilities.title"}}
+    </div>
+    <div>
+      <!-- Abilities Go Here -->
+    </div>
   </div>
-  <div class="powers-panel comic-frame"></div>
+
+  <div class="powers-panel comic-frame">
+    <!-- Powers Go Here -->
+  </div>
 </form>
