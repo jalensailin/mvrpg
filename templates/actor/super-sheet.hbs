@@ -17,24 +17,34 @@
       </div>
       <div class="health-content flexrow">
         <div class="health-max comic-bubble-background flexcol">
-          <span class="lifepool-label">{{localize "MVRPG.heroSheet.health.max"}}</span>
+          <span class="lifepool-label">{{localize "MVRPG.heroSheet.lifepool.max"}}</span>
           <input class="health-max-input" name="system.lifepool.health.max" type="number" value="{{actor.system.lifepool.health.max}}">
         </div>
         <div class="health-points comic-bubble-background flexcol">
-          <span class="lifepool-label">{{localize "MVRPG.heroSheet.health.current"}}</span>
+          <span class="lifepool-label">{{localize "MVRPG.heroSheet.lifepool.current"}}</span>
           <input class="health-points-input" name="system.lifepool.health.value" type="number" value="{{actor.system.lifepool.health.value}}">
         </div>
         <div class="health-damage-reduction comic-bubble-background flexcol">
-          <span class="lifepool-label">{{localize "MVRPG.heroSheet.health.damageReduction"}}</span>
+          <span class="lifepool-label">{{localize "MVRPG.heroSheet.lifepool.damageReduction"}}</span>
           <input class="health-damage-reduction-input" name="system.lifepool.damageReduction.health" type="number" value="{{actor.system.lifepool.damageReduction.health}}">
         </div>
       </div>
     </div>
 
     <div class="focus-section flexcol">
-      <div class="focus-panel-content flexrow">
-        <div class="focus-points"></div>
-        <div class="focus-damage-reduction"></div>
+      <div class="focus-content flexrow">
+        <div class="focus-max comic-bubble-background flexcol">
+          <span class="lifepool-label">{{localize "MVRPG.heroSheet.lifepool.max"}}</span>
+          <input class="focus-max-input" name="system.lifepool.focus.max" type="number" value="{{actor.system.lifepool.focus.max}}">
+        </div>
+        <div class="focus-points comic-bubble-background flexcol">
+          <span class="lifepool-label">{{localize "MVRPG.heroSheet.lifepool.current"}}</span>
+          <input class="focus-points-input" name="system.lifepool.focus.value" type="number" value="{{actor.system.lifepool.focus.value}}">
+        </div>
+        <div class="focus-damage-reduction comic-bubble-background flexcol">
+          <span class="lifepool-label">{{localize "MVRPG.heroSheet.lifepool.damageReduction"}}</span>
+          <input class="focus-damage-reduction-input" name="system.lifepool.damageReduction.focus" type="number" value="{{actor.system.lifepool.damageReduction.focus}}">
+        </div>
       </div>
       <div class="panel-title panel-footer">
         {{localize "MVRPG.heroSheet.focus.title"}}
