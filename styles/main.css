@@ -53,6 +53,12 @@
   font-style: italic;
 }
 
+.mvrpg input[type="text"],
+.mvrpg input[type="number"] {
+  border: none;
+  background: none;
+}
+
 .mvrpg .container {
   font-family: KomikaText;
 }
@@ -74,7 +80,7 @@
   gap: 8px 14px;
   grid-auto-flow: row;
   grid-template-areas:
-    "codename-panel health-panel rank-panel"
+    "codename-panel lifepool-panel rank-panel"
     "abilities-panel powers-panel powers-panel"
     "abilities-panel powers-panel powers-panel";
 }
@@ -129,7 +135,7 @@
   grid-area: powers-panel;
 }
 
-.health-panel {
+.lifepool-panel {
   display: grid;
   grid-template-columns: 1fr;
   grid-template-rows: 1fr 1fr;
@@ -138,15 +144,69 @@
   grid-template-areas:
     "health"
     "focus";
-  grid-area: health-panel;
+  grid-area: lifepool-panel;
 }
 
-.health {
+.comic-bubble-background {
+  padding: 2px;
+  background-origin: content-box;
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center;
+}
+
+.health-section {
   grid-area: health;
   border-bottom: 2px solid;
 }
 
-.focus {
+.health-content {
+  background-color: rgb(240, 156, 156);
+}
+
+.health-content > .health-max {
+  background-image: url(../assets/sheets/actor/pool-max.svg);
+  align-items: center;
+  text-align: center;
+}
+
+.lifepool-panel .lifepool-label {
+  color: rgb(116, 116, 116);
+  position: relative;
+  top: 14%;
+}
+
+.health-max > .health-max-input {
+  font-size: 1.2rem;
+  position: relative;
+  top: -18%;
+}
+
+.health-content > .health-points {
+  background-image: url(../assets/sheets/actor/pool-current.svg);
+  align-items: center;
+  text-align: center;
+}
+
+.health-points > .health-points-input {
+  font-size: 1.6rem;
+  position: relative;
+  top: -18%;
+}
+
+.health-content > .health-damage-reduction {
+  background-image: url(../assets/sheets/actor/damage-reduction.svg);
+  align-items: center;
+  text-align: center;
+}
+
+.health-damage-reduction > .health-damage-reduction-input {
+  font-size: 1.2rem;
+  position: relative;
+  top: -18%;
+}
+
+.focus-section {
   grid-area: focus;
   border-top: 1px solid;
 }
@@ -190,17 +250,11 @@
 .rank-bubble {
   padding: 4px;
   background-image: url(../assets/sheets/actor/star.svg);
-  background-origin: content-box;
-  background-repeat: no-repeat;
-  background-size: contain;
-  background-position: center;
   align-items: center;
   text-align: center;
 }
 
 .rank-bubble > .rank-input {
-  border: none;
-  background: none;
   font-size: 1.6rem;
 }
 

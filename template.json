@@ -13,6 +13,10 @@
           "min": 0,
           "value": 90,
           "max": 90
+        },
+        "damageReduction": {
+          "health": 0,
+          "focus": 0
         }
       },
       "abilities": {
