@@ -34,7 +34,11 @@
         "jump": 3
       },
       "rank": 4,
-      "karma": 4
+      "karma": 4,
+      "initiative": {
+        "value": 3,
+        "edge": false
+      }
     }
   },
   "Item": {

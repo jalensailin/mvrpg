@@ -89,8 +89,7 @@
   position: absolute;
   top: 0;
   left: 0;
-  bottom: 0;
-  right: 0;
+  z-index: 1000;
   margin: auto;
   width: 100%;
   height: 100%;
@@ -259,8 +258,36 @@
   grid-auto-flow: row;
   grid-template-areas:
     "speed karma"
-    "init rank";
+    "initiative rank";
   grid-area: rank-panel;
+  position: relative;
+}
+
+.cog-wheel {
+  display: grid;
+  place-content: center;
+
+  position: absolute;
+  top: calc(50% - 0.625rem);
+  left: calc(50% - 0.625rem);
+
+  border-style: solid;
+  border-width: 2px;
+  border-radius: 5px;
+  background-color: rgb(255, 255, 255);
+}
+
+.cog-wheel > i {
+  text-align: center;
+  line-height: unset;
+  padding: 1px;
+
+  transform: rotate(0);
+  transition: transform 2s;
+}
+
+.cog-wheel > i:hover {
+  transform: rotate(360deg);
 }
 
 .speed {
@@ -275,26 +302,37 @@
   border-bottom: 2px solid;
 }
 
-.init {
-  grid-area: init;
+.initiative-section {
+  grid-area: initiative;
   border-right: 2px solid;
   border-top: 1px solid;
 }
 
-.rank {
+.initiative-content {
+  padding: 2px;
+  background-image: url(../assets/sheets/actor/initiative.svg);
+  align-items: center;
+  text-align: center;
+}
+
+.initiative-content > .initiative-input {
+  font-size: 1.6rem;
+}
+
+.rank-section {
   grid-area: rank;
   border-left: 1px solid;
   border-top: 1px solid;
 }
 
-.rank-bubble {
-  padding: 4px;
+.rank-content {
+  padding: 2px;
   background-image: url(../assets/sheets/actor/star.svg);
   align-items: center;
   text-align: center;
 }
 
-.rank-bubble > .rank-input {
+.rank-content > .rank-input {
   font-size: 1.6rem;
 }
 

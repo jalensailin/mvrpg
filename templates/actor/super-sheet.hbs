@@ -53,6 +53,10 @@
   </div>
 
   <div class="rank-panel comic-frame">
+    <div class="cog-wheel">
+      <i class="fa-solid fa-gear"></i>
+    </div>
+
     <div class="speed flexcol">
       <div class="panel-title panel-header">
         {{localize "MVRPG.heroSheet.speed.title"}}
@@ -71,17 +75,17 @@
       </div>
     </div>
 
-    <div class="init flexcol">
-      <div>
-        <!-- Init Goes Here -->
+    <div class="initiative-section flexcol">
+      <div class="initiative-content comic-bubble-background flexcol">
+        <input class="initiative-input" name="system.initiative.value" type="text" value="{{actor.system.initiative.value}}">
       </div>
       <div class="panel-title panel-footer">
         {{localize "MVRPG.heroSheet.initiative.title"}}
       </div>
     </div>
 
-    <div class="rank flexcol">
-      <div class="rank-bubble comic-bubble-background flexrow">
+    <div class="rank-section flexcol">
+      <div class="rank-content comic-bubble-background flexrow">
         <input class="rank-input" name="system.rank" type="text" value="{{actor.system.rank}}">
       </div>
       <div class="panel-title panel-footer">
