@@ -296,10 +296,21 @@
   border-bottom: 2px solid;
 }
 
-.karma {
+.karma-section {
   grid-area: karma;
   border-left: 1px solid;
   border-bottom: 2px solid;
+}
+
+.karma-content {
+  padding: 2px;
+  background-image: url(../assets/sheets/actor/karma.svg);
+  align-items: center;
+  text-align: center;
+}
+
+.karma-content > .karma-input {
+  font-size: 1.6rem;
 }
 
 .initiative-section {
