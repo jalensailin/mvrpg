@@ -53,14 +53,14 @@
   font-style: italic;
 }
 
+.mvrpg form {
+  font-family: KomikaText;
+}
+
 .mvrpg input[type="text"],
 .mvrpg input[type="number"] {
   border: none;
   background: none;
-}
-
-.mvrpg .container {
-  font-family: KomikaText;
 }
 
 .mvrpg section.window-content {
@@ -73,7 +73,7 @@
     url(/ui/parchment.jpg) repeat;
 }
 
-.container {
+.hero-sheet-grid {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   grid-template-rows: 32% 1fr 1fr;
@@ -85,7 +85,7 @@
     "abilities-panel powers-panel powers-panel";
 }
 
-.container > .comic-book-overlay {
+.half-tone-overlay {
   position: absolute;
   top: 0;
   left: 0;
@@ -264,9 +264,6 @@
 }
 
 .cog-wheel {
-  display: grid;
-  place-content: center;
-
   position: absolute;
   top: calc(50% - 0.625rem);
   left: calc(50% - 0.625rem);
@@ -277,7 +274,7 @@
   background-color: rgb(255, 255, 255);
 }
 
-.cog-wheel > i {
+.cog-wheel i {
   text-align: center;
   line-height: unset;
   padding: 1px;
@@ -286,7 +283,7 @@
   transition: transform 2s;
 }
 
-.cog-wheel > i:hover {
+.cog-wheel i:hover {
   transform: rotate(360deg);
 }
 
@@ -386,4 +383,95 @@
   font-family: KomikaTextSmallCaps;
   font-size: 1.8rem;
   text-align: center;
+}
+
+/* Dialogs */
+.mvrpg-dialog .dialog-buttons button {
+  border-style: solid;
+  border-width: 3px;
+  border-radius: 1px;
+  border-color: black;
+  box-shadow: 5px 5px;
+
+  font-family: KomikaText;
+  font-size: 1.1rem;
+  transition: text-shadow 200ms ease-in;
+
+  i {
+    color: rgb(155, 29, 29);
+    transform: translateY(0) rotate(180deg);
+    transition:
+      transform 1s cubic-bezier(0.68, -0.55, 0.27, 1.55),
+      color 1s ease-in;
+  }
+}
+
+.mvrpg-dialog .dialog-buttons button:hover {
+  text-shadow: 1px 1px 2px rgb(155, 29, 29);
+  i {
+    text-shadow: none;
+    color: rgb(37, 37, 37);
+    transform: translateY(-9px) rotate(180deg);
+  }
+}
+
+.mvrpg-dialog-container {
+  gap: 8px 8px;
+  padding-bottom: 8px;
+  font-size: 1.1rem;
+  font-weight: bold;
+}
+
+.mvrpg-dialog-section {
+  background-color: rgb(255, 255, 255);
+}
+
+.mvrpg-dialog-item {
+  justify-items: center;
+  align-items: center;
+  padding: 0 15px;
+}
+
+.mvrpg-dialog-header {
+  border-bottom: 3px solid #000000;
+  background: linear-gradient(180deg, #ffed8f 0%, rgba(253, 212, 0, 0.15) 100%);
+
+  font-family: KomikaTextSmallCaps;
+  line-height: 1.4rem;
+  font-size: 1.4rem;
+  font-weight: bold;
+  font-style: italic;
+  text-align: center;
+}
+
+.mvrpg-dialog-input {
+  text-align: right;
+}
+
+.mvrpg-dialog-input input[type="checkbox"] {
+  /* Add if not using autoprefixer */
+  -webkit-appearance: none;
+  appearance: none;
+  /* For iOS < 15 to remove gradient background */
+  background-color: #fff;
+  /* Not removed via appearance */
+  margin: 0;
+  transform: translateY(2px);
+
+  border-style: solid;
+  border-color: inherit;
+  border-width: 2px;
+  border-radius: 1px;
+  box-shadow: 3px 3px;
+
+  background-image: url(../assets/sheets/checkmark.svg);
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position-x: 1.15em;
+
+  transition: background-position 0.2s ease-out;
+}
+
+.mvrpg-dialog-input input[type="checkbox"]:checked {
+  background-position-x: 0;
 }

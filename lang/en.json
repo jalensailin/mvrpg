@@ -8,5 +8,11 @@
   "MVRPG.heroSheet.karma.title": "Karma.",
   "MVRPG.heroSheet.speed.title": "Speed.",
   "MVRPG.heroSheet.initiative.title": "Init.",
-  "MVRPG.heroSheet.rank.title": "Rank."
+  "MVRPG.heroSheet.rank.title": "Rank.",
+
+  "MVRPG.dialog.buttons.cancel": "Cancel",
+  "MVRPG.dialog.buttons.confirm": "Confirm!",
+  "MVRPG.dialog.initSpeed.title": "Initiative/Speed Config",
+  "MVRPG.dialog.initSpeed.initiativeSettings": "Initiative Settings.",
+  "MVRPG.dialog.initSpeed.edge": "Edge"
 }
