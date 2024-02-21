@@ -6,6 +6,8 @@
 
 - Comic speech bubbles: Provided by Aviran Revach from [Comics in Figma](https://www.figma.com/community/file/1074773789352934150) with some minor modifications. Licensed under [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/)
 
+- [MVRPG](https://icons8.com/icons/collections/qihocju2ii5kaq591uvt) icons by [Icons8](https://icons8.com)
+
 ## Fonts
 
 - Komika Text: Provided free of charge by Vigilante Typeface Corporation (See the second-to-last paragraph in `/assets/fonts/komika-text` for permission statement)

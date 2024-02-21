@@ -31,7 +31,11 @@
         "run": 5,
         "climb": 3,
         "swim": 3,
-        "jump": 3
+        "jump": 3,
+        "flight": 0,
+        "glide": 0,
+        "swingline": 0,
+        "levitation": 0
       },
       "rank": 4,
       "karma": 4,

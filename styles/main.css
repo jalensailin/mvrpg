@@ -287,7 +287,7 @@
   transform: rotate(360deg);
 }
 
-.speed {
+.speed-section {
   grid-area: speed;
   border-right: 2px solid;
   border-bottom: 2px solid;
@@ -442,6 +442,17 @@
   font-weight: bold;
   font-style: italic;
   text-align: center;
+}
+
+.mvrpg-dialog-label {
+  align-items: center;
+}
+
+.mvrpg-dialog-icon {
+  flex: 0;
+  border: unset;
+  height: 1.2rem;
+  padding-right: 2px;
 }
 
 .mvrpg-dialog-input {
