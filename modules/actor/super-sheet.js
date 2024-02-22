@@ -19,6 +19,30 @@ export default class SuperSheet extends ActorSheet {
   }
 
   /**
+   * @override
+   */
+  async getData() {
+    const foundryData = super.getData();
+    const mvrpgData = {};
+
+    // Group speeds with the same value.
+    const speeds = this.actor.system.speed;
+    const groupedSpeeds = {};
+    for (const [speedType, speedVal] of Object.entries(speeds)) {
+      if (Array.isArray(groupedSpeeds[speedVal])) {
+        groupedSpeeds[speedVal].push(speedType);
+      } else {
+        groupedSpeeds[speedVal] = [speedType];
+      }
+    }
+    mvrpgData.speeds = groupedSpeeds;
+    mvrpgData.displaySpeed =
+      this.actor.getFlag(game.system.id, "displaySpeed") || "run";
+
+    return { ...foundryData, ...mvrpgData };
+  }
+
+  /**
    * @param {*} html
    * @override
    */

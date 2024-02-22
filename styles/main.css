@@ -154,7 +154,7 @@
   background-position: center;
 }
 
-.lifepool-panel .lifepool-label {
+.bubble-label {
   color: rgb(116, 116, 116);
   position: relative;
   top: 14%;
@@ -252,8 +252,8 @@
 
 .rank-panel {
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  grid-template-rows: 1fr 1fr;
+  grid-template-columns: 49% 1fr;
+  grid-template-rows: 49% 1fr;
   gap: 0px 0px;
   grid-auto-flow: row;
   grid-template-areas:
@@ -265,8 +265,8 @@
 
 .cog-wheel {
   position: absolute;
-  top: calc(50% - 0.625rem);
-  left: calc(50% - 0.625rem);
+  top: calc(50% - 0.75rem);
+  left: calc(50% - 0.75rem);
 
   border-style: solid;
   border-width: 2px;
@@ -291,6 +291,50 @@
   grid-area: speed;
   border-right: 2px solid;
   border-bottom: 2px solid;
+}
+
+.speed-content {
+  place-content: center;
+  place-items: center;
+
+  background-image: url(../assets/sheets/actor/speed.svg);
+  position: relative;
+}
+
+.speed-selector {
+  flex: 0;
+  padding: 0;
+  width: 80%;
+  top: 5%;
+
+  background: none;
+  border: none;
+
+  font-size: 0.9rem;
+  text-align: center;
+}
+
+.speed-selector:hover {
+  text-shadow: 1px 1px 2px rgb(155, 29, 29);
+  box-shadow: 1px 1px 2px rgb(155, 29, 29);
+}
+
+.speed-item {
+  place-content: center;
+  place-items: center;
+  position: relative;
+  top: -10%;
+}
+
+.speed-icon {
+  border: unset;
+  height: 1.6rem;
+  padding: 1px;
+}
+
+.speed-value {
+  font-size: 1.6rem;
+  padding: 1px;
 }
 
 .karma-section {
