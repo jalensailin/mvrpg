@@ -67,6 +67,12 @@
   --venom-black: rgb(37, 37, 37);
   --cap-blue: rgb(156, 199, 240);
   --hulk-green: rgb(170, 204, 170);
+
+  /* Sizes */
+  --dialog-text-size: 1.1rem;
+  --header-text-size: 1.3rem;
+  --main-info-text-size: 1.6rem;
+  --sub-info-text-size: 1.2rem;
 }
 
 .mvrpg.sheet.actor {
@@ -128,8 +134,8 @@
 .panel-title {
   flex: 0;
   font-family: KomikaTextSmallCaps;
-  line-height: 1.4rem;
-  font-size: 1.4rem;
+  line-height: var(--header-text-size);
+  font-size: var(--header-text-size);
   font-weight: bold;
   font-style: italic;
   text-align: center;
@@ -201,7 +207,7 @@
 }
 
 .health-max > .health-max-input {
-  font-size: 1.2rem;
+  font-size: var(--sub-info-text-size);
   position: relative;
   top: -18%;
 }
@@ -213,7 +219,7 @@
 }
 
 .health-points > .health-points-input {
-  font-size: 1.6rem;
+  font-size: var(--main-info-text-size);
   position: relative;
   top: -18%;
 }
@@ -225,7 +231,7 @@
 }
 
 .health-damage-reduction > .health-damage-reduction-input {
-  font-size: 1.2rem;
+  font-size: var(--sub-info-text-size);
   position: relative;
   top: -18%;
 }
@@ -246,7 +252,7 @@
 }
 
 .focus-max > .focus-max-input {
-  font-size: 1.2rem;
+  font-size: var(--sub-info-text-size);
   position: relative;
   top: -18%;
 }
@@ -258,7 +264,7 @@
 }
 
 .focus-points > .focus-points-input {
-  font-size: 1.6rem;
+  font-size: var(--main-info-text-size);
   position: relative;
   top: -18%;
 }
@@ -270,7 +276,7 @@
 }
 
 .focus-damage-reduction > .focus-damage-reduction-input {
-  font-size: 1.2rem;
+  font-size: var(--sub-info-text-size);
   position: relative;
   top: -18%;
 }
@@ -354,12 +360,12 @@
 
 .speed-icon {
   border: unset;
-  height: 1.6rem;
+  height: var(--main-info-text-size);
   padding: 1px;
 }
 
 .speed-value {
-  font-size: 1.6rem;
+  font-size: var(--main-info-text-size);
   padding: 1px;
 }
 
@@ -378,7 +384,7 @@
 }
 
 .karma-content > .karma-input {
-  font-size: 1.6rem;
+  font-size: var(--main-info-text-size);
 }
 
 .initiative-section {
@@ -396,7 +402,7 @@
 }
 
 .initiative-content > .initiative-input {
-  font-size: 1.6rem;
+  font-size: var(--main-info-text-size);
 }
 
 .rank-section {
@@ -414,7 +420,7 @@
 }
 
 .rank-content > .rank-input {
-  font-size: 1.6rem;
+  font-size: var(--main-info-text-size);
 }
 
 .abilities-panel {
@@ -467,7 +473,7 @@
   box-shadow: 5px 5px;
 
   font-family: KomikaText;
-  font-size: 1.1rem;
+  font-size: var(--dialog-text-size);
   transition: text-shadow 200ms ease-in;
 
   i {
@@ -491,7 +497,7 @@
 .mvrpg-dialog-container {
   gap: 8px 8px;
   padding-bottom: 8px;
-  font-size: 1.1rem;
+  font-size: var(--dialog-text-size);
   font-weight: bold;
 }
 
@@ -514,8 +520,8 @@
   );
 
   font-family: KomikaTextSmallCaps;
-  line-height: 1.4rem;
-  font-size: 1.4rem;
+  line-height: var(--header-text-size);
+  font-size: var(--header-text-size);
   font-weight: bold;
   font-style: italic;
   text-align: center;
@@ -528,7 +534,7 @@
 .mvrpg-dialog-icon {
   flex: 0;
   border: unset;
-  height: 1.2rem;
+  height: var(--sub-info-text-size);
   padding-right: 2px;
 }
 
