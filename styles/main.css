@@ -454,24 +454,31 @@
   font-size: var(--main-info-text-size);
 }
 
+.ability-labels {
+  flex: 0;
+
+  place-content: center;
+  place-items: center;
+
+  font-size: 0.9rem;
+
+  width: 100%;
+  border-radius: 0 0 2px 2px;
+  background-color: var(--gwen-pink);
+}
+
 .ability-defense,
 .ability-non-combat-bonus {
   font-size: var(--sub-info-text-size);
 }
 
-.ability-label {
-  flex: 0;
-
-  width: 100%;
-  background-color: var(--gwen-pink);
-  border-radius: 0 0 2px 2px;
-
+.ability-name::first-letter {
   font-weight: bold;
+  text-decoration: underline;
 }
 
-.ability-label::first-letter {
-  font-size: 1rem;
-  text-decoration: underline;
+.ability-sub-label {
+  color: var(--label-gray);
 }
 
 .codename-panel {

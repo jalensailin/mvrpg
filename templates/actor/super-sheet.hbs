@@ -111,19 +111,27 @@
       {{localize "MVRPG.heroSheet.abilities.title"}}
     </div>
     <div class="abilities-content flexcol">
-      {{#each actor.system.abilities as |value ability|}}
+      {{#each actor.system.abilities as |info ability|}}
         <div class="ability-item flexcol">
           <div class="ability-info flexrow">
-            <div class="ability-defense">
-              100
+            <div class="ability-defense" data-tooltip="{{localize "MVRPG.heroSheet.abilities.tooltip.defenseScore"}}">
+              {{info.defenseBonus}}
             </div>
-            <input class="ability-input" type="number" name={{concat "system.abilities." ability}} value="{{value}}"/>
-            <div class="ability-non-combat-bonus">
-              100
+            <input class="ability-input" type="number" name={{concat "system.abilities." ability ".value"}} value="{{info.value}}" data-tooltip="{{localize "MVRPG.heroSheet.abilities.tooltip.abilityScore"}}"/>
+            <div class="ability-non-combat-bonus" data-tooltip="{{localize "MVRPG.heroSheet.abilities.tooltip.nonCombatChecks"}}">
+              {{numberFormat info.nonCombatBonus sign=true}}
             </div>
           </div>
-          <div class="ability-label">
-            {{localize (concat "MVRPG.heroSheet.abilities." ability)}}
+          <div class="ability-labels flexrow">
+            <div class="ability-sub-label" data-tooltip="{{localize "MVRPG.heroSheet.abilities.tooltip.defenseScore"}}">
+              <i class="fa-solid fa-shield-halved"></i>
+            </div>
+            <div class="ability-name" data-tooltip="{{localize "MVRPG.heroSheet.abilities.tooltip.abilityScore"}}">
+              {{localize (concat "MVRPG.heroSheet.abilities." ability)}}
+            </div>
+            <div class="ability-sub-label" data-tooltip="{{localize "MVRPG.heroSheet.abilities.tooltip.nonCombatChecks"}}">
+              <i class="fa-solid fa-dove"></i>
+            </div>
           </div>
         </div>
       {{/each}}
