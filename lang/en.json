@@ -6,7 +6,13 @@
   "MVRPG.dialog.initSpeed.edge": "Edge.",
   "MVRPG.dialog.initSpeed.speedSettings": "Speed Settings.",
 
+  "MVRPG.heroSheet.abilities.agility": "Agility.",
+  "MVRPG.heroSheet.abilities.ego": "Ego.",
+  "MVRPG.heroSheet.abilities.logic": "Logic.",
+  "MVRPG.heroSheet.abilities.melee": "Melee.",
+  "MVRPG.heroSheet.abilities.resilience": "Resilience.",
   "MVRPG.heroSheet.abilities.title": "Abilities.",
+  "MVRPG.heroSheet.abilities.vigilance": "Vigilance.",
   "MVRPG.heroSheet.focus.title": "Focus.",
   "MVRPG.heroSheet.health.title": "Health.",
   "MVRPG.heroSheet.initiative.title": "Init.",

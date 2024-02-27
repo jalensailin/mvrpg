@@ -110,8 +110,23 @@
     <div class="panel-title panel-header">
       {{localize "MVRPG.heroSheet.abilities.title"}}
     </div>
-    <div>
-      <!-- Abilities Go Here -->
+    <div class="abilities-content flexcol">
+      {{#each actor.system.abilities as |value ability|}}
+        <div class="ability-item flexcol">
+          <div class="ability-info flexrow">
+            <div class="ability-defense">
+              100
+            </div>
+            <input class="ability-input" type="number" name={{concat "system.abilities." ability}} value="{{value}}"/>
+            <div class="ability-non-combat-bonus">
+              100
+            </div>
+          </div>
+          <div class="ability-label">
+            {{localize (concat "MVRPG.heroSheet.abilities." ability)}}
+          </div>
+        </div>
+      {{/each}}
     </div>
   </div>
 
