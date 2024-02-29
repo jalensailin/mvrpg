@@ -1,0 +1,17 @@
+<div class="mvrpg-roll">
+  <div class="roll-label">
+    {{localize (concat "MVRPG.heroSheet.abilities." ability)}} D616 +{{modifier}}
+  </div>
+  <div class="roll-results flexrow">
+    {{dice.die1.total}}
+    {{#if fantasticResult}}
+      M(6)
+    {{else}}
+      {{dice.dieM.total}}
+    {{/if}}
+    {{dice.die3.total}}
+    +{{modifier}}
+    =
+    {{rollTotal}}
+  </div>
+</div>
