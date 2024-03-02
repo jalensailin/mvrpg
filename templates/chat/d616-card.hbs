@@ -1,17 +1,32 @@
-<div class="mvrpg-roll">
-  <div class="roll-label">
-    {{localize (concat "MVRPG.heroSheet.abilities." ability)}} D616 +{{modifier}}
+<div class="mvrpg-roll-card comic-frame flexcol">
+  <div class="half-tone-overlay"></div>
+  <div class="roll-label panel-header panel-title">
+    {{localize (concat "MVRPG.heroSheet.abilities." ability)}} (+{{modifier}})
   </div>
   <div class="roll-results flexrow">
-    {{dice.die1.total}}
-    {{#if fantasticResult}}
-      M(6)
-    {{else}}
-      {{dice.dieM.total}}
-    {{/if}}
-    {{dice.die3.total}}
-    +{{modifier}}
-    =
-    {{rollTotal}}
+    <div class="d616-label">
+      <i class="fa-solid fa-dice"></i> {{localize "MVRPG.rolls.d616"}}:
+    </div>
+    <div class="result-container flexrow">
+      <div class="roll-single-result">
+        {{dice.die1.total}}
+      </div>
+      <div class="roll-single-result multiverse-die {{#if fantasticResult}}fantastic{{/if}}">
+        {{#if fantasticResult}}
+          {{localize "MVRPG.rolls.fantasticResultDie"}}
+        {{else}}
+          {{dice.dieM.total}}
+        {{/if}}
+      </div>
+      <div class="roll-single-result">
+        {{dice.die3.total}}
+      </div>
+    </div>
+    <div class="roll-modifier">
+      {{localize "MVRPG.rolls.mod"}}: <span class="mod-number">+{{modifier}}</span>
+    </div>
+  </div>
+  <div class="roll-total" data-tooltip="{{dice.die1.total}} + {{dice.dieM.total}} + {{dice.die3.total}} + {{modifier}}">
+    {{localize "MVRPG.rolls.total"}}: <span class="total-number">{{rollTotal}}</span>
   </div>
 </div>

@@ -623,3 +623,70 @@
 .mvrpg-dialog-input input[type="checkbox"]:checked {
   background-position-x: 0;
 }
+
+/* Chat Cards */
+.mvrpg-roll-card {
+  font-family: KomikaText;
+  font-size: var(--dialog-text-size);
+  position: relative;
+
+  text-align: center;
+
+  background-color: var(--background-white);
+  margin-bottom: 2px;
+  margin-right: 2px;
+}
+
+.roll-label {
+  padding: 1px;
+}
+
+.roll-results {
+  padding: 2px;
+  border-bottom-style: solid;
+  align-items: end;
+}
+
+.result-container {
+  flex-wrap: nowrap;
+
+  align-items: end;
+  align-content: end;
+  justify-content: center;
+}
+
+.roll-single-result {
+  flex: 0;
+  min-width: 28px;
+  background-image: url(/icons/svg/d6-grey.svg);
+  background-size: 28px 28px;
+  background-repeat: no-repeat;
+  line-height: 28px;
+  font-size: var(--sub-info-text-size);
+  font-weight: bold;
+  float: left;
+}
+
+.multiverse-die {
+  background-size: 32px 32px;
+  min-width: 32px;
+
+  font-size: var(--header-text-size);
+  line-height: 32px;
+}
+
+/* This styling (particularly, the `filter`) comes from Foundry code */
+.fantastic {
+  color: var(--spider-red);
+  filter: sepia(0.5) hue-rotate(-60deg);
+}
+
+.mod-number {
+  font-size: var(--sub-info-text-size);
+  font-weight: bold;
+}
+
+.total-number {
+  font-size: var(--main-info-text-size);
+  font-weight: bold;
+}

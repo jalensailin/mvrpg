@@ -32,5 +32,10 @@
   "MVRPG.heroSheet.speed.run": "Run",
   "MVRPG.heroSheet.speed.swim": "Swim",
   "MVRPG.heroSheet.speed.swingline": "Swingline",
-  "MVRPG.heroSheet.speed.title": "Speed."
+  "MVRPG.heroSheet.speed.title": "Speed.",
+
+  "MVRPG.rolls.d616": "d616",
+  "MVRPG.rolls.fantasticResultDie": "M",
+  "MVRPG.rolls.mod": "Mod",
+  "MVRPG.rolls.total": "Total"
 }
