@@ -3,6 +3,11 @@
   <div class="roll-label panel-header panel-title">
     {{localize (concat "MVRPG.heroSheet.abilities." ability)}} (+{{modifier}})
   </div>
+  {{#if hasEdgesOrTroubles}}
+    <div class="edges-and-troubles" data-tooltip="{{localize "MVRPG.rolls.edges"}}: {{edges}}<br>{{localize "MVRPG.rolls.troubles"}}: {{troubles}}">
+      {{localize edgeOrTroubleString}}: <span>{{edgeOrTroubleCurrent}} / {{edgeOrTroubleTotal}} </span>
+    </div>
+  {{/if}}
   <div class="roll-results flexrow">
     <div class="d616-label">
       <i class="fa-solid fa-dice"></i> {{localize "MVRPG.rolls.d616"}}:

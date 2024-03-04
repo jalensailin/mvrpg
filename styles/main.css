@@ -641,9 +641,20 @@
   padding: 1px;
 }
 
+.edges-and-troubles {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  padding: 0 5px;
+
+  span {
+    font-weight: bold;
+  }
+}
+
 .roll-results {
   padding: 2px;
   border-bottom-style: solid;
+  border-bottom-width: 2px;
   align-items: end;
 }
 

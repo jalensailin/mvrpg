@@ -58,22 +58,31 @@ export default class SuperSheet extends ActorSheet {
   }
 
   async onRoll(event) {
-    const { rolltype, ability } = event.currentTarget.dataset;
+    const { rollType, ability } = event.currentTarget.dataset;
     const modifier = this.actor.system.abilities[ability].value;
     // Create the d616 roll
     const roll = new D616(
       "", // The formula is hard-coded in d616.js, so we just need to pass a dummy value.
       {},
-      { rolltype, ability, actor: this.actor },
+      { rollType, ability, actor: this.actor, edges: 3, troubles: 1 },
     );
     // Actually roll the dice
     await roll.evaluate();
+
+    const edgeOrTroubleString =
+      roll.edgesAndTroubles >= 0 ? "MVRPG.rolls.edges" : "MVRPG.rolls.troubles";
+
+    const edgeOrTroubleCurrent = Math.abs(roll.edgesAndTroubles);
 
     // Prepare data for chat.
     const [die1, dieM, die3] = roll.dice;
     const chatData = {
       dice: { die1, dieM, die3 },
       rollTotal: roll.total,
+      hasEdgesOrTroubles: roll.edgesAndTroubles !== 0,
+      edgeOrTroubleString,
+      edgeOrTroubleCurrent,
+      edgeOrTroubleTotal: edgeOrTroubleCurrent,
       edges: roll.edges,
       troubles: roll.troubles,
       modifier,

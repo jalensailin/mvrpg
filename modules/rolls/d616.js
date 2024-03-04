@@ -17,12 +17,12 @@ export default class D616 extends Roll {
       { actor: options.actor },
       options,
     );
-    const { rolltype, ability, actor } = options;
+    const { rolltype, ability, actor, troubles, edges } = options;
     this.type = rolltype;
     this.ability = ability;
     this.actor = actor;
-    this.troubles = 0;
-    this.edges = 0;
+    this.troubles = troubles || 0;
+    this.edges = edges || 0;
   }
 
   /**
@@ -45,5 +45,16 @@ export default class D616 extends Roll {
     if (!this._evaluated) return null; // Early return if the roll has not been evaluted;
     const [die1, dieM, die3] = this.dice;
     return die1.total === 6 && dieM.total === 6 && die3.total === 6;
+  }
+
+  /**
+   * Reduces the number of edges by the number of troubles.
+   * A negative return value indicates the number of troubles,
+   * while a positive value indicates the number of edges.
+   *
+   * @return {number} the result of subtracting troubles from edges
+   */
+  get edgesAndTroubles() {
+    return this.edges - this.troubles;
   }
 }

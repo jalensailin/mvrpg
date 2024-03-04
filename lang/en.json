@@ -35,7 +35,9 @@
   "MVRPG.heroSheet.speed.title": "Speed.",
 
   "MVRPG.rolls.d616": "d616",
+  "MVRPG.rolls.edges": "Edges",
   "MVRPG.rolls.fantasticResultDie": "M",
   "MVRPG.rolls.mod": "Mod",
-  "MVRPG.rolls.total": "Total"
+  "MVRPG.rolls.total": "Total",
+  "MVRPG.rolls.troubles": "Troubles"
 }
