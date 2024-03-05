@@ -57,6 +57,12 @@ export default class SuperSheet extends ActorSheet {
     html.find(".open-config").click(() => this.showConfig());
   }
 
+  /**
+   * Handle the roll event and execute associated actions.
+   *
+   * @param {Event} event - The roll event
+   * @return {Promise} A promise that resolves when the roll event is handled
+   */
   async onRoll(event) {
     const { rollType, ability } = event.currentTarget.dataset;
     const modifier = this.actor.system.abilities[ability].value;
@@ -69,8 +75,8 @@ export default class SuperSheet extends ActorSheet {
     // Actually roll the dice
     await roll.evaluate();
 
-    const edgeOrTroubleString =
-      roll.edgesAndTroubles >= 0 ? "MVRPG.rolls.edges" : "MVRPG.rolls.troubles";
+    const edgeOrTroubleKey = roll.edgesAndTroubles >= 0 ? "edge" : "trouble";
+    const edgeOrTroubleString = `MVRPG.rolls.${edgeOrTroubleKey}s`;
 
     const edgeOrTroubleCurrent = Math.abs(roll.edgesAndTroubles);
 
@@ -80,6 +86,7 @@ export default class SuperSheet extends ActorSheet {
       dice: { die1, dieM, die3 },
       rollTotal: roll.total,
       hasEdgesOrTroubles: roll.edgesAndTroubles !== 0,
+      edgeOrTroubleKey,
       edgeOrTroubleString,
       edgeOrTroubleCurrent,
       edgeOrTroubleTotal: edgeOrTroubleCurrent,

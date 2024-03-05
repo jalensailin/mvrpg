@@ -701,3 +701,8 @@
   font-size: var(--main-info-text-size);
   font-weight: bold;
 }
+
+a:hover.mv-inactive-link {
+  text-shadow: unset;
+  cursor: unset;
+}

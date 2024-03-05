@@ -1,3 +1,4 @@
+/* eslint-disable max-classes-per-file */
 /* globals Roll */
 
 export default class D616 extends Roll {
@@ -23,6 +24,11 @@ export default class D616 extends Roll {
     this.actor = actor;
     this.troubles = troubles || 0;
     this.edges = edges || 0;
+    this.rerolls = {
+      die1: [],
+      dieM: [],
+      die3: [],
+    };
   }
 
   /**
@@ -56,5 +62,13 @@ export default class D616 extends Roll {
    */
   get edgesAndTroubles() {
     return this.edges - this.troubles;
+  }
+}
+
+export class MVReroll extends Roll {
+  constructor(formula, data, options = {}) {
+    super("1d6", data, options);
+    const { rerollType } = options;
+    this.rerollType = rerollType; // "Trouble" or "Edge"
   }
 }
