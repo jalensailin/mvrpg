@@ -3,7 +3,7 @@ import SuperSheet from "./actor/super-sheet.js";
 import MVChat from "./chat/chat.js";
 import * as MVRolls from "./rolls/d616.js";
 
-CONFIG.debug.hooks = true;
+// CONFIG.debug.hooks = true;
 
 Hooks.once("init", async () => {
   console.log("I am GROOT");

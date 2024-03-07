@@ -12,26 +12,26 @@
     <div class="d616-label">
       <i class="fa-solid fa-dice"></i> {{localize "MVRPG.rolls.d616"}}:
     </div>
-    <div class="result-container flexrow" data-reroll-type="{{edgeOrTroubleKey}}">
-      <a class="roll-single-result {{#unless hasEdgesOrTroubles}}mv-inactive-link{{/unless}}" data-die-id="die1">
-        {{dice.die1.total}}
+    <div class="result-container flexrow">
+      <a class="roll-single-result {{#unless edgeOrTroubleCurrent}}mv-inactive-link{{/unless}}" data-die-id="die1">
+        {{dice.die1}}
       </a>
-      <a class="roll-single-result multiverse-die {{#if fantasticResult}}fantastic{{/if}} {{#unless hasEdgesOrTroubles}}mv-inactive-link{{/unless}}" data-die-id="dieM">
+      <a class="roll-single-result multiverse-die {{#if fantasticResult}}fantastic{{/if}} {{#unless edgeOrTroubleCurrent}}mv-inactive-link{{/unless}}" data-die-id="dieM">
         {{#if fantasticResult}}
           {{localize "MVRPG.rolls.fantasticResultDie"}}
         {{else}}
-          {{dice.dieM.total}}
+          {{dice.dieM}}
         {{/if}}
       </a>
-      <a class="roll-single-result {{#unless hasEdgesOrTroubles}}mv-inactive-link{{/unless}}" data-die-id="die3">
-        {{dice.die3.total}}
+      <a class="roll-single-result {{#unless edgeOrTroubleCurrent}}mv-inactive-link{{/unless}}" data-die-id="die3">
+        {{dice.die3}}
       </a>
     </div>
     <div class="roll-modifier">
       {{localize "MVRPG.rolls.mod"}}: <span class="mod-number">+{{modifier}}</span>
     </div>
   </div>
-  <div class="roll-total" data-tooltip="{{dice.die1.total}} + {{dice.dieM.total}} + {{dice.die3.total}} + {{modifier}}">
+  <div class="roll-total" data-tooltip="{{dice.die1}} + {{dice.dieM}} + {{dice.die3}} + {{modifier}}">
     {{localize "MVRPG.rolls.total"}}: <span class="total-number">{{rollTotal}}</span>
   </div>
 </div>

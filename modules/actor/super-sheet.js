@@ -70,7 +70,7 @@ export default class SuperSheet extends ActorSheet {
     const roll = new D616(
       "", // The formula is hard-coded in d616.js, so we just need to pass a dummy value.
       {},
-      { rollType, ability, actor: this.actor, edges: 3, troubles: 1 },
+      { rollType, ability, actor: this.actor, edges: 4, troubles: 3 },
     );
     // Actually roll the dice
     await roll.evaluate();
@@ -81,9 +81,8 @@ export default class SuperSheet extends ActorSheet {
     const edgeOrTroubleCurrent = Math.abs(roll.edgesAndTroubles);
 
     // Prepare data for chat.
-    const [die1, dieM, die3] = roll.dice;
     const chatData = {
-      dice: { die1, dieM, die3 },
+      dice: roll.finalResults,
       rollTotal: roll.total,
       hasEdgesOrTroubles: roll.edgesAndTroubles !== 0,
       edgeOrTroubleKey,
