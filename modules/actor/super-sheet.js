@@ -71,8 +71,8 @@ export default class SuperSheet extends ActorSheet {
       {},
       { rollType, ability, actor: this.actor },
     );
-    // Allow user to confirm the roll.
-    await roll.confirmRoll();
+    // Allow user to confirm the roll (which they can skip with ctrl-click).
+    if (!event.ctrlKey) await roll.confirmRoll();
     // Actually roll the dice
     await roll.evaluate();
 
