@@ -65,13 +65,14 @@ export default class SuperSheet extends ActorSheet {
    */
   async onRoll(event) {
     const { rollType, ability } = event.currentTarget.dataset;
-    const modifier = this.actor.system.abilities[ability].value;
     // Create the d616 roll
     const roll = new D616(
       "", // The formula is hard-coded in d616.js, so we just need to pass a dummy value.
       {},
-      { rollType, ability, actor: this.actor, edges: 4, troubles: 3 },
+      { rollType, ability, actor: this.actor },
     );
+    // Allow user to confirm the roll.
+    await roll.confirmRoll();
     // Actually roll the dice
     await roll.evaluate();
 
@@ -91,7 +92,7 @@ export default class SuperSheet extends ActorSheet {
       edgeOrTroubleTotal: edgeOrTroubleCurrent,
       edges: roll.edges,
       troubles: roll.troubles,
-      modifier,
+      modifier: roll.modifier,
       ability,
       fantasticResult: roll.fantasticResult,
       ultimateFantasticResult: roll.ultimateFantasticResult,

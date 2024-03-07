@@ -1,4 +1,4 @@
-/* globals Roll */
+/* globals Roll renderTemplate game Dialog foundry FormDataExtended $ mergeObject */
 
 export default class D616 extends Roll {
   /**
@@ -19,8 +19,9 @@ export default class D616 extends Roll {
     );
     const { rolltype, ability, actor, troubles, edges } = options;
     this.type = rolltype;
-    this.ability = ability;
     this.actor = actor;
+    this.ability = ability;
+    this.modifier = actor.system.abilities[ability].value;
     this.troubles = troubles || 0;
     this.edges = edges || 0;
     this.rerolls = options.rerolls || {
@@ -56,6 +57,60 @@ export default class D616 extends Roll {
     // Otherwise return an array containing the total for this roll and all rerolls.
     const rerollTotals = this.rerolls[dieId].map((r) => r.total);
     return [rollTotal].concat(rerollTotals);
+  }
+
+  async confirmRoll() {
+    const content = await renderTemplate(
+      `systems/${game.system.id}/templates/actor/dialogs/roll-confirmation.hbs`,
+      {
+        modifier: this.modifier,
+        ability: game.i18n.localize(
+          `MVRPG.heroSheet.abilities.${this.ability}`,
+        ),
+      },
+    );
+    return Dialog.wait(
+      {
+        content,
+        title: game.i18n.localize("MVRPG.dialog.rollConfirm.title"),
+        default: "confirm",
+        buttons: {
+          confirm: {
+            icon: `<i class="fa-solid fa-spider"></i>`,
+            label: game.i18n.localize("MVRPG.dialog.buttons.confirm"),
+            callback: (html) => {
+              const fd = new FormDataExtended(html.find("form")[0]);
+              const formData = foundry.utils.expandObject(fd.object);
+              // Foundry constructs a new roll object every time messages are loaded.
+              // Thus, we need to make sure that the roll.options object is mutated as well
+              // as the roll itself.
+              mergeObject(this.options, formData);
+              mergeObject(this, formData);
+            },
+          },
+        },
+        render: (html) => {
+          // Enable/disable inputs if the checkbox is checked or unchecked
+          html.on("click", "input[type='checkbox']", (event) => {
+            const form = html.find("form");
+            const { currentTarget } = event;
+            const name = currentTarget.dataset.reference;
+            const input = form.find(`input[name="${name}"]`);
+            if ($(currentTarget).prop("checked")) {
+              input.prop("disabled", false);
+              if (input.val() === "0") input.val("1");
+            } else {
+              input.prop("disabled", true);
+              if (input.val() === "1") input.val("0");
+            }
+          });
+        },
+      },
+      {
+        classes: ["mvrpg", "mvrpg-dialog", "roll"],
+        width: 300,
+      },
+    );
   }
 
   /**

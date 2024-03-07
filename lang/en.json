@@ -5,6 +5,9 @@
   "MVRPG.dialog.initSpeed.initiativeSettings": "Initiative Settings.",
   "MVRPG.dialog.initSpeed.edge": "Edge.",
   "MVRPG.dialog.initSpeed.speedSettings": "Speed Settings.",
+  "MVRPG.dialog.rollConfirm.edges": "Edges.",
+  "MVRPG.dialog.rollConfirm.title": "Confirm d616.",
+  "MVRPG.dialog.rollConfirm.troubles": "Troubles.",
 
   "MVRPG.heroSheet.abilities.agility": "Agility.",
   "MVRPG.heroSheet.abilities.ego": "Ego.",
