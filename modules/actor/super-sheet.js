@@ -103,12 +103,25 @@ export default class SuperSheet extends ActorSheet {
       `systems/${game.system.id}/templates/chat/d616-card.hbs`,
       chatData,
     );
+    // Create the chat message.
     const message = await roll.toMessage({
       speaker: ChatMessage.getSpeaker({ actor: this.actor }),
       content,
     });
-    // Store this chat-data in a flag so that its easily retrieved later.
-    message.setFlag(game.system.id, "messageData", chatData);
+    // Store this chat-data in a flag so that it's easily retrieved later.
+    await message.setFlag(game.system.id, "messageData", chatData);
+
+    // If we have troubles and the user specifies, reroll them automatically.
+    const rerollTroublesSetting = game.settings.get(
+      game.system.id,
+      "autoRerollTroubles",
+    );
+    if (roll.edgesAndTroubles < 0 && rerollTroublesSetting) {
+      // If using 3d dice, wait for the original message's animation to finish before automatically rerolling.
+      if (game.dice3d)
+        await game.dice3d.waitFor3DAnimationByMessageID(message.id);
+      await roll.automaticallyRerollTroubles(message);
+    }
   }
 
   async showConfig() {

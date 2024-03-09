@@ -703,7 +703,8 @@
 /* This styling (particularly, the `filter`) comes from Foundry code */
 .fantastic {
   color: var(--spider-red);
-  filter: sepia(0.5) hue-rotate(-60deg);
+  filter: sepia(0.5) hue-rotate(-60deg)
+    drop-shadow(3px 3px 2px var(--spider-red));
 }
 
 .mod-number {
