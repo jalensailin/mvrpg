@@ -42,5 +42,8 @@
   "MVRPG.rolls.fantasticResultDie": "M",
   "MVRPG.rolls.mod": "Mod",
   "MVRPG.rolls.total": "Total",
-  "MVRPG.rolls.troubles": "Troubles"
+  "MVRPG.rolls.troubles": "Troubles",
+
+  "MVRPG.settings.autoRerollTroubles.hint": "Troubles will get automatically rerolled. The middle die (dMV) always gets rerolled preferentially in the case of a tie.",
+  "MVRPG.settings.autoRerollTroubles.title": "Automatically reroll troubles?"
 }

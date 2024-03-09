@@ -2,6 +2,7 @@
 import SuperSheet from "./actor/super-sheet.js";
 import MVChat from "./chat/chat.js";
 import * as MVRolls from "./rolls/d616.js";
+import registerSettings from "./settings.js";
 
 // CONFIG.debug.hooks = true;
 
@@ -13,6 +14,8 @@ Hooks.once("init", async () => {
   Actors.registerSheet("mvrpg", SuperSheet, {
     makeDefault: true,
   });
+
+  registerSettings();
 });
 
 /**
