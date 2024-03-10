@@ -106,8 +106,8 @@
   grid-auto-flow: row;
   grid-template-areas:
     "codename-panel lifepool-panel rank-panel"
-    "abilities-panel powers-panel powers-panel"
-    "abilities-panel powers-panel powers-panel";
+    "abilities-panel tabbed-panel tabbed-panel"
+    "abilities-panel tabbed-panel tabbed-panel";
 }
 
 .half-tone-overlay {
@@ -163,8 +163,34 @@
   );
 }
 
-.powers-panel {
-  grid-area: powers-panel;
+.tabbed-panel {
+  grid-area: tabbed-panel;
+}
+
+.mvrpg .sheet-tabs.tabs {
+  flex: 0;
+  gap: 5px;
+  border: unset;
+  margin: 0;
+  justify-content: unset;
+}
+
+.tab-header {
+  flex: 1;
+  border-bottom: unset;
+  border-top: 3px solid;
+  border-left: 3px solid;
+  border-right: 3px solid;
+  border-color: var(--label-gray);
+  color: var(--label-gray);
+  padding: 0 2px;
+  font-weight: normal;
+}
+
+.tab-header.active {
+  border-color: var(--border-black);
+  color: var(--border-black);
+  font-weight: bold;
 }
 
 .lifepool-panel {

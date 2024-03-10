@@ -138,7 +138,23 @@
     </div>
   </div>
 
-  <div class="powers-panel comic-frame">
-    <!-- Powers Go Here -->
+  <div class="tabbed-panel flexcol">
+    {{!-- Sheet Tab Navigation --}}
+    <nav class="sheet-tabs tabs" data-group="primary">
+      <a class="tab-header panel-header panel-title" data-tab="powers">{{localize "Powers."}}</a>
+      <a class="tab-header panel-header panel-title" data-tab="combat">{{localize "Combat."}}</a>
+      <a class="tab-header panel-header panel-title" data-tab="identity">{{localize "Identity."}}</a>
+    </nav>
+    <div class="sheet-body comic-frame">
+      <div class="tab powers" data-group="primary" data-tab="powers">
+        {{!-- Powers Tab Content --}}
+      </div>
+      <div class="tab combat" data-group="primary" data-tab="combat">
+        {{!-- Combat Tab Content --}}
+      </div>
+      <div class="tab identity" data-group="primary" data-tab="identity">
+        {{!-- Identity Tab Content --}}
+      </div>
+    </div>
   </div>
 </form>
