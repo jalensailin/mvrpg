@@ -61,7 +61,7 @@ export default class D616 extends Roll {
 
   async confirmRoll() {
     const content = await renderTemplate(
-      `systems/${game.system.id}/templates/actor/dialogs/roll-confirmation.hbs`,
+      `systems/${game.system.id}/templates/dialogs/roll-confirmation.hbs`,
       {
         modifier: this.modifier,
         ability: game.i18n.localize(
