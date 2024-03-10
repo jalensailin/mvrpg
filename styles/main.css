@@ -67,6 +67,8 @@
   --venom-black: rgb(37, 37, 37);
   --cap-blue: rgb(156, 199, 240);
   --hulk-green: rgb(170, 204, 170);
+  --thing-orange: rgb(241 200 173);
+  --thanos-purple: rgb(209 181 247);
 
   /* Sizes */
   --dialog-text-size: 1.1rem;
@@ -433,7 +435,7 @@
   place-content: center;
   place-items: center;
 
-  background-color: slateblue;
+  background-color: var(--thing-orange);
 }
 
 .ability-item {
@@ -464,7 +466,7 @@
 
   width: 100%;
   border-radius: 0 0 2px 2px;
-  background-color: var(--gwen-pink);
+  background-color: var(--thanos-purple);
 }
 
 .ability-defense,
