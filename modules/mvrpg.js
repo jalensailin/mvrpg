@@ -1,6 +1,7 @@
 /* global Hooks Actors ActorSheet CONFIG */
 import SuperSheet from "./actor/super-sheet.js";
 import MVChat from "./chat/chat.js";
+import SuperDataModel from "./datamodels/actor/super-datamodel.js";
 import * as MVRolls from "./rolls/d616.js";
 import registerSettings from "./settings.js";
 
@@ -14,6 +15,8 @@ Hooks.once("init", async () => {
   Actors.registerSheet("mvrpg", SuperSheet, {
     makeDefault: true,
   });
+
+  CONFIG.Actor.dataModels.super = SuperDataModel;
 
   registerSettings();
 });

@@ -1,73 +1,7 @@
 {
   "Actor": {
     "types": ["super"],
-    "super": {
-      "codename": "Superhero",
-      "lifepool": {
-        "health": {
-          "min": 0,
-          "value": 90,
-          "max": 90
-        },
-        "focus": {
-          "min": 0,
-          "value": 90,
-          "max": 90
-        },
-        "damageReduction": {
-          "health": 0,
-          "focus": 0
-        }
-      },
-      "abilities": {
-        "melee": {
-          "value": 0,
-          "nonCombatBonus": 0,
-          "defenseBonus": 0
-        },
-        "agility": {
-          "value": 0,
-          "nonCombatBonus": 0,
-          "defenseBonus": 0
-        },
-        "resilience": {
-          "value": 0,
-          "nonCombatBonus": 0,
-          "defenseBonus": 0
-        },
-        "vigilance": {
-          "value": 0,
-          "nonCombatBonus": 0,
-          "defenseBonus": 0
-        },
-        "ego": {
-          "value": 0,
-          "nonCombatBonus": 0,
-          "defenseBonus": 0
-        },
-        "logic": {
-          "value": 0,
-          "nonCombatBonus": 0,
-          "defenseBonus": 0
-        }
-      },
-      "speed": {
-        "run": 5,
-        "climb": 3,
-        "swim": 3,
-        "jump": 3,
-        "flight": 0,
-        "glide": 0,
-        "swingline": 0,
-        "levitation": 0
-      },
-      "rank": 4,
-      "karma": 4,
-      "initiative": {
-        "value": 3,
-        "edge": false
-      }
-    }
+    "super": {}
   },
   "Item": {
     "types": ["power", "trait", "tag"]

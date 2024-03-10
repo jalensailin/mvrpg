@@ -1,0 +1,32 @@
+/* globals foundry */
+
+export default class LifepoolSchema extends foundry.abstract.TypeDataModel {
+  static defineSchema() {
+    const { fields } = foundry.data;
+    return {
+      value: new fields.NumberField({
+        required: true,
+        nullable: false,
+        integer: true,
+        positive: false,
+        initial: 0,
+        min: 0,
+      }),
+      max: new fields.NumberField({
+        required: true,
+        nullable: false,
+        integer: true,
+        positive: false,
+        initial: 0,
+        min: 0,
+      }),
+      damageReduction: new fields.NumberField({
+        required: true,
+        nullable: false,
+        integer: true,
+        positive: false,
+        initial: 0,
+      }),
+    };
+  }
+}

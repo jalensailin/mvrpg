@@ -26,7 +26,7 @@
         </div>
         <div class="health-damage-reduction comic-bubble-background flexcol">
           <span class="bubble-label">{{localize "MVRPG.heroSheet.lifepool.damageReduction"}}</span>
-          <input class="health-damage-reduction-input" name="system.lifepool.damageReduction.health" type="number" value="{{actor.system.lifepool.damageReduction.health}}">
+          <input class="health-damage-reduction-input" name="system.lifepool.health.damageReduction" type="number" value="{{actor.system.lifepool.health.damageReduction}}">
         </div>
       </div>
     </div>
@@ -43,7 +43,7 @@
         </div>
         <div class="focus-damage-reduction comic-bubble-background flexcol">
           <span class="bubble-label">{{localize "MVRPG.heroSheet.lifepool.damageReduction"}}</span>
-          <input class="focus-damage-reduction-input" name="system.lifepool.damageReduction.focus" type="number" value="{{actor.system.lifepool.damageReduction.focus}}">
+          <input class="focus-damage-reduction-input" name="system.lifepool.focus.damageReduction" type="number" value="{{actor.system.lifepool.focus.damageReduction}}">
         </div>
       </div>
       <div class="panel-title panel-footer">
@@ -89,7 +89,7 @@
 
     <div class="initiative-section flexcol">
       <div class="initiative-content comic-bubble-background flexcol">
-        <input class="initiative-input" name="system.initiative.value" type="text" value="{{actor.system.initiative.value}}">
+        <input class="initiative-input" name="system.initiative.value" type="number" value="{{actor.system.initiative.value}}">
       </div>
       <div class="panel-title panel-footer">
         {{localize "MVRPG.heroSheet.initiative.title"}}
@@ -98,7 +98,7 @@
 
     <div class="rank-section flexcol">
       <div class="rank-content comic-bubble-background flexrow">
-        <input class="rank-input" name="system.rank" type="text" value="{{actor.system.rank}}">
+        <input class="rank-input" name="system.rank" type="number" value="{{actor.system.rank}}">
       </div>
       <div class="panel-title panel-footer">
         {{localize "MVRPG.heroSheet.rank.title"}}
