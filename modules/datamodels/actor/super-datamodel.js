@@ -1,6 +1,7 @@
 /* globals foundry */
 
 import AbilitySchema from "./ability-schema.js";
+import IdentitySchema from "./identity-schema.js";
 import LifepoolSchema from "./lifepool-schema.js";
 
 export default class SuperDataModel extends foundry.abstract.TypeDataModel {
@@ -116,6 +117,7 @@ export default class SuperDataModel extends foundry.abstract.TypeDataModel {
           initial: false,
         }),
       }),
+      identity: new fields.EmbeddedDataField(IdentitySchema),
     };
   }
 }
