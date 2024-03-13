@@ -13,7 +13,7 @@
   <div class="lifepool-panel comic-frame">
     <div class="health-section flexcol">
       <div class="panel-title panel-header">
-        {{localize "MVRPG.heroSheet.health.title"}}
+        {{localize "MVRPG.heroSheet.titles.health"}}
       </div>
       <div class="health-content flexrow">
         <div class="health-max comic-bubble-background flexcol">
@@ -47,7 +47,7 @@
         </div>
       </div>
       <div class="panel-title panel-footer">
-        {{localize "MVRPG.heroSheet.focus.title"}}
+        {{localize "MVRPG.heroSheet.titles.focus"}}
       </div>
     </div>
   </div>
@@ -59,7 +59,7 @@
 
     <div class="speed-section flexcol">
       <div class="panel-title panel-header">
-        {{localize "MVRPG.heroSheet.speed.title"}}
+        {{localize "MVRPG.heroSheet.titles.speed"}}
         </div>
       <div class="speed-content comic-bubble-background flexcol">
         {{#select actor.flags.mvrpg.displaySpeed}}
@@ -80,7 +80,7 @@
 
     <div class="karma-section flexcol">
       <div class="panel-title panel-header">
-        {{localize "MVRPG.heroSheet.karma.title"}}
+        {{localize "MVRPG.heroSheet.titles.karma"}}
       </div>
       <div class="karma-content comic-bubble-background flexcol">
         <input class="karma-input" name="system.karma" type="number" value="{{actor.system.karma}}">
@@ -92,7 +92,7 @@
         <input class="initiative-input" name="system.initiative.value" type="number" value="{{actor.system.initiative.value}}">
       </div>
       <div class="panel-title panel-footer">
-        {{localize "MVRPG.heroSheet.initiative.title"}}
+        {{localize "MVRPG.heroSheet.titles.initiative"}}
       </div>
     </div>
 
@@ -101,14 +101,14 @@
         <input class="rank-input" name="system.rank" type="number" value="{{actor.system.rank}}">
       </div>
       <div class="panel-title panel-footer">
-        {{localize "MVRPG.heroSheet.rank.title"}}
+        {{localize "MVRPG.heroSheet.titles.rank"}}
       </div>
     </div>
   </div>
 
   <div class="abilities-panel comic-frame flexcol">
     <div class="panel-title panel-header">
-      {{localize "MVRPG.heroSheet.abilities.title"}}
+      {{localize "MVRPG.heroSheet.titles.abilities"}}
     </div>
     <div class="abilities-content flexcol">
       {{#each actor.system.abilities as |info ability|}}
