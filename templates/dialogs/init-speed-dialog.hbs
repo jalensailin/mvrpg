@@ -20,7 +20,7 @@
 
       {{#each actor.system.speed as |speedVal speedName|}}
         <div class="mvrpg-dialog-item flexrow">
-          <div class="mvrpg-dialog-label flexrow"><img class="mvrpg-dialog-icon" src="systems/mvrpg/assets/sheets/actor/speed-icons/{{speedName}}.png" />{{localize (concat "MVRPG.heroSheet.speed." speedName)}}.</div>
+          <div class="mvrpg-dialog-label flexrow"><img class="mvrpg-dialog-icon" src="{{concat (systemFilePath "assets/sheets/actor/speed-icons/") speedName ".png"}}" />{{localize (concat "MVRPG.heroSheet.speed." speedName)}}.</div>
           <div class="mvrpg-dialog-input"><input name="system.speed.{{speedName}}" type="number" value="{{speedVal}}"></div>
         </div>
       {{/each}}

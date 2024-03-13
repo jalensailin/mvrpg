@@ -72,7 +72,7 @@
           </select>
         {{/select}}
         <div class="speed-item flexrow">
-          <img class="speed-icon" src="systems/mvrpg/assets/sheets/actor/speed-icons/{{displaySpeed}}.png">
+          <img class="speed-icon" src="{{concat (systemFilePath "assets/sheets/actor/speed-icons/") displaySpeed ".png"}}">
           <div class="speed-value">{{lookup actor.system.speed displaySpeed}}</div>
         </div>
       </div>
