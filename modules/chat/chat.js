@@ -1,6 +1,6 @@
 /* global game */
 
-import MVUtils from "../utils.js";
+import MVUtils from "../utils/utils.js";
 
 export default class MVChat {
   static activateChatListeners(html) {

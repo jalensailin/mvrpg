@@ -3,7 +3,7 @@ import SuperSheet from "./actor/super-sheet.js";
 import MVChat from "./chat/chat.js";
 import SuperDataModel from "./datamodels/actor/super-datamodel.js";
 import * as MVRolls from "./rolls/d616.js";
-import registerSettings from "./settings.js";
+import registerSettings from "./utils/settings.js";
 
 // CONFIG.debug.hooks = true;
 
