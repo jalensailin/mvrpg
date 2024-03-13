@@ -4,6 +4,7 @@ import MVChat from "./chat/chat.js";
 import SuperDataModel from "./datamodels/actor/super-datamodel.js";
 import * as MVRolls from "./rolls/d616.js";
 import registerSettings from "./utils/settings.js";
+import loadTemplates from "./utils/loadTemplates.js";
 
 // CONFIG.debug.hooks = true;
 
@@ -18,6 +19,7 @@ Hooks.once("init", async () => {
 
   CONFIG.Actor.dataModels.super = SuperDataModel;
 
+  loadTemplates();
   registerSettings();
 });
 
