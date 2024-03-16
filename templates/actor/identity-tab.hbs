@@ -1,0 +1,70 @@
+<div class="tab identity-panel flexcol" data-group="primary" data-tab="identity">
+
+  <div class="identity-names-section flexrow" >
+    <div class="identity-item flexcol">
+      <div class="identity-label">{{localize "MVRPG.heroSheet.identity.realName"}}:</div>
+      <input class="identity-input" type="text" name="system.identity.realName" value="{{actor.system.identity.realName}}"/>
+    </div>
+    <div class="identity-item flexcol">
+      <div class="identity-label">{{localize "MVRPG.heroSheet.identity.codeName"}}:</div>
+      <input class="identity-input" type="text" name="system.identity.codeName" value="{{actor.system.identity.codeName}}"/>
+    </div>
+    <div class="identity-item flexcol">
+      <div class="identity-label">{{localize "MVRPG.heroSheet.identity.gender"}}:</div>
+      <input class="identity-input" type="text" name="system.identity.gender" value="{{actor.system.identity.gender}}"/>
+    </div>
+  </div>
+  <div class="identity-2nd-section flexrow">
+    <div class="identity-item flexcol">
+      <div class="identity-label">{{localize "MVRPG.heroSheet.identity.weight"}}:</div>
+      <input class="identity-input" type="text" name="system.identity.weight" value="{{actor.system.identity.weight}}"/>
+    </div>
+    <div class="identity-item flexcol">
+      <div class="identity-label">{{localize "MVRPG.heroSheet.identity.height"}}:</div>
+      <input class="identity-input" type="text" name="system.identity.height" value="{{actor.system.identity.height}}"/>
+    </div>
+    <div class="identity-item flexcol">
+      <div class="identity-label">{{localize "MVRPG.heroSheet.identity.size"}}:</div>
+      <input class="identity-input" type="text" name="system.identity.size" value="{{actor.system.identity.size}}"/>
+    </div>
+  </div>
+  <div class="identity-3rd-section flexrow">
+    <div class="identity-item flexcol">
+      <div class="identity-label">{{localize "MVRPG.heroSheet.identity.eyes"}}:</div>
+      <input class="identity-input" type="text" name="system.identity.eyes" value="{{actor.system.identity.eyes}}"/>
+    </div>
+    <div class="identity-item flexcol">
+      <div class="identity-label">{{localize "MVRPG.heroSheet.identity.hair"}}:</div>
+      <input class="identity-input" type="text" name="system.identity.hair" value="{{actor.system.identity.hair}}"/>
+    </div>
+    <div class="identity-item flexcol">
+      <div class="identity-label">{{localize "MVRPG.heroSheet.identity.distinguishingFeatures"}}:</div>
+      <input class="identity-input" type="text" name="system.identity.distinguishingFeatures" value="{{actor.system.identity.distinguishingFeatures}}"/>
+    </div>
+  </div>
+  <div class="identity-4th-section flexrow">
+    <div class="identity-item flexcol">
+      <div class="identity-label">{{localize "MVRPG.heroSheet.identity.origin"}}:</div>
+      <input class="identity-input" type="text" name="system.identity.origin" value="{{actor.system.identity.origin}}"/>
+    </div>
+    <div class="identity-item flexcol">
+      <div class="identity-label">{{localize "MVRPG.heroSheet.identity.occupation"}}:</div>
+      <input class="identity-input" type="text" name="system.identity.occupation" value="{{actor.system.identity.occupation}}"/>
+    </div>
+  </div>
+  <div class="identity-5th-section flexrow">
+    <div class="identity-item flexcol">
+      <div class="identity-label">{{localize "MVRPG.heroSheet.identity.base"}}:</div>
+      <input class="identity-input" type="text" name="system.identity.base" value="{{actor.system.identity.base}}"/>
+    </div>
+    <div class="identity-item flexcol">
+      <div class="identity-label">{{localize "MVRPG.heroSheet.identity.teams"}}:</div>
+      <input class="identity-input" type="text" name="system.identity.teams" value="{{actor.system.identity.teams}}"/>
+    </div>
+  </div>
+  <section class="identity-notes">
+    <div class="identity-label">{{localize "MVRPG.heroSheet.identity.notes"}}:</div>
+    {{editor enrichedNotes target="system.identity.notes" button="true" engine="prosemirror"}}
+  </section>
+</div>
+

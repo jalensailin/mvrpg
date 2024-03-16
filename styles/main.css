@@ -77,6 +77,11 @@
   --sub-info-text-size: 1.2rem;
 }
 
+div,
+section {
+  scrollbar-width: thin;
+}
+
 .mvrpg.sheet.actor {
   min-width: 360px;
   min-height: 594px;
@@ -90,6 +95,11 @@
 .mvrpg input[type="number"] {
   border: none;
   background: none;
+}
+
+.mvrpg input[type="text"]:hover,
+.mvrpg input[type="number"]:hover {
+  color: var(--spider-red);
 }
 
 .mvrpg section.window-content {
@@ -165,6 +175,42 @@
 
 .tabbed-panel {
   grid-area: tabbed-panel;
+}
+
+.identity-panel {
+  height: 100%;
+  padding: 0 3px;
+}
+
+.identity-panel > div {
+  gap: 3px;
+  flex: 0;
+}
+
+/* Open Editor */
+.editor .editor-container {
+  max-height: 9.5rem;
+}
+
+/* Closed Editor */
+.editor .editor-content {
+  min-height: 4rem;
+  max-height: 9.5rem;
+  padding: 0rem;
+}
+
+.editor.prosemirror {
+  min-height: 9.5rem;
+}
+
+.identity-label {
+  font-family: KomikaTextSmallCaps;
+  font-weight: bold;
+  flex: 0;
+}
+.identity-input {
+  background-color: rgb(200, 211, 211) !important;
+  flex: 0;
 }
 
 .mvrpg .sheet-tabs.tabs {

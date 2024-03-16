@@ -1,4 +1,4 @@
-/* global ActorSheet mergeObject game renderTemplate Dialog FormDataExtended foundry ChatMessage */
+/* global ActorSheet mergeObject game renderTemplate Dialog FormDataExtended foundry ChatMessage TextEditor */
 
 import D616 from "../rolls/d616.js";
 
@@ -14,9 +14,10 @@ export default class SuperSheet extends ActorSheet {
         {
           navSelector: ".sheet-tabs",
           contentSelector: ".sheet-body",
-          initial: "powers",
+          initial: "identity",
         },
       ],
+      scrollY: [".editor-content"],
     });
   }
 
@@ -40,6 +41,11 @@ export default class SuperSheet extends ActorSheet {
     mvrpgData.speeds = groupedSpeeds;
     mvrpgData.displaySpeed =
       this.actor.getFlag(game.system.id, "displaySpeed") || "run";
+
+    mvrpgData.enrichedNotes = await TextEditor.enrichHTML(
+      this.actor.system.identity.notes,
+      { async: true },
+    );
 
     return { ...foundryData, ...mvrpgData };
   }

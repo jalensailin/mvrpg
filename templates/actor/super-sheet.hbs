@@ -143,7 +143,7 @@
     <nav class="sheet-tabs tabs" data-group="primary">
       <a class="tab-header panel-header panel-title" data-tab="powers">{{localize "Powers."}}</a>
       <a class="tab-header panel-header panel-title" data-tab="combat">{{localize "Combat."}}</a>
-      <a class="tab-header panel-header panel-title" data-tab="identity">{{localize "Identity."}}</a>
+      <a class="tab-header panel-header panel-title" data-tab="identity">{{localize "MVRPG.heroSheet.titles.identity"}}</a>
     </nav>
     <div class="sheet-body comic-frame">
       <div class="tab powers" data-group="primary" data-tab="powers">
@@ -152,9 +152,7 @@
       <div class="tab combat" data-group="primary" data-tab="combat">
         {{!-- Combat Tab Content --}}
       </div>
-      <div class="tab identity" data-group="primary" data-tab="identity">
-        {{!-- Identity Tab Content --}}
-      </div>
+      {{> (systemFilePath "templates/actor/identity-tab.hbs")}}
     </div>
   </div>
 </form>
