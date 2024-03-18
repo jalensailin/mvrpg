@@ -60,5 +60,10 @@
   "MVRPG.rolls.troubles": "Troubles",
 
   "MVRPG.settings.autoRerollTroubles.hint": "Troubles will get automatically rerolled. The middle die (dMV) always gets rerolled preferentially in the case of a tie.",
-  "MVRPG.settings.autoRerollTroubles.title": "Automatically reroll troubles?"
+  "MVRPG.settings.autoRerollTroubles.title": "Automatically reroll troubles?",
+
+  "TYPES.Actor.super": "Super",
+  "TYPES.Item.power": "Power",
+  "TYPES.Item.tag": "Tag",
+  "TYPES.Item.trait": "Trait"
 }

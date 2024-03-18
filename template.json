@@ -4,6 +4,9 @@
     "super": {}
   },
   "Item": {
-    "types": ["power", "trait", "tag"]
+    "types": ["power", "tag", "trait"],
+    "power": {},
+    "tag": {},
+    "trait": {}
   }
 }
