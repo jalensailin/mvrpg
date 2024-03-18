@@ -1,0 +1,119 @@
+/* Dialogs */
+.mvrpg-dialog .dialog-buttons button {
+  border-style: solid;
+  border-width: 3px;
+  border-radius: 1px;
+  border-color: var(--border-black);
+  box-shadow: 5px 5px;
+
+  font-family: KomikaText;
+  font-size: var(--dialog-text-size);
+  transition: text-shadow 200ms ease-in;
+
+  i {
+    color: var(--spider-red);
+    transform: translateY(0) rotate(180deg);
+    transition:
+      transform 1s cubic-bezier(0.68, -0.55, 0.27, 1.55),
+      color 1s ease-in;
+  }
+}
+
+.mvrpg-dialog .dialog-buttons button:hover {
+  text-shadow: 1px 1px 2px var(--spider-red);
+  i {
+    text-shadow: none;
+    color: var(--venom-black);
+    transform: translateY(-9px) rotate(180deg);
+  }
+}
+
+.mvrpg-dialog-container {
+  gap: 8px 8px;
+  padding-bottom: 8px;
+  font-size: var(--dialog-text-size);
+  font-weight: bold;
+}
+
+.mvrpg-dialog-section {
+  background-color: var(--background-white);
+}
+
+.mvrpg-dialog-item {
+  justify-items: center;
+  align-items: center;
+  padding: 0 15px;
+}
+
+.mvrpg-dialog-header {
+  border-bottom: 3px solid var(--border-black);
+  background: linear-gradient(
+    180deg,
+    var(--header-yellow) 0%,
+    var(--header-gray) 100%
+  );
+
+  font-family: KomikaTextSmallCaps;
+  line-height: var(--header-text-size);
+  font-size: var(--header-text-size);
+  font-weight: bold;
+  font-style: italic;
+  text-align: center;
+}
+
+.mvrpg-dialog-label {
+  align-items: center;
+}
+
+.mvrpg-dialog-icon {
+  flex: 0;
+  border: unset;
+  height: var(--sub-info-text-size);
+  padding-right: 2px;
+}
+
+.mvrpg-dialog-input {
+  flex: 0;
+  text-align: right;
+
+  input {
+    padding-right: 0;
+  }
+
+  :disabled {
+    color: var(--label-gray);
+    text-decoration: line-through;
+  }
+}
+
+.mvrpg-dialog-data {
+  text-align: right;
+}
+
+.mvrpg-dialog-input input[type="checkbox"] {
+  /* Add if not using autoprefixer */
+  -webkit-appearance: none;
+  appearance: none;
+  /* For iOS < 15 to remove gradient background */
+  background-color: #fff;
+  /* Not removed via appearance */
+  margin: 0;
+  transform: translateY(2px);
+
+  border-style: solid;
+  border-color: inherit;
+  border-width: 2px;
+  border-radius: 1px;
+  box-shadow: 3px 3px;
+
+  background-image: url(../assets/sheets/checkmark.svg);
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position-x: 1.15em;
+
+  transition: background-position 0.2s ease-out;
+}
+
+.mvrpg-dialog-input input[type="checkbox"]:checked {
+  background-position-x: 0;
+}
