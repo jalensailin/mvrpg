@@ -17,10 +17,11 @@
   ],
   "esmodules": ["modules/mvrpg.js"],
   "styles": [
-    "styles/main.css",
-    "styles/item.css",
     "styles/actor.css",
-    "styles/dialog.css"
+    "styles/chat.css",
+    "styles/dialog.css",
+    "styles/item.css",
+    "styles/main.css"
   ],
   "languages": [
     {
