@@ -178,6 +178,10 @@ section {
   grid-area: tabbed-panel;
 }
 
+.sheet-body {
+  background-color: rgb(255 244 220);
+}
+
 .identity-panel {
   height: 100%;
   padding: 0 3px;
@@ -210,7 +214,7 @@ section {
   flex: 0;
 }
 .identity-input {
-  background-color: rgb(200, 211, 211) !important;
+  background-color: rgb(200, 211, 211, 0.75) !important;
   flex: 0;
 }
 
