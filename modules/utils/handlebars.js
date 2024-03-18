@@ -8,6 +8,7 @@
 export default async function preloadTemplates() {
   return loadTemplates([
     `systems/${game.system.id}/templates/actor/identity-tab.hbs`,
+    `systems/${game.system.id}/templates/actor/powers-tab.hbs`,
   ]);
 }
 

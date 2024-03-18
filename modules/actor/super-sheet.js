@@ -61,6 +61,25 @@ export default class SuperSheet extends ActorSheet {
     html.find(".rollable").click((event) => this.onRoll(event));
 
     html.find(".open-config").click(() => this.showConfig());
+
+    html.find(".item-action").click((event) => this.onItemAction(event));
+  }
+
+  /**
+   * Handles different actions for items.
+   *
+   * @param {event} event - the event triggering the action
+   * @return {void}
+   */
+  onItemAction(event) {
+    const { action, itemId } = event.currentTarget.dataset;
+    switch (action) {
+      case "delete":
+        this.actor.deleteEmbeddedDocuments("Item", [itemId]);
+        break;
+      default:
+        break;
+    }
   }
 
   /**

@@ -1,0 +1,29 @@
+<div class="tab powers-panel flexcol" data-group="primary" data-tab="powers">
+  {{#each actor.itemTypes.tag as |tag|}}
+    <div class="item tag-item flexrow">
+      <img src="{{tag.img}}" title="{{tag.name}}"/>
+      <div>{{tag.name}}</div>
+      <a class="item-action" data-action="delete" data-item-id="{{tag.id}}">
+        <i class="fa-solid fa-trash"></i>
+      </a>
+    </div>
+  {{/each}}
+  {{#each actor.itemTypes.trait as |trait|}}
+    <div class="item trait-item flexrow">
+      <img src="{{trait.img}}" title="{{trait.name}}"/>
+      <div>{{trait.name}}</div>
+      <a class="item-action" data-action="delete" data-item-id="{{trait.id}}">
+        <i class="fa-solid fa-trash"></i>
+      </a>
+    </div>
+  {{/each}}
+  {{#each actor.itemTypes.power as |power|}}
+    <div class="item power-item flexrow">
+      <img src="{{power.img}}" title="{{power.name}}"/>
+      <div>{{power.name}}</div>
+      <a class="item-action" data-action="delete" data-item-id="{{power.id}}">
+        <i class="fa-solid fa-trash"></i>
+      </a>
+    </div>
+  {{/each}}
+</div>
