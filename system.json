@@ -16,7 +16,7 @@
     }
   ],
   "esmodules": ["modules/mvrpg.js"],
-  "styles": ["styles/main.css", "styles/item.css"],
+  "styles": ["styles/main.css", "styles/item.css", "styles/actor.css"],
   "languages": [
     {
       "lang": "en",
