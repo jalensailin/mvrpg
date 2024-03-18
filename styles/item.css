@@ -1,0 +1,40 @@
+.item-sheet {
+  gap: 8px;
+}
+
+.name-panel {
+  flex: 0;
+  text-align: center;
+  font-weight: bold;
+  font-family: "KomikaTextSmallCaps";
+  font-size: var(--name-text-size);
+  place-content: center;
+  place-items: center;
+
+  .item-image {
+    flex: 0 0 96px;
+    border-right: 3px solid var(--border-black);
+
+    > img {
+      border: none;
+      height: 100%;
+      width: 100%;
+      object-fit: cover;
+    }
+  }
+
+  .item-data {
+    height: 100%;
+  }
+
+  .item-type {
+    flex: 0;
+  }
+
+  .name-input {
+  }
+}
+
+.description-panel {
+  padding: 0 8px;
+}

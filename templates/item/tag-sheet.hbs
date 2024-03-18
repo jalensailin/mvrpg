@@ -1,8 +1,13 @@
-<form class="flexcol">
+<form class="item-sheet flexcol">
   <div class="half-tone-overlay"></div>
   <div class="name-panel comic-frame flexrow ">
-    <div class="item-type">{{localize (concat "TYPES.Item." item.type)}}</div>
-    <input name="name" type="text" value="{{item.name}}">
+    <div class="item-image">
+      <img src="{{item.img}}" data-edit="img" title="{{item.name}}" />
+    </div>
+    <div class="item-data flexcol">
+      <div class="item-type panel-header">{{localize (concat "TYPES.Item." item.type)}}.</div>
+      <input class="name-input" name="name" type="text" value="{{item.name}}">
+    </div>
   </div>
   <div class="description-panel comic-frame flexcol">
     {{editor item.system.description target="system.description" button="true" engine="prosemirror"}}

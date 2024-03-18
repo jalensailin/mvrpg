@@ -71,6 +71,7 @@
   --thanos-purple: rgb(209 181 247);
 
   /* Sizes */
+  --name-text-size: 1.8rem;
   --dialog-text-size: 1.1rem;
   --header-text-size: 1.3rem;
   --main-info-text-size: 1.6rem;
@@ -588,7 +589,7 @@ section {
   border: none;
   background: none;
   font-family: KomikaTextSmallCaps;
-  font-size: 1.8rem;
+  font-size: var(--name-text-size);
   text-align: center;
 }
 
