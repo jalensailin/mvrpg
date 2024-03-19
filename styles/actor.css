@@ -156,31 +156,7 @@
   }
 }
 
-.tabbed-panel {
-  grid-area: tabbed-panel;
-}
-
-.identity-panel {
-  height: 100%;
-  padding: 0 3px;
-}
-
-.identity-panel > div {
-  gap: 3px;
-  flex: 0;
-}
-
-.identity-label {
-  font-family: KomikaTextSmallCaps;
-  font-weight: bold;
-  flex: 0;
-}
-
-.identity-input {
-  background-color: rgb(200, 211, 211, 0.75) !important;
-  flex: 0;
-}
-
+/* Rank panel */
 .rank-panel {
   display: grid;
   grid-template-columns: 49% 1fr;
@@ -323,6 +299,7 @@
   }
 }
 
+/* Abilities panel */
 .abilities-panel {
   grid-area: abilities-panel;
 
@@ -377,6 +354,32 @@
 
     .ability-sub-label {
       color: var(--label-gray);
+    }
+  }
+}
+
+/* Tabbed panel */
+.tabbed-panel {
+  grid-area: tabbed-panel;
+
+  .identity-panel {
+    height: 100%;
+    padding: 0 3px;
+
+    > div {
+      gap: 3px;
+      flex: 0;
+    }
+
+    .identity-label {
+      font-family: KomikaTextSmallCaps;
+      font-weight: bold;
+      flex: 0;
+    }
+
+    .identity-input {
+      background-color: rgb(200, 211, 211, 0.75) !important;
+      flex: 0;
     }
   }
 }
