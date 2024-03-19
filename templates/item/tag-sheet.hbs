@@ -9,7 +9,34 @@
       <input class="name-input" name="name" type="text" value="{{item.name}}">
     </div>
   </div>
-  <div class="description-panel comic-frame flexcol">
-    {{editor item.system.description target="system.description" button="true" engine="prosemirror"}}
+  <div class="tabbed-panel flexcol">
+    {{!-- Sheet Tab Navigation --}}
+    <nav class="sheet-tabs tabs" data-group="primary">
+      <a class="tab-header panel-header panel-title" data-tab="description">{{localize "Description."}}</a>
+      <a class="tab-header panel-header panel-title" data-tab="effects">{{localize "Effects."}}</a>
+    </nav>
+    <div class="sheet-body comic-frame">
+      <div class="tab description-panel flexcol" data-group="primary" data-tab="description">
+        {{editor item.system.description target="system.description" button="true" engine="prosemirror"}}
+      </div>
+      <div class="tab effects-panel flexcol" data-group="primary" data-tab="effects">
+        <a class="effect-action effect-create" data-action="create">
+          + {{localize "MVRPG.itemSheet.effects.create"}}
+        </a>
+        {{#each item.effects.contents as |effect|}}
+          <div class="effect flexrow">
+            <div class="effect-icon">
+              <img src="{{effect.img}}" title="{{effect.name}}"/>
+            </div>
+            <a class="effect-action effect-name" data-action="edit" data-effect-id="{{effect.id}}">
+              {{effect.name}}
+            </a>
+            <a class="effect-action effect-delete" data-action="delete" data-effect-id="{{effect.id}}">
+              <i class="fa-solid fa-trash"></i>
+            </a>
+          </div>
+        {{/each}}
+      </div>
+    </div>
   </div>
 </form>

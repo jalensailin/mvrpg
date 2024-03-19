@@ -32,6 +32,9 @@ Hooks.once("init", async () => {
   // Register Item data models.
   CONFIG.Item.dataModels.tag = TagDataModel;
 
+  // Turn off legacy tranferral for active effects. Necessary for v11.
+  CONFIG.ActiveEffect.legacyTransferral = false;
+
   loadTemplates();
   registerHelpers();
   registerSettings();
