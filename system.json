@@ -19,9 +19,9 @@
   "styles": [
     "styles/actor.css",
     "styles/chat.css",
+    "styles/common.css",
     "styles/dialog.css",
-    "styles/item.css",
-    "styles/main.css"
+    "styles/item.css"
   ],
   "languages": [
     {
