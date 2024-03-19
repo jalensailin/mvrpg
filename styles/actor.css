@@ -203,123 +203,123 @@
     border-width: 2px;
     border-radius: 5px;
     background-color: var(--background-white);
-  }
 
-  .cog-wheel i {
-    text-align: center;
-    line-height: unset;
-    padding: 1px;
+    i {
+      text-align: center;
+      line-height: unset;
+      padding: 1px;
 
-    transform: rotate(0);
-    transition: transform 2s;
-  }
+      transform: rotate(0);
+      transition: transform 2s;
+    }
 
-  .cog-wheel i:hover {
-    transform: rotate(360deg);
+    i:hover {
+      transform: rotate(360deg);
+    }
   }
 
   .speed-section {
     grid-area: speed;
     border-right: 2px solid;
     border-bottom: 2px solid;
-  }
 
-  .speed-content {
-    place-content: center;
-    place-items: center;
-    background-color: var(--hulk-green);
-    background-image: url(../assets/sheets/actor/speed.svg);
-    position: relative;
-  }
+    .speed-content {
+      place-content: center;
+      place-items: center;
+      background-color: var(--hulk-green);
+      background-image: url(../assets/sheets/actor/speed.svg);
+      position: relative;
+    }
 
-  .speed-selector {
-    flex: 0;
-    padding: 0;
-    width: 80%;
-    top: 5%;
+    .speed-selector {
+      flex: 0;
+      padding: 0;
+      width: 80%;
+      top: 5%;
 
-    background: none;
-    border: none;
+      background: none;
+      border: none;
 
-    font-size: 0.9rem;
-    text-align: center;
-  }
+      font-size: 0.9rem;
+      text-align: center;
+    }
 
-  .speed-selector:hover {
-    text-shadow: 1px 1px 2px var(--spider-red);
-    box-shadow: 1px 1px 2px var(--spider-red);
-  }
+    .speed-selector:hover {
+      text-shadow: 1px 1px 2px var(--spider-red);
+      box-shadow: 1px 1px 2px var(--spider-red);
+    }
 
-  .speed-item {
-    place-content: center;
-    place-items: center;
-    position: relative;
-    top: -10%;
-  }
+    .speed-item {
+      place-content: center;
+      place-items: center;
+      position: relative;
+      top: -10%;
+    }
 
-  .speed-icon {
-    border: unset;
-    height: var(--main-info-text-size);
-    padding: 1px;
-  }
+    .speed-icon {
+      border: unset;
+      height: var(--main-info-text-size);
+      padding: 1px;
+    }
 
-  .speed-value {
-    font-size: var(--main-info-text-size);
-    padding: 1px;
+    .speed-value {
+      font-size: var(--main-info-text-size);
+      padding: 1px;
+    }
   }
 
   .karma-section {
     grid-area: karma;
     border-left: 1px solid;
     border-bottom: 2px solid;
-  }
 
-  .karma-content {
-    padding: 2px;
-    background-color: var(--hulk-green);
-    background-image: url(../assets/sheets/actor/karma.svg);
-    align-items: center;
-    text-align: center;
-  }
+    .karma-content {
+      padding: 2px;
+      background-color: var(--hulk-green);
+      background-image: url(../assets/sheets/actor/karma.svg);
+      align-items: center;
+      text-align: center;
+    }
 
-  .karma-content > .karma-input {
-    font-size: var(--main-info-text-size);
+    .karma-content > .karma-input {
+      font-size: var(--main-info-text-size);
+    }
   }
 
   .initiative-section {
     grid-area: initiative;
     border-right: 2px solid;
     border-top: 1px solid;
-  }
 
-  .initiative-content {
-    padding: 2px;
-    background-color: var(--hulk-green);
-    background-image: url(../assets/sheets/actor/initiative.svg);
-    align-items: center;
-    text-align: center;
-  }
+    .initiative-content {
+      padding: 2px;
+      background-color: var(--hulk-green);
+      background-image: url(../assets/sheets/actor/initiative.svg);
+      align-items: center;
+      text-align: center;
+    }
 
-  .initiative-content > .initiative-input {
-    font-size: var(--main-info-text-size);
+    .initiative-content > .initiative-input {
+      font-size: var(--main-info-text-size);
+    }
   }
 
   .rank-section {
     grid-area: rank;
     border-left: 1px solid;
     border-top: 1px solid;
-  }
 
-  .rank-content {
-    padding: 2px;
-    background-color: var(--hulk-green);
-    background-image: url(../assets/sheets/actor/star.svg);
-    align-items: center;
-    text-align: center;
-  }
+    .rank-content {
+      padding: 2px;
+      background-color: var(--hulk-green);
+      background-image: url(../assets/sheets/actor/star.svg);
+      align-items: center;
+      text-align: center;
+    }
 
-  .rank-content > .rank-input {
-    font-size: var(--main-info-text-size);
+    .rank-content > .rank-input {
+      font-size: var(--main-info-text-size);
+    }
   }
 }
 
