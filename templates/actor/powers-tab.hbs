@@ -1,17 +1,26 @@
 <div class="tab powers-panel flexcol" data-group="primary" data-tab="powers">
   {{#each actor.itemTypes.tag as |tag|}}
     <div class="item tag-item flexrow">
-      <img src="{{tag.img}}" title="{{tag.name}}"/>
-      <div>{{tag.name}}</div>
-      <a class="item-action" data-action="delete" data-item-id="{{tag.id}}">
+      <a class="item-action item-icon" data-action="toChat" data-item-id="{{tag.id}}">
+        <img src="{{tag.img}}" title="{{tag.name}}"/>
+        <i class="overlay fa-solid fa-comment"></i>
+      </a>
+      <a class="item-action item-name" data-action="edit" data-item-id="{{tag.id}}">
+        {{tag.name}}
+      </a>
+      <a class="item-action item-delete" data-action="delete" data-item-id="{{tag.id}}">
         <i class="fa-solid fa-trash"></i>
       </a>
     </div>
   {{/each}}
   {{#each actor.itemTypes.trait as |trait|}}
     <div class="item trait-item flexrow">
-      <img src="{{trait.img}}" title="{{trait.name}}"/>
-      <div>{{trait.name}}</div>
+      <a class="item-action" data-action="toChat" data-item-id="{{trait.id}}">
+        <img src="{{trait.img}}" title="{{trait.name}}"/>
+      </a>
+      <a class="item-action" data-action="edit" data-item-id="{{trait.id}}">
+        {{trait.name}}
+      </a>
       <a class="item-action" data-action="delete" data-item-id="{{trait.id}}">
         <i class="fa-solid fa-trash"></i>
       </a>
@@ -19,8 +28,12 @@
   {{/each}}
   {{#each actor.itemTypes.power as |power|}}
     <div class="item power-item flexrow">
-      <img src="{{power.img}}" title="{{power.name}}"/>
-      <div>{{power.name}}</div>
+      <a class="item-action" data-action="toChat" data-item-id="{{power.id}}">
+        <img src="{{power.img}}" title="{{power.name}}"/>
+      </a>
+      <a class="item-action" data-action="edit" data-item-id="{{power.id}}">
+        {{power.name}}
+      </a>
       <a class="item-action" data-action="delete" data-item-id="{{power.id}}">
         <i class="fa-solid fa-trash"></i>
       </a>

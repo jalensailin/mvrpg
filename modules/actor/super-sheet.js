@@ -73,9 +73,17 @@ export default class SuperSheet extends ActorSheet {
    */
   onItemAction(event) {
     const { action, itemId } = event.currentTarget.dataset;
+    const item = this.actor.items.get(itemId);
+
     switch (action) {
+      case "edit":
+        item.sheet.render(true);
+        break;
       case "delete":
         this.actor.deleteEmbeddedDocuments("Item", [itemId]);
+        break;
+      case "toChat":
+        this.sendItemToChat(item);
         break;
       default:
         break;
@@ -178,5 +186,19 @@ export default class SuperSheet extends ActorSheet {
       },
     );
     dialog.render(true);
+  }
+
+  sendItemToChat(item) {
+    const { description } = item.system;
+    const title = item.name;
+    let content = "";
+    content += `<h1>${title}</h1>`;
+    content += `<div>${description}</div>`;
+    const chatData = {
+      content,
+      flavor: game.i18n.localize(`TYPES.Item.${item.type}`),
+      speaker: ChatMessage.getSpeaker({ actor: this.actor }),
+    };
+    ChatMessage.create(chatData);
   }
 }
