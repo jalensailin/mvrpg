@@ -1,5 +1,6 @@
 .item-sheet {
   gap: 8px;
+
   .name-panel {
     flex: 0;
     text-align: center;
@@ -10,11 +11,14 @@
     place-items: center;
 
     .item-image {
-      flex: 0 0 96px;
+      width: 6rem;
+      height: 6rem;
+      flex: 0 0 6rem;
       border-right: 3px solid var(--border-black);
 
       > img {
         border: none;
+        border-radius: unset;
         height: 100%;
         width: 100%;
         object-fit: cover;
@@ -27,9 +31,6 @@
 
     .item-type {
       flex: 0;
-    }
-
-    .name-input {
     }
   }
 
@@ -54,9 +55,9 @@
       }
 
       .effect-icon {
-        position: relative;
-        flex: 0 0 36px;
-        background-color: black;
+        width: 2.25rem;
+        height: 2.25rem;
+        flex: 0 0 2.25rem;
 
         img {
           border: none;

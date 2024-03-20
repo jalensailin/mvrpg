@@ -363,6 +363,12 @@
   grid-area: tabbed-panel;
 
   .powers-panel {
+    .powers-tab,
+    .traits-tab,
+    .tags-tab {
+      gap: 2px;
+    }
+
     .item {
       place-content: center;
       place-items: center;
@@ -370,7 +376,9 @@
 
     .item-icon {
       position: relative;
-      flex: 0 0 36px;
+      width: 2.25rem;
+      height: 2.25rem;
+      flex: 0 0 2.25rem;
 
       img {
         border: none;
@@ -378,10 +386,10 @@
 
       .overlay {
         position: absolute;
-        left: 4px;
-        top: 4px;
+        left: 0.25rem;
+        top: 0.25rem;
 
-        font-size: 28px;
+        font-size: 1.75rem;
 
         color: white;
         opacity: 0;
