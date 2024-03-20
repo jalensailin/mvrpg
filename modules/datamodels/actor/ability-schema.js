@@ -29,4 +29,8 @@ export default class AbilitySchema extends foundry.abstract.TypeDataModel {
       }),
     };
   }
+
+  get defenseScore() {
+    return 10 + this.value + this.defenseBonus;
+  }
 }

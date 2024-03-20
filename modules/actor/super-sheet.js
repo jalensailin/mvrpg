@@ -32,23 +32,22 @@ export default class SuperSheet extends ActorSheet {
   async getData() {
     const foundryData = super.getData();
     const mvrpgData = {};
+    const { actor } = this;
 
-    // Group speeds with the same value.
-    const speeds = this.actor.system.speed;
-    const groupedSpeeds = {};
-    for (const [speedType, speedVal] of Object.entries(speeds)) {
-      if (Array.isArray(groupedSpeeds[speedVal])) {
-        groupedSpeeds[speedVal].push(speedType);
-      } else {
-        groupedSpeeds[speedVal] = [speedType];
-      }
-    }
-    mvrpgData.speeds = groupedSpeeds;
     mvrpgData.displaySpeed =
-      this.actor.getFlag(game.system.id, "displaySpeed") || "run";
+      actor.getFlag(game.system.id, "displaySpeed") || "run";
+
+    const defenseScores = {};
+    Object.keys(actor.system.abilities).forEach((key) => {
+      defenseScores[key] =
+        10 +
+        actor.system.abilities[key].value +
+        actor.system.abilities[key].defenseBonus;
+    });
+    mvrpgData.defenseScores = defenseScores;
 
     mvrpgData.enrichedNotes = await TextEditor.enrichHTML(
-      this.actor.system.identity.notes,
+      actor.system.identity.notes,
       { async: true },
     );
 
