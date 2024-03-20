@@ -1,42 +1,19 @@
 <div class="tab powers-panel flexcol" data-group="primary" data-tab="powers">
-  {{#each actor.itemTypes.tag as |tag|}}
-    <div class="item tag-item flexrow">
-      <a class="item-action item-icon" data-action="toChat" data-item-id="{{tag.id}}">
-        <img src="{{tag.img}}" title="{{tag.name}}"/>
-        <i class="overlay fa-solid fa-comment"></i>
-      </a>
-      <a class="item-action item-name" data-action="edit" data-item-id="{{tag.id}}">
-        {{tag.name}}
-      </a>
-      <a class="item-action item-delete" data-action="delete" data-item-id="{{tag.id}}">
-        <i class="fa-solid fa-trash"></i>
-      </a>
+  <nav class="powers-tabs tabs" data-group="secondary">
+    <a class="sub-tab-header" data-tab="powers">{{localize "Powers."}}</a>
+    <a class="sub-tab-header" data-tab="traits">{{localize "Traits."}}</a>
+    <a class="sub-tab-header" data-tab="tags">{{localize "Tags."}}</a>
+    <a class="sub-tab-header" data-tab="effects">{{localize "Effects."}}</a>
+  </nav>
+  <div class="powers-body">
+    <div class="tab powers-tab flexcol" data-group="secondary" data-tab="powers">
+      {{> (systemFilePath "templates/actor/owned-item-list.hbs") actor.itemTypes.power}}
     </div>
-  {{/each}}
-  {{#each actor.itemTypes.trait as |trait|}}
-    <div class="item trait-item flexrow">
-      <a class="item-action" data-action="toChat" data-item-id="{{trait.id}}">
-        <img src="{{trait.img}}" title="{{trait.name}}"/>
-      </a>
-      <a class="item-action" data-action="edit" data-item-id="{{trait.id}}">
-        {{trait.name}}
-      </a>
-      <a class="item-action" data-action="delete" data-item-id="{{trait.id}}">
-        <i class="fa-solid fa-trash"></i>
-      </a>
+    <div class="tab traits-tab flexcol" data-group="secondary" data-tab="traits">
+      {{> (systemFilePath "templates/actor/owned-item-list.hbs") actor.itemTypes.trait}}
     </div>
-  {{/each}}
-  {{#each actor.itemTypes.power as |power|}}
-    <div class="item power-item flexrow">
-      <a class="item-action" data-action="toChat" data-item-id="{{power.id}}">
-        <img src="{{power.img}}" title="{{power.name}}"/>
-      </a>
-      <a class="item-action" data-action="edit" data-item-id="{{power.id}}">
-        {{power.name}}
-      </a>
-      <a class="item-action" data-action="delete" data-item-id="{{power.id}}">
-        <i class="fa-solid fa-trash"></i>
-      </a>
+    <div class="tab tags-tab flexcol" data-group="secondary" data-tab="tags">
+      {{> (systemFilePath "templates/actor/owned-item-list.hbs") actor.itemTypes.tag}}
     </div>
-  {{/each}}
+  </div>
 </div>

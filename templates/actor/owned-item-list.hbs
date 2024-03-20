@@ -1,0 +1,14 @@
+    {{#each this as |item|}}
+      <div class="item item-item flexrow">
+        <a class="item-action item-icon" data-action="toChat" data-item-id="{{item.id}}">
+          <img src="{{item.img}}" title="{{item.name}}"/>
+          <i class="overlay fa-solid fa-comment"></i>
+        </a>
+        <a class="item-action item-name" data-action="edit" data-item-id="{{item.id}}">
+          {{item.name}}
+        </a>
+        <a class="item-action item-delete" data-action="delete" data-item-id="{{item.id}}">
+          <i class="fa-solid fa-trash"></i>
+        </a>
+      </div>
+    {{/each}}

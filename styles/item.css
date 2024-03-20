@@ -39,7 +39,6 @@
   }
 
   .tabbed-panel {
-    grid-area: tabbed-panel;
     padding-bottom: 2px;
 
     .effects-panel {
@@ -52,6 +51,10 @@
       .effect {
         place-content: center;
         place-items: center;
+      }
+
+      .effect:nth-child(even) {
+        background-color: rgb(255 218 185);
       }
 
       .effect-icon {

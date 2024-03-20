@@ -363,6 +363,28 @@
   grid-area: tabbed-panel;
 
   .powers-panel {
+    .powers-tabs {
+      padding: 3px 0;
+      border-bottom: dashed 2px;
+      margin-bottom: 3px;
+
+      .sub-tab-header {
+        color: var(--label-gray);
+        border: solid 1px var(--label-gray);
+        border-radius: 5px;
+        background-color: var(--background-white);
+        padding: 2px;
+      }
+
+      .sub-tab-header.active {
+        font-weight: bold;
+        font-style: italic;
+        color: unset;
+        border-width: 2px;
+        border-color: var(--border-black);
+      }
+    }
+
     .powers-tab,
     .traits-tab,
     .tags-tab {
@@ -372,6 +394,10 @@
     .item {
       place-content: center;
       place-items: center;
+    }
+
+    .item:nth-child(odd) {
+      background-color: rgb(255 218 185);
     }
 
     .item-icon {

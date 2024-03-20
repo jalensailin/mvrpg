@@ -14,7 +14,12 @@ export default class SuperSheet extends ActorSheet {
         {
           navSelector: ".sheet-tabs",
           contentSelector: ".sheet-body",
-          initial: "identity",
+          initial: "powers",
+        },
+        {
+          navSelector: ".powers-tabs",
+          contentSelector: ".powers-body",
+          initial: "tags",
         },
       ],
       scrollY: [".editor-content"],
