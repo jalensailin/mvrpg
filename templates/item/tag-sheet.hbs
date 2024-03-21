@@ -31,9 +31,18 @@
             <a class="effect-action effect-name" data-action="edit" data-effect-id="{{effect.id}}">
               {{effect.name}}
             </a>
-            <a class="effect-action effect-delete" data-action="delete" data-effect-id="{{effect.id}}">
-              <i class="fa-solid fa-trash"></i>
-            </a>
+            <div class="action-icons flexrow">
+              <a class="effect-action effect-toggle" data-action="toggle" data-effect-id="{{effect.id}}">
+                {{#if effect.disabled}}
+                  <i class="fa-solid fa-toggle-off"></i>
+                {{else}}
+                  <i class="fa-solid fa-toggle-on"></i>
+                {{/if}}
+              </a>
+              <a class="effect-action effect-delete" data-action="delete" data-effect-id="{{effect.id}}">
+                <i class="fa-solid fa-trash"></i>
+              </a>
+            </div>
           </div>
         {{/each}}
       </div>

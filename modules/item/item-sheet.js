@@ -74,6 +74,9 @@ export default class MVItemSheet extends ItemSheet {
         effectDoc.sheet.render(true);
         break;
       }
+      case "toggle":
+        effect.update({ disabled: !effect.disabled });
+        break;
       case "delete":
         await this.item.deleteEmbeddedDocuments("ActiveEffect", [effectId]);
         break;

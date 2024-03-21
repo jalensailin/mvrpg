@@ -71,9 +71,19 @@
         padding-left: 3px;
       }
 
-      .effect-delete {
+      .action-icons {
         flex: 0;
+        flex-wrap: nowrap;
+        place-items: center;
+
         padding: 0 6px;
+
+        .effect-action {
+          padding: 2px;
+        }
+        .effect-delete {
+          color: var(--spider-red);
+        }
       }
     }
   }
