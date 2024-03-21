@@ -18,4 +18,21 @@ export async function registerHelpers() {
     "systemFilePath",
     (string) => `systems/${game.system.id}/${string}`,
   );
+
+  Handlebars.registerHelper("changeModeSymbol", (change) => {
+    switch (change.mode) {
+      case 1:
+        return "x";
+      case 2:
+        return change.value > 0 ? "+" : "";
+      case 3:
+        return "<=";
+      case 4:
+        return ">=";
+      case 5:
+        return "=";
+      default:
+        return "";
+    }
+  });
 }
