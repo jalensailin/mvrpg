@@ -41,11 +41,23 @@
   .tabbed-panel {
     padding-bottom: 2px;
 
+    .doc-list-header {
+      color: white;
+      background-color: var(--venom-black);
+      padding-bottom: 2px;
+    }
+
     .effects-panel {
       gap: 2px;
 
       .effect-create {
-        text-align: center;
+        text-align: right;
+        padding-right: 6px;
+      }
+
+      .effect-icon-dummy {
+        width: 2.25rem;
+        flex: 0 0 2.25rem;
       }
 
       .effect {

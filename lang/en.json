@@ -54,7 +54,10 @@
   "MVRPG.heroSheet.titles.rank": "Rank.",
   "MVRPG.heroSheet.titles.speed": "Speed.",
 
-  "MVRPG.itemSheet.effects.create": "Create Active Effect.",
+  "MVRPG.itemSheet.effects.dataHeader": "Effect Data.",
+  "MVRPG.itemSheet.effects.tooltips.create": "Create Active Effect.",
+  "MVRPG.itemSheet.effects.tooltips.toggleOn": "Toggle On.",
+  "MVRPG.itemSheet.effects.tooltips.toggleOff": "Toggle Off.",
   "MVRPG.itemSheet.titles.description": "Description.",
   "MVRPG.itemSheet.titles.effects": "Effects.",
 
@@ -67,6 +70,9 @@
 
   "MVRPG.settings.autoRerollTroubles.hint": "Troubles will get automatically rerolled. The middle die (dMV) always gets rerolled preferentially in the case of a tie.",
   "MVRPG.settings.autoRerollTroubles.title": "Automatically reroll troubles?",
+
+  "MVRPG.sheets.generic.tooltips.edit": "Edit.",
+  "MVRPG.sheets.generic.tooltips.delete": "Delete.",
 
   "TYPES.Actor.super": "Super",
   "TYPES.Item.power": "Power",
