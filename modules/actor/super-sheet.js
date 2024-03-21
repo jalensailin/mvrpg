@@ -37,15 +37,6 @@ export default class SuperSheet extends ActorSheet {
     mvrpgData.displaySpeed =
       actor.getFlag(game.system.id, "displaySpeed") || "run";
 
-    const defenseScores = {};
-    Object.keys(actor.system.abilities).forEach((key) => {
-      defenseScores[key] =
-        10 +
-        actor.system.abilities[key].value +
-        actor.system.abilities[key].defenseBonus;
-    });
-    mvrpgData.defenseScores = defenseScores;
-
     mvrpgData.enrichedNotes = await TextEditor.enrichHTML(
       actor.system.identity.notes,
       { async: true },

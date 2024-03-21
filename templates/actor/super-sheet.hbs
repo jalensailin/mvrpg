@@ -115,11 +115,11 @@
         <div class="ability-item flexcol">
           <div class="ability-info flexrow">
             <div class="ability-defense" data-tooltip="{{localize "MVRPG.heroSheet.abilities.tooltip.defenseScore"}}">
-              {{lookup ../defenseScores abilityName}}
+              {{ability.defenseScore}}
             </div>
             <input class="ability-input" type="number" name={{concat "system.abilities." abilityName ".value"}} value="{{ability.value}}" data-tooltip="{{localize "MVRPG.heroSheet.abilities.tooltip.abilityScore"}}"/>
             <div class="ability-non-combat-bonus" data-tooltip="{{localize "MVRPG.heroSheet.abilities.tooltip.nonCombatChecks"}}">
-              {{numberFormat ability.nonCombatBonus sign=true}}
+              {{numberFormat ability.nonCombatScore sign=true}}
             </div>
           </div>
           <div class="ability-labels flexrow">
