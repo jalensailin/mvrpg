@@ -1,13 +1,13 @@
-    {{#each this as |item|}}
-      <div class="item item-item flexrow">
-        <a class="item-action item-icon" data-action="toChat" data-item-id="{{item.id}}">
-          <img src="{{item.img}}" title="{{item.name}}"/>
+    {{#each this as |doc|}}
+      <div class="doc-entry flexrow">
+        <a class="doc-action doc-icon" data-action="toChat" data-doc-id="{{doc.id}}">
+          <img src="{{doc.img}}" title="{{doc.name}}"/>
           <i class="overlay fa-solid fa-comment"></i>
         </a>
-        <a class="item-action item-name" data-action="edit" data-item-id="{{item.id}}">
-          {{item.name}}
+        <a class="doc-action doc-name" data-action="edit" data-doc-id="{{doc.id}}">
+          {{doc.name}}
         </a>
-        <a class="item-action item-delete" data-action="delete" data-item-id="{{item.id}}">
+        <a class="doc-action doc-delete" data-action="delete" data-doc-id="{{doc.id}}">
           <i class="fa-solid fa-trash"></i>
         </a>
       </div>

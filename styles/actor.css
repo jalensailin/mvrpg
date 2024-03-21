@@ -385,55 +385,53 @@
       }
     }
 
-    .powers-tab,
-    .traits-tab,
-    .tags-tab {
+    .doc-list {
       gap: 2px;
-    }
 
-    .item {
-      place-content: center;
-      place-items: center;
-    }
-
-    .item:nth-child(odd) {
-      background-color: rgb(255 218 185);
-    }
-
-    .item-icon {
-      position: relative;
-      width: 2.25rem;
-      height: 2.25rem;
-      flex: 0 0 2.25rem;
-
-      img {
-        border: none;
+      .doc-entry {
+        place-content: center;
+        place-items: center;
       }
 
-      .overlay {
-        position: absolute;
-        left: 0.25rem;
-        top: 0.25rem;
-
-        font-size: 1.75rem;
-
-        color: white;
-        opacity: 0;
-        transition: opacity 0.4s ease-in-out;
+      .doc:nth-child(odd) {
+        background-color: rgb(255 218 185);
       }
-    }
 
-    .item-icon:hover .overlay {
-      opacity: 0.75;
-    }
+      .doc-icon {
+        position: relative;
+        width: 2.25rem;
+        height: 2.25rem;
+        flex: 0 0 2.25rem;
 
-    .item-name {
-      padding-left: 3px;
-    }
+        img {
+          border: none;
+        }
 
-    .item-delete {
-      flex: 0;
-      padding: 0 6px;
+        .overlay {
+          position: absolute;
+          left: 0.25rem;
+          top: 0.25rem;
+
+          font-size: 1.75rem;
+
+          color: white;
+          opacity: 0;
+          transition: opacity 0.4s ease-in-out;
+        }
+      }
+
+      .doc-icon:hover .overlay {
+        opacity: 0.75;
+      }
+
+      .doc-name {
+        padding-left: 3px;
+      }
+
+      .doc-delete {
+        flex: 0;
+        padding: 0 6px;
+      }
     }
   }
 

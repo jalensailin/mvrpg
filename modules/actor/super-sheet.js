@@ -57,7 +57,7 @@ export default class SuperSheet extends ActorSheet {
 
     html.find(".open-config").click(() => this.showConfig());
 
-    html.find(".item-action").click((event) => this.onItemAction(event));
+    html.find(".doc-action").click((event) => this.onItemAction(event));
   }
 
   /**
@@ -67,18 +67,18 @@ export default class SuperSheet extends ActorSheet {
    * @return {void}
    */
   onItemAction(event) {
-    const { action, itemId } = event.currentTarget.dataset;
-    const item = this.actor.items.get(itemId);
+    const { action, docId } = event.currentTarget.dataset;
+    const doc = this.actor.items.get(docId);
 
     switch (action) {
       case "edit":
-        item.sheet.render(true);
+        doc.sheet.render(true);
         break;
       case "delete":
-        this.actor.deleteEmbeddedDocuments("Item", [itemId]);
+        this.actor.deleteEmbeddedDocuments("Item", [docId]);
         break;
       case "toChat":
-        this.sendItemToChat(item);
+        this.sendItemToChat(doc);
         break;
       default:
         break;
