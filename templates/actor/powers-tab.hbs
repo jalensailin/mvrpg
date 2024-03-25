@@ -6,14 +6,17 @@
     <a class="sub-tab-header" data-tab="effects">{{localize "Effects."}}</a>
   </nav>
   <div class="powers-body">
-    <div class="tab powers-tab doc-list flexcol" data-group="secondary" data-tab="powers">
+    <div class="tab doc-list flexcol" data-group="secondary" data-tab="powers">
       {{> (systemFilePath "templates/actor/document-list.hbs") actor.itemTypes.power}}
     </div>
-    <div class="tab traits-tab doc-list flexcol" data-group="secondary" data-tab="traits">
+    <div class="tab doc-list flexcol" data-group="secondary" data-tab="traits">
       {{> (systemFilePath "templates/actor/document-list.hbs") actor.itemTypes.trait}}
     </div>
-    <div class="tab tags-tab doc-list flexcol" data-group="secondary" data-tab="tags">
+    <div class="tab doc-list flexcol" data-group="secondary" data-tab="tags">
       {{> (systemFilePath "templates/actor/document-list.hbs") actor.itemTypes.tag}}
+    </div>
+    <div class="tab effects-list doc-list flexcol" data-group="secondary" data-tab="effects">
+      {{> (systemFilePath "templates/shared/effects-list.hbs") allEffects}}
     </div>
   </div>
 </div>

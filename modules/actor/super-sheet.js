@@ -42,6 +42,9 @@ export default class SuperSheet extends ActorSheet {
       { async: true },
     );
 
+    const allEffects = Array.from(this.actor.allApplicableEffects());
+    mvrpgData.allEffects = allEffects;
+
     return { ...foundryData, ...mvrpgData };
   }
 

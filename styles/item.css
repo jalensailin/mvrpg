@@ -34,69 +34,11 @@
     }
   }
 
-  .description-panel {
+  .description-section {
     padding: 0 8px;
   }
 
   .tabbed-panel {
     padding-bottom: 2px;
-
-    .doc-list-header {
-      color: white;
-      background-color: var(--venom-black);
-      padding-bottom: 2px;
-    }
-
-    .effects-panel {
-      gap: 2px;
-
-      .effect-create {
-        text-align: right;
-        padding-right: 6px;
-      }
-
-      .effect-icon-dummy {
-        width: 2.25rem;
-        flex: 0 0 2.25rem;
-      }
-
-      .effect {
-        place-content: center;
-        place-items: center;
-      }
-
-      .effect:nth-child(even) {
-        background-color: rgb(255 218 185);
-      }
-
-      .effect-icon {
-        width: 2.25rem;
-        height: 2.25rem;
-        flex: 0 0 2.25rem;
-
-        img {
-          border: none;
-        }
-      }
-
-      .effect-data {
-        padding-left: 3px;
-      }
-
-      .action-icons {
-        flex: 0;
-        flex-wrap: nowrap;
-        place-items: center;
-
-        padding: 0 6px;
-
-        .effect-action {
-          padding: 2px;
-        }
-        .effect-delete {
-          color: var(--spider-red);
-        }
-      }
-    }
   }
 }

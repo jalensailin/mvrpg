@@ -1,0 +1,44 @@
+
+<div class="effect doc-list-header flexrow">
+  <div class="effect-icon-dummy">
+  </div>
+  <div class="effect-data">
+    {{localize "MVRPG.itemSheet.effects.dataHeader"}}
+  </div>
+  <a class="effect-action effect-create" data-action="create" data-tooltip="{{localize "MVRPG.itemSheet.effects.tooltips.create"}}">
+    <i class="fa-solid fa-plus"></i>
+  </a>
+</div>
+
+{{#each this as |effect|}}
+  <div class="effect flexrow">
+    <div class="effect-icon">
+      <img src="{{effect.img}}" title="{{effect.name}}"/>
+    </div>
+    <a class="effect-action effect-data flexcol" data-action="edit" data-effect-id="{{effect.id}}" data-tooltip="{{localize "MVRPG.sheets.generic.tooltips.edit"}}">
+      <div class="effect-name">
+        {{effect.name}}
+      </div>
+      <div class="effect-changes">
+        {{#each effect.changes as |change|}}
+          <div class="effect-change">
+            {{change.key}}: {{changeModeSymbol change}}{{change.value}}
+            {{#unless @last}}, {{/unless}}
+          </div>
+        {{/each}}
+      </div>
+    </a>
+    <div class="action-icons flexrow">
+      <a class="effect-action effect-toggle" data-action="toggle" data-effect-id="{{effect.id}}">
+        {{#if effect.disabled}}
+          <i class="fa-solid fa-toggle-off" data-tooltip="{{localize "MVRPG.itemSheet.effects.tooltips.toggleOn"}}"></i>
+        {{else}}
+          <i class="fa-solid fa-toggle-on"  data-tooltip="{{localize "MVRPG.itemSheet.effects.tooltips.toggleOff"}}"></i>
+        {{/if}}
+      </a>
+      <a class="effect-action effect-delete" data-action="delete" data-effect-id="{{effect.id}}" data-tooltip="{{localize "MVRPG.sheets.generic.tooltips.delete"}}">
+        <i class="fa-solid fa-trash"></i>
+      </a>
+    </div>
+  </div>
+{{/each}}
