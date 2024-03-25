@@ -64,6 +64,7 @@
 
     padding: 0 6px;
 
+    .effect-action,
     .doc-action {
       padding: 2px;
     }

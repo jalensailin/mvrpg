@@ -1,5 +1,7 @@
 /* global ItemSheet mergeObject TextEditor game */
 
+import EffectUtils from "../utils/effects.js";
+
 /**
  * Extend the basic ItemSheet with some very simple modifications
  * @extends {ItemSheet}
@@ -50,41 +52,8 @@ export default class MVItemSheet extends ItemSheet {
     // Everything below here is only needed if the sheet is editable
     if (!this.options.editable) return;
 
-    html.find(".effect-action").click((event) => this.onEffectAction(event));
-  }
-
-  async onEffectAction(event) {
-    const { action, effectId } = event.currentTarget.dataset;
-    const effect = this.item.effects.get(effectId);
-    switch (action) {
-      case "create": {
-        const [effectDoc] = await this.item.createEmbeddedDocuments(
-          "ActiveEffect",
-          [
-            {
-              name: game.i18n.format(game.i18n.translations.DOCUMENT.New, {
-                type: game.i18n.translations.DOCUMENT.ActiveEffect,
-              }), // Foundry's localization ("New Active Effect")
-              icon: "icons/svg/aura.svg",
-              origin: this.uuid,
-            },
-          ],
-        );
-
-        effectDoc.sheet.render(true);
-        break;
-      }
-      case "toggle":
-        effect.update({ disabled: !effect.disabled });
-        break;
-      case "delete":
-        await this.item.deleteEmbeddedDocuments("ActiveEffect", [effectId]);
-        break;
-      case "edit":
-        effect.sheet.render(true);
-        break;
-      default:
-        break;
-    }
+    html
+      .find(".effect-action")
+      .click((event) => EffectUtils.onEffectAction(this.item, event));
   }
 }

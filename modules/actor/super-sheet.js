@@ -1,6 +1,7 @@
 /* global ActorSheet mergeObject game renderTemplate Dialog FormDataExtended foundry ChatMessage TextEditor */
 
 import D616 from "../rolls/d616.js";
+import EffectUtils from "../utils/effects.js";
 
 export default class SuperSheet extends ActorSheet {
   /** @override */
@@ -61,6 +62,10 @@ export default class SuperSheet extends ActorSheet {
     html.find(".open-config").click(() => this.showConfig());
 
     html.find(".doc-action").click((event) => this.onItemAction(event));
+
+    html
+      .find(".effect-action")
+      .click((event) => EffectUtils.onEffectAction(this.actor, event));
   }
 
   /**
