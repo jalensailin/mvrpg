@@ -1,0 +1,83 @@
+.doc-list {
+  gap: 2px;
+
+  .doc-list-header {
+    color: white;
+    background-color: var(--venom-black);
+    padding-bottom: 2px;
+
+    .doc-icon-dummy {
+      width: 2.25rem;
+      flex: 0 0 2.25rem;
+    }
+
+    .doc-create {
+      text-align: right;
+      padding-right: 6px;
+    }
+  }
+
+  .doc-entry {
+    place-content: center;
+    place-items: center;
+  }
+
+  .doc-entry:nth-child(odd) {
+    background-color: rgb(255 218 185);
+  }
+
+  .doc-icon {
+    position: relative;
+    width: 2.25rem;
+    height: 2.25rem;
+    flex: 0 0 2.25rem;
+
+    img {
+      border: none;
+    }
+
+    .overlay {
+      position: absolute;
+      left: 0.25rem;
+      top: 0.25rem;
+
+      font-size: 1.75rem;
+
+      color: white;
+      opacity: 0;
+      transition: opacity 0.4s ease-in-out;
+    }
+  }
+
+  .doc-icon:hover .overlay {
+    opacity: 0.75;
+  }
+
+  .effect-data {
+    padding-left: 3px;
+  }
+
+  .action-icons {
+    flex: 0;
+    flex-wrap: nowrap;
+    place-items: center;
+
+    padding: 0 6px;
+
+    .doc-action {
+      padding: 2px;
+    }
+    .doc-delete {
+      color: var(--spider-red);
+    }
+  }
+
+  .doc-name {
+    padding-left: 3px;
+  }
+
+  .doc-delete {
+    flex: 0;
+    padding: 0 6px;
+  }
+}

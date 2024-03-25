@@ -21,7 +21,8 @@
     "styles/chat.css",
     "styles/common.css",
     "styles/dialog.css",
-    "styles/item.css"
+    "styles/item.css",
+    "styles/lists.css"
   ],
   "languages": [
     {
