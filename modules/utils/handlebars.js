@@ -66,6 +66,12 @@ export async function registerHelpers() {
         // eslint-disable-next-line valid-typeof
         return typeof l === r;
       },
+      "&&": (l, r) => {
+        return !!l && !!r;
+      },
+      "||": (l, r) => {
+        return !!l || !!r;
+      },
     };
 
     if (!operators[operator]) {

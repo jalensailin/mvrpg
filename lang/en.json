@@ -65,6 +65,7 @@
   "MVRPG.rolls.edges": "Edges",
   "MVRPG.rolls.fantasticResultDie": "M",
   "MVRPG.rolls.mod": "Mod",
+  "MVRPG.rolls.tooltips.undoLastReroll": "Undo Last Reroll.",
   "MVRPG.rolls.total": "Total",
   "MVRPG.rolls.troubles": "Troubles",
 

@@ -25,6 +25,7 @@ export default class D616 extends Roll {
     this.troubles = troubles || 0;
     this.edges = edges || 0;
     this.rerolls = options.rerolls || {
+      history: [],
       die1: [],
       dieM: [],
       die3: [],
@@ -116,11 +117,11 @@ export default class D616 extends Roll {
   async mvReroll(dieID, message) {
     const chat = document.querySelector("#chat");
     const messageHTML = chat.querySelector(`[data-message-id="${message.id}"]`);
-    const rerollButtons = messageHTML.querySelectorAll(".reroll-links a");
+    const buttons = messageHTML.querySelectorAll("a");
     // Deactivate links until reroll is complete. This prevents the user from rerolling
     // multiple times in quick succession. The link may be reactivated later
     // when the chat data is updated.
-    rerollButtons.forEach((el) => el.classList.add("mv-inactive-link"));
+    buttons.forEach((el) => el.classList.add("mv-inactive-link"));
 
     // Reroll!
     const roll = new Roll("1d6[cold]");
@@ -128,11 +129,13 @@ export default class D616 extends Roll {
     if (game.dice3d) await game.dice3d.showForRoll(roll, game.user, true); // Roll Dice So Nice if present.
 
     // Add reroll to original d616 roll and calculate the new results.
+    this.rerolls.history.push(dieID);
     this.rerolls[dieID].push(roll);
     const { finalResults } = this;
 
     // Change chat data, taking into account the reroll.
     const chatData = message.getFlag("mvrpg", "messageData");
+    chatData.rerolls = this.rerolls;
     chatData.dice = finalResults;
     chatData.edgeOrTroubleCurrent -= 1;
     chatData.rollTotal =
@@ -148,6 +151,36 @@ export default class D616 extends Roll {
       chatData,
     );
 
+    // Update the original d616 roll with the new reroll.
+    this.options.rerolls = this.rerolls;
+    await message.setFlag("mvrpg", "messageData", chatData);
+    return message.update({ rolls: [this], content });
+  }
+
+  async undoLastReroll(message) {
+    if (this.rerolls.history.length === 0) return null;
+    const dieID = this.rerolls.history.pop();
+    this.rerolls[dieID].pop();
+
+    const { finalResults } = this;
+
+    // Change chat data, taking into account the reroll.
+    const chatData = message.getFlag("mvrpg", "messageData");
+    chatData.rerolls = this.rerolls;
+    chatData.dice = finalResults;
+    chatData.edgeOrTroubleCurrent += 1;
+    chatData.rollTotal =
+      finalResults.die1 +
+      finalResults.dieM +
+      finalResults.die3 +
+      chatData.modifier;
+    chatData.ultimateFantasticResult = this.ultimateFantasticResult; // Recalculate, taking into account rerolls.
+    chatData.fantasticResult = this.fantasticResult; // Recalculate, taking into account rerolls.
+    // Prepare chat template.
+    const content = await renderTemplate(
+      `systems/${game.system.id}/templates/chat/d616-card.hbs`,
+      chatData,
+    );
     // Update the original d616 roll with the new reroll.
     this.options.rerolls = this.rerolls;
     await message.setFlag("mvrpg", "messageData", chatData);

@@ -4,8 +4,16 @@
     {{localize (concat "MVRPG.heroSheet.abilities." ability)}} (+{{modifier}})
   </div>
   {{#if hasEdgesOrTroubles}}
-    <div class="edges-and-troubles" data-tooltip="{{localize "MVRPG.rolls.edges"}}: {{edges}}<br>{{localize "MVRPG.rolls.troubles"}}: {{troubles}}">
-      {{localize edgeOrTroubleString}}: <span>{{edgeOrTroubleCurrent}} / {{edgeOrTroubleTotal}} </span>
+    <div class="edges-and-troubles">
+      <div>{{!-- Will have "History" icon for reroll history --}}</div>
+      <div class="reroll-count" data-tooltip="{{localize "MVRPG.rolls.edges"}}: {{edges}}<br>{{localize "MVRPG.rolls.troubles"}}: {{troubles}}">
+        {{localize edgeOrTroubleString}}: <span>{{edgeOrTroubleCurrent}} / {{edgeOrTroubleTotal}}</span>
+      </div>
+      {{#mvCompare rerolls.history.length "&&" isGM}}
+        <a class="undo-last-reroll" data-tooltip="MVRPG.rolls.tooltips.undoLastReroll">
+          <i class="fa-solid fa-rotate-left"></i>
+        </a>
+      {{/mvCompare}}
     </div>
   {{/if}}
   <div class="roll-results flexrow">

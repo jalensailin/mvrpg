@@ -7,6 +7,10 @@ export default class MVChat {
     html.on("click", ".reroll-links a:not(.mv-inactive-link)", (event) =>
       this.onRoll(event),
     );
+
+    html.on("click", ".undo-last-reroll", (event) =>
+      this.undoLastReroll(event),
+    );
   }
 
   static async onRoll(event) {
@@ -15,5 +19,12 @@ export default class MVChat {
     const message = game.messages.get(messageId);
     const [originalD616] = message.rolls;
     originalD616.mvReroll(dieID, message);
+  }
+
+  static async undoLastReroll(event) {
+    const messageId = MVUtils.GetEventDatum(event, "data-message-id");
+    const message = game.messages.get(messageId);
+    const [originalD616] = message.rolls;
+    originalD616.undoLastReroll(message);
   }
 }
