@@ -25,6 +25,7 @@ export default class MVChat {
     const messageId = MVUtils.GetEventDatum(event, "data-message-id");
     const message = game.messages.get(messageId);
     const [originalD616] = message.rolls;
-    originalD616.undoLastReroll(message);
+    const skipDialog = event.ctrlKey;
+    originalD616.undoLastReroll(message, skipDialog);
   }
 }

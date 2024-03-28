@@ -157,8 +157,17 @@ export default class D616 extends Roll {
     return message.update({ rolls: [this], content });
   }
 
-  async undoLastReroll(message) {
+  async undoLastReroll(message, skipDialog) {
     if (this.rerolls.history.length === 0) return null;
+
+    if (!skipDialog) {
+      const confirmUndo = await Dialog.confirm({
+        title: game.i18n.localize("MVRPG.dialog.confirmUndo.title"),
+        content: game.i18n.localize("MVRPG.dialog.confirmUndo.text"),
+      });
+      if (!confirmUndo) return null;
+    }
+
     const dieID = this.rerolls.history.pop();
     this.rerolls[dieID].pop();
 
