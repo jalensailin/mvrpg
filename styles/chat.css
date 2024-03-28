@@ -19,10 +19,17 @@
   border-bottom-style: solid;
   border-bottom-width: 2px;
   padding: 0 5px;
+  padding-top: 1px;
   display: grid;
   grid-template-columns: 1fr 3fr 1fr;
 
-  span {
+  .reroll-history {
+    text-align: left;
+    padding-left: 6px;
+    cursor: unset;
+  }
+
+  .reroll-count > span {
     font-weight: bold;
   }
 

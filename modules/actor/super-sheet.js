@@ -121,6 +121,8 @@ export default class SuperSheet extends ActorSheet {
     const chatData = {
       isGM: game.user.isGM,
       dice: roll.finalResults,
+      originalResults: roll.finalResults,
+      rerolls: roll.rerolls,
       rollTotal: roll.total,
       hasEdgesOrTroubles: roll.edgesAndTroubles !== 0,
       edgeOrTroubleKey,

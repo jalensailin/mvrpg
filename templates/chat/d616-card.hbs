@@ -5,7 +5,11 @@
   </div>
   {{#if hasEdgesOrTroubles}}
     <div class="edges-and-troubles">
-      <div>{{!-- Will have "History" icon for reroll history --}}</div>
+      <a class="reroll-history" data-tooltip="{{> (systemFilePath "templates/chat/reroll-history-tooltip.hbs")}}">
+        {{#if rerolls.history.length}}
+          <i class="fa-solid fa-history"></i>
+        {{/if}}
+      </a>
       <div class="reroll-count" data-tooltip="{{localize "MVRPG.rolls.edges"}}: {{edges}}<br>{{localize "MVRPG.rolls.troubles"}}: {{troubles}}">
         {{localize edgeOrTroubleString}}: <span>{{edgeOrTroubleCurrent}} / {{edgeOrTroubleTotal}}</span>
       </div>

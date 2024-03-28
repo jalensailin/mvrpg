@@ -1,0 +1,28 @@
+{{localize "MVRPG.rolls.tooltips.rerollHistory"}}
+<br>
+{{localize "MVRPG.rolls.tooltips.die1"}}:
+  {{originalResults.die1~}}
+  {{~#if rerolls.die1.length~}}
+    ,
+    {{#each rerolls.die1 as |reroll|}}
+      {{reroll.total}}{{#unless @last}}, {{/unless}}
+    {{/each}}
+  {{/if}}
+<br>
+{{localize "MVRPG.rolls.tooltips.dieM"}}:
+  {{originalResults.dieM~}}
+  {{~#if rerolls.dieM.length~}}
+    ,
+    {{#each rerolls.dieM as |reroll|}}
+      {{reroll.total}}{{#unless @last}}, {{/unless}}
+    {{/each}}
+  {{/if}}
+<br>
+{{localize "MVRPG.rolls.tooltips.die3"}}:
+  {{originalResults.die3~}}
+  {{~#if rerolls.die3.length~}}
+    ,
+    {{#each rerolls.die3 as |reroll|}}
+      {{reroll.total}}{{#unless @last}}, {{/unless}}
+    {{/each}}
+  {{/if}}
