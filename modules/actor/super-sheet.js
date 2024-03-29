@@ -92,15 +92,31 @@ export default class SuperSheet extends ActorSheet {
       case "edit":
         doc.sheet.render(true);
         break;
-      case "delete":
-        this.actor.deleteEmbeddedDocuments("Item", [docId]);
+      case "delete": {
+        const skipDialog = event.ctrlKey;
+        this.deleteOwnedItem(doc, skipDialog);
         break;
+      }
       case "toChat":
         this.sendItemToChat(doc);
         break;
       default:
         break;
     }
+  }
+
+  async deleteOwnedItem(doc, skipDialog) {
+    if (!skipDialog) {
+      const confirmDelete = await Dialog.confirm({
+        title: game.i18n.localize("MVRPG.dialog.deleteOwnedItem.title"),
+        content: game.i18n.format("MVRPG.dialog.deleteOwnedItem.text", {
+          itemType: game.i18n.localize(`TYPES.Item.${doc.type}`),
+          itemName: doc.name,
+        }),
+      });
+      if (!confirmDelete) return;
+    }
+    this.actor.deleteEmbeddedDocuments("Item", [doc.id]);
   }
 
   /**

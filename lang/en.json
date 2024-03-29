@@ -3,6 +3,8 @@
   "MVRPG.dialog.buttons.confirm": "Confirm!",
   "MVRPG.dialog.confirmUndo.title": "Confirm Undo",
   "MVRPG.dialog.confirmUndo.text": "Are you sure you want to undo the last reroll?",
+  "MVRPG.dialog.deleteOwnedItem.title": "Delete Owned Item",
+  "MVRPG.dialog.deleteOwnedItem.text": "Are you sure you want to delete this {itemType} ({itemName})?",
   "MVRPG.dialog.initSpeed.title": "Initiative/Speed Config",
   "MVRPG.dialog.initSpeed.initiativeSettings": "Initiative Settings.",
   "MVRPG.dialog.initSpeed.edge": "Edge.",

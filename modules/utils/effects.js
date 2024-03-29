@@ -1,4 +1,4 @@
-/* global game */
+/* global game Dialog */
 
 export default class EffectUtils {
   /**
@@ -37,9 +37,21 @@ export default class EffectUtils {
       case "toggle":
         effect.update({ disabled: !effect.disabled });
         break;
-      case "delete":
-        await effect.delete();
+      case "delete": {
+        const skipDialog = event.ctrlKey;
+        if (!skipDialog) {
+          const confirmDelete = await Dialog.confirm({
+            title: game.i18n.localize("MVRPG.dialog.deleteOwnedItem.title"),
+            content: game.i18n.format("MVRPG.dialog.deleteOwnedItem.text", {
+              itemType: game.i18n.translations.DOCUMENT.ActiveEffect,
+              itemName: effect.name,
+            }),
+          });
+          if (!confirmDelete) return;
+        }
+        effect.delete();
         break;
+      }
       case "edit":
         effect.sheet.render(true);
         break;
