@@ -7,13 +7,13 @@
   </nav>
   <div class="powers-body">
     <div class="tab doc-list flexcol" data-group="secondary" data-tab="powers">
-      {{> (systemFilePath "templates/actor/document-list.hbs") actor.itemTypes.power}}
+      {{> (systemFilePath "templates/actor/document-list.hbs") docList=actor.itemTypes.power type="power"}}
     </div>
     <div class="tab doc-list flexcol" data-group="secondary" data-tab="traits">
-      {{> (systemFilePath "templates/actor/document-list.hbs") actor.itemTypes.trait}}
+      {{> (systemFilePath "templates/actor/document-list.hbs") docList=actor.itemTypes.trait type="trait"}}
     </div>
     <div class="tab doc-list flexcol" data-group="secondary" data-tab="tags">
-      {{> (systemFilePath "templates/actor/document-list.hbs") actor.itemTypes.tag}}
+      {{> (systemFilePath "templates/actor/document-list.hbs") docList=actor.itemTypes.tag type="tag"}}
     </div>
     <div class="tab effects-list doc-list flexcol" data-group="secondary" data-tab="effects">
       {{> (systemFilePath "templates/shared/effects-list.hbs") allEffects}}

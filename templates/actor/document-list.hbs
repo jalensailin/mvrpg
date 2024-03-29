@@ -2,14 +2,14 @@
   <div class="doc-icon-dummy">
   </div>
   <div class="doc-data">
-    {{localize (concat "MVRPG.heroSheet.dataHeaders." this.0.type)}}
+    {{localize (concat "MVRPG.heroSheet.dataHeaders." type)}}
   </div>
-  <a class="doc-action doc-create" data-action="create" data-tooltip="{{localize "MVRPG.itemSheet.effects.tooltips.create"}}">
+  <a class="doc-action doc-create" data-action="create" data-doc-type="{{type}}" data-tooltip="{{localize (concat "MVRPG.heroSheet.tooltips.createItem." type)}}">
     <i class="fa-solid fa-plus"></i>
   </a>
 </div>
 
-{{#each this as |doc|}}
+{{#each docList as |doc|}}
   <div class="doc-entry flexrow">
     <a class="doc-action doc-icon" data-action="toChat" data-doc-id="{{doc.id}}">
       <img src="{{doc.img}}" title="{{doc.name}}"/>

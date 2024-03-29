@@ -75,10 +75,20 @@ export default class SuperSheet extends ActorSheet {
    * @return {void}
    */
   onItemAction(event) {
-    const { action, docId } = event.currentTarget.dataset;
+    const { action, docId, docType } = event.currentTarget.dataset;
     const doc = this.actor.items.get(docId);
 
     switch (action) {
+      case "create":
+        this.actor.createEmbeddedDocuments("Item", [
+          {
+            name: game.i18n.format(game.i18n.translations.DOCUMENT.New, {
+              type: game.i18n.localize(`TYPES.Item.${docType}`),
+            }), // Foundry's localization ("New Active Effect")
+            type: docType,
+          },
+        ]);
+        break;
       case "edit":
         doc.sheet.render(true);
         break;

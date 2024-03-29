@@ -58,6 +58,9 @@
   "MVRPG.heroSheet.titles.powers": "Powers.",
   "MVRPG.heroSheet.titles.rank": "Rank.",
   "MVRPG.heroSheet.titles.speed": "Speed.",
+  "MVRPG.heroSheet.tooltips.createItem.power": "Create Power",
+  "MVRPG.heroSheet.tooltips.createItem.tag": "Create Tag",
+  "MVRPG.heroSheet.tooltips.createItem.trait": "Create Trait",
 
   "MVRPG.itemSheet.effects.dataHeader": "Effect Data.",
   "MVRPG.itemSheet.effects.tooltips.create": "Create Active Effect.",
