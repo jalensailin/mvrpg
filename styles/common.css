@@ -87,12 +87,15 @@ section {
   font-family: KomikaText;
 }
 
+.mvrpg select,
 .mvrpg input[type="text"],
 .mvrpg input[type="number"] {
+  width: calc(100% - 2px);
   border: none;
   background: none;
 }
 
+.mvrpg select:hover,
 .mvrpg input[type="text"]:hover,
 .mvrpg input[type="number"]:hover {
   color: var(--spider-red);

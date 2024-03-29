@@ -1,5 +1,7 @@
 /* global loadTemplates game Handlebars */
 
+import MVRPG from "../config.js";
+
 /**
  * Define a set of template paths to pre-load
  * Pre-loaded templates are compiled and cached for fast access when rendering
@@ -87,6 +89,17 @@ export async function registerHelpers() {
       return options.fn(this);
     }
     return options.inverse(this);
+  });
+
+  /**
+   * Get a particular object from config.js
+   *
+   * @param {string} property
+   * @returns {Object}
+   */
+  Handlebars.registerHelper("mvGetConfigObj", (property) => {
+    if (!(property in MVRPG)) return null;
+    return MVRPG[property];
   });
 
   Handlebars.registerHelper("changeModeSymbol", (change) => {

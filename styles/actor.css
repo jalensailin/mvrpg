@@ -213,16 +213,10 @@
       width: 80%;
       top: 5%;
 
-      background: none;
-      border: none;
-
       font-size: 0.9rem;
       text-align: center;
-    }
 
-    .speed-selector:hover {
-      text-shadow: 1px 1px 2px var(--spider-red);
-      box-shadow: 1px 1px 2px var(--spider-red);
+      z-index: 2000;
     }
 
     .speed-item {
@@ -404,6 +398,11 @@
     .identity-input {
       background-color: rgb(200, 211, 211, 0.75) !important;
       flex: 0;
+    }
+
+    select.identity-input {
+      border: unset;
+      padding: unset;
     }
   }
 }

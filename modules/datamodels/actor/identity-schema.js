@@ -1,5 +1,7 @@
 /* globals foundry */
 
+import MVRPG from "../../config.js";
+
 export default class IdentitySchema extends foundry.abstract.TypeDataModel {
   static defineSchema() {
     const { fields } = foundry.data;
@@ -27,7 +29,8 @@ export default class IdentitySchema extends foundry.abstract.TypeDataModel {
       size: new fields.StringField({
         required: true,
         nullable: false,
-        initial: "",
+        initial: "average",
+        choices: Object.keys(MVRPG.sizes),
       }),
       gender: new fields.StringField({
         required: true,

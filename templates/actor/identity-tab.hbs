@@ -16,16 +16,22 @@
   </div>
   <div class="identity-2nd-section flexrow">
     <div class="identity-item flexcol">
+      <div class="identity-label">{{localize "MVRPG.heroSheet.identity.size"}}:</div>
+      {{#select actor.system.identity.size}}
+        <select class="identity-input" type="text" name="system.identity.size">
+          {{#each (mvGetConfigObj "sizes") as |sizeI18nString sizeSlug|}}
+            <option value="{{sizeSlug}}">{{localize sizeI18nString}}</option>
+          {{/each}}
+        </select>
+      {{/select}}
+    </div>
+    <div class="identity-item flexcol">
       <div class="identity-label">{{localize "MVRPG.heroSheet.identity.weight"}}:</div>
       <input class="identity-input" type="text" name="system.identity.weight" value="{{actor.system.identity.weight}}"/>
     </div>
     <div class="identity-item flexcol">
       <div class="identity-label">{{localize "MVRPG.heroSheet.identity.height"}}:</div>
       <input class="identity-input" type="text" name="system.identity.height" value="{{actor.system.identity.height}}"/>
-    </div>
-    <div class="identity-item flexcol">
-      <div class="identity-label">{{localize "MVRPG.heroSheet.identity.size"}}:</div>
-      <input class="identity-input" type="text" name="system.identity.size" value="{{actor.system.identity.size}}"/>
     </div>
   </div>
   <div class="identity-3rd-section flexrow">
