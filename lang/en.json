@@ -88,6 +88,7 @@
 
   "MVRPG.sheets.generic.tooltips.edit": "Edit.",
   "MVRPG.sheets.generic.tooltips.delete": "Delete.",
+  "MVRPG.sheets.generic.tooltips.toChat": "Send Description to Chat.",
 
   "TYPES.Actor.super": "Super",
   "TYPES.Item.power": "Power",

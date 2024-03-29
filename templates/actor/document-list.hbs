@@ -11,14 +11,14 @@
 
 {{#each docList as |doc|}}
   <div class="doc-entry flexrow">
-    <a class="doc-action doc-icon" data-action="toChat" data-doc-id="{{doc.id}}">
+    <a class="doc-action doc-icon" data-action="toChat" data-doc-id="{{doc.id}}" data-tooltip="{{localize "MVRPG.sheets.generic.tooltips.toChat"}}">
       <img src="{{doc.img}}" title="{{doc.name}}"/>
       <i class="overlay fa-solid fa-comment"></i>
     </a>
-    <a class="doc-action doc-name" data-action="edit" data-doc-id="{{doc.id}}">
+    <a class="doc-action doc-name" data-action="edit" data-doc-id="{{doc.id}}" data-tooltip="{{localize "MVRPG.sheets.generic.tooltips.edit"}}">
       {{doc.name}}
     </a>
-    <a class="doc-action doc-delete" data-action="delete" data-doc-id="{{doc.id}}">
+    <a class="doc-action doc-delete" data-action="delete" data-doc-id="{{doc.id}}" data-tooltip="{{localize "MVRPG.sheets.generic.tooltips.delete"}}">
       <i class="fa-solid fa-trash"></i>
     </a>
   </div>
