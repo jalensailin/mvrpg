@@ -1,3 +1,14 @@
+<div class="doc-list-header flexrow">
+  <div class="doc-icon-dummy">
+  </div>
+  <div class="doc-data">
+    {{localize (concat "MVRPG.heroSheet.dataHeaders." this.0.type)}}
+  </div>
+  <a class="doc-action doc-create" data-action="create" data-tooltip="{{localize "MVRPG.itemSheet.effects.tooltips.create"}}">
+    <i class="fa-solid fa-plus"></i>
+  </a>
+</div>
+
 {{#each this as |doc|}}
   <div class="doc-entry flexrow">
     <a class="doc-action doc-icon" data-action="toChat" data-doc-id="{{doc.id}}">

@@ -22,7 +22,7 @@
     place-items: center;
   }
 
-  .doc-entry:nth-child(odd) {
+  .doc-entry:nth-child(even) {
     background-color: rgb(255 218 185);
   }
 
