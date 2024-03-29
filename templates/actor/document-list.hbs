@@ -15,11 +15,15 @@
       <img src="{{doc.img}}" title="{{doc.name}}"/>
       <i class="overlay fa-solid fa-comment"></i>
     </a>
-    <a class="doc-action doc-name" data-action="edit" data-doc-id="{{doc.id}}" data-tooltip="{{localize "MVRPG.sheets.generic.tooltips.edit"}}">
-      {{doc.name}}
+    <a class="doc-action doc-data flexcol" data-action="edit" data-doc-id="{{doc.id}}" data-tooltip="{{localize "MVRPG.sheets.generic.tooltips.edit"}}">
+      <div class="doc-name">
+        {{doc.name}}
+      </div>
     </a>
-    <a class="doc-action doc-delete" data-action="delete" data-doc-id="{{doc.id}}" data-tooltip="{{localize "MVRPG.sheets.generic.tooltips.delete"}}">
-      <i class="fa-solid fa-trash"></i>
-    </a>
+    <div class="action-icons flexrow">
+      <a class="doc-action doc-delete" data-action="delete" data-doc-id="{{doc.id}}" data-tooltip="{{localize "MVRPG.sheets.generic.tooltips.delete"}}">
+        <i class="fa-solid fa-trash"></i>
+      </a>
+    </div>
   </div>
 {{/each}}

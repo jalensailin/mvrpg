@@ -54,7 +54,7 @@
     opacity: 0.75;
   }
 
-  .effect-data {
+  .doc-data {
     padding-left: 3px;
   }
 
@@ -70,16 +70,8 @@
       padding: 2px;
     }
     .doc-delete {
+      flex: 0;
       color: var(--spider-red);
     }
-  }
-
-  .doc-name {
-    padding-left: 3px;
-  }
-
-  .doc-delete {
-    flex: 0;
-    padding: 0 6px;
   }
 }

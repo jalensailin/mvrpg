@@ -19,9 +19,9 @@
       <div class="doc-name">
         {{effect.name}}
       </div>
-      <div class="doc-changes">
+      <div class="effect-changes">
         {{#each effect.changes as |change|}}
-          <div class="doc-change">
+          <div class="effect-change">
             {{change.key}}: {{changeModeSymbol change}}{{change.value}}
             {{#unless @last}}, {{/unless}}
           </div>
