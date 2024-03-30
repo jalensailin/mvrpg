@@ -7,6 +7,8 @@ import registerSettings from "./utils/settings.js";
 import loadTemplates, { registerHelpers } from "./utils/handlebars.js";
 import TagDataModel from "./datamodels/item/tag-schema.js";
 import MVItemSheet from "./item/item-sheet.js";
+import TraitDataModel from "./datamodels/item/trait-schema.js";
+import PowerDataModel from "./datamodels/item/power-schema.js";
 
 // CONFIG.debug.hooks = true;
 
@@ -31,6 +33,8 @@ Hooks.once("init", async () => {
 
   // Register Item data models.
   CONFIG.Item.dataModels.tag = TagDataModel;
+  CONFIG.Item.dataModels.trait = TraitDataModel;
+  CONFIG.Item.dataModels.power = PowerDataModel;
 
   // Turn off legacy tranferral for active effects. Necessary for v11.
   CONFIG.ActiveEffect.legacyTransferral = false;
