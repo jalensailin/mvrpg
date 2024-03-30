@@ -24,7 +24,7 @@
   }
 
   .doc-entry:nth-child(even) {
-    background-color: rgb(255 218 185);
+    background-color: var(--thing-orange);
   }
 
   .doc-icon {

@@ -67,8 +67,9 @@
   --venom-black: rgb(37, 37, 37);
   --cap-blue: rgb(156, 199, 240);
   --hulk-green: rgb(170, 204, 170);
-  --thing-orange: rgb(241 200 173);
+  --thing-orange: rgb(255 218 185);
   --thanos-purple: rgb(209 181 247);
+  --wasp-yellow: rgb(255 244 220);
 
   /* Sizes */
   --name-text-size: 1.8rem;
@@ -161,7 +162,7 @@ section {
 }
 
 .sheet-body {
-  background-color: rgb(255 244 220);
+  background-color: var(--wasp-yellow);
 }
 
 /* Open Editor */
