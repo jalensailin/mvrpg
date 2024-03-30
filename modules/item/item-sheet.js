@@ -10,6 +10,7 @@ export default class MVItemSheet extends ItemSheet {
   /** @override */
   static get defaultOptions() {
     return mergeObject(super.defaultOptions, {
+      template: `systems/${game.system.id}/templates/item/base-item-sheet.hbs`,
       classes: ["mvrpg", "sheet", "item"],
       width: 580,
       height: 370,
@@ -21,14 +22,6 @@ export default class MVItemSheet extends ItemSheet {
         },
       ],
     });
-  }
-
-  /** @override */
-  get template() {
-    const path = `systems/${game.system.id}/templates/item`;
-
-    // unique item sheet by type, like `power-sheet.html`.
-    return `${path}/${this.item.type}-sheet.hbs`;
   }
 
   /* -------------------------------------------- */

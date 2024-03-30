@@ -13,6 +13,7 @@ export default async function preloadTemplates() {
     `systems/${game.system.id}/templates/actor/document-list.hbs`,
     `systems/${game.system.id}/templates/actor/powers-tab.hbs`,
     `systems/${game.system.id}/templates/chat/reroll-history-tooltip.hbs`,
+    `systems/${game.system.id}/templates/item/settings-tab.hbs`,
     `systems/${game.system.id}/templates/shared/effects-list.hbs`,
   ]);
 }
