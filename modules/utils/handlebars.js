@@ -33,7 +33,7 @@ export async function registerHelpers() {
    * @param {string} operator
    * @param {*} rValue
    */
-  Handlebars.registerHelper("mvCompare", (...args) => {
+  Handlebars.registerHelper("mvCompare", function (...args) {
     if (args.length < 3) {
       throw new Error("Handlerbars Helper 'compare' needs 2 parameters");
     }
