@@ -36,13 +36,17 @@
 }
 
 .mvrpg-dialog-section {
-  background-color: var(--background-white);
+  background-color: var(--wasp-yellow);
 }
 
 .mvrpg-dialog-item {
   justify-items: center;
   align-items: center;
   padding: 0 15px;
+}
+
+.mvrpg-dialog-item:nth-child(odd) {
+  background-color: var(--thing-orange);
 }
 
 .mvrpg-dialog-header {
@@ -116,4 +120,9 @@
 
 .mvrpg-dialog-input input[type="checkbox"]:checked {
   background-position-x: 0;
+}
+
+select.mvrpg-dialog-input {
+  width: unset;
+  height: unset;
 }

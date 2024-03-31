@@ -1,0 +1,67 @@
+<div class="mvrpg-dialog-container flexcol">
+  <div class="mvrpg-dialog-section flexcol">
+
+    <div class="mvrpg-dialog-item flexrow">
+      <div class="mvrpg-dialog-label">
+        {{localize "MVRPG.itemSheet.settings.labels.action"}}
+      </div>
+      {{#select item.system.action}}
+        <select class="mvrpg-dialog-input" name="system.action">
+          {{#each (mvGetConfigObj "powerActions") as |actionI18nString actionSlug|}}
+            <option value="{{actionSlug}}">{{localize actionI18nString}}</option>
+          {{/each}}
+        </select>
+      {{/select}}
+    </div>
+
+    <div class="mvrpg-dialog-item flexrow">
+      <div class="mvrpg-dialog-label">
+        {{localize "MVRPG.itemSheet.settings.labels.duration"}}
+      </div>
+      {{#select item.system.duration}}
+        <select class="mvrpg-dialog-input" name="system.duration">
+          {{#each (mvGetConfigObj "powerDurations") as |durationI18nString durationSlug|}}
+            <option value="{{durationSlug}}">{{localize durationI18nString}}</option>
+          {{/each}}
+        </select>
+      {{/select}}
+    </div>
+
+    <div class="mvrpg-dialog-item flexrow">
+      <div class="mvrpg-dialog-label">
+        {{localize "MVRPG.itemSheet.settings.labels.cost"}}
+      </div>
+      <div class="mvrpg-dialog-input">
+        <input name="system.cost" type="number" value="{{item.system.cost}}">
+      </div>
+    </div>
+
+    <div class="mvrpg-dialog-item flexrow">
+      <div class="mvrpg-dialog-label">
+        {{localize "MVRPG.itemSheet.settings.labels.isAttack"}}
+      </div>
+      <div class="mvrpg-dialog-input">
+        <input name="system.isAttack" type="checkbox" {{checked item.system.isAttack}}>
+      </div>
+    </div>
+
+    <div class="mvrpg-dialog-item flexrow">
+      <div class="mvrpg-dialog-label">
+        {{localize "MVRPG.itemSheet.settings.labels.range"}}
+      </div>
+      <div class="mvrpg-dialog-input">
+        <input name="system.range.value" type="number" value="{{item.system.range.value}}">
+      </div>
+    </div>
+
+    <div class="mvrpg-dialog-item flexrow">
+      <div class="mvrpg-dialog-label">
+        {{localize "MVRPG.itemSheet.settings.labels.multiplyByRank"}}
+      </div>
+      <div class="mvrpg-dialog-input">
+        <input name="system.range.multiplyByRank" type="checkbox" {{checked item.system.range.multiplyByRank}}>
+      </div>
+    </div>
+
+  </div>
+</div>
