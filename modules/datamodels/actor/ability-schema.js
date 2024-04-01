@@ -27,6 +27,30 @@ export default class AbilitySchema extends foundry.abstract.TypeDataModel {
         initial: 0,
         min: 0,
       }),
+      damageMultiplierBonus: new fields.NumberField({
+        required: true,
+        nullable: false,
+        integer: true,
+        positive: false,
+        initial: 0,
+        min: 0,
+      }),
+      edges: new fields.NumberField({
+        required: true,
+        nullable: false,
+        integer: true,
+        positive: false,
+        initial: 0,
+        min: 0,
+      }),
+      troubles: new fields.NumberField({
+        required: true,
+        nullable: false,
+        integer: true,
+        positive: false,
+        initial: 0,
+        min: 0,
+      }),
     };
   }
 

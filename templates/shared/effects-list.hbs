@@ -21,10 +21,10 @@
       </div>
       <div class="effect-changes">
         {{#each effect.changes as |change|}}
-          <div class="effect-change">
-            {{change.key}}: {{changeModeSymbol change}}{{change.value}}
-            {{~#unless @last}}, {{/unless}}
-          </div>
+          <span class="info-pill">
+            {{localize (concat "MVRPG." change.key)}}: {{changeModeSymbol change}}{{change.value}}
+          </span>
+          &nbsp;
         {{/each}}
       </div>
     </a>
