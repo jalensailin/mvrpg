@@ -1,6 +1,7 @@
 {
   "MVRPG.dialog.buttons.cancel": "Cancel",
   "MVRPG.dialog.buttons.confirm": "Confirm!",
+  "MVRPG.dialog.configurePowerSets.title": "Configure Power Sets.",
   "MVRPG.dialog.confirmUndo.title": "Confirm Undo",
   "MVRPG.dialog.confirmUndo.text": "Are you sure you want to undo the last reroll?",
   "MVRPG.dialog.deleteOwnedItem.title": "Delete Owned Item",
@@ -75,6 +76,7 @@
   "MVRPG.itemSheet.settings.labels.multiplyByRank": "Multiply By Rank?",
   "MVRPG.itemSheet.settings.labels.powerSets": "Power Sets.",
   "MVRPG.itemSheet.settings.labels.range": "Range.",
+  "MVRPG.itemSheet.settings.tooltips.configurePowerSets": "Configure Power Sets.",
   "MVRPG.itemSheet.titles.description": "Description.",
   "MVRPG.itemSheet.titles.effects": "Effects.",
 

@@ -3,6 +3,19 @@
 
     <div class="mvrpg-dialog-item flexrow">
       <div class="mvrpg-dialog-label">
+        {{localize "MVRPG.itemSheet.settings.labels.powerSets"}}
+      </div>
+      <a class="mvrpg-dialog-data configure-power-sets" data-tooltip="{{localize "MVRPG.itemSheet.settings.tooltips.configurePowerSets"}}">
+        {{#each item.system.powerSets as |powerSetSlug|}}
+          <span>{{localize (concat "MVRPG.sheets.generic.powerSets." powerSetSlug)}}
+          {{~#unless @last}}, {{/unless}}</span>
+        {{/each}}
+        <i class="fa-solid fa-gear fa-xs"></i>
+      </a>
+    </div>
+
+    <div class="mvrpg-dialog-item flexrow">
+      <div class="mvrpg-dialog-label">
         {{localize "MVRPG.itemSheet.settings.labels.action"}}
       </div>
       {{#select item.system.action}}

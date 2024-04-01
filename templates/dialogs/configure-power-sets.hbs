@@ -1,0 +1,19 @@
+<form>
+  <div class="half-tone-overlay"></div>
+
+  <div class="mvrpg-dialog-container flexcol">
+    <div class="mvrpg-dialog-section comic-frame flexcol">
+      <div class="mvrpg-dialog-header">
+        {{localize "MVRPG.dialog.configurePowerSets.title"}}
+      </div>
+      {{#each (mvGetConfigObj "powerSets") as |powerSetI18nString powerSetSlug|}}
+        <div class="mvrpg-dialog-item flexrow">
+          <div class="mvrpg-dialog-label">{{localize powerSetI18nString}}</div>
+          <div class="mvrpg-dialog-input">
+            <input name="{{powerSetSlug}}" type="checkbox" {{checked (mvListIncludes ../item.system.powerSets powerSetSlug)}}>
+          </div>
+        </div>
+      {{/each}}
+    </div>
+  </div>
+</form>

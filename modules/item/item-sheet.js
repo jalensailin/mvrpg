@@ -1,4 +1,4 @@
-/* global ItemSheet mergeObject TextEditor game */
+/* global ItemSheet mergeObject TextEditor game Dialog FormDataExtended renderTemplate foundry */
 
 import EffectUtils from "../utils/effects.js";
 
@@ -48,5 +48,43 @@ export default class MVItemSheet extends ItemSheet {
     html
       .find(".effect-action")
       .click((event) => EffectUtils.onEffectAction(this.item, event));
+
+    html
+      .find(".configure-power-sets")
+      .click((event) => this.showConfigurePowerSetsDialog(event));
+  }
+
+  async showConfigurePowerSetsDialog(event) {
+    const content = await renderTemplate(
+      `systems/${game.system.id}/templates/dialogs/configure-power-sets.hbs`,
+      { item: this.item },
+    );
+    const dialog = new Dialog(
+      {
+        content,
+        title: game.i18n.localize("MVRPG.dialog.configurePowerSets.title"),
+        default: "confirm",
+        buttons: {
+          confirm: {
+            icon: `<i class="fa-solid fa-spider"></i>`,
+            label: game.i18n.localize("MVRPG.dialog.buttons.confirm"),
+            callback: (html) => {
+              const fd = new FormDataExtended(html.find("form")[0]);
+              const formData = foundry.utils.expandObject(fd.object);
+              const powerSets = Object.entries(formData)
+                .filter(([key, value]) => value)
+                .map(([key, value]) => key);
+              this.item.update({ "system.powerSets": powerSets });
+            },
+          },
+        },
+      },
+      {
+        id: "config-power-sets-dialog",
+        classes: ["mvrpg", "mvrpg-dialog", "item"],
+        width: 300,
+      },
+    );
+    dialog.render(true);
   }
 }

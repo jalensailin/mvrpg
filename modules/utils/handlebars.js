@@ -119,4 +119,8 @@ export async function registerHelpers() {
         return "";
     }
   });
+
+  Handlebars.registerHelper("mvListIncludes", (array, string) => {
+    return array.includes(string);
+  });
 }
