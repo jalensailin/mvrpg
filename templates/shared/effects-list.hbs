@@ -23,7 +23,7 @@
         {{#each effect.changes as |change|}}
           <div class="effect-change">
             {{change.key}}: {{changeModeSymbol change}}{{change.value}}
-            {{#unless @last}}, {{/unless}}
+            {{~#unless @last}}, {{/unless}}
           </div>
         {{/each}}
       </div>
