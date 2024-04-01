@@ -93,6 +93,46 @@ export async function registerHelpers() {
   });
 
   /**
+   * Thanks to the Cyberpunk Red Foundry team for this one.
+   *
+   * @param {*} args
+   * @returns {Number}
+   */
+  Handlebars.registerHelper("mvMath", (...args) => {
+    let mathArgs = [...args];
+    let mathFunction = mathArgs[0];
+    mathArgs.shift();
+    mathArgs.pop();
+    if (Array.isArray(mathArgs[0])) {
+      [mathArgs] = mathArgs;
+    }
+    mathArgs = mathArgs.map(Number);
+    if (typeof Math[mathFunction] === "function") {
+      return Math[mathFunction].apply(null, mathArgs);
+    }
+    // Math doesn't have basic functions, we can account
+    // for those here as needed:
+    if (typeof mathArgs === "undefined") {
+      mathFunction = `${mathFunction} bad args: ${mathArgs}`;
+    }
+    switch (mathFunction) {
+      case "sum":
+        return mathArgs.reduce((a, b) => parseInt(a) + parseInt(b), 0);
+      case "subtract": {
+        const minutend = mathArgs.shift();
+        const subtrahend = mathArgs.reduce((a, b) => a + b, 0);
+        return minutend - subtrahend;
+      }
+      case "product": {
+        return mathArgs.reduce((a, b) => a * b, 1);
+      }
+      default:
+        console.error(`Not a Math function: ${mathFunction}`);
+        return "null";
+    }
+  });
+
+  /**
    * Get a particular object from config.js
    *
    * @param {string} property
