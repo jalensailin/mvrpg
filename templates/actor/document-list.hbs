@@ -19,6 +19,22 @@
       <div class="doc-name">
         {{doc.name}}
       </div>
+      {{#mvCompare doc.type "power"}}
+        <div class="power-data">
+          <span class="info-pill">{{localize "MVRPG.heroSheet.pillLabels.action"}}: {{localize (concat "MVRPG.sheets.generic.powerActions." doc.system.action)}}</span>
+          <span class="info-pill">{{localize "MVRPG.heroSheet.pillLabels.duration"}}: {{localize (concat "MVRPG.sheets.generic.powerDurations." doc.system.duration)}}</span>
+          {{#if doc.system.cost}}
+            <span class="info-pill">{{localize "MVRPG.heroSheet.pillLabels.cost"}}: {{doc.system.cost}}</span>
+          {{/if}}
+          {{#if doc.system.range.value}}
+            {{#if doc.system.range.multiplyByRank}}
+              <span class="info-pill">{{localize "MVRPG.heroSheet.pillLabels.range"}}: {{mvMath "product" doc.system.range.value actor.system.rank}}</span>
+            {{else}}
+              <span class="info-pill">{{localize "MVRPG.heroSheet.pillLabels.range"}}: {{doc.system.range.value}}</span>
+            {{/if}}
+          {{/if}}
+        </div>
+      {{/mvCompare}}
     </a>
     <div class="action-icons flexrow">
       <a class="doc-action doc-delete" data-action="delete" data-doc-id="{{doc.id}}" data-tooltip="{{localize "MVRPG.sheets.generic.tooltips.delete"}}">

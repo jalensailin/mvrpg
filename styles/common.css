@@ -225,3 +225,11 @@ a:hover.mv-inactive-link {
   text-shadow: unset;
   cursor: unset;
 }
+
+.info-pill {
+  border-radius: 5px;
+  background-color: rgb(200, 211, 211, 0.75);
+  text-align: center;
+  padding: 0 4px;
+  line-height: 1.2rem;
+}
