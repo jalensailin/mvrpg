@@ -1,4 +1,4 @@
-/* globals Roll renderTemplate game Dialog foundry FormDataExtended $ mergeObject */
+/* globals Roll renderTemplate game Dialog foundry FormDataExtended $ mergeObject ChatMessage */
 
 export default class D616 extends Roll {
   /**
@@ -210,7 +210,34 @@ export default class D616 extends Roll {
         await this.mvReroll("die3", message);
       }
     }
-    /* eslint-enable no-await-in-loop */
+  }
+
+  async createDamageCard(alias) {
+    const actorData = this.actor.system;
+    const abilityData = actorData.abilities[this.ability];
+    const { dieMResult, damageMultiplier, total } = this.calculateDamage;
+
+    const chatData = {
+      actor: this.actor,
+      ability: this.ability,
+      dieMResult,
+      damageMultiplier,
+      modifier: abilityData.value,
+      total,
+    };
+    // Prepare chat template.
+    const content = await renderTemplate(
+      `systems/${game.system.id}/templates/chat/damage-card.hbs`,
+      chatData,
+    );
+
+    // Create the chat message.
+    const message = await ChatMessage.create({
+      speaker: ChatMessage.getSpeaker({ alias }),
+      content,
+    });
+    // Store this chat-data in a flag so that it's easily retrieved later.
+    await message.setFlag(game.system.id, "messageData", chatData);
   }
 
   /**
@@ -260,5 +287,14 @@ export default class D616 extends Roll {
    */
   get edgesAndTroubles() {
     return this.edges - this.troubles;
+  }
+
+  get calculateDamage() {
+    const actorData = this.actor.system;
+    const abilityData = actorData.abilities[this.ability];
+    const dieMResult = this.finalResults.dieM;
+    const damageMultiplier = actorData.rank + abilityData.damageMultiplierBonus;
+    const total = dieMResult * damageMultiplier + abilityData.value;
+    return { dieMResult, damageMultiplier, total };
   }
 }

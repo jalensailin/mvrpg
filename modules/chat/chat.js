@@ -11,6 +11,10 @@ export default class MVChat {
     html.on("click", ".undo-last-reroll", (event) =>
       this.undoLastReroll(event),
     );
+
+    html.on("click", ".create-damage-card", (event) =>
+      this.createDamageCard(event),
+    );
   }
 
   static async onRoll(event) {
@@ -27,5 +31,12 @@ export default class MVChat {
     const [originalD616] = message.rolls;
     const skipDialog = event.ctrlKey;
     originalD616.undoLastReroll(message, skipDialog);
+  }
+
+  static createDamageCard(event) {
+    const messageId = MVUtils.GetEventDatum(event, "data-message-id");
+    const message = game.messages.get(messageId);
+    const [originalD616] = message.rolls;
+    originalD616.createDamageCard(message.speaker.alias);
   }
 }

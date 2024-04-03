@@ -120,9 +120,11 @@
   "MVRPG.itemSheet.titles.settings": "Description.",
 
   "MVRPG.rolls.d616": "d616",
+  "MVRPG.rolls.damage": "Damage",
   "MVRPG.rolls.edges": "Edges",
   "MVRPG.rolls.fantasticResultDie": "M",
   "MVRPG.rolls.mod": "Mod",
+  "MVRPG.rolls.tooltips.calculateDamage": "Calculate Damage.",
   "MVRPG.rolls.tooltips.die1": "Die 1",
   "MVRPG.rolls.tooltips.dieM": "Die M",
   "MVRPG.rolls.tooltips.die3": "Die 3",

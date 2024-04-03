@@ -1,7 +1,7 @@
 <div class="mvrpg-roll-card comic-frame flexcol">
   <div class="half-tone-overlay"></div>
   <div class="roll-label panel-header panel-title">
-    {{localize (concat "MVRPG.heroSheet.abilities." ability)}} (+{{modifier}})
+    {{localize (concat "MVRPG.heroSheet.abilities." ability)}}
   </div>
   {{#if hasEdgesOrTroubles}}
     <div class="edges-and-troubles">
@@ -51,6 +51,12 @@
     </div>
   </div>
   <div class="roll-total" data-tooltip="{{dice.die1}} + {{dice.dieM}} + {{dice.die3}} + {{modifier}}">
-    {{localize "MVRPG.rolls.total"}}: <span class="total-number">{{rollTotal}}</span>
+    <div>{{!-- Dummy div to fill gridspace --}}</div>
+    <div>
+      {{localize "MVRPG.rolls.total"}}: <span class="total-number">{{rollTotal}}</span>
+    </div>
+    <a class="create-damage-card" data-tooltip="{{localize "MVRPG.rolls.tooltips.calculateDamage"}}">
+      <i class="fa-solid fa-user-injured"></i>
+    </a>
   </div>
 </div>

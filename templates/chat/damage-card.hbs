@@ -1,0 +1,9 @@
+<div class="mvrpg-damage-card comic-frame flexcol">
+  <div class="half-tone-overlay"></div>
+  <div class="damage-label panel-header panel-title">
+    {{localize "MVRPG.rolls.damage"}} ({{localize (concat "MVRPG.heroSheet.abilities." ability)}})
+  </div>
+  <div class="damage-total">
+    ({{dieMResult}} * {{damageMultiplier}}) + {{modifier}} = <span class="total-number">{{total}}</span>
+  </div>
+</div>
