@@ -108,6 +108,7 @@
   "MVRPG.heroSheet.tooltips.createItem.power": "Create Power",
   "MVRPG.heroSheet.tooltips.createItem.tag": "Create Tag",
   "MVRPG.heroSheet.tooltips.createItem.trait": "Create Trait",
+  "MVRPG.heroSheet.tooltips.openSpeedConfig": "Open Speed and Initiative Config",
 
   "MVRPG.itemSheet.effects.dataHeader": "Effect Data.",
   "MVRPG.itemSheet.effects.tooltips.create": "Create Active Effect.",
@@ -134,6 +135,7 @@
   "MVRPG.rolls.tooltips.die1": "Die 1",
   "MVRPG.rolls.tooltips.dieM": "Die M",
   "MVRPG.rolls.tooltips.die3": "Die 3",
+  "MVRPG.rolls.tooltips.rerollDie": "Reroll the clicked die.",
   "MVRPG.rolls.tooltips.rerollHistory": "Reroll History.",
   "MVRPG.rolls.tooltips.undoLastReroll": "Undo Last Reroll.",
   "MVRPG.rolls.total": "Total",
