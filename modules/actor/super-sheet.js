@@ -170,7 +170,7 @@ export default class SuperSheet extends ActorSheet {
     );
     // Create the chat message.
     const message = await roll.toMessage({
-      speaker: ChatMessage.getSpeaker({ actor: this.actor }),
+      speaker: ChatMessage.getSpeaker(),
       content,
     });
     // Store this chat-data in a flag so that it's easily retrieved later.
