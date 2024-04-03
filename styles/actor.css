@@ -103,10 +103,10 @@
       text-align: center;
     }
 
-    .health-damage-reduction > .health-damage-reduction-input {
+    .health-damage-reduction > .health-damage-reduction-value {
       font-size: var(--sub-info-text-size);
       position: relative;
-      top: -18%;
+      top: -13%;
     }
   }
 
@@ -148,10 +148,10 @@
       text-align: center;
     }
 
-    .focus-damage-reduction > .focus-damage-reduction-input {
+    .focus-damage-reduction > .focus-damage-reduction-value {
       font-size: var(--sub-info-text-size);
       position: relative;
-      top: -18%;
+      top: -13%;
     }
   }
 }
