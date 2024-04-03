@@ -60,6 +60,11 @@
 
   .doc-data {
     padding-left: 3px;
+
+    .power-data,
+    .effect-data {
+      font-size: var(--pill-text-size);
+    }
   }
 
   .action-icons {

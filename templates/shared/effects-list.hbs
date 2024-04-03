@@ -19,12 +19,11 @@
       <div class="doc-name">
         {{effect.name}}
       </div>
-      <div class="effect-changes">
+      <div class="effect-data">
         {{#each effect.changes as |change|}}
           <span class="info-pill">
             {{localize (concat "MVRPG." change.key)}}: {{changeModeSymbol change}}{{change.value}}
           </span>
-          &nbsp;
         {{/each}}
       </div>
     </a>
