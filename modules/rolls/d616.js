@@ -13,7 +13,8 @@ export default class D616 extends Roll {
    */
   constructor(formula, data, options = {}) {
     super(
-      `1d6 + 1d6[fire] + 1d6 + @actor.system.abilities.${options.ability}.value`,
+      formula ||
+        `1d6 + 1d6[fire] + 1d6 + @actor.system.abilities.${options.ability}.value`,
       { actor: options.actor },
       options,
     );
@@ -30,6 +31,8 @@ export default class D616 extends Roll {
       dieM: [],
       die3: [],
     };
+
+    this.template = "systems/mvrpg/templates/chat/d616-card.hbs";
   }
 
   /**
@@ -40,6 +43,45 @@ export default class D616 extends Roll {
     dieM: 1,
     die3: 2,
   };
+
+  /**
+   * Prepare a chat message from this roll. We override this to assign
+   * the message's template based on the type of roll. We also store the data
+   * used to render the template in a flag on the chat message. The rest of the
+   *
+   * @override
+   * The following `@param` descriptions comes from the Foundry VTT code.
+   * @param {object} messageData          The data object to use when creating the message
+   * @param {options} [options]           Additional options which modify the created message.
+   * @param {string} [options.rollMode]   The template roll mode to use for the message from CONFIG.Dice.rollModes
+   * @param {boolean} [options.create=true]   Whether to automatically create the chat message, or only return the
+   *                                          prepared chatData object.
+   * @returns {Promise<ChatMessage|object>} A promise which resolves to the created ChatMessage document if create is
+   *                                        true, or the Object of prepared chatData otherwise.
+   */
+  async toMessage(messageData = {}, { rollMode, create = true } = {}) {
+    const content = await renderTemplate(this.template, this.chatData).catch(
+      (error) => {
+        // eslint-disable-next-line no-console
+        console.error(
+          "No template was supplied for this d616 roll. Falling back to default template.",
+          error,
+        );
+      },
+    );
+
+    // Assign content if not already defined in the messageData.
+    if (content && !messageData.content) messageData.content = content;
+
+    // Store this chat-data in a flag so that it's easily retrieved later.
+    messageData.flags = mergeObject(messageData.flags || {}, {
+      mvrpg: { messageData: this.chatData },
+    });
+    return super.toMessage(messageData, {
+      rollMode,
+      create,
+    });
+  }
 
   /**
    * Calculates the total roll values for the specified die.

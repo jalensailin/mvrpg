@@ -151,7 +151,7 @@ export default class SuperSheet extends ActorSheet {
     const edgeOrTroubleCurrent = Math.abs(roll.edgesAndTroubles);
 
     // Prepare data for chat.
-    const chatData = {
+    roll.chatData = {
       isGM: game.user.isGM,
       dice: roll.finalResults,
       originalResults: roll.finalResults,
@@ -170,18 +170,10 @@ export default class SuperSheet extends ActorSheet {
       ultimateFantasticResult: roll.ultimateFantasticResult,
     };
 
-    // Prepare chat template.
-    const content = await renderTemplate(
-      `systems/${game.system.id}/templates/chat/d616-card.hbs`,
-      chatData,
-    );
     // Create the chat message.
     const message = await roll.toMessage({
       speaker: ChatMessage.getSpeaker(),
-      content,
     });
-    // Store this chat-data in a flag so that it's easily retrieved later.
-    await message.setFlag(game.system.id, "messageData", chatData);
 
     // If we have troubles and the user specifies, reroll them automatically.
     const rerollTroublesSetting = game.settings.get(
