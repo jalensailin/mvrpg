@@ -145,31 +145,6 @@ export default class SuperSheet extends ActorSheet {
     // Actually roll the dice
     await roll.evaluate();
 
-    const edgeOrTroubleKey = roll.edgesAndTroubles >= 0 ? "edge" : "trouble";
-    const edgeOrTroubleString = `MVRPG.rolls.${edgeOrTroubleKey}s`;
-
-    const edgeOrTroubleCurrent = Math.abs(roll.edgesAndTroubles);
-
-    // Prepare data for chat.
-    roll.chatData = {
-      isGM: game.user.isGM,
-      dice: roll.finalResults,
-      originalResults: roll.finalResults,
-      rerolls: roll.rerolls,
-      rollTotal: roll.total,
-      hasEdgesOrTroubles: roll.edgesAndTroubles !== 0,
-      edgeOrTroubleKey,
-      edgeOrTroubleString,
-      edgeOrTroubleCurrent,
-      edgeOrTroubleTotal: edgeOrTroubleCurrent,
-      edges: roll.edges,
-      troubles: roll.troubles,
-      modifier: roll.modifier,
-      ability,
-      fantasticResult: roll.fantasticResult,
-      ultimateFantasticResult: roll.ultimateFantasticResult,
-    };
-
     // Create the chat message.
     const message = await roll.toMessage({
       speaker: ChatMessage.getSpeaker(),

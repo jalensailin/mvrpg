@@ -60,7 +60,8 @@ export default class D616 extends Roll {
    *                                        true, or the Object of prepared chatData otherwise.
    */
   async toMessage(messageData = {}, { rollMode, create = true } = {}) {
-    const content = await renderTemplate(this.template, this.chatData).catch(
+    const chatData = this.prepareChatTemplateData();
+    const content = await renderTemplate(this.template, chatData).catch(
       (error) => {
         // eslint-disable-next-line no-console
         console.error(
@@ -73,14 +74,35 @@ export default class D616 extends Roll {
     // Assign content if not already defined in the messageData.
     if (content && !messageData.content) messageData.content = content;
 
-    // Store this chat-data in a flag so that it's easily retrieved later.
-    messageData.flags = mergeObject(messageData.flags || {}, {
-      mvrpg: { messageData: this.chatData },
-    });
     return super.toMessage(messageData, {
       rollMode,
       create,
     });
+  }
+
+  prepareChatTemplateData() {
+    const edgeOrTroubleKey = this.edgesAndTroubles >= 0 ? "edge" : "trouble";
+    const edgeOrTroubleString = `MVRPG.rolls.${edgeOrTroubleKey}s`;
+
+    // Prepare data for chat.
+    return {
+      isGM: game.user.isGM,
+      dice: this.finalResults,
+      originalResults: this.originalResults,
+      rerolls: this.rerolls,
+      rollTotal: this.finalResults.total,
+      hasEdgesOrTroubles: this.edgesAndTroubles !== 0,
+      edgeOrTroubleKey,
+      edgeOrTroubleString,
+      edgeOrTroubleCurrent: this.edgeOrTroubleCurrent,
+      edgeOrTroubleTotal: this.edgeOrTroubleTotal,
+      edges: this.edges,
+      troubles: this.troubles,
+      modifier: this.modifier,
+      ability: this.ability,
+      fantasticResult: this.fantasticResult,
+      ultimateFantasticResult: this.ultimateFantasticResult,
+    };
   }
 
   /**
@@ -173,29 +195,14 @@ export default class D616 extends Roll {
     // Add reroll to original d616 roll and calculate the new results.
     this.rerolls.history.push(dieID);
     this.rerolls[dieID].push(roll);
-    const { finalResults } = this;
 
-    // Change chat data, taking into account the reroll.
-    const chatData = message.getFlag("mvrpg", "messageData");
-    chatData.rerolls = this.rerolls;
-    chatData.dice = finalResults;
-    chatData.edgeOrTroubleCurrent -= 1;
-    chatData.rollTotal =
-      finalResults.die1 +
-      finalResults.dieM +
-      finalResults.die3 +
-      chatData.modifier;
-    chatData.ultimateFantasticResult = this.ultimateFantasticResult; // Recalculate, taking into account rerolls.
-    chatData.fantasticResult = this.fantasticResult; // Recalculate, taking into account rerolls.
+    // Regenerate chat data, taking into account the reroll.
+    const chatData = this.prepareChatTemplateData();
     // Prepare chat template.
-    const content = await renderTemplate(
-      `systems/${game.system.id}/templates/chat/d616-card.hbs`,
-      chatData,
-    );
+    const content = await renderTemplate(this.template, chatData);
 
     // Update the original d616 roll with the new reroll.
     this.options.rerolls = this.rerolls;
-    await message.setFlag("mvrpg", "messageData", chatData);
     return message.update({ rolls: [this], content });
   }
 
@@ -213,28 +220,12 @@ export default class D616 extends Roll {
     const dieID = this.rerolls.history.pop();
     this.rerolls[dieID].pop();
 
-    const { finalResults } = this;
-
-    // Change chat data, taking into account the reroll.
-    const chatData = message.getFlag("mvrpg", "messageData");
-    chatData.rerolls = this.rerolls;
-    chatData.dice = finalResults;
-    chatData.edgeOrTroubleCurrent += 1;
-    chatData.rollTotal =
-      finalResults.die1 +
-      finalResults.dieM +
-      finalResults.die3 +
-      chatData.modifier;
-    chatData.ultimateFantasticResult = this.ultimateFantasticResult; // Recalculate, taking into account rerolls.
-    chatData.fantasticResult = this.fantasticResult; // Recalculate, taking into account rerolls.
+    // Regenerate chat data, taking into account the reroll.
+    const chatData = this.prepareChatTemplateData();
     // Prepare chat template.
-    const content = await renderTemplate(
-      `systems/${game.system.id}/templates/chat/d616-card.hbs`,
-      chatData,
-    );
+    const content = await renderTemplate(this.template, chatData);
     // Update the original d616 roll with the new reroll.
     this.options.rerolls = this.rerolls;
-    await message.setFlag("mvrpg", "messageData", chatData);
     return message.update({ rolls: [this], content });
   }
 
@@ -291,10 +282,32 @@ export default class D616 extends Roll {
     if (!this._evaluated) return null; // Early return if the roll has not been evaluted;
 
     const minMaxKey = this.edgesAndTroubles >= 0 ? "max" : "min";
+
+    const die1 = Math[minMaxKey](...this.allRollTotals("die1"));
+    const dieM = Math[minMaxKey](...this.allRollTotals("dieM"));
+    const die3 = Math[minMaxKey](...this.allRollTotals("die3"));
     return {
-      die1: Math[minMaxKey](...this.allRollTotals("die1")),
-      dieM: Math[minMaxKey](...this.allRollTotals("dieM")),
-      die3: Math[minMaxKey](...this.allRollTotals("die3")),
+      die1,
+      dieM,
+      die3,
+      total: die1 + dieM + die3 + this.modifier,
+    };
+  }
+
+  /**
+   * Get the original results of the roll.
+   *
+   * @return {Object} An object with the original results of the roll.
+   */
+  get originalResults() {
+    const die1 = this.dice[D616.DiceMap.die1].total;
+    const dieM = this.dice[D616.DiceMap.dieM].total;
+    const die3 = this.dice[D616.DiceMap.die3].total;
+    return {
+      die1,
+      dieM,
+      die3,
+      total: die1 + dieM + die3 + this.modifier,
     };
   }
 
@@ -325,10 +338,32 @@ export default class D616 extends Roll {
    * A negative return value indicates the number of troubles,
    * while a positive value indicates the number of edges.
    *
-   * @return {number} the result of subtracting troubles from edges
+   * This only describes the original number of edges/troubles
+   * on the roll, not how many there are after rerolls.
+   *
+   * @return {Number} the result of subtracting troubles from edges
    */
   get edgesAndTroubles() {
     return this.edges - this.troubles;
+  }
+
+  /**
+   * The total number of edges or troubles (absolute value of above)
+   *
+   * @return {Number} the total number of edges or troubles
+   */
+  get edgeOrTroubleTotal() {
+    return Math.abs(this.edgesAndTroubles);
+  }
+
+  /**
+   * The current number of edges or troubles, taking into account
+   * the amount of rerolls.
+   *
+   * @return {Number} the current number of edges or troubles
+   */
+  get edgeOrTroubleCurrent() {
+    return this.edgeOrTroubleTotal - this.rerolls.history.length;
   }
 
   get calculateDamage() {
