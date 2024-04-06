@@ -9,6 +9,7 @@ import TagDataModel from "./datamodels/item/tag-schema.js";
 import MVItemSheet from "./item/item-sheet.js";
 import TraitDataModel from "./datamodels/item/trait-schema.js";
 import PowerDataModel from "./datamodels/item/power-schema.js";
+import MVCombatant from "./combat/combatant.js";
 
 // CONFIG.debug.hooks = true;
 
@@ -27,6 +28,9 @@ Hooks.once("init", async () => {
   Items.registerSheet("mvrpg", MVItemSheet, {
     makeDefault: true,
   });
+
+  // Register Class overrides.
+  CONFIG.Combatant.documentClass = MVCombatant;
 
   // Register Actor data models.
   CONFIG.Actor.dataModels.super = SuperDataModel;

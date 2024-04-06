@@ -1,4 +1,4 @@
-/* globals Roll renderTemplate game Dialog foundry FormDataExtended $ mergeObject ChatMessage */
+/* globals fromUuidSync Roll renderTemplate game Dialog foundry FormDataExtended $ mergeObject ChatMessage */
 
 export default class D616 extends Roll {
   /**
@@ -22,7 +22,6 @@ export default class D616 extends Roll {
     this.type = rolltype;
     this.actor = actor;
     this.ability = ability;
-    this.modifier = actor.system.abilities[ability].value;
     this.troubles = troubles || 0;
     this.edges = edges || 0;
     this.rerolls = options.rerolls || {
@@ -32,7 +31,18 @@ export default class D616 extends Roll {
       die3: [],
     };
 
-    this.template = "systems/mvrpg/templates/chat/d616-card.hbs";
+    switch (rolltype) {
+      case "initiative":
+        this.modifier = actor.system.initiative.value;
+        this.combatantUuid = options.combatantUuid;
+        this.template = "systems/mvrpg/templates/chat/d616-initiative-card.hbs";
+        break;
+      default:
+        this.modifier = actor.system.abilities[ability].value;
+        this.combatantUuid = null;
+        this.template = "systems/mvrpg/templates/chat/d616-card.hbs";
+        break;
+    }
   }
 
   /**
@@ -201,6 +211,9 @@ export default class D616 extends Roll {
     // Prepare chat template.
     const content = await renderTemplate(this.template, chatData);
 
+    // Update initiative tracker if applicable.
+    if (this.type === "initiative") await this.updateInitiative();
+
     // Update the original d616 roll with the new reroll.
     this.options.rerolls = this.rerolls;
     return message.update({ rolls: [this], content });
@@ -224,6 +237,10 @@ export default class D616 extends Roll {
     const chatData = this.prepareChatTemplateData();
     // Prepare chat template.
     const content = await renderTemplate(this.template, chatData);
+
+    // Update initiative tracker if applicable.
+    if (this.type === "initiative") await this.updateInitiative();
+
     // Update the original d616 roll with the new reroll.
     this.options.rerolls = this.rerolls;
     return message.update({ rolls: [this], content });
@@ -243,6 +260,15 @@ export default class D616 extends Roll {
         await this.mvReroll("die3", message);
       }
     }
+  }
+
+  /**
+   * Quick utility function to update the initiative tracker
+   * with the results of the roll. Used in rerolls (and undos).
+   */
+  async updateInitiative() {
+    const combatant = fromUuidSync(this.combatantUuid);
+    combatant.update({ initiative: this.finalResults.total });
   }
 
   async createDamageCard(alias) {
