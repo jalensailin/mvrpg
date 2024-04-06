@@ -163,23 +163,12 @@ section {
 }
 
 .sheet-body {
+  overflow-y: auto;
   background-color: var(--wasp-yellow);
 }
 
-/* Open Editor */
-.editor .editor-container {
-  max-height: 9.5rem;
-}
-
-/* Closed Editor */
-.editor .editor-content {
-  min-height: 4rem;
-  max-height: 9.5rem;
-  padding: 0rem;
-}
-
 .editor.prosemirror {
-  min-height: 9.5rem;
+  height: 100%;
 }
 
 .mvrpg .sheet-tabs.tabs {

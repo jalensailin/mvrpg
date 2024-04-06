@@ -5,17 +5,17 @@
 
 .hero-sheet-grid {
   display: grid;
+  height: 100%;
   grid-template-columns: 1fr 1fr 1fr;
-  grid-template-rows: 32% 1fr 1fr;
+  grid-template-rows: 32% minmax(0, 1fr);
   gap: 8px 14px;
   grid-auto-flow: row;
   grid-template-areas:
     "codename-panel lifepool-panel rank-panel"
-    "abilities-panel tabbed-panel tabbed-panel"
     "abilities-panel tabbed-panel tabbed-panel";
 }
-/* Codename panel */
 
+/* Codename panel */
 .codename-panel {
   display: grid;
   grid-template-columns: 1fr;
