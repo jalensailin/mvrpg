@@ -55,6 +55,38 @@ export default class D616 extends Roll {
   };
 
   /**
+   * Evaluate a roll. We override this so that any d616 roll will automatically come with
+   * a dialog prompt, that can be skipped with ctrl-click.
+   *
+   * @override
+   * The following `@param` descriptions comes from the Foundry VTT code, unless otherwise noted.
+   * @param {object} [options={}]     Options which inform how the Roll is evaluated
+   * @param {boolean} [options.minimize=false]    Minimize the result, obtaining the smallest possible value.
+   * @param {boolean} [options.maximize=false]    Maximize the result, obtaining the largest possible value.
+   * @param {boolean} [options.async=true]        Evaluate the roll asynchronously. false is deprecated
+   * @param {Boolean} [options.skipDialog=false]  Skip the dialog prompt. Custom param for d616 rolls.
+   * @returns {Roll|Promise<Roll>}    The evaluated Roll instance
+   *
+   */
+  async evaluate({
+    minimize = false,
+    maximize = false,
+    async = true,
+    skipDialog = false,
+  } = {}) {
+    // Allow user to confirm the roll (which they can skip with ctrl-click).
+    if (!skipDialog) {
+      const rollConfirm = await this.confirmRoll().catch(() => {
+        // eslint-disable-next-line no-console
+        console.log("Roll cancelled");
+        return false;
+      });
+      if (!rollConfirm) return null;
+    }
+    return super.evaluate({ minimize, maximize, async });
+  }
+
+  /**
    * Prepare a chat message from this roll. We override this to assign
    * the message's template based on the type of roll. We also store the data
    * used to render the template in a flag on the chat message. The rest of the
@@ -135,13 +167,16 @@ export default class D616 extends Roll {
   }
 
   async confirmRoll() {
+    // Get the correct roll key.
+    let rollKey = `MVRPG.heroSheet.abilities.${this.ability}`;
+    if (this.type === "initiative") rollKey = "MVRPG.rolls.initiative";
     const content = await renderTemplate(
       `systems/${game.system.id}/templates/dialogs/roll-confirmation.hbs`,
       {
         modifier: this.modifier,
-        ability: game.i18n.localize(
-          `MVRPG.heroSheet.abilities.${this.ability}`,
-        ),
+        rollKey: game.i18n.localize(rollKey),
+        edges: this.edges,
+        troubles: this.troubles,
       },
     );
     return Dialog.wait(

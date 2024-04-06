@@ -7,20 +7,20 @@
       </div>
 
       <div class="mvrpg-dialog-item flexrow">
-        <div class="mvrpg-dialog-label">{{ability}}</div>
+        <div class="mvrpg-dialog-label">{{rollKey}}</div>
         <div class="mvrpg-dialog-data">{{modifier}}</div>
       </div>
 
       <div class="mvrpg-dialog-item flexrow">
         <div class="mvrpg-dialog-label">{{localize "MVRPG.dialog.rollConfirm.edges"}}</div>
-        <div class="mvrpg-dialog-input"><input data-reference="edges" type="checkbox"></div>
-        <div class="mvrpg-dialog-input"><input name="edges" type="number" value="0" min="0" disabled></div>
+        <div class="mvrpg-dialog-input"><input data-reference="edges" type="checkbox" {{#if edges}}checked{{/if}}></div>
+        <div class="mvrpg-dialog-input"><input name="edges" type="number" value="{{edges}}" min="0" {{#unless edges}}disabled{{/unless}}></div>
       </div>
 
       <div class="mvrpg-dialog-item flexrow">
         <div class="mvrpg-dialog-label">{{localize "MVRPG.dialog.rollConfirm.troubles"}}</div>
-        <div class="mvrpg-dialog-input"><input data-reference="troubles" type="checkbox"></div>
-        <div class="mvrpg-dialog-input"><input name="troubles" type="number" value="0" min="0" disabled></div>
+        <div class="mvrpg-dialog-input"><input data-reference="troubles" type="checkbox" {{#if troubles}}checked{{/if}}></div>
+        <div class="mvrpg-dialog-input"><input name="troubles" type="number" value="{{troubles}}" min="0" {{#unless troubles}}disabled{{/unless}}></div>
       </div>
     </div>
   </div>
