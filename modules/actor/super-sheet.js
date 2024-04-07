@@ -2,6 +2,7 @@
 
 import D616 from "../rolls/d616.js";
 import EffectUtils from "../utils/effects.js";
+import { MVSettings } from "../utils/settings.js";
 
 export default class SuperSheet extends ActorSheet {
   /** @override */
@@ -93,7 +94,7 @@ export default class SuperSheet extends ActorSheet {
         doc.sheet.render(true);
         break;
       case "delete": {
-        const skipDialog = event.ctrlKey;
+        const skipDialog = MVSettings.skipDeleteDialog();
         this.deleteOwnedItem(doc, skipDialog);
         break;
       }
@@ -135,7 +136,7 @@ export default class SuperSheet extends ActorSheet {
     );
 
     // Actually roll the dice, prompting for a dialog if requested.
-    const rollConfirm = await roll.evaluate({ skipDialog: event.ctrlKey });
+    const rollConfirm = await roll.evaluate();
     if (!rollConfirm) return;
 
     // Create the chat message.

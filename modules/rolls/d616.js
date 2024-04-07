@@ -1,5 +1,7 @@
 /* globals fromUuidSync Roll renderTemplate game Dialog foundry FormDataExtended $ mergeObject ChatMessage */
 
+import { MVSettings } from "../utils/settings.js";
+
 export default class D616 extends Roll {
   /**
    * Customize our roll with some useful information, passed in the `options` Object.
@@ -59,23 +61,17 @@ export default class D616 extends Roll {
    * a dialog prompt, that can be skipped with ctrl-click.
    *
    * @override
-   * The following `@param` descriptions comes from the Foundry VTT code, unless otherwise noted.
+   * The following `@param` descriptions comes from the Foundry VTT code.
    * @param {object} [options={}]     Options which inform how the Roll is evaluated
    * @param {boolean} [options.minimize=false]    Minimize the result, obtaining the smallest possible value.
    * @param {boolean} [options.maximize=false]    Maximize the result, obtaining the largest possible value.
    * @param {boolean} [options.async=true]        Evaluate the roll asynchronously. false is deprecated
-   * @param {Boolean} [options.skipDialog=false]  Skip the dialog prompt. Custom param for d616 rolls.
    * @returns {Roll|Promise<Roll>}    The evaluated Roll instance
    *
    */
-  async evaluate({
-    minimize = false,
-    maximize = false,
-    async = true,
-    skipDialog = false,
-  } = {}) {
+  async evaluate({ minimize = false, maximize = false, async = true } = {}) {
     // Allow user to confirm the roll (which they can skip with ctrl-click).
-    if (!skipDialog) {
+    if (!MVSettings.skipRollDialog()) {
       const rollConfirm = await this.confirmRoll().catch(() => {
         // eslint-disable-next-line no-console
         console.log("Roll cancelled");

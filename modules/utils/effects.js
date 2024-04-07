@@ -1,5 +1,7 @@
 /* global game Dialog */
 
+import { MVSettings } from "./settings.js";
+
 export default class EffectUtils {
   /**
    * Perform an action based on the event triggered.
@@ -38,7 +40,7 @@ export default class EffectUtils {
         effect.update({ disabled: !effect.disabled });
         break;
       case "delete": {
-        const skipDialog = event.ctrlKey;
+        const skipDialog = MVSettings.skipDeleteDialog();
         if (!skipDialog) {
           const confirmDelete = await Dialog.confirm({
             title: game.i18n.localize("MVRPG.dialog.deleteOwnedItem.title"),

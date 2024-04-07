@@ -1,5 +1,6 @@
 /* global game */
 
+import { MVSettings } from "../utils/settings.js";
 import MVUtils from "../utils/utils.js";
 
 export default class MVChat {
@@ -29,7 +30,7 @@ export default class MVChat {
     const messageId = MVUtils.GetEventDatum(event, "data-message-id");
     const message = game.messages.get(messageId);
     const [originalD616] = message.rolls;
-    const skipDialog = event.ctrlKey;
+    const skipDialog = MVSettings.skipDeleteDialog();
     originalD616.undoLastReroll(message, skipDialog);
   }
 

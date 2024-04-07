@@ -143,7 +143,11 @@
   "MVRPG.rolls.troubles": "Troubles",
 
   "MVRPG.settings.autoRerollTroubles.hint": "Troubles will get automatically rerolled. The middle die (dMV) always gets rerolled preferentially in the case of a tie.",
-  "MVRPG.settings.autoRerollTroubles.title": "Automatically reroll troubles?",
+  "MVRPG.settings.autoRerollTroubles.title": "Automatically reroll troubles",
+  "MVRPG.settings.skipRollDialogs.hint": "When toggled-off (default), Ctrl-Click to skip roll dialogs. When toggled-on, Ctrl-Click to show dialogs.",
+  "MVRPG.settings.skipRollDialogs.title": "Skip Roll Dialogs",
+  "MVRPG.settings.skipDeleteDialogs.hint": "When toggled-off (default), Ctrl-Click to skip delete dialogs. When toggled-on, Ctrl-Click to show dialogs. Note: This setting also determines whether to show dialogs for undoing rerolls.",
+  "MVRPG.settings.skipDeleteDialogs.title": "Skip Delete Confirmation Dialogs",
 
   "MVRPG.sheets.generic.powerActions.none": "None",
   "MVRPG.sheets.generic.powerActions.standard": "Standard",
