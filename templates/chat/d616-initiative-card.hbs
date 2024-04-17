@@ -13,11 +13,11 @@
       <div class="reroll-count" data-tooltip="{{localize "MVRPG.rolls.edges"}}: {{edges}}<br>{{localize "MVRPG.rolls.troubles"}}: {{troubles}}">
         {{localize edgeOrTroubleString}}: <span>{{edgeOrTroubleCurrent}} / {{edgeOrTroubleTotal}}</span>
       </div>
-      {{#mvCompare rerolls.history.length "&&" isGM}}
+      {{#if rerolls.history.length}}
         <a class="undo-last-reroll" data-tooltip="MVRPG.rolls.tooltips.undoLastReroll">
           <i class="fa-solid fa-rotate-left"></i>
         </a>
-      {{/mvCompare}}
+      {{/if}}
     </div>
   {{/if}}
   <div class="roll-results flexrow">

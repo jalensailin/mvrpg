@@ -124,7 +124,6 @@ export default class D616 extends Roll {
 
     // Prepare data for chat.
     return {
-      isGM: game.user.isGM,
       dice: this.finalResults,
       originalResults: this.originalResults,
       rerolls: this.rerolls,

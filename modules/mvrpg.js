@@ -59,3 +59,15 @@ Hooks.once("init", async () => {
 Hooks.on("renderChatLog", (app, html, data) => {
   MVChat.activateChatListeners(html);
 });
+
+/**
+ * Perform message-specific actions on render.
+ *
+ * @param {ChatMessage} message - The ChatMessage document being rendered
+ * @param {jQuery} html - The inner HTML of the document that will be displayed and may be modified
+ * @param {Object} messageData - The object of data used when rendering the application
+ * @return {void}
+ */
+Hooks.on("renderChatMessage", async (message, html, messageData) => {
+  MVChat.removeUndoButton(html);
+});

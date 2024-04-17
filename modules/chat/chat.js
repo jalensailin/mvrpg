@@ -40,4 +40,15 @@ export default class MVChat {
     const [originalD616] = message.rolls;
     originalD616.createDamageCard(message.speaker.alias);
   }
+
+  /**
+   * Removes the undo button if the user is not the GM.
+   *
+   * @param {*} html
+   * @returns {void}
+   */
+  static removeUndoButton(html) {
+    if (game.user.isGM) return;
+    html.find(".undo-last-reroll").remove();
+  }
 }
