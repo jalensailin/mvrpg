@@ -167,6 +167,7 @@ section {
   background-color: var(--wasp-yellow);
 }
 
+.editor,
 .editor.prosemirror {
   height: 100%;
 }
