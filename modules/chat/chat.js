@@ -47,8 +47,15 @@ export default class MVChat {
    * @param {*} html
    * @returns {void}
    */
-  static removeUndoButton(html) {
-    if (game.user.isGM) return;
+  static denyPlayerAccess(message, html) {
+    // Remove the undo button if the user is not the GM.
+    const { isGM } = game.user;
+    if (isGM) return;
     html.find(".undo-last-reroll").remove();
+
+    // Remove the reroll links if the user is not the author of the message.
+    const { isAuthor } = message;
+    if (isAuthor) return;
+    html.find(".roll-single-result").addClass("mv-inactive-link");
   }
 }

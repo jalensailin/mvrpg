@@ -69,5 +69,5 @@ Hooks.on("renderChatLog", (app, html, data) => {
  * @return {void}
  */
 Hooks.on("renderChatMessage", async (message, html, messageData) => {
-  MVChat.removeUndoButton(html);
+  MVChat.denyPlayerAccess(message, html);
 });
