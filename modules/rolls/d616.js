@@ -32,17 +32,16 @@ export default class D616 extends Roll {
       dieM: [],
       die3: [],
     };
+    this.template = "systems/mvrpg/templates/chat/d616-card.hbs";
 
     switch (rolltype) {
       case "initiative":
         this.modifier = actor.system.initiative.value;
         this.combatantUuid = options.combatantUuid;
-        this.template = "systems/mvrpg/templates/chat/d616-initiative-card.hbs";
         break;
       default:
         this.modifier = actor.system.abilities[ability].value;
         this.combatantUuid = null;
-        this.template = "systems/mvrpg/templates/chat/d616-card.hbs";
         break;
     }
   }
@@ -119,11 +118,15 @@ export default class D616 extends Roll {
   }
 
   prepareChatTemplateData() {
+    let rollTitleSlug = `MVRPG.heroSheet.abilities.${this.ability}`;
+    if (this.type === "initiative") rollTitleSlug = "MVRPG.rolls.initiative";
+
     const edgeOrTroubleKey = this.edgesAndTroubles >= 0 ? "edge" : "trouble";
     const edgeOrTroubleString = `MVRPG.rolls.${edgeOrTroubleKey}s`;
 
     // Prepare data for chat.
     return {
+      rollTitle: game.i18n.localize(rollTitleSlug),
       dice: this.finalResults,
       originalResults: this.originalResults,
       rerolls: this.rerolls,
@@ -136,9 +139,9 @@ export default class D616 extends Roll {
       edges: this.edges,
       troubles: this.troubles,
       modifier: this.modifier,
-      ability: this.ability,
       fantasticResult: this.fantasticResult,
       ultimateFantasticResult: this.ultimateFantasticResult,
+      isInitiativeRoll: this.type === "initiative",
     };
   }
 
