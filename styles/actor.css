@@ -380,6 +380,47 @@
     }
   }
 
+  .combat-panel {
+    .damage-section {
+      text-align: center;
+
+      .damage-section-title {
+        color: white;
+        background-color: var(--venom-black);
+        padding-bottom: 2px;
+      }
+
+      .damage-multiplier-list {
+        padding: 3px;
+        gap: 3px;
+
+        .damage-multiplier-item {
+          border-style: solid;
+          border-width: 2px;
+          border-radius: 5px;
+          border-color: var(--border-black);
+          background-color: var(--background-white);
+
+          .damage-multiplier-value {
+            font-weight: bold;
+            font-size: var(--sub-info-text-size);
+
+            .damage-modifier {
+              color: var(--label-gray);
+              font-weight: normal;
+            }
+          }
+
+          .damage-multiplier-label {
+            background-color: var(--thanos-purple);
+            border-bottom-left-radius: inherit;
+            border-bottom-right-radius: inherit;
+          }
+        }
+      }
+    }
+  }
+
   .identity-panel {
     height: 100%;
     padding: 0 3px;

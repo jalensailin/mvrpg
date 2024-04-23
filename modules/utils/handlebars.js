@@ -9,12 +9,20 @@ import MVRPG from "../config.js";
  */
 export default async function preloadTemplates() {
   return loadTemplates([
+    // Actor Sheet
+    `systems/${game.system.id}/templates/actor/combat-tab.hbs`,
     `systems/${game.system.id}/templates/actor/identity-tab.hbs`,
-    `systems/${game.system.id}/templates/actor/document-list.hbs`,
     `systems/${game.system.id}/templates/actor/powers-tab.hbs`,
-    `systems/${game.system.id}/templates/chat/reroll-history-tooltip.hbs`,
+    `systems/${game.system.id}/templates/actor/document-list.hbs`,
+
+    // Item Sheet
     `systems/${game.system.id}/templates/item/settings-tab.hbs`,
+
+    // Shared
     `systems/${game.system.id}/templates/shared/effects-list.hbs`,
+
+    // Rolls
+    `systems/${game.system.id}/templates/chat/reroll-history-tooltip.hbs`,
   ]);
 }
 

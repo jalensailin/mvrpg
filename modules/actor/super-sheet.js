@@ -39,6 +39,17 @@ export default class SuperSheet extends ActorSheet {
     mvrpgData.displaySpeed =
       actor.getFlag(game.system.id, "displaySpeed") || "run";
 
+    // Prepare only data relevant to damage mutipliers for simplicity in the template.
+    const damageMultipliers = Object.entries(actor.system.abilities)
+      .map(([name, abilityData]) => ({
+        name,
+        value: actor.system.rank + abilityData.damageMultiplierBonus,
+      }))
+      .filter(
+        (data) => data.name !== "resilience" && data.name !== "vigilance",
+      );
+    mvrpgData.damageMultipliers = damageMultipliers;
+
     mvrpgData.enrichedNotes = await TextEditor.enrichHTML(
       actor.system.identity.notes,
       { async: true },

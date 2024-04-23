@@ -57,6 +57,7 @@
   "MVRPG.heroSheet.dataHeaders.power": "Power Data.",
   "MVRPG.heroSheet.dataHeaders.tag": "Tag Data.",
   "MVRPG.heroSheet.dataHeaders.trait": "Trait Data.",
+  "MVRPG.heroSheet.dataHeaders.damageMultipliers": "Damage Multipliers.",
   "MVRPG.heroSheet.identity.base": "Base",
   "MVRPG.heroSheet.identity.codeName": "Code Name",
   "MVRPG.heroSheet.identity.distinguishingFeatures": "Features",
