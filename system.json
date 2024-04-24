@@ -1,7 +1,7 @@
 {
   "id": "mvrpg",
   "title": "MV RPG",
-  "description": "An unofficial (and in-progress system) for playing Marvel Multiverse RPG. Note: No game assets are provided. All characters information must be inputted manually.",
+  "description": "An unofficial (and in-progress) system for playing Marvel Multiverse RPG in Foundry VTT. Note: No game assets are provided. All characters information must be inputted manually.",
   "version": "0.0.1",
   "compatibility": {
     "minimum": "11",
@@ -38,6 +38,6 @@
   "primaryTokenAttribute": "lifepool.health",
   "secondaryTokenAttribute": "lifepool.focus",
   "url": "https://github.com/jalensailin/mvrpg",
-  "manifest": "https://github.com/jalensailin/mvrpg/system.json",
-  "download": "https://github.com/jalensailin/mvrpg/download/archive.zip"
+  "manifest": "https://raw.githubusercontent.com/jalensailin/mvrpg/main/system.json",
+  "download": "https://github.com/jalensailin/mvrpg/archive/refs/heads/main.zip"
 }
