@@ -14,9 +14,9 @@ This system is still a work in-progress. This README page is intended for people
 
 ### Update Instructions
 
-- Right now, you will not be able to update via the typical in-Foundry path.
-- Instead, simply uninstall and reinstall the system from the above link when you want to test any new changes.
-- I will hopefully make it so that you can update the normal way soon.
+- Typically, you can update via the normal Foundry path, i.e. clicking the 'circle-arrows' button in the bottom-left corner of the MV RPG's system card, under the Game Systems tab.
+  - This will only work, however, if I remembered to increment the version number in `system.json` along with my most recent changes.
+  - If you see that I have made changes to the system, and the normal update path isn't working, instead, simply uninstall and reinstall the system from the above link.
 
 ### Using Github
 
