@@ -10,12 +10,16 @@ import MVItemSheet from "./item/item-sheet.js";
 import TraitDataModel from "./datamodels/item/trait-schema.js";
 import PowerDataModel from "./datamodels/item/power-schema.js";
 import MVCombatant from "./combat/combatant.js";
+import MultiverseDie from "./rolls/multiverse-die.js";
 
 // CONFIG.debug.hooks = true;
 
 Hooks.once("init", async () => {
   console.log("I am GROOT");
+
+  // Register rolls and dice.
   Object.values(MVRolls).forEach((cls) => CONFIG.Dice.rolls.push(cls));
+  CONFIG.Dice.terms.m = MultiverseDie;
 
   // Register Actor sheet.
   Actors.unregisterSheet("core", ActorSheet);
