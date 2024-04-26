@@ -16,7 +16,7 @@ export default class D616 extends Roll {
   constructor(formula, data, options = {}) {
     super(
       formula ||
-        `1d6 + 1d6[fire] + 1d6 + @actor.system.abilities.${options.ability}.value`,
+        `1d6 + 1dm[fire] + 1d6 + @actor.system.abilities.${options.ability}.value`,
       { actor: options.actor },
       options,
     );
@@ -231,7 +231,8 @@ export default class D616 extends Roll {
     buttons.forEach((el) => el.classList.add("mv-inactive-link"));
 
     // Reroll!
-    const roll = new Roll("1d6[cold]");
+    const term = dieID === "dieM" ? "1dm" : "1d6";
+    const roll = new Roll(`${term}[cold]`);
     await roll.evaluate();
     if (game.dice3d) await game.dice3d.showForRoll(roll, game.user, true); // Roll Dice So Nice if present.
 
@@ -347,7 +348,7 @@ export default class D616 extends Roll {
     const die3 = Math[minMaxKey](...this.allRollTotals("die3"));
     return {
       die1,
-      dieM,
+      dieM: this.fantasticResult ? "M" : dieM,
       die3,
       total: die1 + dieM + die3 + this.modifier,
     };
@@ -364,21 +365,20 @@ export default class D616 extends Roll {
     const die3 = this.dice[D616.DiceMap.die3].total;
     return {
       die1,
-      dieM,
+      dieM: this.fantasticResult ? "M" : dieM,
       die3,
       total: die1 + dieM + die3 + this.modifier,
     };
   }
 
   /**
-   * Whether or not the middle die rolled an M (aka 6).
+   * Whether or not the middle die rolled an M (aka 1).
    *
    * @returns {Boolean}
    */
   get fantasticResult() {
     if (!this._evaluated) return null; // Early return if the roll has not been evaluted;
-    const { dieM } = this.finalResults;
-    return dieM === 6;
+    return this.dice[D616.DiceMap.dieM].fantasticResult;
   }
 
   /**
@@ -388,8 +388,8 @@ export default class D616 extends Roll {
    */
   get ultimateFantasticResult() {
     if (!this._evaluated) return null; // Early return if the roll has not been evaluted;
-    const { die1, dieM, die3 } = this.finalResults;
-    return die1 === 6 && dieM === 6 && die3 === 6;
+    const { die1, die3 } = this.finalResults;
+    return die1 === 6 && this.fantasticResult && die3 === 6;
   }
 
   /**
@@ -428,7 +428,7 @@ export default class D616 extends Roll {
   get calculateDamage() {
     const actorData = this.actor.system;
     const abilityData = actorData.abilities[this.ability];
-    const dieMResult = this.finalResults.dieM;
+    const dieMResult = this.fantasticResult ? 6 : this.finalResults.dieM;
     const damageMultiplier = actorData.rank + abilityData.damageMultiplierBonus;
     const total = dieMResult * damageMultiplier + abilityData.value;
     return { dieMResult, damageMultiplier, total };
