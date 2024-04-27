@@ -62,6 +62,101 @@ export default class D616 extends Roll {
   fantasticResultLabel = game.i18n.localize("MVRPG.rolls.fantasticResultDie");
 
   /**
+   * Return the (re)roll history for each die in a single object.
+   */
+  get allDiceHistory() {
+    if (!this._evaluated) return null; // Early return if the roll has not been evaluted;
+    return {
+      die1: this.dieHistory("die1"),
+      dieM: this.dieHistory("dieM"),
+      die3: this.dieHistory("die3"),
+    };
+  }
+
+  /**
+   * Get the final results of the roll, taking into account rerolls for troubles/edges.
+   *
+   * @return {Object} An object with the results of the roll, taking into account rerolls.
+   */
+  get finalResults() {
+    if (!this._evaluated) return null; // Early return if the roll has not been evaluted;
+
+    const die1 = this.activeResultDie("die1");
+    const dieM = this.activeResultDie("dieM");
+    const die3 = this.activeResultDie("die3");
+
+    return {
+      die1: die1.total,
+      dieM: this.fantasticResult ? this.fantasticResultLabel : dieM.total,
+      die3: die3.total,
+      total: die1.total + dieM.total + die3.total + this.modifier,
+    };
+  }
+
+  /**
+   * Whether or not the middle die rolled an M (aka 1).
+   *
+   * @returns {Boolean}
+   */
+  get fantasticResult() {
+    if (!this._evaluated) return null; // Early return if the roll has not been evaluted;
+    return this.activeResultDie("dieM").fantasticResult;
+  }
+
+  /**
+   * Whether or not all of the dice rolled a 6.
+   *
+   * @returns {Boolean}
+   */
+  get ultimateFantasticResult() {
+    if (!this._evaluated) return null; // Early return if the roll has not been evaluted;
+    const { die1, die3 } = this.finalResults;
+    return die1 === 6 && this.fantasticResult && die3 === 6;
+  }
+
+  /**
+   * Reduces the number of edges by the number of troubles.
+   * A negative return value indicates the number of troubles,
+   * while a positive value indicates the number of edges.
+   *
+   * This only describes the original number of edges/troubles
+   * on the roll, not how many there are after rerolls.
+   *
+   * @return {Number} the result of subtracting troubles from edges
+   */
+  get edgesAndTroubles() {
+    return this.edges - this.troubles;
+  }
+
+  /**
+   * The total number of edges or troubles (absolute value of above)
+   *
+   * @return {Number} the total number of edges or troubles
+   */
+  get edgeOrTroubleTotal() {
+    return Math.abs(this.edgesAndTroubles);
+  }
+
+  /**
+   * The current number of edges or troubles, taking into account
+   * the amount of rerolls.
+   *
+   * @return {Number} the current number of edges or troubles
+   */
+  get edgeOrTroubleCurrent() {
+    return this.edgeOrTroubleTotal - this.rerolls.history.length;
+  }
+
+  get calculateDamage() {
+    const actorData = this.actor.system;
+    const abilityData = actorData.abilities[this.ability];
+    const dieMResult = this.activeResultDie("dieM").total;
+    const damageMultiplier = actorData.rank + abilityData.damageMultiplierBonus;
+    const total = dieMResult * damageMultiplier + abilityData.value;
+    return { dieMResult, damageMultiplier, total };
+  }
+
+  /**
    * Evaluate a roll. We override this so that any d616 roll will automatically come with
    * a dialog prompt, that can be skipped with ctrl-click.
    *
@@ -374,100 +469,5 @@ export default class D616 extends Roll {
     });
     // Store this chat-data in a flag so that it's easily retrieved later.
     await message.setFlag(game.system.id, "messageData", chatData);
-  }
-
-  /**
-   * Return the (re)roll history for each die in a single object.
-   */
-  get allDiceHistory() {
-    if (!this._evaluated) return null; // Early return if the roll has not been evaluted;
-    return {
-      die1: this.dieHistory("die1"),
-      dieM: this.dieHistory("dieM"),
-      die3: this.dieHistory("die3"),
-    };
-  }
-
-  /**
-   * Get the final results of the roll, taking into account rerolls for troubles/edges.
-   *
-   * @return {Object} An object with the results of the roll, taking into account rerolls.
-   */
-  get finalResults() {
-    if (!this._evaluated) return null; // Early return if the roll has not been evaluted;
-
-    const die1 = this.activeResultDie("die1");
-    const dieM = this.activeResultDie("dieM");
-    const die3 = this.activeResultDie("die3");
-
-    return {
-      die1: die1.total,
-      dieM: this.fantasticResult ? this.fantasticResultLabel : dieM.total,
-      die3: die3.total,
-      total: die1.total + dieM.total + die3.total + this.modifier,
-    };
-  }
-
-  /**
-   * Whether or not the middle die rolled an M (aka 1).
-   *
-   * @returns {Boolean}
-   */
-  get fantasticResult() {
-    if (!this._evaluated) return null; // Early return if the roll has not been evaluted;
-    return this.activeResultDie("dieM").fantasticResult;
-  }
-
-  /**
-   * Whether or not all of the dice rolled a 6.
-   *
-   * @returns {Boolean}
-   */
-  get ultimateFantasticResult() {
-    if (!this._evaluated) return null; // Early return if the roll has not been evaluted;
-    const { die1, die3 } = this.finalResults;
-    return die1 === 6 && this.fantasticResult && die3 === 6;
-  }
-
-  /**
-   * Reduces the number of edges by the number of troubles.
-   * A negative return value indicates the number of troubles,
-   * while a positive value indicates the number of edges.
-   *
-   * This only describes the original number of edges/troubles
-   * on the roll, not how many there are after rerolls.
-   *
-   * @return {Number} the result of subtracting troubles from edges
-   */
-  get edgesAndTroubles() {
-    return this.edges - this.troubles;
-  }
-
-  /**
-   * The total number of edges or troubles (absolute value of above)
-   *
-   * @return {Number} the total number of edges or troubles
-   */
-  get edgeOrTroubleTotal() {
-    return Math.abs(this.edgesAndTroubles);
-  }
-
-  /**
-   * The current number of edges or troubles, taking into account
-   * the amount of rerolls.
-   *
-   * @return {Number} the current number of edges or troubles
-   */
-  get edgeOrTroubleCurrent() {
-    return this.edgeOrTroubleTotal - this.rerolls.history.length;
-  }
-
-  get calculateDamage() {
-    const actorData = this.actor.system;
-    const abilityData = actorData.abilities[this.ability];
-    const dieMResult = this.activeResultDie("dieM").total;
-    const damageMultiplier = actorData.rank + abilityData.damageMultiplierBonus;
-    const total = dieMResult * damageMultiplier + abilityData.value;
-    return { dieMResult, damageMultiplier, total };
   }
 }
