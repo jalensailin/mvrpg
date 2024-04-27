@@ -152,7 +152,8 @@ export default class D616 extends Roll {
     const abilityData = actorData.abilities[this.ability];
     const dieMResult = this.activeResultDie("dieM").total;
     const damageMultiplier = actorData.rank + abilityData.damageMultiplierBonus;
-    const total = dieMResult * damageMultiplier + abilityData.value;
+    let total = dieMResult * damageMultiplier + abilityData.value;
+    if (this.fantasticResult) total *= 2;
     return { dieMResult, damageMultiplier, total };
   }
 
@@ -451,6 +452,7 @@ export default class D616 extends Roll {
     const chatData = {
       actor: this.actor,
       ability: this.ability,
+      fantasticResult: this.fantasticResult,
       dieMResult,
       damageMultiplier,
       modifier: abilityData.value,

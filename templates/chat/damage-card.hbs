@@ -4,6 +4,6 @@
     {{localize "MVRPG.rolls.damage"}} ({{localize (concat "MVRPG.heroSheet.abilities." ability)}})
   </div>
   <div class="damage-total">
-    ({{dieMResult}} * {{damageMultiplier}}) + {{modifier}} = <span class="total-number">{{total}}</span>
+    {{#if fantasticResult}}({{/if}}({{dieMResult}} * {{damageMultiplier}}) + {{modifier}}{{#if fantasticResult}}) * 2{{/if}} = <span class="total-number">{{total}}</span>
   </div>
 </div>
