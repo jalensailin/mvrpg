@@ -421,18 +421,47 @@ export default class D616 extends Roll {
 
   async automaticallyRerollTroubles(message) {
     if (this.ultimateFantasticResult) return; // Ultimate Fantastic results automatically succeed.
-    /* eslint-disable no-await-in-loop */ // We want the the for-loop to wait for each reroll.
+    /* eslint-disable no-await-in-loop, no-continue */ // We want the the for-loop to wait for each reroll.
     for (let i = 0; i < Math.abs(this.edgesAndTroubles); i++) {
       // There's probably a way to generalize this but I don't really need to.
       const { die1, dieM, die3 } = this.finalResults;
+
+      // If dieM is a fantastic result, reroll that always.
+      if (dieM === this.fantasticResultLabel) {
+        await this.mvReroll("dieM", message);
+        continue;
+      }
+
+      // This is an edge case where dieM is at its lowest value (2), and this value
+      // is the tied with or higher than the other two. In this case we want to reroll
+      // the non-dieM die with the highest value (either a one or a two).
+      if (dieM === 2 && dieM >= die1 && dieM >= die3) {
+        if (die1 >= die3) {
+          await this.mvReroll("die1", message);
+        } else {
+          await this.mvReroll("die3", message);
+        }
+        continue;
+      }
+
+      // If dieM isn't fantastic, but is the highest, reroll it.
       if (dieM >= die1 && dieM >= die3) {
         await this.mvReroll("dieM", message);
-      } else if (die1 > dieM && die1 >= die3) {
-        await this.mvReroll("die1", message);
-      } else if (die3 > die1 && die3 > dieM) {
-        await this.mvReroll("die3", message);
+        continue;
       }
-    }
+
+      // Otherwise, if die1 is the highest, reroll it.
+      if (die1 > dieM && die1 >= die3) {
+        await this.mvReroll("die1", message);
+        continue;
+      }
+
+      // Otherwise, if die3 is the highest, reroll it.
+      if (die3 > die1 && die3 > dieM) {
+        await this.mvReroll("die3", message);
+        continue;
+      }
+    } /* eslint-enable no-await-in-loop, no-continue */
   }
 
   /**
