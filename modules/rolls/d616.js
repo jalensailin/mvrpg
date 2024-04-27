@@ -1,6 +1,7 @@
-/* globals fromUuidSync Roll renderTemplate game Dialog foundry FormDataExtended $ mergeObject ChatMessage */
+/* globals fromUuidSync Roll renderTemplate game Dialog foundry FormDataExtended Die $ mergeObject ChatMessage */
 
 import { MVSettings } from "../utils/settings.js";
+import MultiverseDie from "./multiverse-die.js";
 
 export default class D616 extends Roll {
   /**
@@ -54,6 +55,11 @@ export default class D616 extends Roll {
     dieM: 1,
     die3: 2,
   };
+
+  /**
+   * The label for the "fantastic" result die
+   */
+  fantasticResultLabel = game.i18n.localize("MVRPG.rolls.fantasticResultDie");
 
   /**
    * Evaluate a roll. We override this so that any d616 roll will automatically come with
@@ -124,12 +130,20 @@ export default class D616 extends Roll {
     const edgeOrTroubleKey = this.edgesAndTroubles >= 0 ? "edge" : "trouble";
     const edgeOrTroubleString = `MVRPG.rolls.${edgeOrTroubleKey}s`;
 
+    // Create a history for each die result, assigning an M for a fantastic result.
+    const diceHistoryLabels = {};
+    Object.entries(this.allDiceHistory).forEach(([dieId, diceList]) => {
+      diceHistoryLabels[dieId] = diceList.map((die) =>
+        die.fantasticResult ? this.fantasticResultLabel : die.total,
+      );
+    });
+
     // Prepare data for chat.
     return {
       rollTitle: game.i18n.localize(rollTitleSlug),
       dice: this.finalResults,
-      originalResults: this.originalResults,
-      rerolls: this.rerolls,
+      hasEvaluatedRerolls: this.rerolls.history.length > 0,
+      diceHistory: diceHistoryLabels,
       rollTotal: this.finalResults.total,
       hasEdgesOrTroubles: this.edgesAndTroubles !== 0,
       edgeOrTroubleKey,
@@ -146,22 +160,51 @@ export default class D616 extends Roll {
   }
 
   /**
-   * Calculates the total roll values for the specified die.
+   * Create a list of all the dice rolled which correspond with the given dieId.
+   * Note, due to the way Foundry constructs roll objects, we store reroll data
+   * in the d616 object, not an actual instance of Die/MultiverseDie. Thus, we must create
+   * a new Die/MultiverseDie for each reroll so that we can access various properties.
    *
-   * @param {String} dieId - The identifier of the die (die1, dieM, or die3)
-   * @return {Array} An array containing the totals for the original d616 roll and all rerolls
+   * @param {*} dieId - The identifier of the die (die1, dieM, or die3)
+   * @returns {Array<Die|MultiverseDie>} - An array, in order, of all the dice rolled which correspond with the dieId
    */
-  allRollTotals(dieId) {
+  dieHistory(dieId) {
     if (!this._evaluated) return null; // Early return if the roll has not been evaluted;
+    const originalRoll = this.dice[D616.DiceMap[dieId]];
+    return [originalRoll].concat(
+      this.rerolls[dieId].map((roll) => {
+        const term = roll.terms[0];
+        return dieId === "dieM" ? new MultiverseDie(term) : new Die(term);
+      }),
+    );
+  }
 
-    const rollTotal = this.dice[D616.DiceMap[dieId]].total;
+  /**
+   * Return the "active" die for the roll, considering rerolls.
+   * I.e., the die that has the highest or lowest result (considering Fantastic results).
+   *
+   * @param {*} dieId - The identifier of the die (die1, dieM, or die3)
+   * @returns {Die|MultiverseDie} The die representing the final result of all (re)rolls
+   */
+  activeResultDie(dieId) {
+    const minMaxKey = this.edgesAndTroubles >= 0 ? "max" : "min";
 
-    // If no rerolls, just return the total.
-    if (this.rerolls[dieId].length === 0) return [rollTotal];
-
-    // Otherwise return an array containing the total for this roll and all rerolls.
-    const rerollTotals = this.rerolls[dieId].map((r) => r.total);
-    return [rollTotal].concat(rerollTotals);
+    const dieHistory = this.dieHistory(dieId);
+    const activeDie = dieHistory.reduce((accumulator, current) => {
+      switch (minMaxKey) {
+        case "max": {
+          if (accumulator.fantasticResult) return accumulator;
+          return accumulator.total > current.total ? accumulator : current;
+        }
+        case "min": {
+          if (current.fantasticResult) return accumulator;
+          return accumulator.total < current.total ? accumulator : current;
+        }
+        default:
+          return null;
+      }
+    });
+    return activeDie;
   }
 
   async confirmRoll() {
@@ -334,6 +377,18 @@ export default class D616 extends Roll {
   }
 
   /**
+   * Return the (re)roll history for each die in a single object.
+   */
+  get allDiceHistory() {
+    if (!this._evaluated) return null; // Early return if the roll has not been evaluted;
+    return {
+      die1: this.dieHistory("die1"),
+      dieM: this.dieHistory("dieM"),
+      die3: this.dieHistory("die3"),
+    };
+  }
+
+  /**
    * Get the final results of the roll, taking into account rerolls for troubles/edges.
    *
    * @return {Object} An object with the results of the roll, taking into account rerolls.
@@ -341,33 +396,15 @@ export default class D616 extends Roll {
   get finalResults() {
     if (!this._evaluated) return null; // Early return if the roll has not been evaluted;
 
-    const minMaxKey = this.edgesAndTroubles >= 0 ? "max" : "min";
+    const die1 = this.activeResultDie("die1");
+    const dieM = this.activeResultDie("dieM");
+    const die3 = this.activeResultDie("die3");
 
-    const die1 = Math[minMaxKey](...this.allRollTotals("die1"));
-    const dieM = Math[minMaxKey](...this.allRollTotals("dieM"));
-    const die3 = Math[minMaxKey](...this.allRollTotals("die3"));
     return {
-      die1,
-      dieM: this.fantasticResult ? "M" : dieM,
-      die3,
-      total: die1 + dieM + die3 + this.modifier,
-    };
-  }
-
-  /**
-   * Get the original results of the roll.
-   *
-   * @return {Object} An object with the original results of the roll.
-   */
-  get originalResults() {
-    const die1 = this.dice[D616.DiceMap.die1].total;
-    const dieM = this.dice[D616.DiceMap.dieM].total;
-    const die3 = this.dice[D616.DiceMap.die3].total;
-    return {
-      die1,
-      dieM: this.fantasticResult ? "M" : dieM,
-      die3,
-      total: die1 + dieM + die3 + this.modifier,
+      die1: die1.total,
+      dieM: this.fantasticResult ? this.fantasticResultLabel : dieM.total,
+      die3: die3.total,
+      total: die1.total + dieM.total + die3.total + this.modifier,
     };
   }
 
@@ -378,7 +415,7 @@ export default class D616 extends Roll {
    */
   get fantasticResult() {
     if (!this._evaluated) return null; // Early return if the roll has not been evaluted;
-    return this.dice[D616.DiceMap.dieM].fantasticResult;
+    return this.activeResultDie("dieM").fantasticResult;
   }
 
   /**
@@ -428,7 +465,7 @@ export default class D616 extends Roll {
   get calculateDamage() {
     const actorData = this.actor.system;
     const abilityData = actorData.abilities[this.ability];
-    const dieMResult = this.fantasticResult ? 6 : this.finalResults.dieM;
+    const dieMResult = this.activeResultDie("dieM").total;
     const damageMultiplier = actorData.rank + abilityData.damageMultiplierBonus;
     const total = dieMResult * damageMultiplier + abilityData.value;
     return { dieMResult, damageMultiplier, total };
