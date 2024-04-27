@@ -220,7 +220,7 @@ export default class D616 extends Roll {
   }
 
   prepareChatTemplateData() {
-    let rollTitleSlug = `MVRPG.heroSheet.abilities.${this.ability}`;
+    let rollTitleSlug = `MVRPG.sheets.superSheet.abilities.${this.ability}`;
     if (this.type === "initiative") rollTitleSlug = "MVRPG.rolls.initiative";
 
     const edgeOrTroubleKey = this.edgesAndTroubles >= 0 ? "edge" : "trouble";
@@ -305,7 +305,7 @@ export default class D616 extends Roll {
 
   async confirmRoll() {
     // Get the correct roll key.
-    let rollKey = `MVRPG.heroSheet.abilities.${this.ability}`;
+    let rollKey = `MVRPG.sheets.superSheet.abilities.${this.ability}`;
     if (this.type === "initiative") rollKey = "MVRPG.rolls.initiative";
     const content = await renderTemplate(
       `systems/${game.system.id}/templates/dialogs/roll-confirmation.hbs`,

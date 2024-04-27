@@ -1,4 +1,4 @@
-<form class="hero-sheet-grid">
+<form class="super-sheet-grid">
   <div class="half-tone-overlay"></div>
 
   <div class="codename-panel">
@@ -13,19 +13,19 @@
   <div class="lifepool-panel comic-frame">
     <div class="health-section flexcol">
       <div class="panel-title panel-header">
-        {{localize "MVRPG.heroSheet.titles.health"}}
+        {{localize "MVRPG.sheets.superSheet.titles.health"}}
       </div>
       <div class="health-content flexrow">
-        <div class="health-max comic-bubble-background flexcol" data-tooltip="{{localize "MVRPG.heroSheet.lifepool.tooltips.maxHealth"}}" data-tooltip-direction="UP">
-          <span class="bubble-label">{{localize "MVRPG.heroSheet.lifepool.max"}}</span>
+        <div class="health-max comic-bubble-background flexcol" data-tooltip="{{localize "MVRPG.sheets.superSheet.lifepool.tooltips.maxHealth"}}" data-tooltip-direction="UP">
+          <span class="bubble-label">{{localize "MVRPG.sheets.superSheet.lifepool.max"}}</span>
           <input class="health-max-input" name="system.lifepool.health.max" type="number" value="{{actor.system.lifepool.health.max}}">
         </div>
-        <div class="health-points comic-bubble-background flexcol" data-tooltip="{{localize "MVRPG.heroSheet.lifepool.tooltips.currentHealth"}}" data-tooltip-direction="UP">
-          <span class="bubble-label">{{localize "MVRPG.heroSheet.lifepool.current"}}</span>
+        <div class="health-points comic-bubble-background flexcol" data-tooltip="{{localize "MVRPG.sheets.superSheet.lifepool.tooltips.currentHealth"}}" data-tooltip-direction="UP">
+          <span class="bubble-label">{{localize "MVRPG.sheets.superSheet.lifepool.current"}}</span>
           <input class="health-points-input" name="system.lifepool.health.value" type="number" value="{{actor.system.lifepool.health.value}}">
         </div>
-        <div class="health-damage-reduction comic-bubble-background flexcol" data-tooltip="{{localize "MVRPG.heroSheet.lifepool.tooltips.damageReductionHealth"}}" data-tooltip-direction="UP">
-          <span class="bubble-label">{{localize "MVRPG.heroSheet.lifepool.damageReduction"}}</span>
+        <div class="health-damage-reduction comic-bubble-background flexcol" data-tooltip="{{localize "MVRPG.sheets.superSheet.lifepool.tooltips.damageReductionHealth"}}" data-tooltip-direction="UP">
+          <span class="bubble-label">{{localize "MVRPG.sheets.superSheet.lifepool.damageReduction"}}</span>
           <span class="health-damage-reduction-value">{{actor.system.lifepool.health.damageReduction}}</span>
         </div>
       </div>
@@ -33,40 +33,40 @@
 
     <div class="focus-section flexcol">
       <div class="focus-content flexrow">
-        <div class="focus-max comic-bubble-background flexcol" data-tooltip="{{localize "MVRPG.heroSheet.lifepool.tooltips.maxFocus"}}">
-          <span class="bubble-label">{{localize "MVRPG.heroSheet.lifepool.max"}}</span>
+        <div class="focus-max comic-bubble-background flexcol" data-tooltip="{{localize "MVRPG.sheets.superSheet.lifepool.tooltips.maxFocus"}}">
+          <span class="bubble-label">{{localize "MVRPG.sheets.superSheet.lifepool.max"}}</span>
           <input class="focus-max-input" name="system.lifepool.focus.max" type="number" value="{{actor.system.lifepool.focus.max}}">
         </div>
-        <div class="focus-points comic-bubble-background flexcol" data-tooltip="{{localize "MVRPG.heroSheet.lifepool.tooltips.currentFocus"}}">
-          <span class="bubble-label">{{localize "MVRPG.heroSheet.lifepool.current"}}</span>
+        <div class="focus-points comic-bubble-background flexcol" data-tooltip="{{localize "MVRPG.sheets.superSheet.lifepool.tooltips.currentFocus"}}">
+          <span class="bubble-label">{{localize "MVRPG.sheets.superSheet.lifepool.current"}}</span>
           <input class="focus-points-input" name="system.lifepool.focus.value" type="number" value="{{actor.system.lifepool.focus.value}}">
         </div>
-        <div class="focus-damage-reduction comic-bubble-background flexcol" data-tooltip="{{localize "MVRPG.heroSheet.lifepool.tooltips.damageReductionFocus"}}">
-          <span class="bubble-label">{{localize "MVRPG.heroSheet.lifepool.damageReduction"}}</span>
+        <div class="focus-damage-reduction comic-bubble-background flexcol" data-tooltip="{{localize "MVRPG.sheets.superSheet.lifepool.tooltips.damageReductionFocus"}}">
+          <span class="bubble-label">{{localize "MVRPG.sheets.superSheet.lifepool.damageReduction"}}</span>
           <span class="focus-damage-reduction-value">{{actor.system.lifepool.focus.damageReduction}}</span>
         </div>
       </div>
       <div class="panel-title panel-footer">
-        {{localize "MVRPG.heroSheet.titles.focus"}}
+        {{localize "MVRPG.sheets.superSheet.titles.focus"}}
       </div>
     </div>
   </div>
 
   <div class="rank-panel comic-frame">
-    <div class="cog-wheel" data-tooltip="{{localize "MVRPG.heroSheet.tooltips.openSpeedConfig"}}">
+    <div class="cog-wheel" data-tooltip="{{localize "MVRPG.sheets.superSheet.tooltips.openSpeedConfig"}}">
       <a class="open-config"><i class="fa-solid fa-gear"></i></a>
     </div>
 
     <div class="speed-section flexcol">
       <div class="panel-title panel-header">
-        {{localize "MVRPG.heroSheet.titles.speed"}}
+        {{localize "MVRPG.sheets.superSheet.titles.speed"}}
         </div>
       <div class="speed-content comic-bubble-background flexcol">
         {{#select displaySpeed}}
-          <select class="bubble-label speed-selector" name="flags.mvrpg.displaySpeed" data-tooltip="{{localize (concat "MVRPG.heroSheet.speed." displaySpeed)}}" data-tooltip-direction="UP">
+          <select class="bubble-label speed-selector" name="flags.mvrpg.displaySpeed" data-tooltip="{{localize (concat "MVRPG.sheets.superSheet.speed." displaySpeed)}}" data-tooltip-direction="UP">
             {{#each actor.system.speed as |speedVal speedName|}}
               {{#if speedVal}}
-                <option value="{{speedName}}">{{localize (concat "MVRPG.heroSheet.speed." speedName)}}</option>
+                <option value="{{speedName}}">{{localize (concat "MVRPG.sheets.superSheet.speed." speedName)}}</option>
               {{/if}}
             {{/each}}
           </select>
@@ -80,7 +80,7 @@
 
     <div class="karma-section flexcol">
       <div class="panel-title panel-header">
-        {{localize "MVRPG.heroSheet.titles.karma"}}
+        {{localize "MVRPG.sheets.superSheet.titles.karma"}}
       </div>
       <div class="karma-content comic-bubble-background flexcol">
         <input class="karma-input" name="system.karma" type="number" value="{{actor.system.karma}}">
@@ -92,7 +92,7 @@
         <input class="initiative-input" name="system.initiative.value" type="number" value="{{actor.system.initiative.value}}">
       </div>
       <div class="panel-title panel-footer">
-        {{localize "MVRPG.heroSheet.titles.initiative"}}
+        {{localize "MVRPG.sheets.superSheet.titles.initiative"}}
       </div>
     </div>
 
@@ -101,35 +101,35 @@
         <input class="rank-input" name="system.rank" type="number" value="{{actor.system.rank}}">
       </div>
       <div class="panel-title panel-footer">
-        {{localize "MVRPG.heroSheet.titles.rank"}}
+        {{localize "MVRPG.sheets.superSheet.titles.rank"}}
       </div>
     </div>
   </div>
 
   <div class="abilities-panel comic-frame flexcol">
     <div class="panel-title panel-header">
-      {{localize "MVRPG.heroSheet.titles.abilities"}}
+      {{localize "MVRPG.sheets.superSheet.titles.abilities"}}
     </div>
     <div class="abilities-content flexcol">
       {{#each actor.system.abilities as |ability abilityName|}}
         <div class="ability-item flexcol">
           <div class="ability-info flexrow">
-            <div class="ability-defense" data-tooltip="{{localize "MVRPG.heroSheet.abilities.tooltip.defenseScore"}}">
+            <div class="ability-defense" data-tooltip="{{localize "MVRPG.sheets.superSheet.abilities.tooltip.defenseScore"}}">
               {{ability.defenseScore}}
             </div>
-            <input class="ability-input" type="number" name={{concat "system.abilities." abilityName ".value"}} value="{{ability.value}}" data-tooltip="{{localize "MVRPG.heroSheet.abilities.tooltip.abilityScore"}}"/>
-            <div class="ability-non-combat-bonus" data-tooltip="{{localize "MVRPG.heroSheet.abilities.tooltip.nonCombatChecks"}}">
+            <input class="ability-input" type="number" name={{concat "system.abilities." abilityName ".value"}} value="{{ability.value}}" data-tooltip="{{localize "MVRPG.sheets.superSheet.abilities.tooltip.abilityScore"}}"/>
+            <div class="ability-non-combat-bonus" data-tooltip="{{localize "MVRPG.sheets.superSheet.abilities.tooltip.nonCombatChecks"}}">
               {{numberFormat ability.nonCombatScore sign=true}}
             </div>
           </div>
           <div class="ability-labels flexrow">
-            <div class="ability-sub-label" data-tooltip="{{localize "MVRPG.heroSheet.abilities.tooltip.defenseScore"}}">
+            <div class="ability-sub-label" data-tooltip="{{localize "MVRPG.sheets.superSheet.abilities.tooltip.defenseScore"}}">
               <i class="fa-solid fa-shield-halved"></i>
             </div>
-            <div class="ability-name" data-tooltip="{{localize "MVRPG.heroSheet.abilities.tooltip.abilityScore"}}">
-              <a class="rollable" data-roll-type="combat" data-ability="{{abilityName}}">{{localize (concat "MVRPG.heroSheet.abilities." abilityName)}}</a>
+            <div class="ability-name" data-tooltip="{{localize "MVRPG.sheets.superSheet.abilities.tooltip.abilityScore"}}">
+              <a class="rollable" data-roll-type="combat" data-ability="{{abilityName}}">{{localize (concat "MVRPG.sheets.superSheet.abilities." abilityName)}}</a>
             </div>
-            <div class="ability-sub-label" data-tooltip="{{localize "MVRPG.heroSheet.abilities.tooltip.nonCombatChecks"}}">
+            <div class="ability-sub-label" data-tooltip="{{localize "MVRPG.sheets.superSheet.abilities.tooltip.nonCombatChecks"}}">
               <i class="fa-solid fa-dove"></i>
             </div>
           </div>
@@ -141,9 +141,9 @@
   <div class="tabbed-panel flexcol">
     {{!-- Sheet Tab Navigation --}}
     <nav class="sheet-tabs tabs" data-group="primary">
-      <a class="tab-header panel-header panel-title" data-tab="powers">{{localize "MVRPG.heroSheet.titles.powers"}}</a>
-      <a class="tab-header panel-header panel-title" data-tab="combat">{{localize "MVRPG.heroSheet.titles.combat"}}</a>
-      <a class="tab-header panel-header panel-title" data-tab="identity">{{localize "MVRPG.heroSheet.titles.identity"}}</a>
+      <a class="tab-header panel-header panel-title" data-tab="powers">{{localize "MVRPG.sheets.superSheet.titles.powers"}}</a>
+      <a class="tab-header panel-header panel-title" data-tab="combat">{{localize "MVRPG.sheets.superSheet.titles.combat"}}</a>
+      <a class="tab-header panel-header panel-title" data-tab="identity">{{localize "MVRPG.sheets.superSheet.titles.identity"}}</a>
     </nav>
     <div class="sheet-body comic-frame">
       {{> (systemFilePath "templates/actor/powers-tab.hbs")}}

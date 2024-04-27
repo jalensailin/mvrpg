@@ -1,7 +1,7 @@
 <div class="mvrpg-damage-card comic-frame flexcol">
   <div class="half-tone-overlay"></div>
   <div class="damage-label panel-header panel-title">
-    {{localize "MVRPG.rolls.damage"}} ({{localize (concat "MVRPG.heroSheet.abilities." ability)}})
+    {{localize "MVRPG.rolls.damage"}} ({{localize (concat "MVRPG.sheets.superSheet.abilities." ability)}})
   </div>
   <div class="damage-total">
     {{#if fantasticResult}}({{/if}}({{dieMResult}} * {{damageMultiplier}}) + {{modifier}}{{#if fantasticResult}}) * 2{{/if}} = <span class="total-number">{{total}}</span>

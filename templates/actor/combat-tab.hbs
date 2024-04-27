@@ -1,6 +1,6 @@
 <div class="tab combat-panel flexcol" data-group="primary" data-tab="combat">
   <section class="damage-section flexcol">
-    <div class="damage-section-title">{{localize "MVRPG.heroSheet.dataHeaders.damageMultipliers"}}</div>
+    <div class="damage-section-title">{{localize "MVRPG.sheets.superSheet.dataHeaders.damageMultipliers"}}</div>
     <div class="damage-multiplier-list flexrow">
       {{#each damageMultipliers as |ability|}}
         <div class="damage-multiplier-item flexcol">
@@ -12,7 +12,7 @@
               {{/with}}
             </span>
           </div>
-          <div class="damage-multiplier-label">{{localize (concat "MVRPG.heroSheet.abilities." ability.name)}}</div>
+          <div class="damage-multiplier-label">{{localize (concat "MVRPG.sheets.superSheet.abilities." ability.name)}}</div>
         </div>
       {{/each}}
     </div>

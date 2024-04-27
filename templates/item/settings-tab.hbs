@@ -3,9 +3,9 @@
 
     <div class="mvrpg-dialog-item flexrow">
       <div class="mvrpg-dialog-label">
-        {{localize "MVRPG.itemSheet.settings.labels.powerSets"}}
+        {{localize "MVRPG.sheets.itemSheet.settings.labels.powerSets"}}
       </div>
-      <a class="mvrpg-dialog-data configure-power-sets" data-tooltip="{{localize "MVRPG.itemSheet.settings.tooltips.configurePowerSets"}}">
+      <a class="mvrpg-dialog-data configure-power-sets" data-tooltip="{{localize "MVRPG.sheets.itemSheet.settings.tooltips.configurePowerSets"}}">
         {{#each item.system.powerSets as |powerSetSlug|}}
           <span>{{localize (concat "MVRPG.sheets.generic.powerSets." powerSetSlug)}}
           {{~#unless @last}}, {{/unless}}</span>
@@ -16,7 +16,7 @@
 
     <div class="mvrpg-dialog-item flexrow">
       <div class="mvrpg-dialog-label">
-        {{localize "MVRPG.itemSheet.settings.labels.action"}}
+        {{localize "MVRPG.sheets.itemSheet.settings.labels.action"}}
       </div>
       {{#select item.system.action}}
         <select class="mvrpg-dialog-input" name="system.action">
@@ -29,7 +29,7 @@
 
     <div class="mvrpg-dialog-item flexrow">
       <div class="mvrpg-dialog-label">
-        {{localize "MVRPG.itemSheet.settings.labels.duration"}}
+        {{localize "MVRPG.sheets.itemSheet.settings.labels.duration"}}
       </div>
       {{#select item.system.duration}}
         <select class="mvrpg-dialog-input" name="system.duration">
@@ -42,7 +42,7 @@
 
     <div class="mvrpg-dialog-item flexrow">
       <div class="mvrpg-dialog-label">
-        {{localize "MVRPG.itemSheet.settings.labels.cost"}}
+        {{localize "MVRPG.sheets.itemSheet.settings.labels.cost"}}
       </div>
       <div class="mvrpg-dialog-input">
         <input name="system.cost" type="number" value="{{item.system.cost}}">
@@ -51,7 +51,7 @@
 
     <div class="mvrpg-dialog-item flexrow">
       <div class="mvrpg-dialog-label">
-        {{localize "MVRPG.itemSheet.settings.labels.isAttack"}}
+        {{localize "MVRPG.sheets.itemSheet.settings.labels.isAttack"}}
       </div>
       <div class="mvrpg-dialog-input">
         <input name="system.isAttack" type="checkbox" {{checked item.system.isAttack}}>
@@ -60,7 +60,7 @@
 
     <div class="mvrpg-dialog-item flexrow">
       <div class="mvrpg-dialog-label">
-        {{localize "MVRPG.itemSheet.settings.labels.range"}}
+        {{localize "MVRPG.sheets.itemSheet.settings.labels.range"}}
       </div>
       <div class="mvrpg-dialog-input">
         <input name="system.range.value" type="number" value="{{item.system.range.value}}">
@@ -69,7 +69,7 @@
 
     <div class="mvrpg-dialog-item flexrow">
       <div class="mvrpg-dialog-label">
-        {{localize "MVRPG.itemSheet.settings.labels.multiplyByRank"}}
+        {{localize "MVRPG.sheets.itemSheet.settings.labels.multiplyByRank"}}
       </div>
       <div class="mvrpg-dialog-input">
         <input name="system.range.multiplyByRank" type="checkbox" {{checked item.system.range.multiplyByRank}}>

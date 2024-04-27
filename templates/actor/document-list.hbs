@@ -2,9 +2,9 @@
   <div class="doc-icon-dummy">
   </div>
   <div class="doc-data">
-    {{localize (concat "MVRPG.heroSheet.dataHeaders." type)}}
+    {{localize (concat "MVRPG.sheets.superSheet.dataHeaders." type)}}
   </div>
-  <a class="doc-action doc-create" data-action="create" data-doc-type="{{type}}" data-tooltip="{{localize (concat "MVRPG.heroSheet.tooltips.createItem." type)}}">
+  <a class="doc-action doc-create" data-action="create" data-doc-type="{{type}}" data-tooltip="{{localize (concat "MVRPG.sheets.superSheet.tooltips.createItem." type)}}">
     <i class="fa-solid fa-plus"></i>
   </a>
 </div>
@@ -21,16 +21,16 @@
       </div>
       {{#mvCompare doc.type "power"}}
         <div class="power-data">
-          <span class="info-pill">{{localize "MVRPG.heroSheet.pillLabels.action"}}: {{localize (concat "MVRPG.sheets.generic.powerActions." doc.system.action)}}</span>
-          <span class="info-pill">{{localize "MVRPG.heroSheet.pillLabels.duration"}}: {{localize (concat "MVRPG.sheets.generic.powerDurations." doc.system.duration)}}</span>
+          <span class="info-pill">{{localize "MVRPG.sheets.superSheet.pillLabels.action"}}: {{localize (concat "MVRPG.sheets.generic.powerActions." doc.system.action)}}</span>
+          <span class="info-pill">{{localize "MVRPG.sheets.superSheet.pillLabels.duration"}}: {{localize (concat "MVRPG.sheets.generic.powerDurations." doc.system.duration)}}</span>
           {{#if doc.system.cost}}
-            <span class="info-pill">{{localize "MVRPG.heroSheet.pillLabels.cost"}}: {{doc.system.cost}}</span>
+            <span class="info-pill">{{localize "MVRPG.sheets.superSheet.pillLabels.cost"}}: {{doc.system.cost}}</span>
           {{/if}}
           {{#if doc.system.range.value}}
             {{#if doc.system.range.multiplyByRank}}
-              <span class="info-pill">{{localize "MVRPG.heroSheet.pillLabels.range"}}: {{mvMath "product" doc.system.range.value actor.system.rank}}</span>
+              <span class="info-pill">{{localize "MVRPG.sheets.superSheet.pillLabels.range"}}: {{mvMath "product" doc.system.range.value actor.system.rank}}</span>
             {{else}}
-              <span class="info-pill">{{localize "MVRPG.heroSheet.pillLabels.range"}}: {{doc.system.range.value}}</span>
+              <span class="info-pill">{{localize "MVRPG.sheets.superSheet.pillLabels.range"}}: {{doc.system.range.value}}</span>
             {{/if}}
           {{/if}}
         </div>
