@@ -149,7 +149,7 @@ export default class D616 extends Roll {
   }
 
   get calculateDamage() {
-    const actorData = this.actor.system;
+    const actorData = game.actors.get(this.actor._id).system;
     const abilityData = actorData.abilities[this.ability];
     const dieMResult = this.activeResultDie("dieM").total;
     const damageMultiplier = actorData.rank + abilityData.damageMultiplierBonus;
