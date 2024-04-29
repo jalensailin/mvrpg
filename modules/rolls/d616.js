@@ -15,9 +15,10 @@ export default class D616 extends Roll {
    * @param {Actor}  [options.actor]    The actor that this roll originates from.
    */
   constructor(formula, data, options = {}) {
+    const flavor = game.settings.get("mvrpg", "mvDieFlavor") || "none";
     super(
       formula ||
-        `1d6 + 1dMV[fire] + 1d6 + @actor.system.abilities.${options.ability}.value`,
+        `1d6 + 1dMV[${flavor}] + 1d6 + @actor.system.abilities.${options.ability}.value`,
       { actor: options.actor },
       options,
     );
@@ -371,7 +372,12 @@ export default class D616 extends Roll {
 
     // Reroll!
     const term = dieID === "dieM" ? "1dMV" : "1d6";
-    const roll = new Roll(`${term}[cold]`);
+    const flavor =
+      dieID === "dieM"
+        ? game.settings.get("mvrpg", "rerollMvDieFlavor")
+        : game.settings.get("mvrpg", "rerollFlavor");
+    const formula = flavor ? `${term}[${flavor || "none"}]` : term;
+    const roll = new Roll(formula);
     await roll.evaluate();
     if (game.dice3d) await game.dice3d.showForRoll(roll, game.user, true); // Roll Dice So Nice if present.
 

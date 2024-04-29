@@ -27,6 +27,33 @@ export default function registerSettings() {
     default: false,
     type: Boolean,
   });
+
+  game.settings.register("mvrpg", "mvDieFlavor", {
+    name: "MVRPG.settings.mvDieFlavor.title",
+    hint: "MVRPG.settings.mvDieFlavor.hint",
+    scope: "client",
+    config: true,
+    default: "bloodmoon",
+    type: String,
+  });
+
+  game.settings.register("mvrpg", "rerollFlavor", {
+    name: "MVRPG.settings.rerollFlavor.title",
+    hint: "MVRPG.settings.rerollFlavor.hint",
+    scope: "client",
+    config: true,
+    default: "cold",
+    type: String,
+  });
+
+  game.settings.register("mvrpg", "rerollMvDieFlavor", {
+    name: "MVRPG.settings.rerollMvDieFlavor.title",
+    hint: "MVRPG.settings.rerollMvDieFlavor.hint",
+    scope: "client",
+    config: true,
+    default: "force",
+    type: String,
+  });
 }
 
 export class MVSettings {
