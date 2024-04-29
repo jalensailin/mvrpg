@@ -11,6 +11,7 @@ import TraitDataModel from "./datamodels/item/trait-schema.js";
 import PowerDataModel from "./datamodels/item/power-schema.js";
 import MVCombatant from "./combat/combatant.js";
 import MultiverseDie from "./rolls/multiverse-die.js";
+import MVUtils from "./utils/utils.js";
 
 // CONFIG.debug.hooks = true;
 
@@ -19,7 +20,9 @@ Hooks.once("init", async () => {
 
   // Register rolls and dice.
   Object.values(MVRolls).forEach((cls) => CONFIG.Dice.rolls.push(cls));
-  CONFIG.Dice.terms.m = MultiverseDie;
+  CONFIG.Dice.terms.mv = MultiverseDie;
+  // Override the regexp that matches dice terms so that it recognizes 'mv'/'MV' as valid terms.
+  CONFIG.Dice.termTypes.DiceTerm.REGEXP = MVUtils.prepareDiceTermRegExp();
 
   // Register Actor sheet.
   Actors.unregisterSheet("core", ActorSheet);

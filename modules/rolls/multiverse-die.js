@@ -9,7 +9,7 @@ export default class MultiverseDie extends Die {
   /* -------------------------------------------- */
 
   /** @override */
-  static DENOMINATION = "m";
+  static DENOMINATION = "MV";
 
   /* -------------------------------------------- */
 

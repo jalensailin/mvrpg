@@ -17,7 +17,7 @@ export default class D616 extends Roll {
   constructor(formula, data, options = {}) {
     super(
       formula ||
-        `1d6 + 1dm[fire] + 1d6 + @actor.system.abilities.${options.ability}.value`,
+        `1d6 + 1dMV[fire] + 1d6 + @actor.system.abilities.${options.ability}.value`,
       { actor: options.actor },
       options,
     );
@@ -370,7 +370,7 @@ export default class D616 extends Roll {
     buttons.forEach((el) => el.classList.add("mv-inactive-link"));
 
     // Reroll!
-    const term = dieID === "dieM" ? "1dm" : "1d6";
+    const term = dieID === "dieM" ? "1dMV" : "1d6";
     const roll = new Roll(`${term}[cold]`);
     await roll.evaluate();
     if (game.dice3d) await game.dice3d.showForRoll(roll, game.user, true); // Roll Dice So Nice if present.
