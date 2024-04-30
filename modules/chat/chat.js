@@ -1,10 +1,12 @@
-/* global game */
+/* global ChatLog game */
 
 import { MVSettings } from "../utils/settings.js";
 import MVUtils from "../utils/utils.js";
 
-export default class MVChat {
-  static activateChatListeners(html) {
+export default class MVChatLog extends ChatLog {
+  /** @override */
+  activateListeners(html) {
+    super.activateListeners(html);
     html.on("click", ".reroll-links a:not(.mv-inactive-link)", (event) =>
       this.onRoll(event),
     );
@@ -18,7 +20,7 @@ export default class MVChat {
     );
   }
 
-  static async onRoll(event) {
+  async onRoll(event) {
     const messageId = MVUtils.GetEventDatum(event, "data-message-id");
     const dieID = MVUtils.GetEventDatum(event, "data-die-id");
     const message = game.messages.get(messageId);
@@ -26,7 +28,7 @@ export default class MVChat {
     originalD616.mvReroll(dieID, message);
   }
 
-  static async undoLastReroll(event) {
+  async undoLastReroll(event) {
     const messageId = MVUtils.GetEventDatum(event, "data-message-id");
     const message = game.messages.get(messageId);
     const [originalD616] = message.rolls;
@@ -34,7 +36,7 @@ export default class MVChat {
     originalD616.undoLastReroll(message, skipDialog);
   }
 
-  static createDamageCard(event) {
+  createDamageCard(event) {
     const messageId = MVUtils.GetEventDatum(event, "data-message-id");
     const message = game.messages.get(messageId);
     const [originalD616] = message.rolls;

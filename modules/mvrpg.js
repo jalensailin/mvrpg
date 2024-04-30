@@ -1,6 +1,6 @@
 /* global Hooks Actors ActorSheet Items ItemSheet CONFIG */
 import SuperSheet from "./actor/super-sheet.js";
-import MVChat from "./chat/chat.js";
+import MVChatLog from "./chat/chat.js";
 import SuperDataModel from "./datamodels/actor/super-datamodel.js";
 import * as MVRolls from "./rolls/d616.js";
 import registerSettings from "./utils/settings.js";
@@ -37,6 +37,7 @@ Hooks.once("init", async () => {
   });
 
   // Register Class overrides.
+  CONFIG.ui.chat = MVChatLog;
   CONFIG.Combatant.documentClass = MVCombatant;
 
   // Register Actor data models.
@@ -56,18 +57,6 @@ Hooks.once("init", async () => {
 });
 
 /**
- * Activate listeners for the chat.
- *
- * @param {Application} app - The Application instance being rendered
- * @param {jQuery} html - The inner HTML of the document that will be displayed and may be modified
- * @param {Object} data - The object of data used when rendering the application
- * @return {void}
- */
-Hooks.on("renderChatLog", (app, html, data) => {
-  MVChat.activateChatListeners(html);
-});
-
-/**
  * Perform message-specific actions on render.
  *
  * @param {ChatMessage} message - The ChatMessage document being rendered
@@ -76,5 +65,5 @@ Hooks.on("renderChatLog", (app, html, data) => {
  * @return {void}
  */
 Hooks.on("renderChatMessage", async (message, html, messageData) => {
-  MVChat.denyPlayerAccess(message, html);
+  MVChatLog.denyPlayerAccess(message, html);
 });
