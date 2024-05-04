@@ -1,4 +1,4 @@
-/* globals fromUuidSync Roll renderTemplate game Dialog foundry FormDataExtended Die $ mergeObject ChatMessage */
+/* globals fromUuidSync Roll renderTemplate game Dialog foundry FormDataExtended Die $ mergeObject ChatMessage Hooks */
 
 import { MVSettings } from "../utils/settings.js";
 import MultiverseDie from "./multiverse-die.js";
@@ -7,7 +7,7 @@ export default class D616 extends Roll {
   /**
    * Customize our roll with some useful information, passed in the `options` Object.
    *
-   * @param {string} formula            Unused - The string formula to parse (from Foundry)
+   * @param {string} formula            The string formula to parse (from Foundry)
    * @param {Object} data               The data object against which to parse attributes within the formula
    * @param {Object} [options]          Additional data which is preserved in the database
    * @param {Number} [options.rollType] The type of roll (stat, skill, sanity, damage, etc).
@@ -15,17 +15,16 @@ export default class D616 extends Roll {
    * @param {Actor}  [options.actor]    The actor that this roll originates from.
    */
   constructor(formula, data, options = {}) {
-    const flavor = game.settings.get("mvrpg", "mvDieFlavor") || "none";
     super(
-      formula ||
-        `1d6 + 1dMV[${flavor}] + 1d6 + @actor.system.abilities.${options.ability}.value`,
+      formula || `${D616.Formula} + ${options.modifier}`,
       { actor: options.actor },
       options,
     );
-    const { rolltype, ability, actor, troubles, edges } = options;
-    this.type = rolltype;
+    const { rollType, ability, modifier, actor, troubles, edges } = options;
+    this.type = rollType;
     this.actor = actor;
     this.ability = ability;
+    this.modifier = modifier;
     this.troubles = troubles || 0;
     this.edges = edges || 0;
     this.rerolls = options.rerolls || {
@@ -36,16 +35,7 @@ export default class D616 extends Roll {
     };
     this.template = "systems/mvrpg/templates/chat/d616-card.hbs";
 
-    switch (rolltype) {
-      case "initiative":
-        this.modifier = actor.system.initiative.value;
-        this.combatantUuid = options.combatantUuid;
-        break;
-      default:
-        this.modifier = actor.system.abilities[ability].value;
-        this.combatantUuid = null;
-        break;
-    }
+    this.combatantUuid = options.combatantUuid || null;
   }
 
   /**
@@ -253,6 +243,7 @@ export default class D616 extends Roll {
       fantasticResult: this.fantasticResult,
       ultimateFantasticResult: this.ultimateFantasticResult,
       isInitiativeRoll: this.type === "initiative",
+      isNonCombatRoll: this.type === "nonCombat",
     };
   }
 
@@ -312,6 +303,7 @@ export default class D616 extends Roll {
       `systems/${game.system.id}/templates/dialogs/roll-confirmation.hbs`,
       {
         modifier: this.modifier,
+        isNonCombatRoll: this.type === "nonCombat",
         rollKey: game.i18n.localize(rollKey),
         edges: this.edges,
         troubles: this.troubles,
@@ -508,3 +500,11 @@ export default class D616 extends Roll {
     await message.setFlag(game.system.id, "messageData", chatData);
   }
 }
+
+/**
+ * These properties rely on game settings, which are only available after setup.
+ */
+Hooks.on("setup", () => {
+  D616.Flavor = game.settings.get("mvrpg", "mvDieFlavor") || "none";
+  D616.Formula = `1d6 + 1dMV[${D616.Flavor}] + 1d6`;
+});

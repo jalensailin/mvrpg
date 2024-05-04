@@ -1,4 +1,4 @@
-/* global Combatant game */
+/* global Combatant */
 
 import D616 from "../rolls/d616.js";
 
@@ -11,12 +11,12 @@ export default class MVCombatant extends Combatant {
    */
   getInitiativeRoll() {
     const { actor } = this.token;
-    const flavor = game.settings.get("mvrpg", "mvDieFlavor") || "none";
     const roll = new D616(
-      `1d6 + 1dMV[${flavor}] + 1d6 + @actor.system.initiative.value`,
+      "", // The formula is hard-coded in d616.js, so we just need to pass a dummy value.
       {}, // Unused parameter (see D616 constructor)
       {
         rolltype: "initiative",
+        modifier: actor.system.initiative.value,
         actor,
         edges: actor.system.initiative.edge ? 1 : 0,
         combatantUuid: this.uuid,

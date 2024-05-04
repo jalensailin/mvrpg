@@ -1,7 +1,7 @@
 <div class="mvrpg-roll-card comic-frame flexcol">
   <div class="half-tone-overlay"></div>
   <div class="roll-label panel-header panel-title">
-    {{rollTitle}}
+    {{rollTitle}} {{#if isNonCombatRoll}}({{localize "MVRPG.rolls.nonCombat"}}){{/if}}
   </div>
   {{#if hasEdgesOrTroubles}}
     <div class="edges-and-troubles">

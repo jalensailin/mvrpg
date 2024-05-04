@@ -92,6 +92,7 @@
 
 .mvrpg-dialog-data {
   text-align: right;
+  flex: 0;
 }
 
 .mvrpg-dialog-input input[type="checkbox"] {

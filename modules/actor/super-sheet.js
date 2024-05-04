@@ -139,11 +139,26 @@ export default class SuperSheet extends ActorSheet {
    */
   async onRoll(event) {
     const { rollType, ability } = event.currentTarget.dataset;
+    const actorData = this.actor.system;
+
+    let modifier;
+    switch (rollType) {
+      case "initiative":
+        modifier = actorData.initiative.value;
+        break;
+      case "nonCombat":
+        modifier = actorData.abilities[ability].nonCombatScore;
+        break;
+      default:
+        modifier = actorData.abilities[ability].value;
+        break;
+    }
+
     // Create the d616 roll
     const roll = new D616(
       "", // The formula is hard-coded in d616.js, so we just need to pass a dummy value.
       {},
-      { rollType, ability, actor: this.actor },
+      { rollType, modifier, ability, actor: this.actor },
     );
 
     // Actually roll the dice, prompting for a dialog if requested.

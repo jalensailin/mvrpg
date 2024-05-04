@@ -51,6 +51,7 @@
   "MVRPG.rolls.fantasticResultDie": "M",
   "MVRPG.rolls.initiative": "Initiative.",
   "MVRPG.rolls.mod": "Mod",
+  "MVRPG.rolls.nonCombat": "Non-Combat",
   "MVRPG.rolls.tooltips.calculateDamage": "Calculate Damage.",
   "MVRPG.rolls.tooltips.die1": "Die 1",
   "MVRPG.rolls.tooltips.dieM": "Die M",
