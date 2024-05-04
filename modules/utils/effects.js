@@ -1,4 +1,4 @@
-/* global game Dialog */
+/* global game Dialog Hooks renderTemplate $ */
 
 import { MVSettings } from "./settings.js";
 
@@ -62,3 +62,21 @@ export default class EffectUtils {
     }
   }
 }
+
+/**
+ * Insert a drop-down for the effect's change key, replacing the default text-input.
+ */
+Hooks.on("renderActiveEffectConfig", async (app, html, data) => {
+  const effectKeyInputs = html.find(
+    "li.effect-change > .key > input[type='text']",
+  );
+
+  for (const [index, input] of Array.from(effectKeyInputs).entries()) {
+    // eslint-disable-next-line no-await-in-loop
+    const selectTemplate = await renderTemplate(
+      `systems/${game.system.id}/templates/shared/effects-drop-down.hbs`,
+      { changes: app.object.changes, index },
+    );
+    $(input).replaceWith(selectTemplate);
+  }
+});
