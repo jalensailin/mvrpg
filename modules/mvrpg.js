@@ -1,4 +1,4 @@
-/* global Hooks Actors ActorSheet Items ItemSheet CONFIG */
+/* global Hooks Actors ActorSheet Items ItemSheet CONFIG DocumentSheetConfig ActiveEffect game */
 import SuperSheet from "./actor/super-sheet.js";
 import MVChatLog from "./chat/chat.js";
 import SuperDataModel from "./datamodels/actor/super-datamodel.js";
@@ -12,6 +12,7 @@ import PowerDataModel from "./datamodels/item/power-schema.js";
 import MVCombatant from "./combat/combatant.js";
 import MultiverseDie from "./rolls/multiverse-die.js";
 import MVUtils from "./utils/utils.js";
+import { MVEffectConfig } from "./utils/effects.js";
 
 // CONFIG.debug.hooks = true;
 
@@ -35,6 +36,14 @@ Hooks.once("init", async () => {
   Items.registerSheet("mvrpg", MVItemSheet, {
     makeDefault: true,
   });
+
+  // Register Active Effect Sheet.
+  DocumentSheetConfig.registerSheet(
+    ActiveEffect,
+    game.system.id,
+    MVEffectConfig,
+    { makeDefault: true },
+  );
 
   // Register Class overrides.
   CONFIG.ui.chat = MVChatLog;
