@@ -149,30 +149,44 @@ export class MVEffectConfig extends ActiveEffectConfig {
 
     const buttonIcon = $(event.currentTarget).find("i"); // Find the button icon.
     const buttonWidth = buttonIcon.outerWidth();
-    buttonIcon.removeClass(); // Remove all classes from button icon (to be replaced later on).
 
     let finalTemplate;
     switch (elementType) {
       // Replace the <input> element with a <select> element.
       case "input": {
+        let selectOptions = [];
+        for (const effectKeys of Object.values(MVRPG.effects)) {
+          selectOptions = selectOptions.concat(effectKeys);
+        }
+        // Warn the user before swapping back to <select> if the value is not in the list of options (since it will get lost).
+        if (!selectOptions.includes(value)) {
+          const confirmInput = await Dialog.confirm({
+            title: game.i18n.localize("MVRPG.dialog.confirmTextInput.title"),
+            content: game.i18n.localize("MVRPG.dialog.confirmTextInput.text"),
+          });
+          if (!confirmInput) return;
+        }
+
         const selectTemplate = await renderTemplate(
           `systems/${game.system.id}/templates/effects/effects-drop-down.hbs`,
           { changes: this.object.changes, index },
         );
         const jquerySelectObject = $(selectTemplate);
-        jquerySelectObject.val(value);
+        jquerySelectObject.val(value || selectOptions[0]);
         finalTemplate = jquerySelectObject;
 
-        buttonIcon.addClass("fa-solid fa-keyboard"); // Toggle to keyboard icon.
+        buttonIcon.removeClass("fa-list"); // Remove list icon.
+        buttonIcon.addClass("fa-keyboard"); // Toggle to keyboard icon.
         break;
       }
       // Replace the <select> element with an <input> element.
       case "select": {
         // Typically it's best to keep all styling in a css file, but in this case, the width relies on a value derived above so we need to add it here.
-        const inputTemplate = `<input type="text" type="text" name="${name}" value="${value}" style="width: calc(100% - ${buttonWidth + 8}px);"/>`;
+        const inputTemplate = `<input type="text" type="text" name="${name}" value="${value || ""}" style="width: calc(100% - ${buttonWidth + 8}px);"/>`;
         finalTemplate = inputTemplate;
 
-        buttonIcon.addClass("fa-solid fa-list"); // Toggle to list icon.
+        buttonIcon.removeClass("fa-keyboard"); // Remove keyboard icon.
+        buttonIcon.addClass("fa-list"); // Toggle to list icon.
         break;
       }
       default:

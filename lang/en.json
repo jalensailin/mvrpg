@@ -8,6 +8,8 @@
   "MVRPG.dialog.buttons.cancel": "Cancel",
   "MVRPG.dialog.buttons.confirm": "Confirm!",
   "MVRPG.dialog.configurePowerSets.title": "Configure Power Sets.",
+  "MVRPG.dialog.confirmTextInput.title": "Confirm Text Input",
+  "MVRPG.dialog.confirmTextInput.text": "Your custom input was not found in the drop-down list. Switching to drop-down mode will clear your custom input. Are you sure you want to continue?",
   "MVRPG.dialog.confirmUndo.title": "Confirm Undo",
   "MVRPG.dialog.confirmUndo.text": "Are you sure you want to undo the last reroll?",
   "MVRPG.dialog.deleteOwnedItem.title": "Delete Owned Item",
