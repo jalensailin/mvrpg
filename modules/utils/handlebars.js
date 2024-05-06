@@ -177,7 +177,7 @@ export async function registerHelpers() {
     const label = EffectUtils.getEffectLabel(key);
     const category = EffectUtils.getEffectCategory(key);
 
-    if (options.hash.includeCategory) {
+    if (options.hash.includeCategory && category) {
       return `${label} (${category})`;
     }
 

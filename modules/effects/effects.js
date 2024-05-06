@@ -103,6 +103,7 @@ export default class EffectUtils {
     // Find the effect category
     const effectCategories = Object.keys(MVRPG.effects);
     const category = effectCategories.find((c) => keyPropList.includes(c));
+    if (!category) return "";
     const localizedCategory = game.i18n.localize(
       `MVRPG.effects.categories.${category}`,
     );
@@ -123,6 +124,11 @@ export class MVEffectConfig extends ActiveEffectConfig {
     super.activateListeners(html);
     html.on("click", ".toggle-text-input", (event) => {
       this.toggleTextInput(event);
+    });
+
+    html.on("change", "select.effect-drop-down", (event) => {
+      const selectElement = event.currentTarget;
+      MVEffectConfig.updateDropDownToolTip(selectElement);
     });
   }
 
@@ -174,6 +180,16 @@ export class MVEffectConfig extends ActiveEffectConfig {
     }
 
     keyInput.replaceWith(finalTemplate);
+  }
+
+  /**
+   * Update the tooltip for the drop-down to display the selected key.
+   *
+   * @param {*} selectElement
+   */
+  static updateDropDownToolTip(selectElement) {
+    const newVal = $(selectElement).val();
+    $(selectElement).attr("data-tooltip", newVal);
   }
 }
 
