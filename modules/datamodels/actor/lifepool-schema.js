@@ -19,6 +19,7 @@ export default class LifepoolSchema extends foundry.abstract.TypeDataModel {
         positive: false,
         initial: 0,
         min: 0,
+        label: "MVRPG.dataModels.lifepool.max",
       }),
       damageReduction: new fields.NumberField({
         required: true,
@@ -26,6 +27,7 @@ export default class LifepoolSchema extends foundry.abstract.TypeDataModel {
         integer: true,
         positive: false,
         initial: 0,
+        label: "MVRPG.dataModels.lifepool.damageReduction",
       }),
     };
   }

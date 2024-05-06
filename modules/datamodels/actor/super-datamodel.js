@@ -28,6 +28,7 @@ export default class SuperDataModel extends foundry.abstract.TypeDataModel {
           positive: false,
           initial: 5,
           min: 0,
+          label: "MVRPG.dataModels.speed.run",
         }),
         climb: new fields.NumberField({
           required: true,
@@ -36,6 +37,7 @@ export default class SuperDataModel extends foundry.abstract.TypeDataModel {
           positive: false,
           initial: 3,
           min: 0,
+          label: "MVRPG.dataModels.speed.climb",
         }),
         swim: new fields.NumberField({
           required: true,
@@ -44,6 +46,7 @@ export default class SuperDataModel extends foundry.abstract.TypeDataModel {
           positive: false,
           initial: 3,
           min: 0,
+          label: "MVRPG.dataModels.speed.swim",
         }),
         jump: new fields.NumberField({
           required: true,
@@ -52,6 +55,7 @@ export default class SuperDataModel extends foundry.abstract.TypeDataModel {
           positive: false,
           initial: 3,
           min: 0,
+          label: "MVRPG.dataModels.speed.jump",
         }),
         flight: new fields.NumberField({
           required: true,
@@ -60,6 +64,7 @@ export default class SuperDataModel extends foundry.abstract.TypeDataModel {
           positive: false,
           initial: 0,
           min: 0,
+          label: "MVRPG.dataModels.speed.flight",
         }),
         glide: new fields.NumberField({
           required: true,
@@ -68,6 +73,7 @@ export default class SuperDataModel extends foundry.abstract.TypeDataModel {
           positive: false,
           initial: 0,
           min: 0,
+          label: "MVRPG.dataModels.speed.glide",
         }),
         swingline: new fields.NumberField({
           required: true,
@@ -76,6 +82,7 @@ export default class SuperDataModel extends foundry.abstract.TypeDataModel {
           positive: false,
           initial: 0,
           min: 0,
+          label: "MVRPG.dataModels.speed.swingline",
         }),
         levitation: new fields.NumberField({
           required: true,
@@ -84,6 +91,7 @@ export default class SuperDataModel extends foundry.abstract.TypeDataModel {
           positive: false,
           initial: 0,
           min: 0,
+          label: "MVRPG.dataModels.speed.levitation",
         }),
       }),
       rank: new fields.NumberField({

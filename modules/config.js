@@ -42,6 +42,24 @@ const MVRPG = {
       "system.abilities.logic.edges",
       "system.abilities.logic.troubles",
     ],
+    health: [
+      "system.lifepool.health.max",
+      "system.lifepool.health.damageReduction",
+    ],
+    focus: [
+      "system.lifepool.focus.max",
+      "system.lifepool.focus.damageReduction",
+    ],
+    speed: [
+      "system.speed.run",
+      "system.speed.climb",
+      "system.speed.swim",
+      "system.speed.jump",
+      "system.speed.flight",
+      "system.speed.glide",
+      "system.speed.swingline",
+      "system.speed.levitation",
+    ],
   },
 
   sizes: {
