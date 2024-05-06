@@ -1,7 +1,7 @@
 /* global game Dialog Hooks renderTemplate $ ActiveEffectConfig */
 /* eslint-disable max-classes-per-file */
 
-import { MVSettings } from "./settings.js";
+import { MVSettings } from "../utils/settings.js";
 
 export default class EffectUtils {
   /**

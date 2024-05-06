@@ -1,6 +1,6 @@
 /* global ItemSheet mergeObject TextEditor game Dialog FormDataExtended renderTemplate foundry */
 
-import EffectUtils from "../utils/effects.js";
+import EffectUtils from "../effects/effects.js";
 
 /**
  * Extend the basic ItemSheet with some very simple modifications

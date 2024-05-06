@@ -1,7 +1,7 @@
 /* global ActorSheet mergeObject game renderTemplate Dialog FormDataExtended foundry ChatMessage TextEditor */
 
 import D616 from "../rolls/d616.js";
-import EffectUtils from "../utils/effects.js";
+import EffectUtils from "../effects/effects.js";
 import { MVSettings } from "../utils/settings.js";
 
 export default class SuperSheet extends ActorSheet {
