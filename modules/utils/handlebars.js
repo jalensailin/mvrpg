@@ -19,7 +19,7 @@ export default async function preloadTemplates() {
     `systems/${game.system.id}/templates/item/settings-tab.hbs`,
 
     // Shared
-    `systems/${game.system.id}/templates/shared/effects-list.hbs`,
+    `systems/${game.system.id}/templates/effects/effects-list.hbs`,
 
     // Rolls
     `systems/${game.system.id}/templates/chat/reroll-history-tooltip.hbs`,

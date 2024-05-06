@@ -104,7 +104,7 @@ export class MVEffectConfig extends ActiveEffectConfig {
       // Replace the <input> element with a <select> element.
       case "input": {
         const selectTemplate = await renderTemplate(
-          `systems/${game.system.id}/templates/shared/effects-drop-down.hbs`,
+          `systems/${game.system.id}/templates/effects/effects-drop-down.hbs`,
           { changes: this.object.changes, index },
         );
         const jquerySelectObject = $(selectTemplate);
@@ -142,7 +142,7 @@ Hooks.on("renderActiveEffectConfig", async (app, html, data) => {
   for (const [index, input] of Array.from(effectKeyInputs).entries()) {
     // eslint-disable-next-line no-await-in-loop
     const selectTemplate = await renderTemplate(
-      `systems/${game.system.id}/templates/shared/effects-drop-down.hbs`,
+      `systems/${game.system.id}/templates/effects/effects-drop-down.hbs`,
       { changes: app.object.changes, index },
     );
 
