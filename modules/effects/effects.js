@@ -177,6 +177,10 @@ export class MVEffectConfig extends ActiveEffectConfig {
 
         buttonIcon.removeClass("fa-list"); // Remove list icon.
         buttonIcon.addClass("fa-keyboard"); // Toggle to keyboard icon.
+        const buttonTooltip = game.i18n.localize(
+          "MVRPG.sheets.effects.tooltips.toggleTextInput",
+        );
+        buttonIcon.attr("data-tooltip", buttonTooltip);
         break;
       }
       // Replace the <select> element with an <input> element.
@@ -187,6 +191,10 @@ export class MVEffectConfig extends ActiveEffectConfig {
 
         buttonIcon.removeClass("fa-keyboard"); // Remove keyboard icon.
         buttonIcon.addClass("fa-list"); // Toggle to list icon.
+        const buttonTooltip = game.i18n.localize(
+          "MVRPG.sheets.effects.tooltips.toggleDropDown",
+        );
+        buttonIcon.attr("data-tooltip", buttonTooltip);
         break;
       }
       default:
@@ -222,7 +230,10 @@ Hooks.on("renderActiveEffectConfig", async (app, html, data) => {
       { changes: app.object.changes, index },
     );
 
-    const buttonTemplate = `<a class="toggle-text-input" data-index="${index}"><i class="fa-solid fa-keyboard"></i></a>`;
+    const buttonTooltip = game.i18n.localize(
+      "MVRPG.sheets.effects.tooltips.toggleTextInput",
+    );
+    const buttonTemplate = `<a class="toggle-text-input" data-index="${index}" data-tooltip="${buttonTooltip}"><i class="fa-solid fa-keyboard"></i></a>`;
     $(input).replaceWith(`${buttonTemplate}${selectTemplate}`);
   }
 });

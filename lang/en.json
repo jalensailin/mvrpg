@@ -59,6 +59,9 @@
   "MVRPG.settings.skipDeleteDialogs.hint": "When toggled-off (default), Ctrl-Click to skip delete dialogs. When toggled-on, Ctrl-Click to show dialogs. Note: This setting also determines whether to show dialogs for undoing rerolls.",
   "MVRPG.settings.skipDeleteDialogs.title": "Skip Delete Confirmation Dialogs",
 
+  "MVRPG.sheets.effects.tooltips.toggleTextInput": "Switch to Text Input",
+  "MVRPG.sheets.effects.tooltips.toggleDropDown": "Switch to Drop-Down Select",
+
   "MVRPG.sheets.generic.powerActions.none": "None",
   "MVRPG.sheets.generic.powerActions.standard": "Standard",
   "MVRPG.sheets.generic.powerActions.movement": "Movement",
