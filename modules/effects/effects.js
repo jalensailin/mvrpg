@@ -1,6 +1,7 @@
-/* global game Dialog Hooks renderTemplate $ ActiveEffectConfig */
+/* global game Dialog Hooks renderTemplate $ ActiveEffectConfig CONFIG */
 /* eslint-disable max-classes-per-file */
 
+import MVRPG from "../config.js";
 import { MVSettings } from "../utils/settings.js";
 
 export default class EffectUtils {
@@ -61,6 +62,51 @@ export default class EffectUtils {
       default:
         break;
     }
+  }
+
+  /**
+   * Retrieves the label for a given effect key. It does this by
+   * "walking the tree" of the data model, where the label is located.
+   *
+   * @param {string} key - The key of the effect.
+   * @return {string} The localized label of the effect.
+   */
+  static getEffectLabel(key) {
+    const actorSchema = CONFIG.Actor.dataModels.super.schema;
+    const keyPropList = key.split(".");
+    keyPropList.shift();
+
+    let [keyProp] = keyPropList;
+    let fieldObject = actorSchema.fields[keyProp];
+    let index = 1;
+    while (index < keyPropList.length) {
+      keyProp = keyPropList[index];
+      fieldObject = fieldObject.fields[keyProp];
+      index += 1;
+    }
+
+    if (!fieldObject) return key; // If the field is not found, return the original key.
+
+    const label = game.i18n.localize(fieldObject.label);
+    return label;
+  }
+
+  /**
+   * Retrieves the localized category for a given effect key.
+   *
+   * @param {string} key - The key of the effect.
+   * @return {string} The localized category of the effect.
+   */
+  static getEffectCategory(key) {
+    const keyPropList = key.split(".");
+    keyPropList.shift();
+    // Find the effect category
+    const effectCategories = Object.keys(MVRPG.effects);
+    const category = effectCategories.find((c) => keyPropList.includes(c));
+    const localizedCategory = game.i18n.localize(
+      `MVRPG.effects.categories.${category}`,
+    );
+    return localizedCategory;
   }
 }
 

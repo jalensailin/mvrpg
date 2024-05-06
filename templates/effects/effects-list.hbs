@@ -22,7 +22,7 @@
       <div class="effect-data">
         {{#each effect.changes as |change|}}
           <span class="info-pill">
-            {{localize (concat "MVRPG.effects." change.key)}}: {{changeModeSymbol change}}{{change.value}}
+            {{mvGetEffectLabel change.key includeCategory=true}}: {{changeModeSymbol change}}{{change.value}}
           </span>
         {{/each}}
       </div>

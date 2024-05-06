@@ -18,6 +18,7 @@ export default class AbilitySchema extends foundry.abstract.TypeDataModel {
         positive: false,
         initial: 0,
         min: 0,
+        label: "MVRPG.dataModels.abilities.nonCombatBonus",
       }),
       defenseBonus: new fields.NumberField({
         required: true,
@@ -26,6 +27,7 @@ export default class AbilitySchema extends foundry.abstract.TypeDataModel {
         positive: false,
         initial: 0,
         min: 0,
+        label: "MVRPG.dataModels.abilities.defenseBonus",
       }),
       damageMultiplierBonus: new fields.NumberField({
         required: true,
@@ -34,6 +36,7 @@ export default class AbilitySchema extends foundry.abstract.TypeDataModel {
         positive: false,
         initial: 0,
         min: 0,
+        label: "MVRPG.dataModels.abilities.damageMultiplierBonus",
       }),
       edges: new fields.NumberField({
         required: true,
@@ -42,6 +45,7 @@ export default class AbilitySchema extends foundry.abstract.TypeDataModel {
         positive: false,
         initial: 0,
         min: 0,
+        label: "MVRPG.dataModels.abilities.edges",
       }),
       troubles: new fields.NumberField({
         required: true,
@@ -50,6 +54,7 @@ export default class AbilitySchema extends foundry.abstract.TypeDataModel {
         positive: false,
         initial: 0,
         min: 0,
+        label: "MVRPG.dataModels.abilities.troubles",
       }),
     };
   }
