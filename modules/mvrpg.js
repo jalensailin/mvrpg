@@ -12,7 +12,7 @@ import PowerDataModel from "./datamodels/item/power-schema.js";
 import MVCombatant from "./combat/combatant.js";
 import MultiverseDie from "./rolls/multiverse-die.js";
 import MVUtils from "./utils/utils.js";
-import { MVEffectConfig } from "./effects/effects.js";
+import MVEffectConfig from "./effects/effect-config.js";
 
 // CONFIG.debug.hooks = true;
 
