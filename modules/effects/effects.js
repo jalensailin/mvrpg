@@ -91,14 +91,19 @@ export default class EffectUtils {
 
     let [keyProp] = keyPropList;
     let fieldObject = actorSchema.fields[keyProp];
+    if (!fieldObject) return key; // If the field is not found, return the original key.
+
     let index = 1;
     while (index < keyPropList.length) {
       keyProp = keyPropList[index];
       fieldObject = fieldObject.fields[keyProp];
+
+      if (!fieldObject) return key; // If the field is not found, return the original key
+
       index += 1;
     }
 
-    if (!fieldObject || !fieldObject.label) return key; // If the field/label is not found, return the original key.
+    if (!fieldObject || !fieldObject.label) return key; // If the field OR label is not found, return the original key.
 
     const label = game.i18n.localize(fieldObject.label);
     return label;
