@@ -65,6 +65,19 @@ export default class EffectUtils {
   }
 
   /**
+   * Retrieves a flattened list of effect keys.
+   *
+   * @return {Array<string>} The list of effect keys.
+   */
+  static getEffectKeys() {
+    let selectOptions = [];
+    for (const effectKeys of Object.values(MVRPG.effects)) {
+      selectOptions = selectOptions.concat(effectKeys);
+    }
+    return selectOptions;
+  }
+
+  /**
    * Retrieves the label for a given effect key. It does this by
    * "walking the tree" of the data model, where the label is located.
    *
@@ -85,7 +98,7 @@ export default class EffectUtils {
       index += 1;
     }
 
-    if (!fieldObject) return key; // If the field is not found, return the original key.
+    if (!fieldObject || !fieldObject.label) return key; // If the field/label is not found, return the original key.
 
     const label = game.i18n.localize(fieldObject.label);
     return label;
@@ -154,10 +167,7 @@ export class MVEffectConfig extends ActiveEffectConfig {
     switch (elementType) {
       // Replace the <input> element with a <select> element.
       case "input": {
-        let selectOptions = [];
-        for (const effectKeys of Object.values(MVRPG.effects)) {
-          selectOptions = selectOptions.concat(effectKeys);
-        }
+        const selectOptions = EffectUtils.getEffectKeys();
         // Warn the user before swapping back to <select> if the value is not in the list of options (since it will get lost).
         if (!selectOptions.includes(value)) {
           const confirmInput = await Dialog.confirm({
@@ -186,7 +196,7 @@ export class MVEffectConfig extends ActiveEffectConfig {
       // Replace the <select> element with an <input> element.
       case "select": {
         // Typically it's best to keep all styling in a css file, but in this case, the width relies on a value derived above so we need to add it here.
-        const inputTemplate = `<input type="text" type="text" name="${name}" value="${value || ""}" style="width: calc(100% - ${buttonWidth + 8}px);"/>`;
+        const inputTemplate = `<input type="text" name="${name}" value="${value || ""}" style="width: calc(100% - ${buttonWidth + 8}px);"/>`;
         finalTemplate = inputTemplate;
 
         buttonIcon.removeClass("fa-keyboard"); // Remove keyboard icon.
@@ -217,6 +227,8 @@ export class MVEffectConfig extends ActiveEffectConfig {
 
 /**
  * Insert a drop-down for the effect's change key, replacing the default text-input.
+ * We only replace it if the value is in the list of options, otherwise we just insert
+ * the appropriate button and leave it as a text-input.
  */
 Hooks.on("renderActiveEffectConfig", async (app, html, data) => {
   const effectKeyInputs = html.find(
@@ -229,11 +241,29 @@ Hooks.on("renderActiveEffectConfig", async (app, html, data) => {
       `systems/${game.system.id}/templates/effects/effects-drop-down.hbs`,
       { changes: app.object.changes, index },
     );
+    const selectOptions = EffectUtils.getEffectKeys();
+    const valueInOptions = selectOptions.includes(input.value);
 
-    const buttonTooltip = game.i18n.localize(
+    let buttonTooltip = game.i18n.localize(
       "MVRPG.sheets.effects.tooltips.toggleTextInput",
     );
-    const buttonTemplate = `<a class="toggle-text-input" data-index="${index}" data-tooltip="${buttonTooltip}"><i class="fa-solid fa-keyboard"></i></a>`;
-    $(input).replaceWith(`${buttonTemplate}${selectTemplate}`);
+    let iconClass = "fa-keyboard";
+    if (!valueInOptions && input.value) {
+      // If the value is not in the list of options AND not empty, then it's a custom key.
+      buttonTooltip = game.i18n.localize(
+        "MVRPG.sheets.effects.tooltips.toggleDropDown",
+      );
+      iconClass = "fa-list";
+    }
+    const buttonTemplate = `<a class="toggle-text-input" data-index="${index}" data-tooltip="${buttonTooltip}"><i class="fa-solid ${iconClass}"></i></a>`;
+
+    if (valueInOptions || !input.value) {
+      // If the value is in the list of options OR empty, then it's a default key (or empty).
+      $(input).replaceWith(`${buttonTemplate}${selectTemplate}`);
+    } else {
+      $(input).before(`${buttonTemplate} `);
+      const iconWidth = html.find(".toggle-text-input").outerWidth();
+      $(input).css("width", `calc(100% - ${(iconWidth || 16) + 8}px)`);
+    }
   }
 });
