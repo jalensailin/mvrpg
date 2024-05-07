@@ -86,6 +86,7 @@ const MVRPG = {
     omniversalTravel: "MVRPG.sheets.generic.powerSets.omniversalTravel",
     phasing: "MVRPG.sheets.generic.powerSets.phasing",
     plasticity: "MVRPG.sheets.generic.powerSets.plasticity",
+    powerControl: "MVRPG.sheets.generic.powerSets.powerControl",
     rangedWeapons: "MVRPG.sheets.generic.powerSets.rangedWeapons",
     resize: "MVRPG.sheets.generic.powerSets.resize",
     shieldBearer: "MVRPG.sheets.generic.powerSets.shieldBearer",
