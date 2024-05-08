@@ -1,7 +1,30 @@
-/* global game Dialog Hooks renderTemplate $ CONFIG */
+/* global game Dialog Hooks renderTemplate $ CONFIG ActiveEffect Roll */
+/* eslint-disable max-classes-per-file */
 
 import MVRPG from "../config.js";
 import { MVSettings } from "../utils/settings.js";
+
+export class MVEffect extends ActiveEffect {
+  /**
+   * We intercept the apply method and check if the change value
+   * contains an actor property (indicated by the @ symbol). If
+   * it does, we let the Roll system evaluate the expression (since
+   * it's designed to do so already, no need to reinvent the wheel here),
+   * and apply the result to the change value.
+   *
+   * @override
+   */
+  apply(actor, change) {
+    if (!change.value.includes("@")) return super.apply(actor, change);
+
+    // Asynchronous evaluation.
+    const roll = new Roll(change.value, actor);
+    return roll.evaluate().then((r) => {
+      change.value = r.total;
+      return super.apply(actor, change);
+    });
+  }
+}
 
 export default class EffectUtils {
   /**
