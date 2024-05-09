@@ -21,7 +21,12 @@
       </div>
       {{#mvCompare doc.type "power"}}
         <div class="power-data">
-          <span class="info-pill">{{localize "MVRPG.sheets.superSheet.pillLabels.action"}}: {{localize (concat "MVRPG.sheets.generic.powerActions." doc.system.action)}}</span>
+          <span class="info-pill">{{localize "MVRPG.sheets.superSheet.pillLabels.action"}}:
+            {{#each doc.system.actions as |action|~}}
+              {{localize (concat "MVRPG.sheets.generic.actions." action)}}
+              {{~#unless @last}}/{{~/unless~}}
+            {{~/each~}}
+          </span>
           <span class="info-pill">{{localize "MVRPG.sheets.superSheet.pillLabels.duration"}}: {{localize (concat "MVRPG.sheets.generic.powerDurations." doc.system.duration)}}</span>
           {{#if doc.system.cost}}
             <span class="info-pill">{{localize "MVRPG.sheets.superSheet.pillLabels.cost"}}: {{doc.system.cost}}</span>

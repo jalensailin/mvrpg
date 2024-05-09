@@ -95,6 +95,10 @@
   flex: 0;
 }
 
+.mvrpg-dialog-data.configure-multiple-selections {
+  flex: unset;
+}
+
 .mvrpg-dialog-input input[type="checkbox"] {
   /* Add if not using autoprefixer */
   -webkit-appearance: none;

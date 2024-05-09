@@ -15,12 +15,15 @@ export default class PowerDataModel extends foundry.abstract.TypeDataModel {
         }),
         { required: true, initial: ["basic"] },
       ),
-      action: new fields.StringField({
-        required: true,
-        nullable: false,
-        initial: "none",
-        choices: Object.keys(MVRPG.powerActions),
-      }),
+      actions: new fields.ArrayField(
+        new fields.StringField({
+          required: true,
+          nullable: false,
+          initial: "standard",
+          choices: Object.keys(MVRPG.actions),
+        }),
+        { required: true, initial: ["standard"] },
+      ),
       duration: new fields.StringField({
         required: true,
         nullable: false,

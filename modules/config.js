@@ -113,11 +113,11 @@ const MVRPG = {
     concentration: "MVRPG.sheets.generic.powerDurations.concentration",
   },
 
-  powerActions: {
-    none: "MVRPG.sheets.generic.powerActions.none",
-    standard: "MVRPG.sheets.generic.powerActions.standard",
-    movement: "MVRPG.sheets.generic.powerActions.movement",
-    reaction: "MVRPG.sheets.generic.powerActions.reaction",
+  actions: {
+    none: "MVRPG.sheets.generic.actions.none",
+    standard: "MVRPG.sheets.generic.actions.standard",
+    movement: "MVRPG.sheets.generic.actions.movement",
+    reaction: "MVRPG.sheets.generic.actions.reaction",
   },
 };
 
