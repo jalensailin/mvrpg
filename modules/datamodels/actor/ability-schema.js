@@ -29,6 +29,14 @@ export default class AbilitySchema extends foundry.abstract.TypeDataModel {
         min: 0,
         label: "MVRPG.dataModels.abilities.defenseBonus",
       }),
+      damageModifierBonus: new fields.NumberField({
+        required: true,
+        nullable: false,
+        integer: true,
+        positive: false,
+        initial: 0,
+        label: "MVRPG.dataModels.abilities.damageModifierBonus",
+      }),
       damageMultiplierBonus: new fields.NumberField({
         required: true,
         nullable: false,
@@ -65,5 +73,13 @@ export default class AbilitySchema extends foundry.abstract.TypeDataModel {
 
   get nonCombatScore() {
     return this.value + this.nonCombatBonus;
+  }
+
+  get damageModifier() {
+    return this.value + this.damageModifierBonus;
+  }
+
+  get damageMultiplier() {
+    return this.value + this.damageMultiplierBonus;
   }
 }

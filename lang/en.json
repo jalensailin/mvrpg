@@ -1,6 +1,7 @@
 {
   "MVRPG.dataModels.abilities.nonCombatBonus": "Non-Combat Bonus",
   "MVRPG.dataModels.abilities.defenseBonus": "Defense Bonus",
+  "MVRPG.dataModels.abilities.damageModifierBonus": "Damage Modifier",
   "MVRPG.dataModels.abilities.damageMultiplierBonus": "Damage Multiplier",
   "MVRPG.dataModels.abilities.edges": "Edges",
   "MVRPG.dataModels.abilities.troubles": "Troubles",

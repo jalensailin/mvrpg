@@ -2,17 +2,15 @@
   <section class="damage-section flexcol">
     <div class="damage-section-title">{{localize "MVRPG.sheets.superSheet.dataHeaders.damageMultipliers"}}</div>
     <div class="damage-multiplier-list flexrow">
-      {{#each damageMultipliers as |ability|}}
+      {{#each damageData as |abilityData|}}
         <div class="damage-multiplier-item flexcol">
           <div class="damage-multiplier-value">
-            x{{ability.value}}
+            x{{abilityData.damageMultiplier}}
             <span class="damage-modifier">
-              {{#with (lookup ../actor.system.abilities ability.name)}}
-                (+{{value}})
-              {{/with}}
+              ({{numberFormat abilityData.damageModifier sign=true}})
             </span>
           </div>
-          <div class="damage-multiplier-label">{{localize (concat "MVRPG.sheets.superSheet.abilities." ability.name)}}</div>
+          <div class="damage-multiplier-label">{{localize (concat "MVRPG.sheets.superSheet.abilities." abilityData.name)}}</div>
         </div>
       {{/each}}
     </div>

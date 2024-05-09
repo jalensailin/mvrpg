@@ -1,7 +1,7 @@
 /* global ActorSheet mergeObject game renderTemplate Dialog FormDataExtended foundry ChatMessage TextEditor */
 
 import D616 from "../rolls/d616.js";
-import MVEffect from "../effects/effects.js";
+import EffectUtils from "../effects/effects.js";
 import { MVSettings } from "../utils/settings.js";
 
 export default class SuperSheet extends ActorSheet {
@@ -40,15 +40,14 @@ export default class SuperSheet extends ActorSheet {
       actor.getFlag(game.system.id, "displaySpeed") || "run";
 
     // Prepare only data relevant to damage mutipliers for simplicity in the template.
-    const damageMultipliers = Object.entries(actor.system.abilities)
+    const damageData = Object.entries(actor.system.abilities)
+      .filter(([name]) => name !== "resilience" && name !== "vigilance")
       .map(([name, abilityData]) => ({
         name,
-        value: actor.system.rank + abilityData.damageMultiplierBonus,
-      }))
-      .filter(
-        (data) => data.name !== "resilience" && data.name !== "vigilance",
-      );
-    mvrpgData.damageMultipliers = damageMultipliers;
+        damageModifier: abilityData.damageModifier,
+        damageMultiplier: abilityData.damageMultiplier,
+      }));
+    mvrpgData.damageData = damageData;
 
     mvrpgData.enrichedNotes = await TextEditor.enrichHTML(
       actor.system.identity.notes,
@@ -77,7 +76,7 @@ export default class SuperSheet extends ActorSheet {
 
     html
       .find(".effect-action")
-      .click((event) => MVEffect.onEffectAction(this.actor, event));
+      .click((event) => EffectUtils.onEffectAction(this.actor, event));
   }
 
   /**

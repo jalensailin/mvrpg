@@ -2,6 +2,7 @@ const MVRPG = {
   effects: {
     melee: [
       "system.abilities.melee.nonCombatBonus",
+      "system.abilities.melee.damageModifierBonus",
       "system.abilities.melee.damageMultiplierBonus",
       "system.abilities.melee.defenseBonus",
       "system.abilities.melee.edges",
@@ -9,6 +10,7 @@ const MVRPG = {
     ],
     agility: [
       "system.abilities.agility.nonCombatBonus",
+      "system.abilities.agility.damageModifierBonus",
       "system.abilities.agility.damageMultiplierBonus",
       "system.abilities.agility.defenseBonus",
       "system.abilities.agility.edges",
@@ -16,6 +18,7 @@ const MVRPG = {
     ],
     resilience: [
       "system.abilities.resilience.nonCombatBonus",
+      "system.abilities.resilience.damageModifierBonus",
       "system.abilities.resilience.damageMultiplierBonus",
       "system.abilities.resilience.defenseBonus",
       "system.abilities.resilience.edges",
@@ -23,6 +26,7 @@ const MVRPG = {
     ],
     vigilance: [
       "system.abilities.vigilance.nonCombatBonus",
+      "system.abilities.vigilance.damageModifierBonus",
       "system.abilities.vigilance.damageMultiplierBonus",
       "system.abilities.vigilance.defenseBonus",
       "system.abilities.vigilance.edges",
@@ -30,6 +34,7 @@ const MVRPG = {
     ],
     ego: [
       "system.abilities.ego.nonCombatBonus",
+      "system.abilities.ego.damageModifierBonus",
       "system.abilities.ego.damageMultiplierBonus",
       "system.abilities.ego.defenseBonus",
       "system.abilities.ego.edges",
@@ -37,6 +42,7 @@ const MVRPG = {
     ],
     logic: [
       "system.abilities.logic.nonCombatBonus",
+      "system.abilities.logic.damageModifierBonus",
       "system.abilities.logic.damageMultiplierBonus",
       "system.abilities.logic.defenseBonus",
       "system.abilities.logic.edges",
