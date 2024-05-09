@@ -1,4 +1,4 @@
-/* global ChatLog game */
+/* global ChatLog game Hooks */
 
 import { MVSettings } from "../utils/settings.js";
 import MVUtils from "../utils/utils.js";
@@ -61,3 +61,15 @@ export default class MVChatLog extends ChatLog {
     html.find(".roll-single-result").addClass("mv-inactive-link");
   }
 }
+
+/**
+ * Perform message-specific actions on render.
+ *
+ * @param {ChatMessage} message - The ChatMessage document being rendered
+ * @param {jQuery} html - The inner HTML of the document that will be displayed and may be modified
+ * @param {Object} messageData - The object of data used when rendering the application
+ * @return {void}
+ */
+Hooks.on("renderChatMessage", async (message, html, messageData) => {
+  MVChatLog.denyPlayerAccess(message, html);
+});
