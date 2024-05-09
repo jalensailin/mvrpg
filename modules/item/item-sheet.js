@@ -1,6 +1,6 @@
 /* global ItemSheet mergeObject TextEditor game Dialog FormDataExtended renderTemplate foundry */
 
-import EffectUtils from "../effects/effects.js";
+import MVEffect from "../effects/effects.js";
 
 /**
  * Extend the basic ItemSheet with some very simple modifications
@@ -47,7 +47,7 @@ export default class MVItemSheet extends ItemSheet {
 
     html
       .find(".effect-action")
-      .click((event) => EffectUtils.onEffectAction(this.item, event));
+      .click((event) => MVEffect.onEffectAction(this.item, event));
 
     html
       .find(".configure-power-sets")

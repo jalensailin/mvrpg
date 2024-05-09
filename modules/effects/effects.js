@@ -1,10 +1,9 @@
 /* global game Dialog Hooks renderTemplate $ CONFIG ActiveEffect Roll */
-/* eslint-disable max-classes-per-file */
 
 import MVRPG from "../config.js";
 import { MVSettings } from "../utils/settings.js";
 
-export class MVEffect extends ActiveEffect {
+export default class MVEffect extends ActiveEffect {
   /**
    * We intercept the apply method and check if the change value
    * contains an actor property (indicated by the @ symbol). If
@@ -24,9 +23,7 @@ export class MVEffect extends ActiveEffect {
       return super.apply(actor, change);
     });
   }
-}
 
-export default class EffectUtils {
   /**
    * Perform an action based on the event triggered.
    *
@@ -167,7 +164,7 @@ Hooks.on("renderActiveEffectConfig", async (app, html, data) => {
       `systems/${game.system.id}/templates/effects/effects-drop-down.hbs`,
       { changes: app.object.changes, index },
     );
-    const selectOptions = EffectUtils.getEffectKeys();
+    const selectOptions = MVEffect.getEffectKeys();
     const valueInOptions = selectOptions.includes(input.value);
 
     let buttonTooltip = game.i18n.localize(

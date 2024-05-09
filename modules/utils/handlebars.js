@@ -1,7 +1,7 @@
 /* global loadTemplates game Handlebars */
 
 import MVRPG from "../config.js";
-import EffectUtils from "../effects/effects.js";
+import MVEffect from "../effects/effects.js";
 
 /**
  * Define a set of template paths to pre-load
@@ -174,8 +174,8 @@ export async function registerHelpers() {
   });
 
   Handlebars.registerHelper("mvGetEffectLabel", (key, options) => {
-    const label = EffectUtils.getEffectLabel(key);
-    const category = EffectUtils.getEffectCategory(key);
+    const label = MVEffect.getEffectLabel(key);
+    const category = MVEffect.getEffectCategory(key);
 
     if (options.hash.includeCategory && category) {
       return `${label} (${category})`;

@@ -1,4 +1,4 @@
-import EffectUtils from "./effects.js";
+import MVEffect from "./effects.js";
 
 /* global game Dialog renderTemplate $ ActiveEffectConfig */
 
@@ -45,7 +45,7 @@ export default class MVEffectConfig extends ActiveEffectConfig {
     switch (elementType) {
       // Replace the <input> element with a <select> element.
       case "input": {
-        const selectOptions = EffectUtils.getEffectKeys();
+        const selectOptions = MVEffect.getEffectKeys();
         // Warn the user before swapping back to <select> if the value is not in the list of options (since it will get lost).
         if (!selectOptions.includes(value)) {
           const confirmInput = await Dialog.confirm({

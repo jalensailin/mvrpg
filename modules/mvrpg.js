@@ -13,7 +13,7 @@ import MVCombatant from "./combat/combatant.js";
 import MultiverseDie from "./rolls/multiverse-die.js";
 import MVUtils from "./utils/utils.js";
 import MVEffectConfig from "./effects/effect-config.js";
-import { MVEffect } from "./effects/effects.js";
+import MVEffect from "./effects/effects.js";
 
 // CONFIG.debug.hooks = true;
 
