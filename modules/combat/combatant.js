@@ -15,7 +15,7 @@ export default class MVCombatant extends Combatant {
       "", // The formula is hard-coded in d616.js, so we just need to pass a dummy value.
       {}, // Unused parameter (see D616 constructor)
       {
-        rolltype: "initiative",
+        rollType: "initiative",
         modifier: actor.system.initiative.value,
         actor,
         edges: actor.system.initiative.edge ? 1 : 0,
