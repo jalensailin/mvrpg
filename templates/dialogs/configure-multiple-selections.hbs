@@ -4,13 +4,13 @@
   <div class="mvrpg-dialog-container flexcol">
     <div class="mvrpg-dialog-section comic-frame flexcol">
       <div class="mvrpg-dialog-header">
-        {{localize "MVRPG.dialog.configurePowerSets.title"}}
+        {{title}}
       </div>
-      {{#each (mvGetConfigObj "powerSets") as |powerSetI18nString powerSetSlug|}}
+      {{#each configObj as |objI18nString objKey|}}
         <div class="mvrpg-dialog-item flexrow">
-          <div class="mvrpg-dialog-label">{{localize powerSetI18nString}}</div>
+          <div class="mvrpg-dialog-label">{{localize objI18nString}}</div>
           <div class="mvrpg-dialog-input">
-            <input name="{{powerSetSlug}}" type="checkbox" {{checked (mvListIncludes ../item.system.powerSets powerSetSlug)}}>
+            <input name="{{objKey}}" type="checkbox" {{checked (mvListIncludes ../itemProperty objKey)}}>
           </div>
         </div>
       {{/each}}

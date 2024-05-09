@@ -5,7 +5,7 @@
       <div class="mvrpg-dialog-label">
         {{localize "MVRPG.sheets.itemSheet.settings.labels.powerSets"}}
       </div>
-      <a class="mvrpg-dialog-data configure-power-sets" data-tooltip="{{localize "MVRPG.sheets.itemSheet.settings.tooltips.configurePowerSets"}}">
+      <a class="mvrpg-dialog-data configure-multiple-selections" data-selection-set="powerSets" data-tooltip="{{localize "MVRPG.sheets.itemSheet.settings.tooltips.configurePowerSets"}}">
         {{#each item.system.powerSets as |powerSetSlug|}}
           <span>{{localize (concat "MVRPG.sheets.generic.powerSets." powerSetSlug)}}
           {{~#unless @last}}, {{/unless}}</span>

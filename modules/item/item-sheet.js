@@ -1,5 +1,6 @@
 /* global ItemSheet mergeObject TextEditor game Dialog FormDataExtended renderTemplate foundry */
 
+import MVRPG from "../config.js";
 import MVEffect from "../effects/effects.js";
 
 /**
@@ -49,20 +50,29 @@ export default class MVItemSheet extends ItemSheet {
       .find(".effect-action")
       .click((event) => MVEffect.onEffectAction(this.item, event));
 
-    html
-      .find(".configure-power-sets")
-      .click((event) => this.showConfigurePowerSetsDialog(event));
+    html.find(".configure-multiple-selections").click((event) => {
+      const { selectionSet } = event.currentTarget.dataset;
+      this.configureMultipleSelections(selectionSet);
+    });
   }
 
-  async showConfigurePowerSetsDialog(event) {
+  /**
+   * Show a dialog for configuring multiple selections (e.g. power sets).
+   *
+   * @param {string} selectionSet - The name of the set of selections, defined in config.js.
+   * @return {Promise<void>} A promise that resolves when the dialog is rendered.
+   */
+  async configureMultipleSelections(selectionSet) {
+    const configObj = MVRPG[selectionSet];
+    const title = game.i18n.localize(`MVRPG.dialog.${selectionSet}.title`);
     const content = await renderTemplate(
-      `systems/${game.system.id}/templates/dialogs/configure-power-sets.hbs`,
-      { item: this.item },
+      `systems/${game.system.id}/templates/dialogs/configure-multiple-selections.hbs`,
+      { title, itemProperty: this.item.system[selectionSet], configObj },
     );
     const dialog = new Dialog(
       {
         content,
-        title: game.i18n.localize("MVRPG.dialog.configurePowerSets.title"),
+        title,
         default: "confirm",
         buttons: {
           confirm: {
@@ -71,10 +81,11 @@ export default class MVItemSheet extends ItemSheet {
             callback: (html) => {
               const fd = new FormDataExtended(html.find("form")[0]);
               const formData = foundry.utils.expandObject(fd.object);
-              const powerSets = Object.entries(formData)
+              const selections = Object.entries(formData)
                 .filter(([key, value]) => value)
                 .map(([key, value]) => key);
-              this.item.update({ "system.powerSets": powerSets });
+              const updateKey = `system.${selectionSet}`;
+              this.item.update({ [updateKey]: selections });
             },
           },
         },
