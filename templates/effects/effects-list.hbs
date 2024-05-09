@@ -23,7 +23,7 @@
         {{#each effect.changes as |change|}}
           {{#if change.key}}
             <span class="info-pill">
-              {{mvGetEffectLabel change.key includeCategory=true}}: {{changeModeSymbol change}}{{change.value}}
+              {{mvGetEffectLabel change.key includeCategory=true}}: {{changeModeSymbol change}}{{~change.value~}}
             </span>
           {{/if}}
         {{/each}}
