@@ -127,3 +127,8 @@ select.mvrpg-dialog-input {
   width: unset;
   height: unset;
 }
+
+/* Foundry override */
+.key select {
+  width: calc(100% - 24px);
+}
