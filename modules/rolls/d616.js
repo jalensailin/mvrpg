@@ -142,10 +142,10 @@ export default class D616 extends Roll {
     const actorData = game.actors.get(this.actor._id).system;
     const abilityData = actorData.abilities[this.ability];
     const dieMResult = this.activeResultDie("dieM").total;
-    const damageMultiplier = actorData.rank + abilityData.damageMultiplierBonus;
-    let total = dieMResult * damageMultiplier + abilityData.value;
+    const { damageMultiplier, damageModifier } = abilityData;
+    let total = dieMResult * damageMultiplier + damageModifier;
     if (this.fantasticResult) total *= 2;
-    return { dieMResult, damageMultiplier, total };
+    return { dieMResult, damageMultiplier, damageModifier, total };
   }
 
   /**
@@ -472,9 +472,8 @@ export default class D616 extends Roll {
   }
 
   async createDamageCard(alias) {
-    const actorData = this.actor.system;
-    const abilityData = actorData.abilities[this.ability];
-    const { dieMResult, damageMultiplier, total } = this.calculateDamage;
+    const { dieMResult, damageMultiplier, damageModifier, total } =
+      this.calculateDamage;
 
     const chatData = {
       actor: this.actor,
@@ -482,7 +481,7 @@ export default class D616 extends Roll {
       fantasticResult: this.fantasticResult,
       dieMResult,
       damageMultiplier,
-      modifier: abilityData.value,
+      damageModifier,
       total,
     };
     // Prepare chat template.

@@ -80,6 +80,6 @@ export default class AbilitySchema extends foundry.abstract.TypeDataModel {
   }
 
   get damageMultiplier() {
-    return this.value + this.damageMultiplierBonus;
+    return this.parent.rank + this.damageMultiplierBonus;
   }
 }
