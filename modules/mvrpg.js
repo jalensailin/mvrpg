@@ -53,14 +53,14 @@ Hooks.once("init", async () => {
 
   // Register Actor data models.
   CONFIG.Actor.dataModels.super = SuperDataModel;
+  CONFIG.Actor.dataModels.npc = SuperDataModel;
 
   // Register Item data models.
   CONFIG.Item.dataModels.tag = TagDataModel;
   CONFIG.Item.dataModels.trait = TraitDataModel;
   CONFIG.Item.dataModels.power = PowerDataModel;
 
-  console.log("Hello", MVRolls);
-  // Register System Classes/Functions for ease of access for users andmodule/macro devs.
+  // Register System Classes/Functions for ease of access for users and module/macro devs.
   game.mvrpg = {
     D616: MVRolls.default,
   };

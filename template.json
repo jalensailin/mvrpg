@@ -1,7 +1,8 @@
 {
   "Actor": {
-    "types": ["super"],
-    "super": {}
+    "types": ["super", "npc"],
+    "super": {},
+    "npc": {}
   },
   "Item": {
     "types": ["power", "tag", "trait"],
