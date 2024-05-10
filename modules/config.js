@@ -1,5 +1,6 @@
 const MVRPG = {
   abilities: ["melee", "agility", "resilience", "vigilance", "ego", "logic"],
+  rollTypes: ["combat", "nonCombat"],
 
   effects: {
     melee: [

@@ -88,6 +88,19 @@
     {{#if item.system.roll.hasRoll}}
       <div class="mvrpg-dialog-item item-roll-data flexrow">
         <div class="mvrpg-dialog-label">
+          {{localize "MVRPG.sheets.itemSheet.settings.labels.rollType"}}
+        </div>
+        {{#select item.system.roll.type}}
+          <select class="mvrpg-dialog-input" name="system.roll.type">
+            {{#each (mvGetConfigObj "rollTypes") as |type|}}
+              <option value="{{type}}">{{localize (concat "MVRPG.sheets.itemSheet.settings.rollTypes." type)}}</option>
+            {{/each}}
+          </select>
+        {{/select}}
+      </div>
+
+      <div class="mvrpg-dialog-item item-roll-data flexrow">
+        <div class="mvrpg-dialog-label">
           {{localize "MVRPG.sheets.itemSheet.settings.labels.rollAbility"}}
         </div>
         {{#select item.system.roll.ability}}
