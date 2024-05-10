@@ -143,8 +143,16 @@ export default class SuperSheet extends ActorSheet {
    * @return {Promise} A promise that resolves when the roll event is handled
    */
   async onRoll(event) {
-    const { rollType, ability } = event.currentTarget.dataset;
+    let { rollType, ability } = event.currentTarget.dataset;
+    const { docId } = event.currentTarget.dataset;
+    const item = this.actor.items.get(docId);
     const actorData = this.actor.system;
+
+    // If roll is generated from an item, use the item's roll data.
+    if (item) {
+      rollType = item.system.roll.type;
+      ability = item.system.roll.ability;
+    }
 
     let modifier;
     switch (rollType) {
@@ -158,8 +166,16 @@ export default class SuperSheet extends ActorSheet {
         modifier = actorData.abilities[ability].value;
         break;
     }
-    const { edges, troubles } = actorData.abilities[ability];
+    let { edges, troubles } = actorData.abilities[ability];
 
+    // Add item's roll data to actor's data.
+    if (item) {
+      modifier += item.system.roll.bonus;
+      edges += item.system.roll.edges;
+      troubles += item.system.roll.troubles;
+    }
+
+    // Dispatch the roll.
     return D616.createD616Roll({
       rollType,
       ability,

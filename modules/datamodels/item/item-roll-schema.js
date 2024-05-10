@@ -30,6 +30,20 @@ export default class ItemRollSchema extends foundry.abstract.TypeDataModel {
         min: -99,
         max: 99,
       }),
+      edges: new fields.NumberField({
+        required: true,
+        nullable: false,
+        initial: 0,
+        min: 0,
+        max: 99,
+      }),
+      troubles: new fields.NumberField({
+        required: true,
+        nullable: false,
+        initial: 0,
+        min: 0,
+        max: 99,
+      }),
     };
   }
 }

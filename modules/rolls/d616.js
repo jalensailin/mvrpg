@@ -20,9 +20,11 @@ export default class D616 extends Roll {
       { actor: options.actor },
       options,
     );
-    const { rollType, ability, modifier, actor, troubles, edges } = options;
+    const { rollType, ability, modifier, actor, item, troubles, edges } =
+      options;
     this.type = rollType;
     this.actor = actor;
+    this.item = item;
     this.ability = ability;
     this.modifier = modifier;
     this.troubles = troubles || 0;
@@ -223,13 +225,14 @@ export default class D616 extends Roll {
    * @return {Promise<void>} A promise that resolves when the roll and chat message have been created.
    */
   static async createD616Roll(options) {
-    const { rollType, modifier, ability, edges, troubles, actor } = options;
+    const { rollType, modifier, ability, edges, troubles, actor, item } =
+      options;
 
     // Create the d616 roll
     const roll = new D616(
       "", // The formula is hard-coded in the constructor, so we just need to pass a dummy value.
       {},
-      { rollType, modifier, ability, edges, troubles, actor },
+      { rollType, modifier, ability, edges, troubles, actor, item },
     );
 
     // Actually roll the dice, prompting for a dialog if requested.
