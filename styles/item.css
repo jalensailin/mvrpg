@@ -41,5 +41,9 @@
 
   .tabbed-panel {
     padding-bottom: 2px;
+
+    .item-roll-data {
+      padding-left: 25px;
+    }
   }
 }

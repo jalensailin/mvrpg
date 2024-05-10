@@ -1,4 +1,6 @@
 const MVRPG = {
+  abilities: ["melee", "agility", "resilience", "vigilance", "ego", "logic"],
+
   effects: {
     melee: [
       "system.abilities.melee.nonCombatBonus",

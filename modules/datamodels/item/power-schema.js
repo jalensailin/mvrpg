@@ -1,6 +1,7 @@
 /* globals foundry */
 
 import MVRPG from "../../config.js";
+import ItemRollSchema from "./item-roll-schema.js";
 
 export default class PowerDataModel extends foundry.abstract.TypeDataModel {
   static defineSchema() {
@@ -53,6 +54,7 @@ export default class PowerDataModel extends foundry.abstract.TypeDataModel {
         nullable: false,
         initial: false,
       }),
+      roll: new fields.EmbeddedDataField(ItemRollSchema),
       description: new fields.HTMLField({
         required: true,
         nullable: false,

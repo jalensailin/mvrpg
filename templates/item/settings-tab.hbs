@@ -51,15 +51,6 @@
 
     <div class="mvrpg-dialog-item flexrow">
       <div class="mvrpg-dialog-label">
-        {{localize "MVRPG.sheets.itemSheet.settings.labels.isAttack"}}
-      </div>
-      <div class="mvrpg-dialog-input">
-        <input name="system.isAttack" type="checkbox" {{checked item.system.isAttack}}>
-      </div>
-    </div>
-
-    <div class="mvrpg-dialog-item flexrow">
-      <div class="mvrpg-dialog-label">
         {{localize "MVRPG.sheets.itemSheet.settings.labels.range"}}
       </div>
       <div class="mvrpg-dialog-input">
@@ -75,6 +66,48 @@
         <input name="system.range.multiplyByRank" type="checkbox" {{checked item.system.range.multiplyByRank}}>
       </div>
     </div>
+
+    <div class="mvrpg-dialog-item flexrow">
+      <div class="mvrpg-dialog-label">
+        {{localize "MVRPG.sheets.itemSheet.settings.labels.isAttack"}}
+      </div>
+      <div class="mvrpg-dialog-input">
+        <input name="system.isAttack" type="checkbox" {{checked item.system.isAttack}}>
+      </div>
+    </div>
+
+    <div class="mvrpg-dialog-item flexrow">
+      <div class="mvrpg-dialog-label">
+        {{localize "MVRPG.sheets.itemSheet.settings.labels.hasRoll"}}
+      </div>
+      <div class="mvrpg-dialog-input">
+        <input name="system.roll.hasRoll" type="checkbox" {{checked item.system.roll.hasRoll}}>
+      </div>
+    </div>
+
+    {{#if item.system.roll.hasRoll}}
+      <div class="mvrpg-dialog-item item-roll-data flexrow">
+        <div class="mvrpg-dialog-label">
+          {{localize "MVRPG.sheets.itemSheet.settings.labels.rollAbility"}}
+        </div>
+        {{#select item.system.roll.ability}}
+          <select class="mvrpg-dialog-input" name="system.roll.ability">
+            {{#each (mvGetConfigObj "abilities") as |ability|}}
+              <option value="{{ability}}">{{localize (concat "MVRPG.sheets.generic.abilities." ability)}}</option>
+            {{/each}}
+          </select>
+        {{/select}}
+      </div>
+
+      <div class="mvrpg-dialog-item item-roll-data flexrow">
+        <div class="mvrpg-dialog-label">
+          {{localize "MVRPG.sheets.itemSheet.settings.labels.rollBonus"}}
+        </div>
+        <div class="mvrpg-dialog-input">
+          <input name="system.roll.bonus" type="number" value="{{item.system.roll.bonus}}">
+        </div>
+      </div>
+    {{/if}}
 
   </div>
 </div>
