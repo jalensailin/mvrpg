@@ -49,6 +49,12 @@ export default class SuperSheet extends ActorSheet {
       }));
     mvrpgData.damageData = damageData;
 
+    // Prepare rollable items for combat tab.
+    const rollableItems = actor.itemTypes.power.filter(
+      (item) => item.system.roll.hasRoll,
+    );
+    mvrpgData.rollableItems = rollableItems;
+
     mvrpgData.enrichedNotes = await TextEditor.enrichHTML(
       actor.system.identity.notes,
       { async: true },

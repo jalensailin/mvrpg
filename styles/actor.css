@@ -381,15 +381,15 @@
   }
 
   .combat-panel {
+    text-align: center;
+
+    .combat-panel-title {
+      color: white;
+      background-color: var(--venom-black);
+      padding-bottom: 2px;
+    }
+
     .damage-section {
-      text-align: center;
-
-      .damage-section-title {
-        color: white;
-        background-color: var(--venom-black);
-        padding-bottom: 2px;
-      }
-
       .damage-multiplier-list {
         padding: 3px;
         gap: 3px;

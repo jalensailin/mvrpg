@@ -1,6 +1,6 @@
 <div class="tab combat-panel flexcol" data-group="primary" data-tab="combat">
   <section class="damage-section flexcol">
-    <div class="damage-section-title">{{localize "MVRPG.sheets.superSheet.dataHeaders.damageMultipliers"}}</div>
+    <div class="combat-panel-title">{{localize "MVRPG.sheets.superSheet.dataHeaders.damageMultipliers"}}</div>
     <div class="damage-multiplier-list flexrow">
       {{#each damageData as |abilityData|}}
         <div class="damage-multiplier-item flexcol">
@@ -11,6 +11,34 @@
             </span>
           </div>
           <div class="damage-multiplier-label">{{localize (concat "MVRPG.sheets.superSheet.abilities." abilityData.name)}}</div>
+        </div>
+      {{/each}}
+    </div>
+  </section>
+  <section class="rollable-section flexcol">
+    <div class="combat-panel-title">{{localize "MVRPG.sheets.superSheet.dataHeaders.actions"}}</div>
+    <div class="rollable-list flexcol">
+      {{#each rollableItems as |item|}}
+        <div class="rollable-item flexrow">\
+          <a class="doc-action doc-icon" data-action="toChat" data-doc-id="{{item.id}}" data-tooltip="{{localize "MVRPG.sheets.generic.tooltips.toChat"}}">
+            <img src="{{item.img}}" title="{{item.name}}"/>
+            <i class="overlay fa-solid fa-comment"></i>
+          </a>
+          <a class="doc-action doc-data flexcol" data-action="edit" data-doc-id="{{item.id}}" data-tooltip="{{localize "MVRPG.sheets.generic.tooltips.edit"}}">
+            <div class="doc-name">
+              {{item.name}}
+            </div>
+          </a>
+          <div class="action-icons flexrow">
+            {{#if item.system.roll.hasRoll}}
+              <a class="doc-action rollable" data-roll-type="{{item.system.roll.type}}" data-ability="{{item.system.roll.ability}}" data-doc-id="{{item.id}}" data-tooltip="{{localize "MVRPG.sheets.superSheet.tooltips.rollFromItem"}}">
+                <i class="fa-solid fa-dice"></i>
+              </a>
+            {{/if}}
+            <a class="doc-action doc-delete" data-action="delete" data-doc-id="{{item.id}}" data-tooltip="{{localize "MVRPG.sheets.generic.tooltips.delete"}}">
+              <i class="fa-solid fa-trash"></i>
+            </a>
+          </div>
         </div>
       {{/each}}
     </div>
