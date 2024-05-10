@@ -59,6 +59,12 @@ Hooks.once("init", async () => {
   CONFIG.Item.dataModels.trait = TraitDataModel;
   CONFIG.Item.dataModels.power = PowerDataModel;
 
+  console.log("Hello", MVRolls);
+  // Register System Classes/Functions for ease of access for users andmodule/macro devs.
+  game.mvrpg = {
+    D616: MVRolls.default,
+  };
+
   // Turn off legacy tranferral for active effects. Necessary for v11.
   CONFIG.ActiveEffect.legacyTransferral = false;
 

@@ -210,6 +210,50 @@ export default class D616 extends Roll {
     });
   }
 
+  /**
+   * Creates a D616 roll with the given options and creates a chat message with the result/roll-info.
+   *
+   * @param {object} options - The options for creating the roll.
+   * @param {string} options.rollType - The type of roll (stat, skill, sanity, damage, etc).
+   * @param {number} options.modifier - The modifier for the roll.
+   * @param {string} options.ability - The key of the ability to use as a modifier for this roll, e.g. "melee" or "ego".
+   * @param {number} options.edges - The number of edges for the roll.
+   * @param {number} options.troubles - The number of troubles for the roll.
+   * @param {Actor} options.actor - The actor that the roll originates from.
+   * @return {Promise<void>} A promise that resolves when the roll and chat message have been created.
+   */
+  static async createD616Roll(options) {
+    const { rollType, modifier, ability, edges, troubles, actor } = options;
+
+    // Create the d616 roll
+    const roll = new D616(
+      "", // The formula is hard-coded in the constructor, so we just need to pass a dummy value.
+      {},
+      { rollType, modifier, ability, edges, troubles, actor },
+    );
+
+    // Actually roll the dice, prompting for a dialog if requested.
+    const rollConfirm = await roll.evaluate();
+    if (!rollConfirm) return;
+
+    // Create the chat message.
+    const message = await roll.toMessage({
+      speaker: ChatMessage.getSpeaker(),
+    });
+
+    // If we have troubles and the user specifies, reroll them automatically.
+    const rerollTroublesSetting = game.settings.get(
+      game.system.id,
+      "autoRerollTroubles",
+    );
+    if (roll.edgesAndTroubles < 0 && rerollTroublesSetting) {
+      // If using 3d dice, wait for the original message's animation to finish before automatically rerolling.
+      if (game.dice3d)
+        await game.dice3d.waitFor3DAnimationByMessageID(message.id);
+      await roll.automaticallyRerollTroubles(message);
+    }
+  }
+
   prepareChatTemplateData() {
     let rollTitleSlug = `MVRPG.sheets.superSheet.abilities.${this.ability}`;
     if (this.type === "initiative") rollTitleSlug = "MVRPG.rolls.initiative";

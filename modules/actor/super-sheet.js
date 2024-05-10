@@ -152,34 +152,16 @@ export default class SuperSheet extends ActorSheet {
         modifier = actorData.abilities[ability].value;
         break;
     }
+    const { edges, troubles } = actorData.abilities[ability];
 
-    // Create the d616 roll
-    const roll = new D616(
-      "", // The formula is hard-coded in d616.js, so we just need to pass a dummy value.
-      {},
-      { rollType, modifier, ability, actor: this.actor },
-    );
-
-    // Actually roll the dice, prompting for a dialog if requested.
-    const rollConfirm = await roll.evaluate();
-    if (!rollConfirm) return;
-
-    // Create the chat message.
-    const message = await roll.toMessage({
-      speaker: ChatMessage.getSpeaker(),
+    return D616.createD616Roll({
+      rollType,
+      ability,
+      modifier,
+      edges,
+      troubles,
+      actor: this.actor,
     });
-
-    // If we have troubles and the user specifies, reroll them automatically.
-    const rerollTroublesSetting = game.settings.get(
-      game.system.id,
-      "autoRerollTroubles",
-    );
-    if (roll.edgesAndTroubles < 0 && rerollTroublesSetting) {
-      // If using 3d dice, wait for the original message's animation to finish before automatically rerolling.
-      if (game.dice3d)
-        await game.dice3d.waitFor3DAnimationByMessageID(message.id);
-      await roll.automaticallyRerollTroubles(message);
-    }
   }
 
   async showConfig() {
