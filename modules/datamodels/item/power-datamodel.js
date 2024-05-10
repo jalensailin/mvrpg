@@ -49,11 +49,6 @@ export default class PowerDataModel extends foundry.abstract.TypeDataModel {
         nullable: false,
         initial: 0,
       }),
-      isAttack: new fields.BooleanField({
-        required: true,
-        nullable: false,
-        initial: false,
-      }),
       roll: new fields.EmbeddedDataField(ItemRollSchema),
       description: new fields.HTMLField({
         required: true,
