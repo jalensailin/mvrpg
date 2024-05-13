@@ -290,6 +290,7 @@ export default class D616 extends Roll {
       edges,
       troubles,
       actor: this.actor,
+      item,
     });
   }
 
@@ -311,6 +312,7 @@ export default class D616 extends Roll {
     // Prepare data for chat.
     return {
       rollTitle: game.i18n.localize(rollTitleSlug),
+      rollSource: this.item?.name,
       dice: this.finalResults,
       hasEvaluatedRerolls: this.rerolls.history.length > 0,
       diceHistory: diceHistoryLabels,
@@ -388,6 +390,7 @@ export default class D616 extends Roll {
         modifier: this.modifier,
         isNonCombatRoll: this.type === "nonCombat",
         rollKey: game.i18n.localize(rollKey),
+        rollSource: this.item?.name,
         edges: this.edges,
         troubles: this.troubles,
       },

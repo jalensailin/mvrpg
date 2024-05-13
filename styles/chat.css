@@ -17,6 +17,15 @@
   padding: 1px;
 }
 
+.roll-source-header {
+  font-size: var(--font-size-14);
+  font-weight: normal;
+  text-align: center;
+  color: white;
+  background-color: var(--venom-black);
+  padding-bottom: 2px;
+}
+
 .edges-and-troubles {
   border-bottom-style: solid;
   border-bottom-width: 2px;

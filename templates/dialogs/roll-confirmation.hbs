@@ -5,6 +5,11 @@
       <div class="mvrpg-dialog-header">
         {{localize "MVRPG.dialog.rollConfirm.title"}}
       </div>
+      {{#if rollSource}}
+        <div class="roll-source-header">
+          {{rollSource}}
+        </div>
+      {{/if}}
 
       <div class="mvrpg-dialog-item flexrow">
         <div class="mvrpg-dialog-label">{{rollKey}} {{#if isNonCombatRoll}}({{localize "MVRPG.rolls.nonCombat"}}){{/if}}</div>

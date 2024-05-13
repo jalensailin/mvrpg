@@ -3,6 +3,11 @@
   <div class="roll-label panel-header panel-title">
     {{rollTitle}} {{#if isNonCombatRoll}}({{localize "MVRPG.rolls.nonCombat"}}){{/if}}
   </div>
+  {{#if rollSource}}
+    <div class="roll-source-header">
+      {{rollSource}}
+    </div>
+  {{/if}}
   {{#if hasEdgesOrTroubles}}
     <div class="edges-and-troubles">
       <a class="reroll-history" data-tooltip="{{> (systemFilePath "templates/chat/reroll-history-tooltip.hbs")}}">
