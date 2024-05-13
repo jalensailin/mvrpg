@@ -32,6 +32,12 @@
     }
   ],
   "socket": false,
+  "flags": {
+    "hotReload": {
+      "extensions": ["css", "hbs", "json"],
+      "paths": ["styles", "templates", "lang"]
+    }
+  },
   "initiative": "3d6",
   "gridDistance": 5,
   "gridUnits": "ft",
