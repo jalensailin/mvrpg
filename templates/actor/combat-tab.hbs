@@ -19,18 +19,18 @@
     <div class="combat-panel-title">{{localize "MVRPG.sheets.superSheet.dataHeaders.actions"}}</div>
     <div class="rollable-list doc-list flexrow">
       {{#each rollableItems as |item|}}
-        <div class="rollable-item doc-entry flexrow">
-          <a class="doc-action doc-icon" data-action="toChat" data-doc-id="{{item.id}}" data-tooltip="{{localize "MVRPG.sheets.generic.tooltips.toChat"}}">
+        <div class="rollable-item doc-entry flexrow" data-item-id="{{item.id}}">
+          <a class="doc-action doc-icon" data-action="toChat" data-tooltip="{{localize "MVRPG.sheets.generic.tooltips.toChat"}}">
             <img src="{{item.img}}" title="{{item.name}}"/>
             <i class="overlay fa-solid fa-comment"></i>
           </a>
-          <a class="doc-action doc-data flexcol" data-action="edit" data-doc-id="{{item.id}}" data-tooltip="{{localize "MVRPG.sheets.generic.tooltips.edit"}}">
+          <a class="doc-action doc-data flexcol" data-action="edit" data-tooltip="{{localize "MVRPG.sheets.generic.tooltips.edit"}}">
             <div class="doc-name">
               {{item.name}}
             </div>
           </a>
           <div class="action-icons flexrow">
-            <a class="doc-action rollable" data-doc-id="{{item.id}}" data-tooltip="{{localize "MVRPG.sheets.superSheet.tooltips.rollFromItem"}}">
+            <a class="doc-action rollable" data-tooltip="{{localize "MVRPG.sheets.superSheet.tooltips.rollFromItem"}}">
               <i class="fa-solid fa-dice"></i>
             </a>
           </div>

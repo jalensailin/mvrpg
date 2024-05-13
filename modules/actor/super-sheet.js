@@ -3,6 +3,7 @@
 import D616 from "../rolls/d616.js";
 import EffectUtils from "../effects/effects.js";
 import { MVSettings } from "../utils/settings.js";
+import MVUtils from "../utils/utils.js";
 
 export default class SuperSheet extends ActorSheet {
   /** @override */
@@ -83,6 +84,13 @@ export default class SuperSheet extends ActorSheet {
     html
       .find(".effect-action")
       .click((event) => EffectUtils.onEffectAction(this.actor, event));
+
+    // Handle Dragging of Documents.
+    const handler = (ev) => this._onDragStart(ev);
+    html.find(".doc-entry").each((i, element) => {
+      element.setAttribute("draggable", true);
+      element.addEventListener("dragstart", handler, false);
+    });
   }
 
   /**
@@ -92,8 +100,9 @@ export default class SuperSheet extends ActorSheet {
    * @return {void}
    */
   onItemAction(event) {
-    const { action, docId, docType } = event.currentTarget.dataset;
-    const doc = this.actor.items.get(docId);
+    const { action, docType } = event.currentTarget.dataset;
+    const itemId = MVUtils.GetEventDatum(event, "data-item-id");
+    const doc = this.actor.items.get(itemId);
 
     switch (action) {
       case "create":
@@ -144,8 +153,8 @@ export default class SuperSheet extends ActorSheet {
    */
   async onRoll(event) {
     let { rollType, ability } = event.currentTarget.dataset;
-    const { docId } = event.currentTarget.dataset;
-    const item = this.actor.items.get(docId);
+    const itemId = MVUtils.GetEventDatum(event, "data-item-id");
+    const item = this.actor.items.get(itemId);
     const actorData = this.actor.system;
 
     // If roll is generated from an item, use the item's roll data.
