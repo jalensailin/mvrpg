@@ -1,4 +1,4 @@
-/* globals fromUuidSync Roll renderTemplate game Dialog foundry FormDataExtended Die $ mergeObject ChatMessage Hooks */
+/* globals fromUuidSync Roll renderTemplate game Dialog foundry FormDataExtended Die $ mergeObject ChatMessage Hooks ui */
 
 import { MVSettings } from "../utils/settings.js";
 import MultiverseDie from "./multiverse-die.js";
@@ -255,6 +255,42 @@ export default class D616 extends Roll {
         await game.dice3d.waitFor3DAnimationByMessageID(message.id);
       await roll.automaticallyRerollTroubles(message);
     }
+  }
+
+  /**
+   * Prepares the data for a D616 roll from a given item.
+   *
+   * @param {Actor} actor - The actor object.
+   * @param {string} itemId - The ID of the item.
+   * @return {D616} The created D616 roll.
+   */
+  static async createItemRoll(actor, itemId) {
+    const item = actor.items.get(itemId);
+    const actorData = actor.system;
+
+    const rollType = item.system.roll.type;
+    const { ability } = item.system.roll;
+
+    let modifier =
+      rollType === "nonCombat"
+        ? actorData.abilities[ability].nonCombatScore
+        : actorData.abilities[ability].value;
+    let { edges, troubles } = actorData.abilities[ability];
+
+    // Add item's roll data to actor's data.
+    modifier += item.system.roll.bonus;
+    edges += item.system.roll.edges;
+    troubles += item.system.roll.troubles;
+
+    // Dispatch the roll.
+    return D616.createD616Roll({
+      rollType,
+      ability,
+      modifier,
+      edges,
+      troubles,
+      actor: this.actor,
+    });
   }
 
   prepareChatTemplateData() {

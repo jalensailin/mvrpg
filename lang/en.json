@@ -44,6 +44,8 @@
   "MVRPG.effects.categories.focus": "Focus",
   "MVRPG.effects.categories.speed": "Speed",
 
+  "MVRPG.notifications.macro.itemNotFound": "Item not found on this actor.",
+
   "MVRPG.rolls.d616": "d616",
   "MVRPG.rolls.damage": "Damage",
   "MVRPG.rolls.edges": "Edges",

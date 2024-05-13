@@ -91,6 +91,12 @@ export default class SuperSheet extends ActorSheet {
       element.setAttribute("draggable", true);
       element.addEventListener("dragstart", handler, false);
     });
+
+    // Handle dragging of abilities.
+    // html.find(".ability-name").each((i, element) => {
+    //   element.setAttribute("draggable", true);
+    //   element.addEventListener("dragstart", handler, false);
+    // });
   }
 
   /**
@@ -152,16 +158,11 @@ export default class SuperSheet extends ActorSheet {
    * @return {Promise} A promise that resolves when the roll event is handled
    */
   async onRoll(event) {
-    let { rollType, ability } = event.currentTarget.dataset;
     const itemId = MVUtils.GetEventDatum(event, "data-item-id");
-    const item = this.actor.items.get(itemId);
-    const actorData = this.actor.system;
+    if (itemId) return D616.createItemRoll(this.actor, itemId);
 
-    // If roll is generated from an item, use the item's roll data.
-    if (item) {
-      rollType = item.system.roll.type;
-      ability = item.system.roll.ability;
-    }
+    const { rollType, ability } = event.currentTarget.dataset;
+    const actorData = this.actor.system;
 
     let modifier;
     switch (rollType) {
@@ -175,14 +176,7 @@ export default class SuperSheet extends ActorSheet {
         modifier = actorData.abilities[ability].value;
         break;
     }
-    let { edges, troubles } = actorData.abilities[ability];
-
-    // Add item's roll data to actor's data.
-    if (item) {
-      modifier += item.system.roll.bonus;
-      edges += item.system.roll.edges;
-      troubles += item.system.roll.troubles;
-    }
+    const { edges, troubles } = actorData.abilities[ability];
 
     // Dispatch the roll.
     return D616.createD616Roll({

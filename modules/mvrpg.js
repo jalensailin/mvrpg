@@ -14,6 +14,7 @@ import MultiverseDie from "./rolls/multiverse-die.js";
 import MVUtils from "./utils/utils.js";
 import MVEffectConfig from "./effects/effect-config.js";
 import MVEffect from "./effects/effects.js";
+import createItemMacro from "./utils/macros.js";
 
 // CONFIG.debug.hooks = true;
 
@@ -72,3 +73,5 @@ Hooks.once("init", async () => {
   registerHelpers();
   registerSettings();
 });
+
+Hooks.on("hotbarDrop", (bar, data, slot) => createItemMacro(data, slot));
