@@ -419,6 +419,27 @@
         }
       }
     }
+
+    .rollable-section {
+      .rollable-list {
+        flex-wrap: wrap;
+
+        .rollable-item {
+          flex: 0 0 calc(50% - 1px);
+        }
+
+        /** override */
+        .doc-icon {
+          width: 1.5rem;
+          height: 1.5rem;
+          flex: 0 0 1.5rem;
+
+          .overlay {
+            font-size: 1rem;
+          }
+        }
+      }
+    }
   }
 
   .identity-panel {

@@ -17,9 +17,9 @@
   </section>
   <section class="rollable-section flexcol">
     <div class="combat-panel-title">{{localize "MVRPG.sheets.superSheet.dataHeaders.actions"}}</div>
-    <div class="rollable-list flexcol">
+    <div class="rollable-list doc-list flexrow">
       {{#each rollableItems as |item|}}
-        <div class="rollable-item flexrow">
+        <div class="rollable-item doc-entry flexrow">
           <a class="doc-action doc-icon" data-action="toChat" data-doc-id="{{item.id}}" data-tooltip="{{localize "MVRPG.sheets.generic.tooltips.toChat"}}">
             <img src="{{item.img}}" title="{{item.name}}"/>
             <i class="overlay fa-solid fa-comment"></i>
@@ -30,13 +30,8 @@
             </div>
           </a>
           <div class="action-icons flexrow">
-            {{#if item.system.roll.hasRoll}}
-              <a class="doc-action rollable" data-doc-id="{{item.id}}" data-tooltip="{{localize "MVRPG.sheets.superSheet.tooltips.rollFromItem"}}">
-                <i class="fa-solid fa-dice"></i>
-              </a>
-            {{/if}}
-            <a class="doc-action doc-delete" data-action="delete" data-doc-id="{{item.id}}" data-tooltip="{{localize "MVRPG.sheets.generic.tooltips.delete"}}">
-              <i class="fa-solid fa-trash"></i>
+            <a class="doc-action rollable" data-doc-id="{{item.id}}" data-tooltip="{{localize "MVRPG.sheets.superSheet.tooltips.rollFromItem"}}">
+              <i class="fa-solid fa-dice"></i>
             </a>
           </div>
         </div>
