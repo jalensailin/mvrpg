@@ -122,6 +122,12 @@ const MVRPG = {
     movement: "MVRPG.sheets.generic.actions.movement",
     reaction: "MVRPG.sheets.generic.actions.reaction",
   },
+
+  teamManeuvers: {
+    defensive: "MVRPG.sheets.superSheet.teamManeuvers.defensive",
+    offensive: "MVRPG.sheets.superSheet.teamManeuvers.offensive",
+    rally: "MVRPG.sheets.superSheet.teamManeuvers.rally",
+  },
 };
 
 export default MVRPG;

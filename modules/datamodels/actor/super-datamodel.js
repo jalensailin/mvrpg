@@ -3,6 +3,7 @@
 import AbilitySchema from "./ability-schema.js";
 import IdentitySchema from "./identity-schema.js";
 import LifepoolSchema from "./lifepool-schema.js";
+import TeamManeuverSchema from "./team-maneuver-schema.js";
 
 export default class SuperDataModel extends foundry.abstract.TypeDataModel {
   static defineSchema() {
@@ -125,6 +126,7 @@ export default class SuperDataModel extends foundry.abstract.TypeDataModel {
           initial: false,
         }),
       }),
+      teamManeuver: new fields.EmbeddedDataField(TeamManeuverSchema),
       identity: new fields.EmbeddedDataField(IdentitySchema),
     };
   }

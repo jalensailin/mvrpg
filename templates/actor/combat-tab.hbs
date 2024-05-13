@@ -38,4 +38,19 @@
       {{/each}}
     </div>
   </section>
+  <section class="team-manuever-section flexcol">
+    <div class="combat-panel-title">{{localize "MVRPG.sheets.superSheet.dataHeaders.teamManeuver"}}</div>
+    <div class="team-manuever-data flexrow">
+      {{#select actor.system.teamManeuver.choice}}
+        <select class="team-manuever-select" name="system.teamManeuver.choice">
+          {{#each (mvGetConfigObj "teamManeuvers") as |i18nString maneuver|}}
+            <option value="{{maneuver}}">{{localize i18nString}}</option>
+          {{/each}}
+        </select>
+      {{/select}}
+      <input class="team-maneuver-average-rank" name="system.teamManeuver.averageRank" type="number" value="{{actor.system.teamManeuver.averageRank}}">
+      <div class="team-maneuver-level">{{actor.system.teamManeuver.maneuverLevel}}</div>
+      <div class="team-maneuver-cost">{{actor.system.teamManeuver.focusCost}}</div>
+    </div>
+  </section>
 </div>
