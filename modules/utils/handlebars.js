@@ -2,6 +2,7 @@
 
 import MVRPG from "../config.js";
 import MVEffect from "../effects/effects.js";
+import Logger from "./logger.js";
 
 /**
  * Define a set of template paths to pre-load
@@ -136,7 +137,7 @@ export async function registerHelpers() {
         return mathArgs.reduce((a, b) => a * b, 1);
       }
       default:
-        console.error(`Not a Math function: ${mathFunction}`);
+        Logger.debug(`Not a Math function: ${mathFunction}`);
         return "null";
     }
   });

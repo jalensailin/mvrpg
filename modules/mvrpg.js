@@ -15,11 +15,12 @@ import MVUtils from "./utils/utils.js";
 import MVEffectConfig from "./effects/effect-config.js";
 import MVEffect from "./effects/effects.js";
 import createItemMacro from "./utils/macros.js";
+import Logger from "./utils/logger.js";
 
 // CONFIG.debug.hooks = true;
 
 Hooks.once("init", async () => {
-  console.log("I am GROOT");
+  Logger.log("I am GROOT");
 
   // Register rolls and dice.
   Object.values(MVRolls).forEach((cls) => CONFIG.Dice.rolls.push(cls));

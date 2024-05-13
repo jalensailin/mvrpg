@@ -1,6 +1,7 @@
 /* globals DiceTerm */
 
 import MultiverseDie from "../rolls/multiverse-die.js";
+import Logger from "./logger.js";
 
 export default class MVUtils {
   /**
@@ -22,7 +23,7 @@ export default class MVUtils {
       // Climb up the parents
       currentTarget = currentTarget.parentElement;
       if (currentTarget === null) {
-        console.error(`Could not find ${datum}`);
+        Logger.debug(`Could not find ${datum}`);
         return undefined;
       }
       attribute = currentTarget.getAttribute(datum);

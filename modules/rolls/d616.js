@@ -1,5 +1,6 @@
-/* globals fromUuidSync Roll renderTemplate game Dialog foundry FormDataExtended Die $ mergeObject ChatMessage Hooks ui */
+/* globals fromUuidSync Roll renderTemplate game Dialog foundry FormDataExtended Die $ mergeObject ChatMessage Hooks */
 
+import Logger from "../utils/logger.js";
 import { MVSettings } from "../utils/settings.js";
 import MultiverseDie from "./multiverse-die.js";
 
@@ -168,7 +169,7 @@ export default class D616 extends Roll {
     if (!MVSettings.skipRollDialog()) {
       const rollConfirm = await this.confirmRoll().catch(() => {
         // eslint-disable-next-line no-console
-        console.log("Roll cancelled");
+        Logger.log("Roll cancelled");
         return false;
       });
       if (!rollConfirm) return null;
@@ -196,7 +197,7 @@ export default class D616 extends Roll {
     const content = await renderTemplate(this.template, chatData).catch(
       (error) => {
         // eslint-disable-next-line no-console
-        console.error(
+        Logger.debug(
           "No template was supplied for this d616 roll. Falling back to default template.",
           error,
         );
@@ -204,6 +205,7 @@ export default class D616 extends Roll {
     );
 
     // Assign content if not already defined in the messageData.
+    // eslint-disable-next-line no-param-reassign
     if (content && !messageData.content) messageData.content = content;
 
     return super.toMessage(messageData, {
