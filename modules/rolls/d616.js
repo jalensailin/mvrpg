@@ -291,7 +291,7 @@ export default class D616 extends Roll {
       modifier,
       edges,
       troubles,
-      actor: this.actor,
+      actor,
       item,
     });
   }
