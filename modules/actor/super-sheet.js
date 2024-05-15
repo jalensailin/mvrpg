@@ -97,6 +97,8 @@ export default class SuperSheet extends ActorSheet {
     //   element.setAttribute("draggable", true);
     //   element.addEventListener("dragstart", handler, false);
     // });
+
+    html.find(".toggle-maneuver").click(() => this.toggleManeuver());
   }
 
   /**
@@ -232,5 +234,10 @@ export default class SuperSheet extends ActorSheet {
       speaker: ChatMessage.getSpeaker({ actor: this.actor }),
     };
     ChatMessage.create(chatData);
+  }
+
+  toggleManeuver() {
+    const { active } = this.actor.system.teamManeuver;
+    this.actor.update({ "system.teamManeuver": { active: !active } });
   }
 }

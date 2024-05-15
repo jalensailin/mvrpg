@@ -6,6 +6,11 @@ export default class TeamManeuverSchema extends foundry.abstract.TypeDataModel {
   static defineSchema() {
     const { fields } = foundry.data;
     return {
+      active: new fields.BooleanField({
+        required: true,
+        nullable: false,
+        initial: false,
+      }),
       choice: new fields.StringField({
         required: true,
         nullable: false,

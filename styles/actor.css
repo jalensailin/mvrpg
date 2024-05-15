@@ -440,6 +440,47 @@
         }
       }
     }
+
+    .team-maneuver-section {
+      .team-maneuver-item.maneuver-active {
+        box-shadow: 0 0 1em 0.5em var(--thanos-purple);
+      }
+      .team-maneuver-item {
+        margin: 3px;
+
+        text-align: center;
+        place-content: center;
+
+        background-color: var(--background-white);
+
+        border-style: solid;
+        border-width: 2px;
+        border-radius: 5px;
+
+        .team-maneuver-data {
+          place-items: center;
+
+          :not(.toggle-maneuver, .toggle-maneuver i) {
+            font-size: var(--sub-info-text-size);
+          }
+        }
+
+        .team-maneuver-labels {
+          flex: 0;
+
+          place-content: center;
+          place-items: center;
+
+          width: 100%;
+          border-radius: 0 0 2px 2px;
+          background-color: var(--thanos-purple);
+
+          .team-maneuver-select {
+            height: unset;
+          }
+        }
+      }
+    }
   }
 
   .identity-panel {
