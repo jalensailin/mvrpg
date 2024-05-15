@@ -1,5 +1,5 @@
 <div class="tab combat-panel flexcol" data-group="primary" data-tab="combat">
-  <section class="damage-section flexcol">
+  <section class="damage-section">
     <div class="combat-panel-title">{{localize "MVRPG.sheets.superSheet.dataHeaders.damageMultipliers"}}</div>
     <div class="damage-multiplier-list flexrow">
       {{#each damageData as |abilityData|}}
@@ -15,7 +15,7 @@
       {{/each}}
     </div>
   </section>
-  <section class="rollable-section flexcol">
+  <section class="rollable-section">
     <div class="combat-panel-title">{{localize "MVRPG.sheets.superSheet.dataHeaders.actions"}}</div>
     <div class="rollable-list doc-list flexrow">
       {{#each rollableItems as |item|}}
@@ -38,7 +38,7 @@
       {{/each}}
     </div>
   </section>
-  <section class="team-maneuver-section flexcol">
+  <section class="team-maneuver-section">
     <div class="combat-panel-title">{{localize "MVRPG.sheets.superSheet.dataHeaders.teamManeuver"}}</div>
     <div class="team-maneuver-item flexcol {{#if actor.system.teamManeuver.active}}maneuver-active{{/if}}">
       <div class="team-maneuver-data flexrow">

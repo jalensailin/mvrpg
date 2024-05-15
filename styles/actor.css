@@ -354,6 +354,7 @@
 
 /* Tabbed panel */
 .tabbed-panel {
+  position: relative;
   grid-area: tabbed-panel;
 
   .powers-panel {
@@ -382,6 +383,7 @@
 
   .combat-panel {
     text-align: center;
+    height: 100%;
 
     .combat-panel-title {
       color: white;
@@ -421,6 +423,15 @@
     }
 
     .rollable-section {
+      flex: 10;
+      overflow-y: auto;
+
+      .combat-panel-title {
+        position: sticky;
+        top: 0;
+        z-index: 1;
+      }
+
       .rollable-list {
         flex-wrap: wrap;
 
