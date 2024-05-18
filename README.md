@@ -1,62 +1,98 @@
-# Info for Testers
+# Multiverse RPG
 
-## Disclaimer
+[![ko-fi](https://ko-fi.com/img/githubbutton_sm.svg)](https://ko-fi.com/W7W3QKE3Q)
 
-This system is still a work in-progress. This README page is intended for people who wish to test the system out for me, but it is not yet ready for the general public to use in their home games. This page will be updated with a better README when that time comes.
+![Supported Foundry Versions](https://img.shields.io/endpoint?url=https%3A%2F%2Ffoundryshields.com%2Fversion%3Fstyle%3Dplastic%26url%3Dhttps%3A%2F%2Fraw.githubusercontent.com%2Fjalensailin%2Fmvrpg%2Fmain%2Fsystem.json)
 
-### Install Instructions
+This unofficial system provides a way to play the [Marvel Multiverse RPG](https://www.marvel.com/rpg) in [Foundry VTT](https://foundryvtt.com). Note, this system is independently made, and fully unofficial, with no association with Marvel or associated companies. Also note, I do not provide any content, such as items, powers, traits, tags, pregen character sheets, etc.
 
-- Open Foundry and navigate to the **Systems** tab.
-- Click "Install System" at the top of this tab.
-- Navigate to the bottom of the Install System window, and you will see a text-box labeled "Manifest URL"
-- Paste the following link into that text-box and press the "Install" button.
-  - Manifest Link: <https://raw.githubusercontent.com/jalensailin/mvrpg/main/system.json>
+## Installing the System
 
-### Update Instructions
+### Via Foundry's File Browser (Recommended)
 
-- Typically, you can update via the normal Foundry path, i.e. clicking the 'circle-arrows' button in the bottom-left corner of the MV RPG's system card, under the Game Systems tab.
-  - This will only work, however, if I remembered to increment the version number in `system.json` along with my most recent changes.
-  - If you see that I have made changes to the system, and the normal update path isn't working, instead, simply uninstall and reinstall the system from the above link.
+1. In Foundry, navigate to the "Game Systems" tab and click the "Install System" button.
+2. Search for Multiverse RPG and click the "Install" button next to it.
 
-### Using Github
+### Via Manifest Link
 
-1. Go to [Github](https://github.com) and make an account if you do not already have one.
-2. Navigate to the [project page](https://github.com/jalensailin/mvrpg), also called the repository or 'repo':
-3. There you will find multiple sections across the top of repo, the most important section for you is the "Issues" section.
-4. Whenever you find a bug or other issue, create an Issue for it in the Issues tab.
-   - Give the issue a descriptive title
-   - Expand on your issue in the Description.
-   - Descriptions should include the following:
-     - Steps to reproduce the issue.
-     - **Screenshots** (not copy/paste) of any errors in the console (f12) encountered during the issue.
-     - Further details on what makes this an issue (describe the bug, rules issue, style issue, expected behavior, etc.).
-     - For example, "The rules from the book work like ABC but in the system it currently works like XYZ. I think its possible you misinterpreted that rule. To see what I mean, try the following steps..."
-   - Submit your issue and I will give it appropriate labels/priority for tracking purposes.
-   - I will respond to the issue with my thoughts, expectations, ideas for solving it, etc.
-   - Once issues have been solved in a satisfactory way, or otherwise deemed not-relevant, they will be closed and we will be one step closer to initial release 😀.
+1. In Foundry, navigate to the "Game Systems" tab and click the "Install System" button.
+2. Copy and paste the following link <https://github.com/jalensailin/mvrpg/releases/latest/download/system.json> into the "Manifest URL" field located at the bottom of the "Install System" window.
 
-### Testing The System
+### Manually
 
-- Download the system and make a new world.
-- Press F12 to open the console and keep it open while you test. Make note of any errors you encounter.
-- Play around with the system's offerings: Make an Actor, make Items, roll some dice, try it with Dice So Nice and see how that works, etc.
-- See what is easy to use, see what is difficult to use, what's obvious, what isn't.
-- Feel free to ask me questions or request clarifications via Discord.
-- Report anything that seems like a potential issue on the [Github project page](https://github.com/jalensailin/mvrpg).
-  - Please feel free to raise an issue about anything, but understand that the goal here is to get an initial release, so people can start playing soon. In that vein, I will sort Issues by priority.
-  - High priority:
-    - Game-breaking bugs
-    - Support for game rules which are currently missing and are required for smoothly playing the game, or are otherwise incorrect.
-    - Simple feature requests that greatly improve quality-of-life and are easy to implement.
-  - Medium priority:
-    - Minor bugs that don't impact gameplay
-    - Support for rules that help smooth out gameplay or track certain things, but aren't strictly necessary and wouldn't take a lot of work to implement
-  - Low Priority:
-    - Fancy feature requests that may require a lot of work and/or aren't really necessary for an initial release.
-    - Support for rules that are pretty easy to track manually and/or would take a long time to implement.
-- Things that are currently missing/incomplete
-  - Combat tab
-  - Team Maneuvers
-  - Making it obvious to a layperson what properties can be modified with Active Effects
-  - Combat vs Non-combat rolls (currently there is no distinction)
-  - I'm sure there are a bunch of other things that you will hopefully help me identify
+1. Download the Multiverse RPG system from its [latest release](https://github.com/jalensailin/mvrpg/releases/latest/download/mvrpg.zip).
+2. Unzip the downloaded file into the following data path in your Foundry VTT user-data folder: `data/systems`.
+
+## Character Sheet
+
+You can track all of a character's properties here. Many properties you can change by directly changing their value on the sheet. The text of these properties change to a red color when mousing over them. Other properties must be adjusted via Active Effect (see a few sections below). In the case of changing speeds, they have their own config window (see next section).
+
+![Character Sheet](./assets/readme/character-sheet.png)
+
+### Initiative/Speed Dialog
+
+To adjust initiative edge and/or speeds, click the gear icon in the middle of the top-right panel of the character sheet.
+
+![Initiative/Speed Config](./assets/readme/init-speed-config.png)
+
+### Team Maneuvers
+
+You can track team maneuvers at the bottom of the Combat tab. You can press the `handshake` icon to activate/deactivate a team maneuver, however there is currently no mechanical effect (aka, focus isn't reduced and effects/abilities are not applied; it is currently just a visual indicator). There are plans to enhance the functionality in the future.
+
+![Team Maneuver](./assets/readme/team-maneuver.gif)
+
+## Item Sheets
+
+Define/adjust the properties of powers/traits/tags in the item sheet. Currently, only Power items have a Settings tab. If the item is a Power and has a roll associated with it, click the checkbox next to `Has Roll?`. Then, adjust the type of roll and whether or not it has a bonus/penalty, edges, and/or troubles.
+
+![Item Sheet](./assets/readme/power-sheet.png)
+
+## Rolling the D616
+
+### Roll Dialog
+
+To roll, click the name of one of the abilites, or click the "dice" icon on a power that has a roll associated with it. This will open up a dialog prompt, where you can customize the roll with edges/troubles. **Note**, this dialog can be skipped with ctrl-click (or if you want this behavior by default, you can adjust in the system settings).
+
+![Roll Dialog](./assets/readme/roll-dialog.png)
+
+### Chat Card
+
+Once rolled, the result will be displayed in the chat with a custom chat card.
+
+![Chat Card](./assets/readme/chat-card.png)
+
+If the roll has edges and/or troubles, the total will be automatically calculated and displayed on the card. To reroll, click the die that you want to reroll. By default, the system automatically rolls all Troubles but this can be turned off in the settings if you prefer to do it manually. Note, the GM can also undo the last reroll(s) if a mistake was made.
+
+See the reroll history by hovering over the icon in the top-left of the chat card.
+
+![Chat Card Features](./assets/readme/chat-card-features.gif)
+
+### Damage
+
+Calculate damage by clicking the "damage" icon in the bottom-right of the chat card. This will output a damage card to chat with the correct calculations.
+
+![Damage Card](./assets/readme/damage-card.gif)
+
+## Active Effects
+
+Active Effects are a built-in way to add modifiers to a character's properties. These can be created on a character sheet directly, or on an item (which will apply its effect to an actor that owns it).
+
+![Effect Tabs](./assets/readme/effect-tabs.png)
+
+To create an Active Effect, press the `+` icon in the header of the effect tab on either the item or actor sheet (see above). The following window will open automatically:
+
+![Empty AE Config](./assets/readme/empty-ae-config.png)
+
+Then, press the button to add a 'change' to this effect. When you do, a blank 'change' will be added to the effect's config window. On the left side, you will see a drop-down menu which will help you select the property you want to modify, without needing to know its data path. The properties listed in the drop-down menu are the ones I have deemed generally safe to modify. If you wish to modify a property that isn't in the drop-down list, you may do so at your own risk by clicking the `keyboard` icon beside the drop-down menu, which will switch it to a text-input.
+
+![Full AE Config](./assets/readme/full-ae-config.png)
+
+Note: In the `Effect Value` field, you can input a number or an actor property using the `@` symbol, like `@system.abilitires.melee.value`. You should even be able to combine them like `@system.abilities.melee.value + 10`.
+
+## Future Work
+
+- Add support for Foundry v12
+- Improve Team Maneuver functionality.
+- Add an item-type for Weapons/Generic Gear.
+- Add an item-type for Occupations and Origins.
+- See the [Issues Page](https://github.com/jalensailin/mvrpg/issues) for a more extensive list of planned features and known bugs.
