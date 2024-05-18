@@ -1,12 +1,22 @@
 import MVEffect from "./effects.js";
 
-/* global game Dialog renderTemplate $ ActiveEffectConfig */
+/* global game Dialog renderTemplate $ ActiveEffectConfig mergeObject duplicate */
 
 /**
  * @param {*} html
  * @override
  */
 export default class MVEffectConfig extends ActiveEffectConfig {
+  /**
+   * Open AE config on the "effects" tab.
+   * @override
+   */
+  static get defaultOptions() {
+    const [tabs] = duplicate(super.defaultOptions.tabs);
+    tabs.initial = "effects";
+    return mergeObject(super.defaultOptions, { tabs: [tabs] });
+  }
+
   /**
    * @param {*} html
    * @override

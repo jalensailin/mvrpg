@@ -17,12 +17,12 @@ export default class SuperSheet extends ActorSheet {
         {
           navSelector: ".sheet-tabs",
           contentSelector: ".sheet-body",
-          initial: "powers",
+          initial: "combat",
         },
         {
           navSelector: ".powers-tabs",
           contentSelector: ".powers-body",
-          initial: "tags",
+          initial: "powers",
         },
       ],
       scrollY: [".editor-content"],
