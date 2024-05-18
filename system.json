@@ -1,8 +1,9 @@
 {
   "id": "mvrpg",
-  "title": "MV RPG",
-  "description": "An unofficial (and in-progress) system for playing Marvel Multiverse RPG in Foundry VTT. Note: No game assets are provided. All characters information must be inputted manually.",
-  "version": "0.7.1",
+  "title": "Multiverse RPG",
+  "description": "An unofficial (and in-progress) system for playing Marvel Multiverse RPG in Foundry VTT. Note: No game assets are provided. All character information must be inputted manually.",
+  "version": "1.0.0",
+  "license": "MIT",
   "compatibility": {
     "minimum": "11",
     "verified": "11",
