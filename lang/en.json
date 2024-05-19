@@ -1,5 +1,6 @@
 {
   "MVRPG.chat.contextOptions.modifyEdgesTroubles": "Modify Edges/Troubles",
+  "MVRPG.combatant.isFantastic": "Fantastic Result on Initiative.",
 
   "MVRPG.dataModels.abilities.nonCombatBonus": "Non-Combat Bonus",
   "MVRPG.dataModels.abilities.defenseBonus": "Defense Bonus",

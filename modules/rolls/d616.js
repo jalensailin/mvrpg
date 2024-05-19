@@ -151,6 +151,10 @@ export default class D616 extends Roll {
     return { dieMResult, damageMultiplier, damageModifier, total };
   }
 
+  get combatant() {
+    return fromUuidSync(this.combatantUuid);
+  }
+
   /**
    * Evaluate a roll. We override this so that any d616 roll will automatically come with
    * a dialog prompt, that can be skipped with ctrl-click.
@@ -174,7 +178,14 @@ export default class D616 extends Roll {
       });
       if (!rollConfirm) return null;
     }
-    return super.evaluate({ minimize, maximize, async });
+    const roll = await super.evaluate({ minimize, maximize, async });
+
+    // Update the initiative if applicable.
+    if (this.combatant) {
+      await roll.updateInitiative();
+    }
+
+    return roll;
   }
 
   /**
@@ -555,8 +566,12 @@ export default class D616 extends Roll {
    * with the results of the roll. Used in rerolls (and undos).
    */
   async updateInitiative() {
-    const combatant = fromUuidSync(this.combatantUuid);
-    combatant.update({ initiative: this.finalResults.total });
+    await this.combatant.setFlag(
+      game.system.id,
+      "isFantastic",
+      this.fantasticResult,
+    );
+    return this.combatant.update({ initiative: this.finalResults.total });
   }
 
   async createDamageCard(alias) {

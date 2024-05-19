@@ -1,4 +1,4 @@
-/* global Combatant */
+/* global Combatant Hooks game mergeObject */
 
 import D616 from "../rolls/d616.js";
 
@@ -25,3 +25,41 @@ export default class MVCombatant extends Combatant {
     return roll;
   }
 }
+
+/**
+ * Remove glow effect if initiative is cleared on the combatant.
+ * For the case where initiative is cleared from the "Reset Initiative" button,
+ * see combat.js.
+ */
+Hooks.on("preUpdateCombatant", (combatant, data) => {
+  if (typeof data.initiative === "undefined") return;
+  const flags = mergeObject(data.flags || {}, {
+    mvrpg: {
+      "-=isFantastic": null,
+    },
+  });
+  if (!data.initiative) data.flags = flags;
+});
+
+/**
+ * Adds a glow effect to the combatant's name/initiative if it rolled
+ * a fantastic result. Also adds a tool-tip explaining.
+ */
+Hooks.on("renderCombatTracker", (app, html) => {
+  const combatants = app.viewed.combatants.filter((c) =>
+    c.getFlag(game.system.id, "isFantastic"),
+  );
+
+  const tooltip = game.i18n.localize("MVRPG.combatant.isFantastic");
+
+  for (const combatant of combatants) {
+    const combatantEntry = html.find(`[data-combatant-id="${combatant.id}"]`);
+    const initNumber = combatantEntry.find(".token-initiative");
+
+    combatantEntry.addClass("is-fantastic");
+    initNumber.addClass("is-fantastic");
+
+    combatantEntry.find("div.token-name h4").attr("data-tooltip", tooltip);
+    initNumber.attr("data-tooltip", tooltip);
+  }
+});

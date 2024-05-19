@@ -17,6 +17,7 @@ import MVEffect from "./effects/effects.js";
 import createItemMacro from "./utils/macros.js";
 import Logger from "./utils/logger.js";
 import MVChatMessage from "./chat/chat-message.js";
+import MVCombat from "./combat/combat.js";
 
 // CONFIG.debug.hooks = true;
 
@@ -54,6 +55,7 @@ Hooks.once("init", async () => {
   CONFIG.ui.chat = MVChatLog;
   CONFIG.ChatMessage.documentClass = MVChatMessage;
   CONFIG.Combatant.documentClass = MVCombatant;
+  CONFIG.Combat.documentClass = MVCombat;
 
   // Register Actor data models.
   CONFIG.Actor.dataModels.super = SuperDataModel;

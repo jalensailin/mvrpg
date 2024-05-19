@@ -223,3 +223,20 @@ a:hover.mv-inactive-link {
   text-align: center;
   padding: 0 2px;
 }
+
+/** Glow Combatant if Fantastic Result **/
+.combatant.is-fantastic {
+  div.token-name h4,
+  div.token-initiative span {
+    animation: glow 1s infinite alternate;
+  }
+}
+
+@keyframes glow {
+  from {
+    text-shadow: 0 0 5px rgb(128, 0, 0);
+  }
+  to {
+    text-shadow: 0 0 12px rgb(255, 0, 0);
+  }
+}
