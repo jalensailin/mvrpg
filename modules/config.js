@@ -117,7 +117,7 @@ const MVRPG = {
   },
 
   actions: {
-    none: "MVRPG.sheets.generic.actions.none",
+    none: "MVRPG.sheets.generic.none",
     standard: "MVRPG.sheets.generic.actions.standard",
     movement: "MVRPG.sheets.generic.actions.movement",
     reaction: "MVRPG.sheets.generic.actions.reaction",

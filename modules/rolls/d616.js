@@ -28,6 +28,11 @@ export default class D616 extends Roll {
     this.item = item;
     this.ability = ability;
     this.modifier = modifier;
+
+    const against = this.type === "nonCombat" ? "none" : this.ability;
+    this.against = options.against || against;
+    this.tn = options.tn || 10 + this.actor.system.rank;
+
     this.troubles = troubles || 0;
     this.edges = edges || 0;
     this.rerolls = options.rerolls || {
@@ -106,6 +111,14 @@ export default class D616 extends Roll {
     if (!this._evaluated) return null; // Early return if the roll has not been evaluted;
     const { die1, die3 } = this.finalResults;
     return die1 === 6 && this.fantasticResult && die3 === 6;
+  }
+
+  /**
+   * Whether or not the roll was a success (beat the target number).
+   */
+  get isSuccess() {
+    if (!this._evaluated) return null; // Early return if the roll has not been evaluted;
+    return this.finalResults.total >= this.tn || this.ultimateFantasticResult;
   }
 
   /**
@@ -330,6 +343,8 @@ export default class D616 extends Roll {
       hasEvaluatedRerolls: this.rerolls.history.length > 0,
       diceHistory: diceHistoryLabels,
       rollTotal: this.finalResults.total,
+      against: this.against,
+      tn: this.tn,
       hasEdgesOrTroubles: this.edgesAndTroubles !== 0,
       edgeOrTroubleKey,
       edgeOrTroubleString,
@@ -340,6 +355,7 @@ export default class D616 extends Roll {
       modifier: this.modifier,
       fantasticResult: this.fantasticResult,
       ultimateFantasticResult: this.ultimateFantasticResult,
+      isSuccess: this.isSuccess,
       isInitiativeRoll: this.type === "initiative",
       isNonCombatRoll: this.type === "nonCombat",
     };
@@ -402,8 +418,11 @@ export default class D616 extends Roll {
       {
         modifier: this.modifier,
         isNonCombatRoll: this.type === "nonCombat",
+        isInitiativeRoll: this.type === "initiative",
         rollKey: game.i18n.localize(rollKey),
         rollSource: this.item?.name,
+        against: this.against,
+        tn: this.tn,
         edges: this.edges,
         troubles: this.troubles,
       },

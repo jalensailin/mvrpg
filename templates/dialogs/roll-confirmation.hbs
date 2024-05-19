@@ -16,6 +16,25 @@
         <div class="mvrpg-dialog-data">{{modifier}}</div>
       </div>
 
+      {{#unless isInitiativeRoll}}
+        <div class="mvrpg-dialog-item flexrow">
+          <div class="mvrpg-dialog-label">{{localize "MVRPG.dialog.rollConfirm.against"}}</div>
+          {{#select against}}
+            <select name="against" class="mvrpg-dialog-input">
+              <option value="none">{{localize "MVRPG.sheets.generic.none"}}</option>
+              {{#each (mvGetConfigObj "abilities") as |ability|}}
+                <option value="{{ability}}">{{localize (concat "MVRPG.sheets.generic.abilities." ability)}}</option>
+              {{/each}}
+            </select>
+          {{/select}}
+        </div>
+
+        <div class="mvrpg-dialog-item flexrow">
+          <div class="mvrpg-dialog-label">{{localize "MVRPG.dialog.rollConfirm.tn"}}</div>
+          <div class="mvrpg-dialog-input"><input name="tn" type="number" value="{{tn}}" min="0"></div>
+        </div>
+      {{/unless}}
+
       <div class="mvrpg-dialog-item flexrow">
         <div class="mvrpg-dialog-label">{{localize "MVRPG.dialog.rollConfirm.edges"}}</div>
         <div class="mvrpg-dialog-input"><input data-reference="edges" type="checkbox" {{#if edges}}checked{{/if}}></div>

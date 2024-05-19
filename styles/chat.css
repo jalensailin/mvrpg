@@ -26,6 +26,12 @@
   padding-bottom: 2px;
 }
 
+.rolling-against {
+  font-size: 0.9rem;
+  font-weight: bold;
+  border-bottom: solid 2px;
+}
+
 .edges-and-troubles {
   border-bottom-style: solid;
   border-bottom-width: 2px;
@@ -97,9 +103,18 @@
   font-weight: bold;
 }
 
+.roll-success-or-failure {
+  .success {
+    color: var(--lizard-green);
+  }
+  .failure {
+    color: var(--spider-red);
+  }
+}
+
 .roll-total {
   display: grid;
-  grid-template-columns: 1fr 3fr 1fr;
+  grid-template-columns: 1fr 1fr 1fr;
   align-items: center;
 
   .create-damage-card {
