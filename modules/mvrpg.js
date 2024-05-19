@@ -16,6 +16,7 @@ import MVEffectConfig from "./effects/effect-config.js";
 import MVEffect from "./effects/effects.js";
 import createItemMacro from "./utils/macros.js";
 import Logger from "./utils/logger.js";
+import MVChatMessage from "./chat/chat-message.js";
 
 // CONFIG.debug.hooks = true;
 
@@ -51,6 +52,7 @@ Hooks.once("init", async () => {
 
   // Register Class overrides.
   CONFIG.ui.chat = MVChatLog;
+  CONFIG.ChatMessage.documentClass = MVChatMessage;
   CONFIG.Combatant.documentClass = MVCombatant;
 
   // Register Actor data models.

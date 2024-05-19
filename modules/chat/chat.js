@@ -1,5 +1,6 @@
 /* global ChatLog game Hooks */
 
+import D616 from "../rolls/d616.js";
 import { MVSettings } from "../utils/settings.js";
 import MVUtils from "../utils/utils.js";
 
@@ -18,6 +19,36 @@ export default class MVChatLog extends ChatLog {
     html.on("click", ".create-damage-card", (event) =>
       this.createDamageCard(event),
     );
+  }
+
+  /**
+   * Adds context options to chat messages.
+   *
+   * @override
+   */
+  _getEntryContextOptions() {
+    const isD616 = (msgHtml) => {
+      const message = game.messages.get(msgHtml[0].dataset.messageId, {
+        strict: true,
+      });
+      return message.rolls[0] instanceof D616;
+    };
+    const options = super._getEntryContextOptions();
+    options.push(
+      // Modify Edges and Troubles on an already rolled D616.
+      {
+        name: "MVRPG.chat.contextOptions.modifyEdgesTroubles",
+        icon: `<i class="fa-solid fa-plus-minus"></i>`,
+        condition: isD616,
+        callback: (msgHtml) => {
+          const message = game.messages.get(msgHtml[0].dataset.messageId, {
+            strict: true,
+          });
+          message.modifyEdgesTroubles();
+        },
+      },
+    );
+    return options;
   }
 
   async onRoll(event) {

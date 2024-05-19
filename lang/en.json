@@ -1,4 +1,6 @@
 {
+  "MVRPG.chat.contextOptions.modifyEdgesTroubles": "Modify Edges/Troubles",
+
   "MVRPG.dataModels.abilities.nonCombatBonus": "Non-Combat Bonus",
   "MVRPG.dataModels.abilities.defenseBonus": "Defense Bonus",
   "MVRPG.dataModels.abilities.damageModifierBonus": "Damage Modifier Bonus",
@@ -30,6 +32,9 @@
   "MVRPG.dialog.initSpeed.initiativeSettings": "Initiative Settings.",
   "MVRPG.dialog.initSpeed.edge": "Edge.",
   "MVRPG.dialog.initSpeed.speedSettings": "Speed Settings.",
+  "MVRPG.dialog.modifyEdgesTroubles.title": "Modify Edges/Troubles",
+  "MVRPG.dialog.modifyEdgesTroubles.edges": "Edges.",
+  "MVRPG.dialog.modifyEdgesTroubles.troubles": "Troubles.",
   "MVRPG.dialog.rollConfirm.edges": "Edges.",
   "MVRPG.dialog.rollConfirm.title": "Confirm d616.",
   "MVRPG.dialog.rollConfirm.troubles": "Troubles.",
