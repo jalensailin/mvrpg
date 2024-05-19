@@ -30,7 +30,7 @@ jobs:
           files: "system.json"
         env:
           version: ${{steps.get_version.outputs.version-without-v}}
-          changelog: https://raw.githubusercontent.com/${{github.repository}}/${{github.event.release.tag_name}}/CHANGELOG.md
+          changelog: https://github.com/${{github.repository}}/releases/download/${{github.event.release.tag_name}}/CHANGELOG.md
           manifest: https://github.com/${{github.repository}}/releases/latest/download/system.json
           download: https://github.com/${{github.repository}}/releases/download/${{github.event.release.tag_name}}/mvrpg.zip
       # 4. Zip up the branch excluding unnecessary files/folders packs.
@@ -45,5 +45,5 @@ jobs:
           name: ${{ github.event.release.name }}
           tag: ${{ github.event.release.tag_name }}
           body: ${{ github.event.release.body }}
-          artifacts: "./mvrpg.zip, ./system.json"
+          artifacts: "./mvrpg.zip, ./system.json, ./CHANGELOG.md"
           token: ${{ secrets.GITHUB_TOKEN }}
