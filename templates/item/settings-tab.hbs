@@ -105,6 +105,19 @@
 
       <div class="mvrpg-dialog-item item-roll-data flexrow">
         <div class="mvrpg-dialog-label">
+          {{localize "MVRPG.sheets.itemSheet.settings.labels.against"}}
+        </div>
+        {{#select item.system.roll.against}}
+          <select class="mvrpg-dialog-input" name="system.roll.against">
+            {{#each (mvGetConfigObj "abilities") as |ability|}}
+              <option value="{{ability}}">{{localize (concat "MVRPG.sheets.generic.abilities." ability)}}</option>
+            {{/each}}
+          </select>
+        {{/select}}
+      </div>
+
+      <div class="mvrpg-dialog-item item-roll-data flexrow">
+        <div class="mvrpg-dialog-label">
           {{localize "MVRPG.sheets.itemSheet.settings.labels.rollBonus"}}
         </div>
         <div class="mvrpg-dialog-input">

@@ -23,6 +23,12 @@ export default class ItemRollSchema extends foundry.abstract.TypeDataModel {
         initial: "melee",
         choices: MVRPG.abilities,
       }),
+      against: new fields.StringField({
+        required: true,
+        nullable: false,
+        initial: "melee",
+        choices: ["none", ...MVRPG.abilities],
+      }),
       bonus: new fields.NumberField({
         required: true,
         nullable: false,
