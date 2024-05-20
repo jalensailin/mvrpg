@@ -17,6 +17,7 @@ import createItemMacro from "./utils/macros.js";
 import Logger from "./utils/logger.js";
 import MVChatMessage from "./chat/chat-message.js";
 import MVCombat from "./combat/combat.js";
+import SuperActor from "./actor/actor.js";
 
 // CONFIG.debug.hooks = true;
 
@@ -29,7 +30,8 @@ Hooks.once("init", async () => {
   // Override the regexp that matches dice terms so that it recognizes 'mv'/'MV' as valid terms.
   CONFIG.Dice.termTypes.DiceTerm.REGEXP = MVUtils.prepareDiceTermRegExp();
 
-  // Register Actor sheet.
+  // Register Actor and sheet.
+  CONFIG.Actor.documentClass = SuperActor;
   Actors.unregisterSheet("core", ActorSheet);
   Actors.registerSheet("mvrpg", SuperSheet, {
     makeDefault: true,
