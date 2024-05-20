@@ -154,16 +154,6 @@ export default class D616 extends Roll {
     return this.edgeOrTroubleTotal - this.rerolls.history.length;
   }
 
-  get calculateDamage() {
-    const actorData = game.actors.get(this.actor._id).system;
-    const abilityData = actorData.abilities[this.ability];
-    const dieMResult = this.activeResultDie("dieM").total;
-    const { damageMultiplier, damageModifier } = abilityData;
-    let total = dieMResult * damageMultiplier + damageModifier;
-    if (this.fantasticResult) total *= 2;
-    return { dieMResult, damageMultiplier, damageModifier, total };
-  }
-
   get combatant() {
     return fromUuidSync(this.combatantUuid);
   }
@@ -185,7 +175,6 @@ export default class D616 extends Roll {
     // Allow user to confirm the roll (which they can skip with ctrl-click).
     if (!MVSettings.skipRollDialog()) {
       const rollConfirm = await this.confirmRoll().catch(() => {
-        // eslint-disable-next-line no-console
         Logger.log("Roll cancelled");
         return false;
       });
@@ -591,9 +580,75 @@ export default class D616 extends Roll {
     return this.combatant.update({ initiative: this.finalResults.total });
   }
 
+  /**
+   * Calculate damage, taking into account damage resistance.
+   *
+   * @param {*} damageResistance
+   * @returns
+   */
+  calculateDamage(damageResistance = 0) {
+    const actorData = game.actors.get(this.actor._id).system;
+    const abilityData = actorData.abilities[this.ability];
+    const dieMResult = this.activeResultDie("dieM").total;
+    const { damageMultiplier, damageModifier } = abilityData;
+    const finalMultiplier = damageMultiplier - damageResistance;
+    let total = dieMResult * finalMultiplier + damageModifier;
+    if (finalMultiplier < 1) total = 0;
+    if (this.fantasticResult) total *= 2;
+    return {
+      dieMResult,
+      damageMultiplier: finalMultiplier,
+      damageModifier,
+      damageResistance,
+      total,
+    };
+  }
+
+  /**
+   * Creates a damage card based on the roll and dialog input, then sends it to the chat.
+   *
+   * @param {string} alias - The alias of the speaker.
+   * @return {Promise<void>} A promise that resolves when the damage card is created and sent to the chat.
+   */
   async createDamageCard(alias) {
+    const dialogContent = await renderTemplate(
+      `systems/${game.system.id}/templates/dialogs/damage-confirmation.hbs`,
+      {
+        damageResistance: 0,
+      },
+    );
+
+    let damageResistance = 0;
+    if (!MVSettings.skipRollDialog()) {
+      const confirmDamage = await Dialog.wait(
+        {
+          content: dialogContent,
+          title: game.i18n.localize("MVRPG.dialog.confirmDamage.title"),
+          buttons: {
+            confirm: {
+              icon: `<i class="fa-solid fa-spider"></i>`,
+              label: game.i18n.localize("MVRPG.dialog.buttons.confirm"),
+              callback: (html) => {
+                const fd = new FormDataExtended(html.find("form")[0]);
+                const formData = foundry.utils.expandObject(fd.object);
+                damageResistance = formData.damageResistance;
+              },
+            },
+          },
+        },
+        {
+          classes: ["mvrpg", "mvrpg-dialog"],
+          width: 300,
+        },
+      ).catch((err) => {
+        Logger.log("Damage calculation cancelled", err);
+        return false;
+      });
+      if (!confirmDamage) return;
+    }
+
     const { dieMResult, damageMultiplier, damageModifier, total } =
-      this.calculateDamage;
+      this.calculateDamage(damageResistance);
 
     const chatData = {
       actor: this.actor,
