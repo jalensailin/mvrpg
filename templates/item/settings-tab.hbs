@@ -116,6 +116,22 @@
         {{/select}}
       </div>
 
+      {{#mvCompare item.system.roll.type "combat"}}
+        <div class="mvrpg-dialog-item item-roll-data flexrow">
+          <div class="mvrpg-dialog-label">
+            {{localize "MVRPG.sheets.itemSheet.settings.labels.lifepoolTarget"}}
+          </div>
+          {{#select item.system.roll.lifepoolTarget}}
+            <select class="mvrpg-dialog-input" name="system.roll.lifepoolTarget">
+              <option value="none">{{localize "MVRPG.sheets.generic.none"}}</option>
+              {{#each (mvGetConfigObj "lifepoolTargets") as |target|}}
+                <option value="{{target}}">{{localize (concat "MVRPG.sheets.superSheet.lifepool." target)}}</option>
+              {{/each}}
+            </select>
+          {{/select}}
+        </div>
+      {{/mvCompare}}
+
       <div class="mvrpg-dialog-item item-roll-data flexrow">
         <div class="mvrpg-dialog-label">
           {{localize "MVRPG.sheets.itemSheet.settings.labels.rollBonus"}}
