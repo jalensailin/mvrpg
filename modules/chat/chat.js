@@ -1,6 +1,7 @@
 /* global ChatLog game Hooks ui */
 
 import D616 from "../rolls/d616.js";
+import Logger from "../utils/logger.js";
 import { MVSettings } from "../utils/settings.js";
 import MVUtils from "../utils/utils.js";
 
@@ -30,16 +31,60 @@ export default class MVChatLog extends ChatLog {
    * @return {Promise<Array>} A promise that resolves to an array of promises representing the update operations.
    */
   static async applyDamage(event) {
+    const messageId = MVUtils.GetEventDatum(event, "data-origin-message-id");
+    const originMessage = game.messages.get(messageId);
+    const [roll] = originMessage.rolls;
+
     const targets = MVUtils.getUserTargetedOrSelected("selected");
     if (targets.length === 0)
       return ui.notifications.warn(
         game.i18n.localize("MVRPG.notifications.noTokensSelected"),
       );
-    const { lifepoolTarget, damageTotal } = event.currentTarget.dataset;
+    const { lifepoolTarget } = event.currentTarget.dataset;
     const updateKey = `system.lifepool.${lifepoolTarget}.value`;
     const promises = [];
+    /* eslint-disable no-await-in-loop, no-continue */
     for (const target of targets) {
       const { actor } = target;
+      let { damageReduction } = actor.system.lifepool[lifepoolTarget];
+
+      // Set up dialog for each actor.
+      const dialogContent = await renderTemplate(
+        `systems/${game.system.id}/templates/dialogs/damage-confirmation.hbs`,
+        {
+          tokenName: target.document.name,
+          damageReduction,
+        },
+      );
+      if (!MVSettings.skipRollDialog()) {
+        const confirmDamage = await Dialog.wait(
+          {
+            content: dialogContent,
+            title: game.i18n.localize("MVRPG.dialog.damageConfirm.title"),
+            buttons: {
+              confirm: {
+                icon: `<i class="fa-solid fa-spider"></i>`,
+                label: game.i18n.localize("MVRPG.dialog.buttons.confirm"),
+                callback: (html) => {
+                  const fd = new FormDataExtended(html.find("form")[0]);
+                  const formData = foundry.utils.expandObject(fd.object);
+                  damageReduction = formData.damageReduction;
+                },
+              },
+            },
+          },
+          {
+            classes: ["mvrpg", "mvrpg-dialog"],
+            width: 300,
+          },
+        ).catch((err) => {
+          Logger.log("Damage calculation cancelled", err);
+          return false;
+        });
+        if (!confirmDamage) continue;
+      } /* eslint-enable no-await-in-loop, no-continue */
+      const damageTotal = roll.calculateDamage(damageReduction).total;
+
       const newLifepoolValue =
         actor.system.lifepool[lifepoolTarget].value - parseInt(damageTotal);
       const updateValue = Math.max(
@@ -102,7 +147,7 @@ export default class MVChatLog extends ChatLog {
     const messageId = MVUtils.GetEventDatum(event, "data-message-id");
     const message = game.messages.get(messageId);
     const [originalD616] = message.rolls;
-    originalD616.createDamageCard(message.speaker.alias);
+    originalD616.createDamageCard(message.speaker.alias, messageId);
   }
 
   /**

@@ -593,7 +593,7 @@ export default class D616 extends Roll {
     const abilityData = actorData.abilities[this.ability];
     const dieMResult = this.activeResultDie("dieM").total;
     const { damageMultiplier, damageModifier } = abilityData;
-    const finalMultiplier = damageMultiplier - damageResistance;
+    const finalMultiplier = damageMultiplier - Math.abs(damageResistance);
     let total = dieMResult * finalMultiplier + damageModifier;
     if (finalMultiplier < 1) total = 0;
     if (this.fantasticResult) total *= 2;
@@ -612,45 +612,9 @@ export default class D616 extends Roll {
    * @param {string} alias - The alias of the speaker.
    * @return {Promise<void>} A promise that resolves when the damage card is created and sent to the chat.
    */
-  async createDamageCard(alias) {
-    const dialogContent = await renderTemplate(
-      `systems/${game.system.id}/templates/dialogs/damage-confirmation.hbs`,
-      {
-        damageResistance: 0,
-      },
-    );
-
-    let damageResistance = 0;
-    if (!MVSettings.skipRollDialog()) {
-      const confirmDamage = await Dialog.wait(
-        {
-          content: dialogContent,
-          title: game.i18n.localize("MVRPG.dialog.confirmDamage.title"),
-          buttons: {
-            confirm: {
-              icon: `<i class="fa-solid fa-spider"></i>`,
-              label: game.i18n.localize("MVRPG.dialog.buttons.confirm"),
-              callback: (html) => {
-                const fd = new FormDataExtended(html.find("form")[0]);
-                const formData = foundry.utils.expandObject(fd.object);
-                damageResistance = formData.damageResistance;
-              },
-            },
-          },
-        },
-        {
-          classes: ["mvrpg", "mvrpg-dialog"],
-          width: 300,
-        },
-      ).catch((err) => {
-        Logger.log("Damage calculation cancelled", err);
-        return false;
-      });
-      if (!confirmDamage) return;
-    }
-
+  async createDamageCard(alias, messageId) {
     const { dieMResult, damageMultiplier, damageModifier, total } =
-      this.calculateDamage(damageResistance);
+      this.calculateDamage();
 
     const chatData = {
       actor: this.actor,
@@ -661,6 +625,7 @@ export default class D616 extends Roll {
       damageModifier,
       lifepoolTarget: this.lifepoolTarget,
       total,
+      originMessageId: messageId,
     };
     // Prepare chat template.
     const content = await renderTemplate(
