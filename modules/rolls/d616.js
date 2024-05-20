@@ -404,8 +404,7 @@ export default class D616 extends Roll {
       `systems/${game.system.id}/templates/dialogs/roll-confirmation.hbs`,
       {
         modifier: this.modifier,
-        isNonCombatRoll: this.type === "nonCombat",
-        isInitiativeRoll: this.type === "initiative",
+        type: this.type,
         rollKey: game.i18n.localize(rollKey),
         rollSource: this.item?.name,
         against: this.against,

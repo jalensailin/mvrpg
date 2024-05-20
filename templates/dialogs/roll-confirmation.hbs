@@ -12,11 +12,11 @@
       {{/if}}
 
       <div class="mvrpg-dialog-item flexrow">
-        <div class="mvrpg-dialog-label">{{rollKey}} {{#if isNonCombatRoll}}({{localize "MVRPG.rolls.nonCombat"}}){{/if}}</div>
+        <div class="mvrpg-dialog-label">{{rollKey}} {{#mvCompare type "nonCombat"}}({{localize "MVRPG.rolls.nonCombat"}}){{/mvCompare}}</div>
         <div class="mvrpg-dialog-data">{{modifier}}</div>
       </div>
 
-      {{#unless isInitiativeRoll}}
+      {{#mvCompare type "!==" "initiative"}}
         <div class="mvrpg-dialog-item flexrow">
           <div class="mvrpg-dialog-label">{{localize "MVRPG.dialog.rollConfirm.against"}}</div>
           {{#select against}}
@@ -33,7 +33,7 @@
           <div class="mvrpg-dialog-label">{{localize "MVRPG.dialog.rollConfirm.tn"}}</div>
           <div class="mvrpg-dialog-input"><input name="tn" type="number" value="{{tn}}" min="0"></div>
         </div>
-      {{/unless}}
+      {{/mvCompare}}
 
       <div class="mvrpg-dialog-item flexrow">
         <div class="mvrpg-dialog-label">{{localize "MVRPG.dialog.rollConfirm.edges"}}</div>
