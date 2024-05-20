@@ -1,4 +1,4 @@
-/* global ChatLog game Hooks */
+/* global ChatLog game Hooks ui */
 
 import D616 from "../rolls/d616.js";
 import { MVSettings } from "../utils/settings.js";
@@ -19,6 +19,37 @@ export default class MVChatLog extends ChatLog {
     html.on("click", ".create-damage-card", (event) =>
       this.createDamageCard(event),
     );
+
+    html.on("click", ".apply-damage", (event) => MVChatLog.applyDamage(event));
+  }
+
+  /**
+   * Applies damage to the selected targets.
+   *
+   * @param {Event} event - The event object.
+   * @return {Promise<Array>} A promise that resolves to an array of promises representing the update operations.
+   */
+  static async applyDamage(event) {
+    const targets = MVUtils.getUserTargetedOrSelected("selected");
+    if (targets.length === 0)
+      return ui.notifications.warn(
+        game.i18n.localize("MVRPG.notifications.noTokensSelected"),
+      );
+    const { lifepoolTarget, damageTotal } = event.currentTarget.dataset;
+    const updateKey = `system.lifepool.${lifepoolTarget}.value`;
+    const promises = [];
+    for (const target of targets) {
+      const { actor } = target;
+      const newLifepoolValue =
+        actor.system.lifepool[lifepoolTarget].value - parseInt(damageTotal);
+      const updateValue = Math.max(
+        newLifepoolValue,
+        -actor.system.lifepool[lifepoolTarget].max,
+      );
+      const update = target.actor.update({ [updateKey]: updateValue });
+      promises.push(update);
+    }
+    return Promise.all(promises);
   }
 
   /**

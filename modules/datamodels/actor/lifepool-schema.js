@@ -10,7 +10,6 @@ export default class LifepoolSchema extends foundry.abstract.TypeDataModel {
         integer: true,
         positive: false,
         initial: 0,
-        min: 0,
       }),
       max: new fields.NumberField({
         required: true,

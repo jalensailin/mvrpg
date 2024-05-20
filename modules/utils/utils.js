@@ -1,4 +1,4 @@
-/* globals DiceTerm */
+/* globals DiceTerm game canvas */
 
 import MultiverseDie from "../rolls/multiverse-die.js";
 import Logger from "./logger.js";
@@ -56,5 +56,21 @@ export default class MVUtils {
       denominationRegExp +
       foundryDiceTermRegExp.slice(sliceIndex);
     return new RegExp(finalRegExp);
+  }
+
+  /**
+   * Get targeted or selected tokens.
+   *
+   * @param {String} targetedOrSelected - either "targeted" or "selected"
+   * @return {Array} - Targeted or selected tokens.
+   */
+  static getUserTargetedOrSelected(targetedOrSelected) {
+    const targets = new Set(game.user.targets);
+    const tokens =
+      targetedOrSelected === "selected"
+        ? canvas.tokens.controlled
+        : Array.from(targets);
+    tokens.sort((a, b) => (a.name > b.name ? 1 : -1));
+    return tokens;
   }
 }

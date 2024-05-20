@@ -32,6 +32,7 @@ export default class D616 extends Roll {
     const against = this.type === "nonCombat" ? "none" : this.ability;
     this.against = options.against || against;
     this.tn = options.tn || 10 + this.actor.system.rank;
+    this.lifepoolTarget = options.lifepoolTarget || null;
 
     this.troubles = troubles || 0;
     this.edges = edges || 0;
@@ -281,7 +282,7 @@ export default class D616 extends Roll {
     const actorData = actor.system;
 
     const rollType = item.system.roll.type;
-    const { ability, against } = item.system.roll;
+    const { ability, against, lifepoolTarget } = item.system.roll;
 
     let modifier =
       rollType === "nonCombat"
@@ -299,6 +300,7 @@ export default class D616 extends Roll {
       rollType,
       ability,
       against,
+      lifepoolTarget,
       modifier,
       edges,
       troubles,
@@ -409,6 +411,7 @@ export default class D616 extends Roll {
         rollSource: this.item?.name,
         against: this.against,
         tn: this.tn,
+        lifepoolTarget: this.lifepoolTarget,
         edges: this.edges,
         troubles: this.troubles,
       },
@@ -656,6 +659,7 @@ export default class D616 extends Roll {
       dieMResult,
       damageMultiplier,
       damageModifier,
+      lifepoolTarget: this.lifepoolTarget,
       total,
     };
     // Prepare chat template.

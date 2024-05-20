@@ -128,3 +128,7 @@
   font-size: var(--main-info-text-size);
   font-weight: bold;
 }
+
+.damage-application {
+  border-top: solid 2px;
+}

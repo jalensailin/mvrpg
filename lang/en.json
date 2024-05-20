@@ -39,9 +39,10 @@
   "MVRPG.dialog.modifyEdgesTroubles.edges": "Edges.",
   "MVRPG.dialog.modifyEdgesTroubles.troubles": "Troubles.",
   "MVRPG.dialog.rollConfirm.against": "Against?",
-  "MVRPG.dialog.rollConfirm.tn": "TN.",
+  "MVRPG.dialog.rollConfirm.lifepoolTarget": "Damage Target.",
   "MVRPG.dialog.rollConfirm.edges": "Edges.",
   "MVRPG.dialog.rollConfirm.title": "Confirm d616.",
+  "MVRPG.dialog.rollConfirm.tn": "TN.",
   "MVRPG.dialog.rollConfirm.troubles": "Troubles.",
 
   "MVRPG.effects.categories.melee": "Melee",
@@ -55,7 +56,9 @@
   "MVRPG.effects.categories.speed": "Speed",
 
   "MVRPG.notifications.macro.itemNotFound": "Item not found on this actor.",
+  "MVRPG.notifications.noTokensSelected": "No Tokens Selected.",
 
+  "MVRPG.rolls.applyDamage": "Apply Damage.",
   "MVRPG.rolls.d616": "d616",
   "MVRPG.rolls.damage": "Damage",
   "MVRPG.rolls.edges": "Edges",
