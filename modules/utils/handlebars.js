@@ -1,5 +1,3 @@
-/* global loadTemplates game Handlebars */
-
 import MVRPG from "../config.js";
 import MVEffect from "../effects/effects.js";
 import Logger from "./logger.js";

@@ -1,5 +1,3 @@
-/* globals DiceTerm game canvas */
-
 import MultiverseDie from "../rolls/multiverse-die.js";
 import Logger from "./logger.js";
 

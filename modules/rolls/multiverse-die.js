@@ -1,5 +1,3 @@
-/* globals Die game */
-
 export default class MultiverseDie extends Die {
   constructor(termData) {
     termData.faces = 6;

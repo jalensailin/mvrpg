@@ -1,5 +1,3 @@
-/* global ChatLog game Hooks ui */
-
 import D616 from "../rolls/d616.js";
 import Logger from "../utils/logger.js";
 import { MVSettings } from "../utils/settings.js";

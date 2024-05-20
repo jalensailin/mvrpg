@@ -1,4 +1,3 @@
-/* global Hooks Actors ActorSheet Items ItemSheet CONFIG DocumentSheetConfig ActiveEffect game */
 import SuperSheet from "./actor/super-sheet.js";
 import MVChatLog from "./chat/chat.js";
 import SuperDataModel from "./datamodels/actor/super-datamodel.js";

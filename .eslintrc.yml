@@ -42,6 +42,40 @@ rules:
   no-plusplus:
     - error
     - allowForLoopAfterthoughts: true
+globals:
+  $: readonly
+  ActiveEffect: readonly
+  ActiveEffectConfig: readonly
+  ActorSheet: readonly
+  Actors: readonly
+  CONFIG: readonly
+  ChatLog: readonly
+  ChatMessage: readonly
+  Combat: readonly
+  Combatant: readonly
+  Dialog: readonly
+  DiceTerm: readonly
+  Die: readonly
+  DocumentSheetConfig: readonly
+  FormDataExtended: readonly
+  Handlebars: readonly
+  Hooks: readonly
+  ItemSheet: readonly
+  Items: readonly
+  Macro: readonly
+  Roll: readonly
+  TextEditor: readonly
+  canvas: readonly
+  duplicate: readonly
+  foundry: readonly
+  fromUuidSync: readonly
+  game: readonly
+  globals: readonly
+  keyboard: readonly
+  loadTemplates: readonly
+  mergeObject: readonly
+  renderTemplate: readonly
+  ui: readonly
 settings:
   import/extensions:
     - ".js"

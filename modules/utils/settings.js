@@ -1,5 +1,3 @@
-/* global game keyboard */
-
 export default function registerSettings() {
   game.settings.register("mvrpg", "autoRerollTroubles", {
     name: "MVRPG.settings.autoRerollTroubles.title",

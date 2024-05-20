@@ -1,5 +1,3 @@
-/* globals fromUuidSync Roll renderTemplate game Dialog foundry FormDataExtended Die $ mergeObject ChatMessage Hooks */
-
 import Logger from "../utils/logger.js";
 import { MVSettings } from "../utils/settings.js";
 import MultiverseDie from "./multiverse-die.js";

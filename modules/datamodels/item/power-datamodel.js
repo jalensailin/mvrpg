@@ -1,5 +1,3 @@
-/* globals foundry */
-
 import MVRPG from "../../config.js";
 import ItemRollSchema from "./item-roll-schema.js";
 

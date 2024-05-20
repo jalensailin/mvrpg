@@ -1,5 +1,3 @@
-/* global game Dialog Hooks renderTemplate $ CONFIG ActiveEffect Roll */
-
 import MVRPG from "../config.js";
 import { MVSettings } from "../utils/settings.js";
 

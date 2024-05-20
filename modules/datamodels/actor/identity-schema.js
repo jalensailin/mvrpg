@@ -1,5 +1,3 @@
-/* globals foundry */
-
 import MVRPG from "../../config.js";
 
 export default class IdentitySchema extends foundry.abstract.TypeDataModel {

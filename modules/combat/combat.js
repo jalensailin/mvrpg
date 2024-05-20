@@ -1,5 +1,3 @@
-/* globals Combat game */
-
 export default class MVCombat extends Combat {
   /**
    * When all combatants are reset, unset the "isFantastic" flag.

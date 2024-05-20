@@ -1,5 +1,3 @@
-/* global Macro game fromUuidSync ui */
-
 /**
  * Create a Macro from an Item drop.
  * Get an existing item macro if one exists, otherwise create a new one.

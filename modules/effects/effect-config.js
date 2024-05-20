@@ -1,7 +1,5 @@
 import MVEffect from "./effects.js";
 
-/* global game Dialog renderTemplate $ ActiveEffectConfig mergeObject duplicate */
-
 /**
  * @param {*} html
  * @override

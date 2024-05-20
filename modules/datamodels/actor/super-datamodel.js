@@ -1,5 +1,3 @@
-/* globals foundry */
-
 import AbilitySchema from "./ability-schema.js";
 import IdentitySchema from "./identity-schema.js";
 import LifepoolSchema from "./lifepool-schema.js";

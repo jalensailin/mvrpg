@@ -1,5 +1,3 @@
-/* global ItemSheet mergeObject TextEditor game Dialog FormDataExtended renderTemplate foundry */
-
 import MVRPG from "../config.js";
 import MVEffect from "../effects/effects.js";
 
