@@ -326,6 +326,7 @@ export default class D616 extends Roll {
     return {
       rollTitle: game.i18n.localize(rollTitleSlug),
       rollSource: this.item?.name,
+      type: this.type,
       dice: this.finalResults,
       hasEvaluatedRerolls: this.rerolls.history.length > 0,
       diceHistory: diceHistoryLabels,
@@ -343,8 +344,7 @@ export default class D616 extends Roll {
       fantasticResult: this.fantasticResult,
       ultimateFantasticResult: this.ultimateFantasticResult,
       isSuccess: this.isSuccess,
-      isInitiativeRoll: this.type === "initiative",
-      isNonCombatRoll: this.type === "nonCombat",
+      displayDamageButton: this.type === "combat",
     };
   }
 

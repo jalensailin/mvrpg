@@ -1,7 +1,7 @@
 <div class="mvrpg-roll-card comic-frame flexcol">
   <div class="half-tone-overlay"></div>
   <div class="roll-label panel-header panel-title">
-    {{rollTitle}} {{#if isNonCombatRoll}}({{localize "MVRPG.rolls.nonCombat"}}){{/if}}
+    {{rollTitle}} {{#mvCompare type "nonCombat"}}({{localize "MVRPG.rolls.nonCombat"}}){{/mvCompare}}
   </div>
   {{#if rollSource}}
     <div class="roll-source-header">
@@ -9,11 +9,11 @@
     </div>
   {{/if}}
 
-  {{#mvCompare against "!==" "none"}}
+  {{#if against}}{{#mvCompare against "!==" "none"}}
     <div class="rolling-against">
       {{localize "MVRPG.rolls.rollingAgainst" target=(localize (concat "MVRPG.sheets.generic.abilities." against))}}
     </div>
-  {{/mvCompare}}
+  {{/mvCompare}}{{/if}}
 
   {{#if hasEdgesOrTroubles}}
     <div class="edges-and-troubles">
@@ -64,7 +64,7 @@
   </div>
   <div class="roll-total" data-tooltip="{{dice.die1}} + {{dice.dieM}} + {{dice.die3}} + {{modifier}}">
     <div class="roll-success-or-failure">
-      {{#unless isInitiativeRoll}}
+      {{#mvCompare type "!==" "initiative"}}
         <span class="{{#if isSuccess}}success{{else}}failure{{/if}}" data-tooltip="MVRPG.rolls.tooltips.{{#if isSuccess}}success{{else}}failure{{/if}}">
           {{localize "MVRPG.rolls.tn"}}: {{tn}}
           {{#if isSuccess}}
@@ -73,15 +73,15 @@
             <i class="fa-solid fa-xmark"></i>
           {{/if}}
         </span>
-      {{/unless}}
+      {{/mvCompare}}
     </div>
     <div>
       {{localize "MVRPG.rolls.total"}}: <span class="total-number">{{rollTotal}}</span>
     </div>
-    {{#unless isInitiativeRoll}}
+    {{#if displayDamageButton}}
       <a class="create-damage-card" data-tooltip="{{localize "MVRPG.rolls.tooltips.calculateDamage"}}">
         <i class="fa-solid fa-user-injured"></i>
       </a>
-    {{/unless}}
+    {{/if}}
   </div>
 </div>
