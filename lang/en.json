@@ -1,5 +1,5 @@
 {
-  "MVRPG.chat.contextOptions.modifyEdgesTroubles": "Modify Edges/Troubles",
+  "MVRPG.chat.contextOptions.modifyRoll": "Modify Roll",
   "MVRPG.combatant.isFantastic": "Fantastic Result on Initiative.",
 
   "MVRPG.dataModels.abilities.nonCombatBonus": "Non-Combat Bonus",
@@ -36,9 +36,7 @@
   "MVRPG.dialog.initSpeed.initiativeSettings": "Initiative Settings.",
   "MVRPG.dialog.initSpeed.edge": "Edge.",
   "MVRPG.dialog.initSpeed.speedSettings": "Speed Settings.",
-  "MVRPG.dialog.modifyEdgesTroubles.title": "Modify Edges/Troubles",
-  "MVRPG.dialog.modifyEdgesTroubles.edges": "Edges.",
-  "MVRPG.dialog.modifyEdgesTroubles.troubles": "Troubles.",
+  "MVRPG.dialog.rollConfirm.modifyRoll": "Modify Roll.",
   "MVRPG.dialog.rollConfirm.against": "Against?",
   "MVRPG.dialog.rollConfirm.lifepoolTarget": "Damage Target.",
   "MVRPG.dialog.rollConfirm.edges": "Edges.",

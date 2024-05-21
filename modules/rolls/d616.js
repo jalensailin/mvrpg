@@ -216,6 +216,9 @@ export default class D616 extends Roll {
       },
     );
 
+    // Allow user to modify properties of an already rolled D616.
+    setProperty(messageData, `flags.${game.system.id}.allowModification`, true);
+
     // Assign content if not already defined in the messageData.
     // eslint-disable-next-line no-param-reassign
     if (content && !messageData.content) messageData.content = content;
@@ -397,13 +400,23 @@ export default class D616 extends Roll {
     return activeDie;
   }
 
-  async confirmRoll() {
+  /**
+   * Renders a dialog which can modify roll details and options.
+   * Shows when confirming a new roll or modifying an existing roll.
+   *
+   * @param {string} [titleStr="MVRPG.dialog.rollConfirm.title"] - The title of the dialog.
+   * @return {Promise<Dialog>} A promise that resolves to the rendered dialog.
+   */
+  async confirmRoll(titleStr = "MVRPG.dialog.rollConfirm.title") {
+    // Get the localized title.
+    const title = game.i18n.localize(titleStr);
     // Get the correct roll key.
     let rollKey = `MVRPG.sheets.superSheet.abilities.${this.ability}`;
     if (this.type === "initiative") rollKey = "MVRPG.rolls.initiative";
     const content = await renderTemplate(
       `systems/${game.system.id}/templates/dialogs/roll-confirmation.hbs`,
       {
+        title,
         modifier: this.modifier,
         type: this.type,
         rollKey: game.i18n.localize(rollKey),
@@ -418,7 +431,7 @@ export default class D616 extends Roll {
     return Dialog.wait(
       {
         content,
-        title: game.i18n.localize("MVRPG.dialog.rollConfirm.title"),
+        title,
         default: "confirm",
         buttons: {
           confirm: {

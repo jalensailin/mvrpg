@@ -60,24 +60,24 @@ export default class MVChatLog extends ChatLog {
    * @override
    */
   _getEntryContextOptions() {
-    const isD616 = (msgHtml) => {
+    const allowModification = (msgHtml) => {
       const message = game.messages.get(msgHtml[0].dataset.messageId, {
         strict: true,
       });
-      return message.rolls[0] instanceof D616;
+      return message.getFlag(game.system.id, "allowModification");
     };
     const options = super._getEntryContextOptions();
     options.push(
-      // Modify Edges and Troubles on an already rolled D616.
+      // Modify properties of an already rolled D616.
       {
-        name: "MVRPG.chat.contextOptions.modifyEdgesTroubles",
+        name: "MVRPG.chat.contextOptions.modifyRoll",
         icon: `<i class="fa-solid fa-plus-minus"></i>`,
-        condition: isD616,
+        condition: allowModification,
         callback: (msgHtml) => {
           const message = game.messages.get(msgHtml[0].dataset.messageId, {
             strict: true,
           });
-          message.modifyEdgesTroubles();
+          message.modifyRoll();
         },
       },
     );

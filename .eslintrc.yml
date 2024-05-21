@@ -76,6 +76,7 @@ globals:
   loadTemplates: readonly
   mergeObject: readonly
   renderTemplate: readonly
+  setProperty: readonly
   ui: readonly
 settings:
   import/extensions:
