@@ -1,0 +1,14 @@
+<div class="mvrpg-damage-card comic-frame flexcol">
+  <div class="half-tone-overlay"></div>
+  <div class="damage-label panel-header panel-title">
+    {{localize "MVRPG.rolls.damageApplication"}}
+  </div>
+  <ol class="damage-application-list">
+    {{#each damageList as |damageData|}}
+      <li class="damage-application-item ">
+        <div>{{localize "MVRPG.rolls.damageApplicationTarget" total=damageData.damageTotal target=damageData.tokenName}}</div>
+        <a class="undo-damage-application"><i class="fa-solid fa-rotate-left"></i></a>
+      </li>
+    {{/each}}
+  </ol>
+</div>

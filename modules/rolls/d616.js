@@ -344,7 +344,8 @@ export default class D616 extends Roll {
       fantasticResult: this.fantasticResult,
       ultimateFantasticResult: this.ultimateFantasticResult,
       isSuccess: this.isSuccess,
-      displayDamageButton: this.type === "combat",
+      displayDamageButton:
+        this.type === "combat" && this.lifepoolTarget !== "none",
     };
   }
 
@@ -610,7 +611,7 @@ export default class D616 extends Roll {
    * @param {string} alias - The alias of the speaker.
    * @return {Promise<void>} A promise that resolves when the damage card is created and sent to the chat.
    */
-  async createDamageCard(alias, messageId) {
+  async createDamageCard(alias) {
     const { dieMResult, damageMultiplier, damageModifier, total } =
       this.calculateDamage();
 
@@ -623,7 +624,6 @@ export default class D616 extends Roll {
       damageModifier,
       lifepoolTarget: this.lifepoolTarget,
       total,
-      originMessageId: messageId,
     };
     // Prepare chat template.
     const content = await renderTemplate(
@@ -635,6 +635,7 @@ export default class D616 extends Roll {
     const message = await ChatMessage.create({
       speaker: ChatMessage.getSpeaker({ alias }),
       content,
+      rolls: [this],
     });
     // Store this chat-data in a flag so that it's easily retrieved later.
     await message.setFlag(game.system.id, "messageData", chatData);

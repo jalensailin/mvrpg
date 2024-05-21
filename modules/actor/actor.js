@@ -48,14 +48,17 @@ export default class SuperActor extends Actor {
       });
       if (!confirmDamage) return null;
     }
-    const damageTotal = originRoll.calculateDamage(damageReduction).total;
+    const damageTotal = parseInt(
+      originRoll.calculateDamage(damageReduction).total,
+    );
 
     const newLifepoolValue =
-      this.system.lifepool[lifepoolTarget].value - parseInt(damageTotal);
+      this.system.lifepool[lifepoolTarget].value - damageTotal;
     const updateValue = Math.max(
       newLifepoolValue,
       -this.system.lifepool[lifepoolTarget].max,
     );
-    return this.update({ [updateKey]: updateValue });
+    this.update({ [updateKey]: updateValue });
+    return { tokenName, damageTotal };
   }
 }

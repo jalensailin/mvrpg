@@ -7,8 +7,13 @@
     {{#if fantasticResult}}({{/if}}({{dieMResult}} * {{damageMultiplier}}) + {{damageModifier}}{{#if fantasticResult}}) * 2{{/if}} = <span class="total-number">{{total}}</span>
   </div>
   <div class="damage-application">
-    <a class="apply-damage" data-origin-message-id="{{originMessageId}}" data-lifepool-target="{{lifepoolTarget}}">
-      <i class="fa-solid fa-heart-crack"></i> {{localize "MVRPG.rolls.applyDamage"}}
+    <a class="apply-damage" data-lifepool-target="{{lifepoolTarget}}">
+      {{#mvCompare lifepoolTarget "health"}}
+        <i class="fa-solid fa-heart-crack"></i>
+      {{else}}
+        <i class="fa-solid fa-brain"></i>
+      {{/mvCompare}}
+      {{localize "MVRPG.rolls.applyDamage"}}
     </a>
   </div>
 </div>

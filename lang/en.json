@@ -62,6 +62,8 @@
   "MVRPG.rolls.applyDamage": "Apply Damage.",
   "MVRPG.rolls.d616": "d616",
   "MVRPG.rolls.damage": "Damage",
+  "MVRPG.rolls.damageApplication": "Damage Application.",
+  "MVRPG.rolls.damageApplicationTarget": "{total} damage dealt to {target}",
   "MVRPG.rolls.edges": "Edges",
   "MVRPG.rolls.fantasticResultDie": "M",
   "MVRPG.rolls.initiative": "Initiative.",

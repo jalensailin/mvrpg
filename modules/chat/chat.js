@@ -27,21 +27,31 @@ export default class MVChatLog extends ChatLog {
    * @param {Event} event - The event object.
    */
   static async applyDamage(event) {
-    const messageId = MVUtils.GetEventDatum(event, "data-origin-message-id");
-    const originMessage = game.messages.get(messageId);
-    const [originRoll] = originMessage.rolls;
+    const messageId = MVUtils.GetEventDatum(event, "data-message-id");
+    const message = game.messages.get(messageId);
+    const [originRoll] = message.rolls;
 
     const targets = MVUtils.getUserTargetedOrSelected("selected");
-    if (targets.length === 0)
-      return ui.notifications.warn(
+    if (targets.length === 0) {
+      ui.notifications.warn(
         game.i18n.localize("MVRPG.notifications.noTokensSelected"),
       );
+      return;
+    }
     const promises = [];
     for (const target of targets) {
       const update = target.actor.applyDamage(originRoll, target.document.name);
       promises.push(update);
     }
-    return Promise.all(promises);
+    const updates = (await Promise.all(promises)).filter((u) => u);
+    if (updates.length === 0) return;
+    const content = await renderTemplate(
+      "systems/mvrpg/templates/chat/damage-application.hbs",
+      { damageList: updates },
+    );
+    ChatMessage.create({
+      content,
+    });
   }
 
   /**

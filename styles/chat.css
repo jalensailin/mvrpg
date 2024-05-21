@@ -132,3 +132,8 @@
 .damage-application {
   border-top: solid 2px;
 }
+
+.damage-application-list {
+  text-align: start;
+  font-size: 0.9rem;
+}
