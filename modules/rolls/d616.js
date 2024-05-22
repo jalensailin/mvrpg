@@ -30,7 +30,8 @@ export default class D616 extends Roll {
     const against = this.type === "nonCombat" ? "none" : this.ability;
     this.against = options.against || against;
     this.tn = options.tn || 10 + this.actor.system.rank;
-    this.lifepoolTarget = options.lifepoolTarget || null;
+    this.lifepoolTarget =
+      this.type !== "combat" ? "none" : options.lifepoolTarget || "health";
 
     this.troubles = troubles || 0;
     this.edges = edges || 0;
