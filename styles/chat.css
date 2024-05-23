@@ -26,7 +26,8 @@
   padding-bottom: 2px;
 }
 
-.rolling-against {
+.rolling-against,
+.lifepool-target {
   font-size: 0.95rem;
   font-weight: bold;
   border-bottom: solid 2px;

@@ -3,6 +3,9 @@
   <div class="damage-label panel-header panel-title">
     {{localize "MVRPG.rolls.damageApplication"}}
   </div>
+  <div class="lifepool-target">
+    {{localize "MVRPG.rolls.lifepoolTarget" target=(localize (concat "MVRPG.sheets.superSheet.lifepool." lifepoolTarget))}}
+  </div>
   <div class="damage-application-list">
     {{#each damageList as |damageData index|}}
       {{#with damageData}}
@@ -13,7 +16,7 @@
           <div class="damage-blurb">
             {{localize "MVRPG.rolls.damageApplicationTarget" total=damageTotal target=targetName}}
           </div>
-          <a class="undo-damage-application" data-damage-total="{{damageTotal}}" data-lifepool-target="{{lifepoolTarget}}" data-target-uuid="{{targetUuid}}">
+          <a class="undo-damage-application" data-damage-total="{{damageTotal}}" data-lifepool-target="{{../lifepoolTarget}}" data-target-uuid="{{targetUuid}}">
             <i class="fa-solid fa-rotate-left"></i>
           </a>
         </div>

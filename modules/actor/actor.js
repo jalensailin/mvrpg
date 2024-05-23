@@ -58,7 +58,7 @@ export default class SuperActor extends Actor {
       this.system.lifepool[lifepoolTarget].value - damageTotal;
 
     this.update({ [updateKey]: newLifepoolValue });
-    return { targetUuid, targetName, lifepoolTarget, damageTotal };
+    return { targetUuid, targetName, damageTotal };
   }
 
   /**

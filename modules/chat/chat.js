@@ -1,4 +1,3 @@
-import D616 from "../rolls/d616.js";
 import { MVSettings } from "../utils/settings.js";
 import MVUtils from "../utils/utils.js";
 
@@ -51,7 +50,7 @@ export default class MVChatLog extends ChatLog {
     if (updates.length === 0) return;
     const content = await renderTemplate(
       "systems/mvrpg/templates/chat/damage-application.hbs",
-      { damageList: updates },
+      { lifepoolTarget: originRoll.lifepoolTarget, damageList: updates },
     );
     ChatMessage.create({
       content,
