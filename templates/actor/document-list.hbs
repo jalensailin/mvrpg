@@ -23,7 +23,7 @@
         <div class="power-data">
           <span class="info-pill">{{localize "MVRPG.sheets.superSheet.pillLabels.action"}}:
             {{#each doc.system.actions as |action|~}}
-              {{localize (concat "MVRPG.sheets.generic.actions." action)}}
+              {{localize (mvGetConfigProperty "actions" action)}}
               {{~#unless @last}}/{{~/unless~}}
             {{~/each~}}
           </span>

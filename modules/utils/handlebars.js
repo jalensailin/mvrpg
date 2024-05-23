@@ -151,6 +151,17 @@ export async function registerHelpers() {
     return MVRPG[property];
   });
 
+  /**
+   * Get a particular object from config.js
+   *
+   * @param {string} property
+   * @returns {Object}
+   */
+  Handlebars.registerHelper("mvGetConfigProperty", (property, key) => {
+    if (!(property in MVRPG) || !(key in MVRPG[property])) return null;
+    return MVRPG[property][key];
+  });
+
   Handlebars.registerHelper("changeModeSymbol", (change) => {
     switch (change.mode) {
       case 1:
