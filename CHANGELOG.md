@@ -1,4 +1,19 @@
+<!-- markdownlint-disable MD024 -->
+
 # Multiverse RPG for Foundry - Changelog
+
+## Version 1.2.0 (2024-23-05)
+
+### Enhancements
+
+- Users can now adjust more roll details after the roll was already made. The button to do so has been renamed to `Modify Roll`, and can still be accessed by right-clicking a roll message in chat.
+- Added ability to apply damage to selected tokens from the chat. [Issue #31]
+  - This will take into account any damage reduction that the actor has, which can be adjusted in a dialog.
+  - A chat card detailing the total damage done will be sent to the chat, where this damage can also be undone if something was misapplied.
+
+### Bug Fixes
+
+- Hide the damage calculation button if roll was not a "combat" roll.
 
 ## Version 1.1.0 (2024-19-05)
 
