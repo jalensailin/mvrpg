@@ -7,18 +7,22 @@ export default class MVChatLog extends ChatLog {
   activateListeners(html) {
     super.activateListeners(html);
     html.on("click", ".reroll-links a:not(.mv-inactive-link)", (event) =>
-      this.onRoll(event),
+      MVChatLog.onRoll(event),
     );
 
     html.on("click", ".undo-last-reroll", (event) =>
-      this.undoLastReroll(event),
+      MVChatLog.undoLastReroll(event),
     );
 
     html.on("click", ".create-damage-card", (event) =>
-      this.createDamageCard(event),
+      MVChatLog.createDamageCard(event),
     );
 
     html.on("click", ".apply-damage", (event) => MVChatLog.applyDamage(event));
+
+    html.on("click", ".undo-damage-application", (event) =>
+      MVChatLog.undoDamage(event),
+    );
   }
 
   /**
@@ -31,7 +35,7 @@ export default class MVChatLog extends ChatLog {
     const message = game.messages.get(messageId);
     const [originRoll] = message.rolls;
 
-    const targets = MVUtils.getUserTargetedOrSelected("selected");
+    const targets = MVUtils.getIndicatedTokens();
     if (targets.length === 0) {
       ui.notifications.warn(
         game.i18n.localize("MVRPG.notifications.noTokensSelected"),
@@ -40,7 +44,7 @@ export default class MVChatLog extends ChatLog {
     }
     const promises = [];
     for (const target of targets) {
-      const update = target.actor.applyDamage(originRoll, target.document.name);
+      const update = target.actor.applyDamage(originRoll, target);
       promises.push(update);
     }
     const updates = (await Promise.all(promises)).filter((u) => u);
@@ -52,6 +56,41 @@ export default class MVChatLog extends ChatLog {
     ChatMessage.create({
       content,
     });
+  }
+
+  /**
+   * Undoes the damage applied to a target and updates the message.
+   *
+   * @param {Event} event - The event object.
+   * @return {void}
+   */
+  static undoDamage(event) {
+    const button = event.currentTarget;
+    const damageItem = button.parentElement;
+
+    const { targetUuid, lifepoolTarget, damageTotal } =
+      event.currentTarget.dataset;
+    const target = fromUuidSync(targetUuid);
+
+    if (!target) {
+      ui.notifications.error(
+        game.i18n.localize("MVRPG.notifications.targetNotFound"),
+      );
+      return;
+    }
+
+    // Undo the damage.
+    target.actor.undoDamage(lifepoolTarget, damageTotal);
+
+    // Grey out the button and add the undone class.
+    $(button).addClass("mv-inactive-link");
+    $(damageItem).addClass("undone");
+
+    // Update the message so changes persist to the database.
+    const messageId = MVUtils.GetEventDatum(event, "data-message-id");
+    const message = game.messages.get(messageId);
+    const [content] = $(event.currentTarget).parents(".mvrpg-damage-card");
+    message.update({ content: content.outerHTML });
   }
 
   /**
@@ -84,7 +123,7 @@ export default class MVChatLog extends ChatLog {
     return options;
   }
 
-  async onRoll(event) {
+  static async onRoll(event) {
     const messageId = MVUtils.GetEventDatum(event, "data-message-id");
     const dieID = MVUtils.GetEventDatum(event, "data-die-id");
     const message = game.messages.get(messageId);
@@ -92,7 +131,7 @@ export default class MVChatLog extends ChatLog {
     originalD616.mvReroll(dieID, message);
   }
 
-  async undoLastReroll(event) {
+  static async undoLastReroll(event) {
     const messageId = MVUtils.GetEventDatum(event, "data-message-id");
     const message = game.messages.get(messageId);
     const [originalD616] = message.rolls;
@@ -100,7 +139,7 @@ export default class MVChatLog extends ChatLog {
     originalD616.undoLastReroll(message, skipDialog);
   }
 
-  createDamageCard(event) {
+  static createDamageCard(event) {
     const messageId = MVUtils.GetEventDatum(event, "data-message-id");
     const message = game.messages.get(messageId);
     const [originalD616] = message.rolls;

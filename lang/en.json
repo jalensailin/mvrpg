@@ -56,6 +56,7 @@
 
   "MVRPG.notifications.macro.itemNotFound": "Item not found on this actor.",
   "MVRPG.notifications.noTokensSelected": "No Tokens Selected.",
+  "MVRPG.notifications.targetNotFound": "Target not found. The corresponding token was likely deleted.",
 
   "MVRPG.rolls.applyDamage": "Apply Damage.",
   "MVRPG.rolls.d616": "d616",

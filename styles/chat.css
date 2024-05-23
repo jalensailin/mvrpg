@@ -136,4 +136,23 @@
 .damage-application-list {
   text-align: start;
   font-size: 0.9rem;
+
+  .damage-application-item {
+    padding: 0 4px;
+
+    .damage-index {
+      text-align: right;
+      padding-right: 4px;
+      flex: 0 0 1.2rem;
+    }
+
+    .undo-damage-application {
+      flex: 0;
+    }
+  }
+
+  .damage-application-item.undone {
+    color: gray;
+    text-decoration: line-through;
+  }
 }

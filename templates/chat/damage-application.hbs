@@ -3,12 +3,21 @@
   <div class="damage-label panel-header panel-title">
     {{localize "MVRPG.rolls.damageApplication"}}
   </div>
-  <ol class="damage-application-list">
-    {{#each damageList as |damageData|}}
-      <li class="damage-application-item ">
-        <div>{{localize "MVRPG.rolls.damageApplicationTarget" total=damageData.damageTotal target=damageData.tokenName}}</div>
-        <a class="undo-damage-application"><i class="fa-solid fa-rotate-left"></i></a>
-      </li>
+  <div class="damage-application-list">
+    {{#each damageList as |damageData index|}}
+      {{#with damageData}}
+        <div class="damage-application-item flexrow">
+          <div class="damage-index">
+            {{mvMath "sum" index 1}}.
+          </div>
+          <div class="damage-blurb">
+            {{localize "MVRPG.rolls.damageApplicationTarget" total=damageTotal target=targetName}}
+          </div>
+          <a class="undo-damage-application" data-damage-total="{{damageTotal}}" data-lifepool-target="{{lifepoolTarget}}" data-target-uuid="{{targetUuid}}">
+            <i class="fa-solid fa-rotate-left"></i>
+          </a>
+        </div>
+      {{/with}}
     {{/each}}
-  </ol>
+  </div>
 </div>

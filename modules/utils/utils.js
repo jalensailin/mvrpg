@@ -59,16 +59,15 @@ export default class MVUtils {
   /**
    * Get targeted or selected tokens.
    *
-   * @param {String} targetedOrSelected - either "targeted" or "selected"
-   * @return {Array} - Targeted or selected tokens.
+   * @param {Object} options
+   * @param {Boolean} [options.targeted = false] - Get targeted tokens instead of selected tokens.
+   * @param {Boolean} [options.returnTokens = false] - Return array of Tokens instead of TokenDocuments.
+   * @return {Array<Token|TokenDocument>} - Targeted or selected tokens.
    */
-  static getUserTargetedOrSelected(targetedOrSelected) {
+  static getIndicatedTokens({ targeted = false, returnTokens = false } = {}) {
     const targets = new Set(game.user.targets);
-    const tokens =
-      targetedOrSelected === "selected"
-        ? canvas.tokens.controlled
-        : Array.from(targets);
+    const tokens = targeted ? Array.from(targets) : canvas.tokens.controlled;
     tokens.sort((a, b) => (a.name > b.name ? 1 : -1));
-    return tokens;
+    return returnTokens ? tokens : tokens.map((t) => t.document);
   }
 }
