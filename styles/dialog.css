@@ -91,11 +91,9 @@
 }
 
 .mvrpg-dialog-data {
+  flex: 0 0 fit-content;
+  padding-left: 2px;
   text-align: right;
-}
-
-.mvrpg-dialog-data.configure-multiple-selections {
-  flex: unset;
 }
 
 .mvrpg-dialog-input input[type="checkbox"] {
