@@ -2,6 +2,12 @@
 
 # Multiverse RPG for Foundry - Changelog
 
+## Version 1.3.0
+
+### Bug Fixes
+
+- Fixed issue with the "none" action-type being improperly localized. [Issue #35]
+
 ## Version 1.2.0 (2024-23-05)
 
 ### Enhancements

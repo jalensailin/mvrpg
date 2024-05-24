@@ -19,8 +19,8 @@
         {{localize "MVRPG.sheets.itemSheet.settings.labels.action"}}
       </div>
       <a class="mvrpg-dialog-data configure-multiple-selections" data-selection-set="actions" data-tooltip="{{localize "MVRPG.sheets.itemSheet.settings.tooltips.configurePowerSets"}}">
-        {{#each item.system.actions as |actionSlug|}}
-          <span>{{localize (concat "MVRPG.sheets.generic.actions." actionSlug)}}
+        {{#each item.system.actions as |action|}}
+          <span>{{localize (mvGetConfigProperty "actions" action)}}
           {{~#unless @last}}, {{/unless}}</span>
         {{/each}}
         <i class="fa-solid fa-gear fa-xs"></i>
