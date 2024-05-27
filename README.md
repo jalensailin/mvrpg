@@ -1,19 +1,14 @@
-# Multiverse RPG
+# Comic Book RPG
 
 [![ko-fi](https://ko-fi.com/img/githubbutton_sm.svg)](https://ko-fi.com/W7W3QKE3Q)
 
 ![Supported Foundry Versions](https://img.shields.io/endpoint?url=https%3A%2F%2Ffoundryshields.com%2Fversion%3Fstyle%3Dplastic%26url%3Dhttps%3A%2F%2Fraw.githubusercontent.com%2Fjalensailin%2Fmvrpg%2Fmain%2Fsystem.json)
 
-This unofficial system provides a way to play the [Marvel Multiverse RPG](https://www.marvel.com/rpg) in [Foundry VTT](https://foundryvtt.com). Note, this system is independently made, and fully unofficial, with no association with Marvel or associated companies. Also note, I do not provide any content, such as items, powers, traits, tags, pregen character sheets, etc.
+> **Disclaimer:** This unofficial system for [Foundry VTT](https://foundryvtt.com) is compatible with the [Marvel Multiverse RPG](https://www.marvel.com/rpg), however, you **_must_** buy the Core Rulebook from the previous link in order to use it. Note, this system is independently made, and fully unofficial, with no association with Marvel or associated companies. Also note, I do not provide any content, such as items, powers, traits, tags, pre-generated character sheets, etc.
 
 ## Installing the System
 
-### Via Foundry's File Browser (Recommended)
-
-1. In Foundry, navigate to the "Game Systems" tab and click the "Install System" button.
-2. Search for Multiverse RPG and click the "Install" button next to it.
-
-### Via Manifest Link
+### Via Manifest Link (Recommended)
 
 1. In Foundry, navigate to the "Game Systems" tab and click the "Install System" button.
 2. Copy and paste the following link <https://github.com/jalensailin/mvrpg/releases/latest/download/system.json> into the "Manifest URL" field located at the bottom of the "Install System" window.
