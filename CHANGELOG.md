@@ -2,7 +2,11 @@
 
 # Multiverse RPG for Foundry - Changelog
 
-## Version 1.3.0
+## Version 1.2.1 (2024-27-05)
+
+### General
+
+- Updated readme for clarity.
 
 ### Bug Fixes
 
