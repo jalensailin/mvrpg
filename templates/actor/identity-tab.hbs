@@ -17,13 +17,9 @@
   <div class="identity-2nd-section flexrow">
     <div class="identity-item flexcol">
       <div class="identity-label">{{localize "MVRPG.sheets.superSheet.identity.size"}}:</div>
-      {{#select actor.system.identity.size}}
-        <select class="identity-input" type="text" name="system.identity.size">
-          {{#each (mvGetConfigObj "sizes") as |sizeI18nString sizeSlug|}}
-            <option value="{{sizeSlug}}">{{localize sizeI18nString}}</option>
-          {{/each}}
-        </select>
-      {{/select}}
+      <select class="identity-input" type="text" name="system.identity.size">
+        {{selectOptions (mvGetConfigObj "sizes") selected=actor.system.identity.size localize=true}}
+      </select>
     </div>
     <div class="identity-item flexcol">
       <div class="identity-label">{{localize "MVRPG.sheets.superSheet.identity.weight"}}:</div>
