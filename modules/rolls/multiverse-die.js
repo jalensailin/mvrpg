@@ -1,3 +1,4 @@
+const { Die } = foundry.dice.terms;
 export default class MultiverseDie extends Die {
   constructor(termData) {
     termData.faces = 6;

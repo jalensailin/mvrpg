@@ -39,6 +39,7 @@ export default class MVUtils {
    * @returns {RegExp} - The modified regexp
    */
   static prepareDiceTermRegExp() {
+    const { DiceTerm } = foundry.dice.terms;
     const foundryDiceTermRegExp = DiceTerm.REGEXP.source;
     const denomination = MultiverseDie.DENOMINATION;
     // Go from "MV" to "[mM][vV]|"
