@@ -5,9 +5,9 @@
   "version": "1.2.2",
   "license": "MIT",
   "compatibility": {
-    "minimum": "11",
-    "verified": "11",
-    "maximum": "11"
+    "minimum": "12",
+    "verified": "12",
+    "maximum": "12"
   },
   "authors": [
     {
@@ -40,8 +40,10 @@
     }
   },
   "initiative": "3d6",
-  "gridDistance": 5,
-  "gridUnits": "ft",
+  "grid": {
+    "distance": 5,
+    "units": "ft"
+  },
   "primaryTokenAttribute": "lifepool.health",
   "secondaryTokenAttribute": "lifepool.focus",
   "url": "https://github.com/jalensailin/mvrpg",
