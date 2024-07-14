@@ -1,7 +1,20 @@
 const MVRPG = {
-  abilities: ["melee", "agility", "resilience", "vigilance", "ego", "logic"],
-  rollTypes: ["combat", "nonCombat"],
-  lifepoolTargets: ["health", "focus"],
+  abilities: {
+    melee: "MVRPG.sheets.generic.abilities.melee",
+    agility: "MVRPG.sheets.generic.abilities.agility",
+    resilience: "MVRPG.sheets.generic.abilities.resilience",
+    vigilance: "MVRPG.sheets.generic.abilities.vigilance",
+    ego: "MVRPG.sheets.generic.abilities.ego",
+    logic: "MVRPG.sheets.generic.abilities.logic",
+  },
+  rollTypes: {
+    combat: "MVRPG.sheets.itemSheet.settings.rollTypes.combat",
+    nonCombat: "MVRPG.sheets.itemSheet.settings.rollTypes.nonCombat",
+  },
+  lifepoolTargets: {
+    health: "MVRPG.sheets.superSheet.lifepool.health",
+    focus: "MVRPG.sheets.superSheet.lifepool.focus",
+  },
 
   effects: {
     melee: [

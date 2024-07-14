@@ -3,6 +3,7 @@ import MVRPG from "../../config.js";
 export default class ItemRollSchema extends foundry.abstract.DataModel {
   static defineSchema() {
     const { fields } = foundry.data;
+    const { rollTypes, abilities, lifepoolTargets } = MVRPG;
     return {
       hasRoll: new fields.BooleanField({
         required: true,
@@ -13,25 +14,25 @@ export default class ItemRollSchema extends foundry.abstract.DataModel {
         required: true,
         nullable: false,
         initial: "combat",
-        choices: MVRPG.rollTypes,
+        choices: Object.keys(rollTypes),
       }),
       ability: new fields.StringField({
         required: true,
         nullable: false,
         initial: "melee",
-        choices: MVRPG.abilities,
+        choices: Object.keys(abilities),
       }),
       against: new fields.StringField({
         required: true,
         nullable: false,
         initial: "melee",
-        choices: ["none", ...MVRPG.abilities],
+        choices: ["none", ...Object.keys(abilities)],
       }),
       lifepoolTarget: new fields.StringField({
         required: true,
         nullable: false,
         initial: "health",
-        choices: ["none", ...MVRPG.lifepoolTargets],
+        choices: ["none", ...Object.keys(lifepoolTargets)],
       }),
       bonus: new fields.NumberField({
         required: true,

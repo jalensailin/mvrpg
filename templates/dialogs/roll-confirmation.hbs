@@ -19,14 +19,10 @@
       {{#mvCompare type "!==" "initiative"}}
         <div class="mvrpg-dialog-item flexrow">
           <div class="mvrpg-dialog-label">{{localize "MVRPG.dialog.rollConfirm.against"}}</div>
-          {{#select against}}
-            <select name="against" class="mvrpg-dialog-input">
-              <option value="none">{{localize "MVRPG.sheets.generic.none"}}</option>
-              {{#each (mvGetConfigObj "abilities") as |ability|}}
-                <option value="{{ability}}">{{localize (concat "MVRPG.sheets.generic.abilities." ability)}}</option>
-              {{/each}}
-            </select>
-          {{/select}}
+          <select name="against" class="mvrpg-dialog-input">
+            <option value="none">{{localize "MVRPG.sheets.generic.none"}}</option>
+            {{selectOptions (mvGetConfigObj "abilities") selected=against localize=true}}
+          </select>
         </div>
 
         <div class="mvrpg-dialog-item flexrow">
@@ -38,14 +34,10 @@
       {{#mvCompare type "===" "combat"}}
         <div class="mvrpg-dialog-item flexrow">
           <div class="mvrpg-dialog-label">{{localize "MVRPG.dialog.rollConfirm.lifepoolTarget"}}</div>
-          {{#select lifepoolTarget}}
-            <select name="lifepoolTarget" class="mvrpg-dialog-input">
-              <option value="none">{{localize "MVRPG.sheets.generic.none"}}</option>
-              {{#each (mvGetConfigObj "lifepoolTargets") as |target|}}
-                <option value="{{target}}">{{localize (concat "MVRPG.sheets.superSheet.lifepool." target)}}</option>
-              {{/each}}
-            </select>
-          {{/select}}
+          <select name="lifepoolTarget" class="mvrpg-dialog-input">
+            <option value="none">{{localize "MVRPG.sheets.generic.none"}}</option>
+            {{selectOptions (mvGetConfigObj "lifepoolTargets") selected=lifepoolTarget localize=true}}
+          </select>
         </div>
       {{/mvCompare}}
 
