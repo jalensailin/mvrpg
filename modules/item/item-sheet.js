@@ -8,7 +8,7 @@ import MVEffect from "../effects/effects.js";
 export default class MVItemSheet extends ItemSheet {
   /** @override */
   static get defaultOptions() {
-    return mergeObject(super.defaultOptions, {
+    return foundry.utils.mergeObject(super.defaultOptions, {
       template: `systems/${game.system.id}/templates/item/base-item-sheet.hbs`,
       classes: ["mvrpg", "sheet", "item"],
       width: 580,

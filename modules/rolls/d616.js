@@ -446,8 +446,8 @@ export default class D616 extends Roll {
               // Foundry constructs a new roll object every time messages are loaded.
               // Thus, we need to make sure that the roll.options object is mutated as well
               // as the roll itself.
-              mergeObject(this.options, formData);
-              mergeObject(this, formData);
+              foundry.utils.mergeObject(this.options, formData);
+              foundry.utils.mergeObject(this, formData);
             },
           },
         },

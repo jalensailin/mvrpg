@@ -31,7 +31,7 @@ export default class MVCombatant extends Combatant {
  */
 Hooks.on("preUpdateCombatant", (combatant, data) => {
   if (typeof data.initiative === "undefined") return;
-  const flags = mergeObject(data.flags || {}, {
+  const flags = foundry.utils.mergeObject(data.flags || {}, {
     mvrpg: {
       "-=isFantastic": null,
     },

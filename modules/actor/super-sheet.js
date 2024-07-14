@@ -6,7 +6,7 @@ import MVUtils from "../utils/utils.js";
 export default class SuperSheet extends ActorSheet {
   /** @override */
   static get defaultOptions() {
-    return mergeObject(super.defaultOptions, {
+    return foundry.utils.mergeObject(super.defaultOptions, {
       classes: ["mvrpg", "sheet", "actor"],
       template: `systems/${game.system.id}/templates/actor/super-sheet.hbs`,
       width: 600,
