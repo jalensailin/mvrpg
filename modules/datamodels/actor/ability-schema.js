@@ -1,4 +1,4 @@
-export default class AbilitySchema extends foundry.abstract.TypeDataModel {
+export default class AbilitySchema extends foundry.abstract.DataModel {
   static defineSchema() {
     const { fields } = foundry.data;
     return {

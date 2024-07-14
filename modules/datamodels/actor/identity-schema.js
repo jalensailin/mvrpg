@@ -1,6 +1,6 @@
 import MVRPG from "../../config.js";
 
-export default class IdentitySchema extends foundry.abstract.TypeDataModel {
+export default class IdentitySchema extends foundry.abstract.DataModel {
   static defineSchema() {
     const { fields } = foundry.data;
     return {

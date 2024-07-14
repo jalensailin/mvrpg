@@ -1,4 +1,4 @@
-export default class LifepoolSchema extends foundry.abstract.TypeDataModel {
+export default class LifepoolSchema extends foundry.abstract.DataModel {
   static defineSchema() {
     const { fields } = foundry.data;
     return {

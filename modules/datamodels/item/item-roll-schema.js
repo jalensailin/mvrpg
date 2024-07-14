@@ -1,6 +1,6 @@
 import MVRPG from "../../config.js";
 
-export default class ItemRollSchema extends foundry.abstract.TypeDataModel {
+export default class ItemRollSchema extends foundry.abstract.DataModel {
   static defineSchema() {
     const { fields } = foundry.data;
     return {
