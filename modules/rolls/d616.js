@@ -366,6 +366,7 @@ export default class D616 extends Roll {
   dieHistory(dieId) {
     if (!this._evaluated) return null; // Early return if the roll has not been evaluted;
     const originalRoll = this.dice[D616.DiceMap[dieId]];
+    const { Die } = foundry.dice.terms;
     return [originalRoll].concat(
       this.rerolls[dieId].map((roll) => {
         const term = roll.terms[0];

@@ -1,4 +1,3 @@
-import MultiverseDie from "../rolls/multiverse-die.js";
 import Logger from "./logger.js";
 
 export default class MVUtils {
@@ -27,34 +26,6 @@ export default class MVUtils {
       attribute = currentTarget.getAttribute(datum);
     }
     return attribute;
-  }
-
-  /**
-   * Generate a RegExp that will match "mv", "MV", "mV", or "Mv".
-   * Base Foundry only allows a single-character as a dice term denomination, but this
-   * is obviously fairly limiting. We generate a RegExp that looks for our specific denomination,
-   * and splice it as an option, into the original regexp string. This way, if it doesn't match,
-   * it falls back to the Foundry default without breaking expected behavior.
-   *
-   * @returns {RegExp} - The modified regexp
-   */
-  static prepareDiceTermRegExp() {
-    const { DiceTerm } = foundry.dice.terms;
-    const foundryDiceTermRegExp = DiceTerm.REGEXP.source;
-    const denomination = MultiverseDie.DENOMINATION;
-    // Go from "MV" to "[mM][vV]|"
-    const denominationRegExp = `${denomination
-      .split("")
-      .map((char) => `[${char.toLowerCase()}${char}]`)
-      .join("")}|`;
-
-    // Slice the above into the original regexp, just before the instance of `[A-z]`.
-    const sliceIndex = foundryDiceTermRegExp.indexOf("[A-z]");
-    const finalRegExp =
-      foundryDiceTermRegExp.slice(0, sliceIndex) +
-      denominationRegExp +
-      foundryDiceTermRegExp.slice(sliceIndex);
-    return new RegExp(finalRegExp);
   }
 
   /**

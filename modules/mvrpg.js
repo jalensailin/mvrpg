@@ -10,7 +10,6 @@ import TraitDataModel from "./datamodels/item/trait-datamodel.js";
 import PowerDataModel from "./datamodels/item/power-datamodel.js";
 import MVCombatant from "./combat/combatant.js";
 import MultiverseDie from "./rolls/multiverse-die.js";
-import MVUtils from "./utils/utils.js";
 import MVEffectConfig from "./effects/effect-config.js";
 import MVEffect from "./effects/effects.js";
 import createItemMacro from "./utils/macros.js";
@@ -18,6 +17,7 @@ import Logger from "./utils/logger.js";
 import MVChatMessage from "./chat/chat-message.js";
 import MVCombat from "./combat/combat.js";
 import SuperActor from "./actor/actor.js";
+import MVRollParser from "./rolls/roll-parser.js";
 
 // CONFIG.debug.hooks = true;
 
@@ -25,10 +25,9 @@ Hooks.once("init", async () => {
   Logger.log("I am GROOT");
 
   // Register rolls and dice.
-  Object.values(MVRolls).forEach((cls) => CONFIG.Dice.rolls.push(cls));
+  CONFIG.Dice.parser = MVRollParser;
   CONFIG.Dice.terms.mv = MultiverseDie;
-  // Override the regexp that matches dice terms so that it recognizes 'mv'/'MV' as valid terms.
-  CONFIG.Dice.termTypes.DiceTerm.REGEXP = MVUtils.prepareDiceTermRegExp();
+  Object.values(MVRolls).forEach((cls) => CONFIG.Dice.rolls.push(cls));
 
   // Register Actor and sheet.
   CONFIG.Actor.documentClass = SuperActor;
