@@ -52,13 +52,9 @@
         <div class="team-maneuver-cost">{{actor.system.teamManeuver.focusCost}}</div>
       </div>
       <div class="team-maneuver-labels flexrow">
-        {{#select actor.system.teamManeuver.choice}}
-          <select class="team-maneuver-select" name="system.teamManeuver.choice">
-            {{#each (mvGetConfigObj "teamManeuvers") as |i18nString maneuver|}}
-              <option value="{{maneuver}}">{{localize i18nString}}</option>
-            {{/each}}
-          </select>
-        {{/select}}
+        <select class="team-maneuver-select" name="system.teamManeuver.choice">
+          {{selectOptions (mvGetConfigObj "teamManeuvers") selected=actor.system.teamManeuver.choice localize=true}}
+        </select>
         <div>{{localize "MVRPG.sheets.superSheet.teamManeuvers.averageRank"}}</div>
         <div>{{localize "MVRPG.sheets.superSheet.teamManeuvers.level"}}</div>
         <div>{{localize "MVRPG.sheets.superSheet.teamManeuvers.cost"}}</div>
