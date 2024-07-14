@@ -10,7 +10,7 @@ export default class MVEffectConfig extends ActiveEffectConfig {
    * @override
    */
   static get defaultOptions() {
-    const [tabs] = duplicate(super.defaultOptions.tabs);
+    const [tabs] = foundry.utils.duplicate(super.defaultOptions.tabs);
     tabs.initial = "effects";
     return foundry.utils.mergeObject(super.defaultOptions, { tabs: [tabs] });
   }
