@@ -2,6 +2,12 @@
 
 # Multiverse RPG for Foundry - Changelog
 
+## Version 1.2.2 (2024-07-15)
+
+### Bug Fixes
+
+- Issue #38: AEs that affect Damage Multiplier/Modifier Bonuses apply to damage calculations correctly.
+
 ## Version 1.2.1 (2024-05-27)
 
 ### General
