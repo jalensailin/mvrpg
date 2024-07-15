@@ -14,10 +14,10 @@ export default class MVEffect extends ActiveEffect {
   apply(actor, change) {
     if (!change.value.includes("@")) return super.apply(actor, change);
 
-    // Synchronous evaluation. This will need to be changed to `evaluateSync` function in Foundry V12,
-    // and would preclude the use of actual DiceTerms in the roll expression (probably a good thing).
+    // Synchronous evaluation.This would preclude the use of non-deterministic
+    // DiceTerms (e.g. 1d4) in the roll expression (probably a good thing).
     const roll = new Roll(change.value, actor);
-    roll.evaluate({ async: false });
+    roll.evaluateSync();
     change.value = roll.total;
     return super.apply(actor, change);
   }

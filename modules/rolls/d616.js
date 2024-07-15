@@ -168,11 +168,10 @@ export default class D616 extends Roll {
    * @param {object} [options={}]     Options which inform how the Roll is evaluated
    * @param {boolean} [options.minimize=false]    Minimize the result, obtaining the smallest possible value.
    * @param {boolean} [options.maximize=false]    Maximize the result, obtaining the largest possible value.
-   * @param {boolean} [options.async=true]        Evaluate the roll asynchronously. false is deprecated
    * @returns {Roll|Promise<Roll>}    The evaluated Roll instance
    *
    */
-  async evaluate({ minimize = false, maximize = false, async = true } = {}) {
+  async evaluate({ minimize = false, maximize = false } = {}) {
     // Allow user to confirm the roll (which they can skip with ctrl-click).
     if (!MVSettings.skipRollDialog()) {
       const rollConfirm = await this.confirmRoll().catch(() => {
@@ -181,7 +180,7 @@ export default class D616 extends Roll {
       });
       if (!rollConfirm) return null;
     }
-    const roll = await super.evaluate({ minimize, maximize, async });
+    const roll = await super.evaluate({ minimize, maximize });
 
     // Update the initiative if applicable.
     if (this.combatant) {
