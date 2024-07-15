@@ -2,6 +2,12 @@
 
 # Multiverse RPG for Foundry - Changelog
 
+## Version 2.0.0 (2024-07-15)
+
+### General
+
+- Updated system for compatibility with Foundry v12. Foundry v11 is no longer supported.
+
 ## Version 1.2.2 (2024-07-15)
 
 ### Bug Fixes
