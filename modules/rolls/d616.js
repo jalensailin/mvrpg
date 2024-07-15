@@ -219,7 +219,11 @@ export default class D616 extends Roll {
     );
 
     // Allow user to modify properties of an already rolled D616.
-    setProperty(messageData, `flags.${game.system.id}.allowModification`, true);
+    foundry.utils.setProperty(
+      messageData,
+      `flags.${game.system.id}.allowModification`,
+      true,
+    );
 
     // Assign content if not already defined in the messageData.
     // eslint-disable-next-line no-param-reassign
