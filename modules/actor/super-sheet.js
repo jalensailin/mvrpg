@@ -34,9 +34,16 @@ export default class SuperSheet extends ActorSheet {
     const foundryData = super.getData();
     const mvrpgData = {};
     const { actor } = this;
-
+    // Prepare speed data for the template.
     mvrpgData.displaySpeed =
       actor.getFlag(game.system.id, "displaySpeed") || "run";
+    mvrpgData.speedSelectOptions = {};
+    Object.entries(actor.system.speed).forEach(([speedName, speedVal]) => {
+      if (!speedVal) return;
+      mvrpgData.speedSelectOptions[speedName] = game.i18n.localize(
+        `MVRPG.sheets.superSheet.speed.${speedName}`,
+      );
+    });
 
     // Prepare only data relevant to damage mutipliers for simplicity in the template.
     const damageData = Object.entries(actor.system.abilities)

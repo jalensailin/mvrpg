@@ -62,15 +62,9 @@
         {{localize "MVRPG.sheets.superSheet.titles.speed"}}
         </div>
       <div class="speed-content comic-bubble-background flexcol">
-        {{#select displaySpeed}}
-          <select class="bubble-label speed-selector" name="flags.mvrpg.displaySpeed" data-tooltip="{{localize (concat "MVRPG.sheets.superSheet.speed." displaySpeed)}}" data-tooltip-direction="UP">
-            {{#each actor.system.speed as |speedVal speedName|}}
-              {{#if speedVal}}
-                <option value="{{speedName}}">{{localize (concat "MVRPG.sheets.superSheet.speed." speedName)}}</option>
-              {{/if}}
-            {{/each}}
-          </select>
-        {{/select}}
+        <select class="bubble-label speed-selector" name="flags.mvrpg.displaySpeed" data-tooltip="{{localize (concat "MVRPG.sheets.superSheet.speed." displaySpeed)}}" data-tooltip-direction="UP">
+          {{selectOptions speedSelectOptions selected=displaySpeed}}
+        </select>
         <div class="speed-item flexrow">
           <img class="speed-icon" src="{{concat (systemFilePath "assets/sheets/actor/speed-icons/") displaySpeed ".png"}}">
           <div class="speed-value">{{lookup actor.system.speed displaySpeed}}</div>
