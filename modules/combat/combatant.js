@@ -44,9 +44,10 @@ Hooks.on("preUpdateCombatant", (combatant, data) => {
  * a fantastic result. Also adds a tool-tip explaining.
  */
 Hooks.on("renderCombatTracker", (app, html) => {
-  const combatants = app.viewed.combatants.filter((c) =>
+  const combatants = app.viewed?.combatants.filter((c) =>
     c.getFlag(game.system.id, "isFantastic"),
   );
+  if (!combatants) return;
 
   const tooltip = game.i18n.localize("MVRPG.combatant.isFantastic");
 
