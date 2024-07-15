@@ -2,7 +2,7 @@
 
 # Multiverse RPG for Foundry - Changelog
 
-## Version 1.2.1 (2024-27-05)
+## Version 1.2.1 (2024-05-27)
 
 ### General
 
@@ -12,7 +12,7 @@
 
 - Fixed issue with the "none" action-type being improperly localized. [Issue #35]
 
-## Version 1.2.0 (2024-23-05)
+## Version 1.2.0 (2024-05-23)
 
 ### Enhancements
 
@@ -25,7 +25,7 @@
 
 - Hide the damage calculation button if roll was not a "combat" roll.
 
-## Version 1.1.0 (2024-19-05)
+## Version 1.1.0 (2024-05-19)
 
 ### Enhancements
 
@@ -35,6 +35,6 @@
   - Items can also set what ability defense they are rolled against.
   - Chat card will say what ability defense it was rolled against, and whether or not the roll beat the target number (TN).
 
-## Version 1.0.0 (2024-18-05)
+## Version 1.0.0 (2024-05-18)
 
 - Initial Foundry Release.
