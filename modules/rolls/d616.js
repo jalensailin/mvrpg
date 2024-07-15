@@ -1,3 +1,4 @@
+import SuperActor from "../actor/actor.js";
 import Logger from "../utils/logger.js";
 import { MVSettings } from "../utils/settings.js";
 import MultiverseDie from "./multiverse-die.js";
@@ -275,7 +276,7 @@ export default class D616 extends Roll {
   /**
    * Prepares the data for a D616 roll from a given item.
    *
-   * @param {Actor} actor - The actor object.
+   * @param {SuperActor} actor - The actor object.
    * @param {string} itemId - The ID of the item.
    * @return {D616} The created D616 roll.
    */
@@ -602,7 +603,8 @@ export default class D616 extends Roll {
    * @returns
    */
   calculateDamage(damageResistance = 0) {
-    const actorData = game.actors.get(this.actor._id).system;
+    // Make a dummy actor so we can use its getters
+    const actorData = new SuperActor(this.actor).system;
     const abilityData = actorData.abilities[this.ability];
     const dieMResult = this.activeResultDie("dieM").total;
     const { damageMultiplier, damageModifier } = abilityData;
