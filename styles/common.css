@@ -179,6 +179,10 @@ section {
   border: unset;
   margin: 0;
   justify-content: unset;
+  /* Unset Foundry's default padding for tabs */
+  > [data-tab] {
+    padding: unset;
+  }
 }
 
 .tab-header {
