@@ -31,13 +31,9 @@
       <div class="mvrpg-dialog-label">
         {{localize "MVRPG.sheets.itemSheet.settings.labels.duration"}}
       </div>
-      {{#select item.system.duration}}
-        <select class="mvrpg-dialog-input" name="system.duration">
-          {{#each (mvGetConfigObj "powerDurations") as |durationI18nString durationSlug|}}
-            <option value="{{durationSlug}}">{{localize durationI18nString}}</option>
-          {{/each}}
-        </select>
-      {{/select}}
+      <select class="mvrpg-dialog-input" name="system.duration">
+        {{selectOptions (mvGetConfigObj "powerDurations") selected=item.system.duration localize=true}}
+      </select>
     </div>
 
     <div class="mvrpg-dialog-item flexrow">
@@ -81,39 +77,27 @@
         <div class="mvrpg-dialog-label">
           {{localize "MVRPG.sheets.itemSheet.settings.labels.rollType"}}
         </div>
-        {{#select item.system.roll.type}}
-          <select class="mvrpg-dialog-input" name="system.roll.type">
-            {{#each (mvGetConfigObj "rollTypes") as |type|}}
-              <option value="{{type}}">{{localize (concat "MVRPG.sheets.itemSheet.settings.rollTypes." type)}}</option>
-            {{/each}}
-          </select>
-        {{/select}}
+        <select class="mvrpg-dialog-input" name="system.roll.type">
+          {{selectOptions (mvGetConfigObj "rollTypes") selected=item.system.roll.type localize=true}}
+        </select>
       </div>
 
       <div class="mvrpg-dialog-item item-roll-data flexrow">
         <div class="mvrpg-dialog-label">
           {{localize "MVRPG.sheets.itemSheet.settings.labels.rollAbility"}}
         </div>
-        {{#select item.system.roll.ability}}
-          <select class="mvrpg-dialog-input" name="system.roll.ability">
-            {{#each (mvGetConfigObj "abilities") as |ability|}}
-              <option value="{{ability}}">{{localize (concat "MVRPG.sheets.generic.abilities." ability)}}</option>
-            {{/each}}
-          </select>
-        {{/select}}
+        <select class="mvrpg-dialog-input" name="system.roll.ability">
+          {{selectOptions (mvGetConfigObj "abilities") selected=item.system.roll.ability localize=true}}
+        </select>
       </div>
 
       <div class="mvrpg-dialog-item item-roll-data flexrow">
         <div class="mvrpg-dialog-label">
           {{localize "MVRPG.sheets.itemSheet.settings.labels.against"}}
         </div>
-        {{#select item.system.roll.against}}
-          <select class="mvrpg-dialog-input" name="system.roll.against">
-            {{#each (mvGetConfigObj "abilities") as |ability|}}
-              <option value="{{ability}}">{{localize (concat "MVRPG.sheets.generic.abilities." ability)}}</option>
-            {{/each}}
-          </select>
-        {{/select}}
+        <select class="mvrpg-dialog-input" name="system.roll.against">
+          {{selectOptions (mvGetConfigObj "abilities") selected=item.system.roll.against localize=true}}
+        </select>
       </div>
 
       {{#mvCompare item.system.roll.type "combat"}}
@@ -121,14 +105,10 @@
           <div class="mvrpg-dialog-label">
             {{localize "MVRPG.sheets.itemSheet.settings.labels.lifepoolTarget"}}
           </div>
-          {{#select item.system.roll.lifepoolTarget}}
-            <select class="mvrpg-dialog-input" name="system.roll.lifepoolTarget">
-              <option value="none">{{localize "MVRPG.sheets.generic.none"}}</option>
-              {{#each (mvGetConfigObj "lifepoolTargets") as |target|}}
-                <option value="{{target}}">{{localize (concat "MVRPG.sheets.superSheet.lifepool." target)}}</option>
-              {{/each}}
-            </select>
-          {{/select}}
+          <select class="mvrpg-dialog-input" name="system.roll.lifepoolTarget">
+            <option value="none">{{localize "MVRPG.sheets.generic.none"}}</option>
+            {{selectOptions (mvGetConfigObj "lifepoolTargets") selected=item.system.roll.lifepoolTarget localize=true}}
+          </select>
         </div>
       {{/mvCompare}}
 
