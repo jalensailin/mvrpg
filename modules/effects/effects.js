@@ -144,6 +144,25 @@ export default class MVEffect extends ActiveEffect {
     );
     return localizedCategory;
   }
+
+  static getEffectOptions() {
+    const effectOptions = [];
+    Object.entries(MVRPG.effects).forEach(([effectCategory, effectKeyList]) => {
+      const optionGroup = game.i18n.localize(
+        `MVRPG.effects.categories.${effectCategory}`,
+      );
+      effectKeyList.forEach((effectKey) => {
+        const label = MVEffect.getEffectLabel(effectKey);
+        const category = MVEffect.getEffectCategory(effectKey);
+        effectOptions.push({
+          label: `${label} (${category})`,
+          value: effectKey,
+          group: optionGroup,
+        });
+      });
+    });
+    return effectOptions;
+  }
 }
 
 /**
@@ -156,11 +175,12 @@ Hooks.on("renderActiveEffectConfig", async (app, html, data) => {
     "li.effect-change > .key > input[type='text']",
   );
 
+  const effectOptions = MVEffect.getEffectOptions();
   for (const [index, input] of Array.from(effectKeyInputs).entries()) {
     // eslint-disable-next-line no-await-in-loop
     const selectTemplate = await renderTemplate(
       `systems/${game.system.id}/templates/effects/effects-drop-down.hbs`,
-      { changes: app.object.changes, index },
+      { changes: app.object.changes, index, effectOptions },
     );
     const selectOptions = MVEffect.getEffectKeys();
     const valueInOptions = selectOptions.includes(input.value);

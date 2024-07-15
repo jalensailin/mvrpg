@@ -1,10 +1,3 @@
-{{#select (lookup (lookup changes index) "key")}}
-  <select class="effect-drop-down" name="{{concat "changes." index ".key"}}" data-tooltip="{{lookup (lookup changes index) "key"}}">
-    {{#each (mvGetConfigObj "effects") as |effectKeyList category|}}
-      <optgroup label="{{localize (concat "MVRPG.effects.categories." category)}}">
-        {{#each effectKeyList as |effectKey|}}
-          <option value="{{effectKey}}">{{mvGetEffectLabel effectKey includeCategory=true}}</option>
-        {{/each}}
-    {{/each}}
-  </select>
-{{/select}}
+<select class="effect-drop-down" name="{{concat "changes." index ".key"}}" data-tooltip="{{lookup (lookup changes index) "key"}}">
+  {{selectOptions effectOptions selected=(lookup (lookup changes index) "key")}}
+</select>

@@ -63,9 +63,10 @@ export default class MVEffectConfig extends ActiveEffectConfig {
           if (!confirmInput) return;
         }
 
+        const effectOptions = MVEffect.getEffectOptions();
         const selectTemplate = await renderTemplate(
           `systems/${game.system.id}/templates/effects/effects-drop-down.hbs`,
-          { changes: this.object.changes, index },
+          { changes: this.object.changes, index, effectOptions },
         );
         const jquerySelectObject = $(selectTemplate);
         jquerySelectObject.val(value || selectOptions[0]);
