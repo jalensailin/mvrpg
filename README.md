@@ -62,6 +62,11 @@ See the reroll history by hovering over the icon in the top-left of the chat car
 
 ![Chat Card Features](./assets/readme/chat-card-features.gif)
 
+The GM can modify rolls after the fact, by right-clicking on a roll message
+and selecting "Modify Roll". This will open another Roll Dialog where you can change the Target Number, Edges, Troubles, etc, in case any mistakes were made.
+
+![Modify Roll](./assets/readme/modify-roll.png)
+
 ### Damage
 
 Calculate damage by clicking the "damage" icon in the bottom-right of the chat card. This will output a damage card to chat with the correct calculations.
@@ -86,7 +91,6 @@ Note: In the `Effect Value` field, you can input a number or an actor property u
 
 ## Future Work
 
-- Add support for Foundry v12
 - Improve Team Maneuver functionality.
 - Add an item-type for Weapons/Generic Gear.
 - Add an item-type for Occupations and Origins.
