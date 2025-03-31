@@ -19,6 +19,7 @@ import MVCombat from "./combat/combat.js";
 import SuperActor from "./actor/actor.js";
 import MVRollParser from "./rolls/roll-parser.js";
 import SimpleItemDataModel from "./datamodels/item/simple-item-datamodel.js";
+import MVItem from "./item/item.js";
 
 // CONFIG.debug.hooks = true;
 
@@ -38,6 +39,7 @@ Hooks.once("init", async () => {
   });
 
   // Register Item sheet.
+  CONFIG.Item.documentClass = MVItem;
   Items.unregisterSheet("core", ItemSheet);
   Items.registerSheet("mvrpg", MVItemSheet, {
     makeDefault: true,
