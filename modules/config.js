@@ -104,7 +104,9 @@ const MVRPG = {
   powerSets: {
     basic: "MVRPG.sheets.generic.powerSets.basic",
     elementalControl: "MVRPG.sheets.generic.powerSets.elementalControl",
+    healing: "MVRPG.sheets.generic.powerSets.healing",
     illusion: "MVRPG.sheets.generic.powerSets.illusion",
+    luck: "MVRPG.sheets.generic.powerSets.luck",
     magic: "MVRPG.sheets.generic.powerSets.magic",
     martialArts: "MVRPG.sheets.generic.powerSets.martialArts",
     meleeWeapons: "MVRPG.sheets.generic.powerSets.meleeWeapons",
@@ -115,6 +117,7 @@ const MVRPG = {
     rangedWeapons: "MVRPG.sheets.generic.powerSets.rangedWeapons",
     resize: "MVRPG.sheets.generic.powerSets.resize",
     shieldBearer: "MVRPG.sheets.generic.powerSets.shieldBearer",
+    sixthSense: "MVRPG.sheets.generic.powerSets.sixthSense",
     spiderPowers: "MVRPG.sheets.generic.powerSets.spiderPowers",
     superSpeed: "MVRPG.sheets.generic.powerSets.superSpeed",
     superStrength: "MVRPG.sheets.generic.powerSets.superStrength",
@@ -122,6 +125,7 @@ const MVRPG = {
     telekenesis: "MVRPG.sheets.generic.powerSets.telekenesis",
     telepathy: "MVRPG.sheets.generic.powerSets.telepathy",
     teleportation: "MVRPG.sheets.generic.powerSets.teleportation",
+    translation: "MVRPG.sheets.generic.powerSets.translation",
     weatherControl: "MVRPG.sheets.generic.powerSets.weatherControl",
   },
 
