@@ -16,7 +16,7 @@ export default async function preloadTemplates() {
     `systems/${game.system.id}/templates/actor/document-list.hbs`,
 
     // Item Sheet
-    `systems/${game.system.id}/templates/item/settings-tab.hbs`,
+    `systems/${game.system.id}/templates/item/power-settings.hbs`,
     `systems/${game.system.id}/templates/item/simple-item-settings.hbs`,
 
     // Shared
