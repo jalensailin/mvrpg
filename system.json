@@ -32,6 +32,30 @@
       "path": "lang/en.json"
     }
   ],
+  "documentTypes": {
+    "Actor": {
+      "super": {
+        "htmlFields": ["identity.notes"]
+      },
+      "npc": {
+        "htmlFields": ["identity.notes"]
+      }
+    },
+    "Item": {
+      "power": {
+        "htmlFields": ["description"]
+      },
+      "simpleItem": {
+        "htmlFields": ["description"]
+      },
+      "tag": {
+        "htmlFields": ["description"]
+      },
+      "trait": {
+        "htmlFields": ["description"]
+      }
+    }
+  },
   "socket": false,
   "flags": {
     "hotReload": {
