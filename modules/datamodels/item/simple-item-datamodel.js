@@ -11,11 +11,10 @@ export default class SimpleItemDataModel extends foundry.abstract
         initial: true,
       }),
       range: new fields.SchemaField({
-        value: new fields.NumberField({
+        value: new fields.StringField({
           required: true,
           nullable: true,
-          initial: 0,
-          min: 0,
+          initial: "10",
         }),
         multiplyByRank: new fields.BooleanField({
           required: true,
@@ -35,5 +34,19 @@ export default class SimpleItemDataModel extends foundry.abstract
         initial: "",
       }),
     };
+  }
+
+  get rangeVal() {
+    const { range } = this;
+    const { parseInt, isNaN } = Number;
+    const numRange = parseInt(range.value);
+    return isNaN(numRange) ? range.value : numRange;
+  }
+
+  get rangeIsInt() {
+    const { range } = this;
+    const { parseInt, isNaN } = Number;
+    const numRange = parseInt(range.value);
+    return !isNaN(numRange);
   }
 }

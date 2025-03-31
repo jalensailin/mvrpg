@@ -17,6 +17,7 @@ export default async function preloadTemplates() {
 
     // Item Sheet
     `systems/${game.system.id}/templates/item/settings-tab.hbs`,
+    `systems/${game.system.id}/templates/item/simple-item-settings.hbs`,
 
     // Shared
     `systems/${game.system.id}/templates/effects/effects-list.hbs`,
@@ -106,22 +107,17 @@ export async function registerHelpers() {
    * @param {*} args
    * @returns {Number}
    */
-  Handlebars.registerHelper("mvMath", (...args) => {
+  Handlebars.registerHelper("mvMath", (mathFunction, ...args) => {
     let mathArgs = [...args];
-    let mathFunction = mathArgs[0];
-    mathArgs.shift();
     mathArgs.pop();
+
     if (Array.isArray(mathArgs[0])) {
       [mathArgs] = mathArgs;
     }
-    mathArgs = mathArgs.map(Number);
+
+    // mathArgs = mathArgs.map(Number);
     if (typeof Math[mathFunction] === "function") {
       return Math[mathFunction].apply(null, mathArgs);
-    }
-    // Math doesn't have basic functions, we can account
-    // for those here as needed:
-    if (typeof mathArgs === "undefined") {
-      mathFunction = `${mathFunction} bad args: ${mathArgs}`;
     }
     switch (mathFunction) {
       case "sum":
@@ -133,6 +129,12 @@ export async function registerHelpers() {
       }
       case "product": {
         return mathArgs.reduce((a, b) => a * b, 1);
+      }
+      case "isNaN": {
+        if (mathArgs.length > 1) {
+          Logger.error("isNaN requires only one argument");
+        }
+        return Number.isNaN(mathArgs[0]);
       }
       default:
         Logger.debug(`Not a Math function: ${mathFunction}`);
