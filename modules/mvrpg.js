@@ -18,6 +18,7 @@ import MVChatMessage from "./chat/chat-message.js";
 import MVCombat from "./combat/combat.js";
 import SuperActor from "./actor/actor.js";
 import MVRollParser from "./rolls/roll-parser.js";
+import SimpleItemDataModel from "./datamodels/item/simple-item-datamodel.js";
 
 // CONFIG.debug.hooks = true;
 
@@ -65,6 +66,7 @@ Hooks.once("init", async () => {
   CONFIG.Item.dataModels.tag = TagDataModel;
   CONFIG.Item.dataModels.trait = TraitDataModel;
   CONFIG.Item.dataModels.power = PowerDataModel;
+  CONFIG.Item.dataModels.simpleItem = SimpleItemDataModel;
 
   // Register System Classes/Functions for ease of access for users and module/macro devs.
   game.mvrpg = {

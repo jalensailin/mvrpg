@@ -5,7 +5,7 @@
     "npc": {}
   },
   "Item": {
-    "types": ["power", "tag", "trait"],
+    "types": ["power", "tag", "trait", "simpleItem"],
     "power": {},
     "tag": {},
     "trait": {}

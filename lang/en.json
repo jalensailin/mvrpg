@@ -261,8 +261,11 @@
 
   "TYPES.Actor.super": "Super",
   "TYPES.Actor.npc": "NPC",
+
   "TYPES.Item.power": "Power",
+  "TYPES.Item.simpleItem": "Simple Item",
   "TYPES.Item.tag": "Tag",
   "TYPES.Item.trait": "Trait",
+
   "mvrpg.SuperSheet": "Super Sheet"
 }
