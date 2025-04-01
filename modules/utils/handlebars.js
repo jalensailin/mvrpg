@@ -17,8 +17,9 @@ export default async function preloadTemplates() {
 
     // Item Sheet
     `systems/${game.system.id}/templates/item/power-settings.hbs`,
-    `systems/${game.system.id}/templates/item/mixins/range-settings.hbs`,
     `systems/${game.system.id}/templates/item/simple-item-settings.hbs`,
+    `systems/${game.system.id}/templates/item/mixins/hasRoll-settings.hbs`,
+    `systems/${game.system.id}/templates/item/mixins/range-settings.hbs`,
 
     // Shared
     `systems/${game.system.id}/templates/effects/effects-list.hbs`,
