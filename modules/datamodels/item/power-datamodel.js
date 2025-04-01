@@ -1,5 +1,6 @@
 import MVRPG from "../../config.js";
 import ItemRollSchema from "./item-roll-schema.js";
+import RangeSchema from "./range-schema.js";
 
 export default class PowerDataModel extends foundry.abstract.TypeDataModel {
   static defineSchema() {
@@ -29,19 +30,7 @@ export default class PowerDataModel extends foundry.abstract.TypeDataModel {
         initial: "permanent",
         choices: Object.keys(MVRPG.powerDurations),
       }),
-      range: new fields.SchemaField({
-        value: new fields.NumberField({
-          required: true,
-          nullable: false,
-          initial: 0,
-          min: 0,
-        }),
-        multiplyByRank: new fields.BooleanField({
-          required: true,
-          nullable: false,
-          initial: false,
-        }),
-      }),
+      range: new fields.SchemaField(RangeSchema.defineSchema("1")),
       cost: new fields.NumberField({
         required: true,
         nullable: false,

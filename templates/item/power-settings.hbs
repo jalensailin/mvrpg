@@ -5,8 +5,10 @@
       <div class="mvrpg-dialog-label">
         {{localize "MVRPG.sheets.itemSheet.settings.labels.powerSets"}}
       </div>
-      <a class="mvrpg-dialog-data configure-multiple-selections" data-selection-set="powerSets" data-tooltip="{{localize "MVRPG.sheets.itemSheet.settings.tooltips.configurePowerSets"}}">
-        {{#each item.system.powerSets as |powerSetSlug|}}
+      <a class="mvrpg-dialog-data configure-multiple-selections"
+         data-selection-set="powerSets"
+         data-tooltip="{{localize "MVRPG.sheets.itemSheet.settings.tooltips.configurePowerSets"}}">
+        {{#each item.system.powerSets as |powerSetSlug| }}
           <span>{{localize (concat "MVRPG.sheets.generic.powerSets." powerSetSlug)}}
           {{~#unless @last}}, {{/unless}}</span>
         {{/each}}
@@ -15,11 +17,11 @@
     </div>
 
     <div class="mvrpg-dialog-item flexrow">
-      <div class="mvrpg-dialog-label">
-        {{localize "MVRPG.sheets.itemSheet.settings.labels.action"}}
-      </div>
-      <a class="mvrpg-dialog-data configure-multiple-selections" data-selection-set="actions" data-tooltip="{{localize "MVRPG.sheets.itemSheet.settings.tooltips.configurePowerSets"}}">
-        {{#each item.system.actions as |action|}}
+      <div class="mvrpg-dialog-label">{{localize "MVRPG.sheets.itemSheet.settings.labels.action"}}</div>
+      <a class="mvrpg-dialog-data configure-multiple-selections"
+         data-selection-set="actions"
+         data-tooltip="{{localize "MVRPG.sheets.itemSheet.settings.tooltips.configurePowerSets"}}">
+        {{#each item.system.actions as |action| }}
           <span>{{localize (mvGetConfigProperty "actions" action)}}
           {{~#unless @last}}, {{/unless}}</span>
         {{/each}}
@@ -37,42 +39,24 @@
     </div>
 
     <div class="mvrpg-dialog-item flexrow">
-      <div class="mvrpg-dialog-label">
-        {{localize "MVRPG.sheets.itemSheet.settings.labels.cost"}}
-      </div>
+      <div class="mvrpg-dialog-label">{{localize "MVRPG.sheets.itemSheet.settings.labels.cost"}}</div>
       <div class="mvrpg-dialog-input">
         <input name="system.cost" type="number" value="{{item.system.cost}}">
       </div>
     </div>
 
+    {{> (systemFilePath "templates/item/mixins/range-settings.hbs")}}
+
     <div class="mvrpg-dialog-item flexrow">
-      <div class="mvrpg-dialog-label">
-        {{localize "MVRPG.sheets.itemSheet.settings.labels.range"}}
-      </div>
+      <div class="mvrpg-dialog-label">{{localize "MVRPG.sheets.itemSheet.settings.labels.hasRoll"}}</div>
       <div class="mvrpg-dialog-input">
-        <input name="system.range.value" type="number" value="{{item.system.range.value}}">
+        <input name="system.roll.hasRoll"
+               type="checkbox"
+               {{checked item.system.roll.hasRoll}}>
       </div>
     </div>
 
-    <div class="mvrpg-dialog-item flexrow">
-      <div class="mvrpg-dialog-label">
-        {{localize "MVRPG.sheets.itemSheet.settings.labels.multiplyByRank"}}
-      </div>
-      <div class="mvrpg-dialog-input">
-        <input name="system.range.multiplyByRank" type="checkbox" {{checked item.system.range.multiplyByRank}}>
-      </div>
-    </div>
-
-    <div class="mvrpg-dialog-item flexrow">
-      <div class="mvrpg-dialog-label">
-        {{localize "MVRPG.sheets.itemSheet.settings.labels.hasRoll"}}
-      </div>
-      <div class="mvrpg-dialog-input">
-        <input name="system.roll.hasRoll" type="checkbox" {{checked item.system.roll.hasRoll}}>
-      </div>
-    </div>
-
-    {{#if item.system.roll.hasRoll}}
+    {{#if item.system.roll.hasRoll }}
       <div class="mvrpg-dialog-item item-roll-data flexrow">
         <div class="mvrpg-dialog-label">
           {{localize "MVRPG.sheets.itemSheet.settings.labels.rollType"}}
@@ -92,9 +76,7 @@
       </div>
 
       <div class="mvrpg-dialog-item item-roll-data flexrow">
-        <div class="mvrpg-dialog-label">
-          {{localize "MVRPG.sheets.itemSheet.settings.labels.against"}}
-        </div>
+        <div class="mvrpg-dialog-label">{{localize "MVRPG.sheets.itemSheet.settings.labels.against"}}</div>
         <select class="mvrpg-dialog-input" name="system.roll.against">
           {{selectOptions (mvGetConfigObj "abilities") selected=item.system.roll.against localize=true}}
         </select>
@@ -117,16 +99,18 @@
           {{localize "MVRPG.sheets.itemSheet.settings.labels.rollBonus"}}
         </div>
         <div class="mvrpg-dialog-input">
-          <input name="system.roll.bonus" type="number" value="{{item.system.roll.bonus}}">
+          <input name="system.roll.bonus"
+                 type="number"
+                 value="{{item.system.roll.bonus}}">
         </div>
       </div>
 
       <div class="mvrpg-dialog-item item-roll-data flexrow">
-        <div class="mvrpg-dialog-label">
-          {{localize "MVRPG.sheets.itemSheet.settings.labels.edges"}}
-        </div>
+        <div class="mvrpg-dialog-label">{{localize "MVRPG.sheets.itemSheet.settings.labels.edges"}}</div>
         <div class="mvrpg-dialog-input">
-          <input name="system.roll.edges" type="number" value="{{item.system.roll.edges}}">
+          <input name="system.roll.edges"
+                 type="number"
+                 value="{{item.system.roll.edges}}">
         </div>
       </div>
 
@@ -135,7 +119,9 @@
           {{localize "MVRPG.sheets.itemSheet.settings.labels.troubles"}}
         </div>
         <div class="mvrpg-dialog-input">
-          <input name="system.roll.troubles" type="number" value="{{item.system.roll.troubles}}">
+          <input name="system.roll.troubles"
+                 type="number"
+                 value="{{item.system.roll.troubles}}">
         </div>
       </div>
     {{/if}}

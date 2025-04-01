@@ -1,4 +1,5 @@
 import ItemRollSchema from "./item-roll-schema.js";
+import RangeSchema from "./range-schema.js";
 
 export default class SimpleItemDataModel extends foundry.abstract
   .TypeDataModel {
@@ -10,23 +11,7 @@ export default class SimpleItemDataModel extends foundry.abstract
         nullable: false,
         initial: true,
       }),
-      range: new fields.SchemaField({
-        value: new fields.StringField({
-          required: true,
-          nullable: true,
-          initial: "10",
-        }),
-        multiplyByRank: new fields.BooleanField({
-          required: true,
-          nullable: false,
-          initial: false,
-        }),
-        reach: new fields.BooleanField({
-          required: true,
-          nullable: false,
-          initial: false,
-        }),
-      }),
+      range: new fields.SchemaField(RangeSchema.defineSchema()),
       roll: new fields.EmbeddedDataField(ItemRollSchema),
       description: new fields.HTMLField({
         required: true,

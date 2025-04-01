@@ -17,6 +17,7 @@ export default async function preloadTemplates() {
 
     // Item Sheet
     `systems/${game.system.id}/templates/item/power-settings.hbs`,
+    `systems/${game.system.id}/templates/item/mixins/range-settings.hbs`,
     `systems/${game.system.id}/templates/item/simple-item-settings.hbs`,
 
     // Shared
