@@ -30,7 +30,7 @@ export default class PowerDataModel extends foundry.abstract.TypeDataModel {
         initial: "permanent",
         choices: Object.keys(MVRPG.powerDurations),
       }),
-      range: new fields.SchemaField(RangeSchema.defineSchema("1")),
+      range: new fields.EmbeddedDataField(RangeSchema),
       cost: new fields.NumberField({
         required: true,
         nullable: false,

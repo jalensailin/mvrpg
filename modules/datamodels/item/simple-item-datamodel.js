@@ -3,6 +3,7 @@ import RangeSchema from "./range-schema.js";
 
 export default class SimpleItemDataModel extends foundry.abstract
   .TypeDataModel {
+  /** @inheritdoc */
   static defineSchema() {
     const { fields } = foundry.data;
     return {
@@ -11,7 +12,7 @@ export default class SimpleItemDataModel extends foundry.abstract
         nullable: false,
         initial: true,
       }),
-      range: new fields.SchemaField(RangeSchema.defineSchema()),
+      range: new fields.EmbeddedDataField(RangeSchema),
       roll: new fields.EmbeddedDataField(ItemRollSchema),
       description: new fields.HTMLField({
         required: true,
@@ -19,19 +20,5 @@ export default class SimpleItemDataModel extends foundry.abstract
         initial: "",
       }),
     };
-  }
-
-  get rangeVal() {
-    const { range } = this;
-    const { parseInt, isNaN } = Number;
-    const numRange = parseInt(range.value);
-    return isNaN(numRange) ? range.value : numRange;
-  }
-
-  get rangeIsInt() {
-    const { range } = this;
-    const { parseInt, isNaN } = Number;
-    const numRange = parseInt(range.value);
-    return !isNaN(numRange);
   }
 }
