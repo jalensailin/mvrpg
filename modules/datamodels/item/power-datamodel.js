@@ -5,13 +5,14 @@ import RangeSchema from "./range-schema.js";
 export default class PowerDataModel extends foundry.abstract.TypeDataModel {
   static defineSchema() {
     const { fields } = foundry.data;
+    const { powerSets, actions, powerDurations } = MVRPG;
     return {
       powerSets: new fields.ArrayField(
         new fields.StringField({
           required: true,
           nullable: false,
           initial: "basic",
-          choices: Object.keys(MVRPG.powerSets),
+          choices: powerSets,
         }),
         { required: true, initial: ["basic"] },
       ),
@@ -20,7 +21,7 @@ export default class PowerDataModel extends foundry.abstract.TypeDataModel {
           required: true,
           nullable: false,
           initial: "standard",
-          choices: Object.keys(MVRPG.actions),
+          choices: actions,
         }),
         { required: true, initial: ["standard"] },
       ),
@@ -28,7 +29,7 @@ export default class PowerDataModel extends foundry.abstract.TypeDataModel {
         required: true,
         nullable: false,
         initial: "permanent",
-        choices: Object.keys(MVRPG.powerDurations),
+        choices: powerDurations,
       }),
       range: new fields.EmbeddedDataField(RangeSchema),
       cost: new fields.NumberField({
@@ -44,4 +45,10 @@ export default class PowerDataModel extends foundry.abstract.TypeDataModel {
       }),
     };
   }
+
+  static LOCALIZATION_PREFIXES = [
+    "MVRPG.trait.powerSets",
+    "MVRPG.trait.actions",
+    "MVRPG.trait.powerDurations",
+  ];
 }

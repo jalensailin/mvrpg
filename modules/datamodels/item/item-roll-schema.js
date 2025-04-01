@@ -14,25 +14,25 @@ export default class ItemRollSchema extends foundry.abstract.DataModel {
         required: true,
         nullable: false,
         initial: "combat",
-        choices: Object.keys(rollTypes),
+        choices: rollTypes,
       }),
       ability: new fields.StringField({
         required: true,
         nullable: false,
         initial: "melee",
-        choices: Object.keys(abilities),
+        choices: abilities,
       }),
       against: new fields.StringField({
         required: true,
         nullable: false,
         initial: "melee",
-        choices: ["none", ...Object.keys(abilities)],
+        choices: { none: "None", ...abilities },
       }),
       lifepoolTarget: new fields.StringField({
         required: true,
         nullable: false,
         initial: "health",
-        choices: ["none", ...Object.keys(lifepoolTargets)],
+        choices: { none: "None", ...lifepoolTargets },
       }),
       bonus: new fields.NumberField({
         required: true,
@@ -57,4 +57,10 @@ export default class ItemRollSchema extends foundry.abstract.DataModel {
       }),
     };
   }
+
+  static LOCALIZATION_PREFIXES = [
+    "MVRPG.trait.abilities",
+    "MVRPG.trait.rollTypes",
+    "MVRPG.trait.lifepoolTargets",
+  ];
 }

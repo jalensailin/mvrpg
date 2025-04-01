@@ -13,7 +13,7 @@ export default class TeamManeuverSchema extends foundry.abstract.DataModel {
         required: true,
         nullable: false,
         initial: "defensive",
-        choices: Object.keys(MVRPG.teamManeuvers),
+        choices: MVRPG.teamManeuvers,
       }),
       averageRank: new fields.NumberField({
         required: true,

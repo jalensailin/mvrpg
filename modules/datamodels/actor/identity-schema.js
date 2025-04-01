@@ -28,7 +28,7 @@ export default class IdentitySchema extends foundry.abstract.DataModel {
         required: true,
         nullable: false,
         initial: "average",
-        choices: Object.keys(MVRPG.sizes),
+        choices: MVRPG.sizes,
       }),
       gender: new fields.StringField({
         required: true,
