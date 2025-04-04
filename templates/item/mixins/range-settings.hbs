@@ -1,6 +1,9 @@
 <div class="mvrpg-dialog-item flexrow">
-  <div class="mvrpg-dialog-label">{{localize "MVRPG.sheets.itemSheet.settings.labels.range"}}</div>
-  <div class="mvrpg-dialog-input">
+  <div class="mvrpg-dialog-label">
+    {{localize "MVRPG.sheets.itemSheet.settings.labels.range"}}
+    <span class="mvrpg-label-hint">[{{localize "MVRPG.sheets.itemSheet.settings.labels.rangeUnit"}}]</span>
+  </div>
+  <div class="mvrpg-dialog-input range-input">
     <input name="system.range.value"
            type="text"
            value="{{item.system.range.value}}">

@@ -34,16 +34,22 @@
     }
   }
 
-  .description-section {
-    height: 100%;
-    padding: 0 8px;
-  }
-
   .tabbed-panel {
     padding-bottom: 2px;
 
     .item-roll-data {
       padding-left: 25px;
+    }
+  }
+
+  .description-section {
+    height: 100%;
+    padding: 0 8px;
+  }
+
+  .settings-section {
+    .range-input {
+      flex: 0.5;
     }
   }
 }

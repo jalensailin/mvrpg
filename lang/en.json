@@ -169,6 +169,7 @@
   "MVRPG.sheets.itemSheet.settings.labels.multiplyByRank": "Multiply By Rank?",
   "MVRPG.sheets.itemSheet.settings.labels.powerSets": "Power Sets.",
   "MVRPG.sheets.itemSheet.settings.labels.range": "Range.",
+  "MVRPG.sheets.itemSheet.settings.labels.rangeUnit": "spaces",
   "MVRPG.sheets.itemSheet.settings.labels.rollAbility": "Roll Ability.",
   "MVRPG.sheets.itemSheet.settings.labels.rollBonus": "Roll Bonus/Penalty.",
   "MVRPG.sheets.itemSheet.settings.labels.rollType": "Roll Type.",

@@ -30,13 +30,13 @@
       </div>
 
       {{#mvCompare item.type "power"}}
-        <div class="tab effects-section flexcol"
+        <div class="tab settings-section flexcol"
              data-group="primary"
              data-tab="settings">{{> (systemFilePath "templates/item/power-settings.hbs")}}</div>
       {{/mvCompare}}
 
       {{#mvCompare item.type "simpleItem"}}
-        <div class="tab effects-section flexcol"
+        <div class="tab settings-section flexcol"
              data-group="primary"
              data-tab="settings">
           {{> (systemFilePath "templates/item/simple-item-settings.hbs")}}

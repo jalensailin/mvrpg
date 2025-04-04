@@ -67,6 +67,11 @@
 
 .mvrpg-dialog-label {
   align-items: center;
+
+  .mvrpg-label-hint {
+    color: rgb(70, 70, 70);
+    font-size: 0.8em;
+  }
 }
 
 .mvrpg-dialog-icon {
