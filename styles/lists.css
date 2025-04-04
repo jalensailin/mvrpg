@@ -1,3 +1,21 @@
+@keyframes rattle {
+  0% {
+    transform: rotate(0deg) translate(1px, 1px);
+  }
+  25% {
+    transform: rotate(8deg) translate(-1px, -2px);
+  }
+  50% {
+    transform: rotate(-8deg) translate(2px, 1px);
+  }
+  75% {
+    transform: rotate(8deg) translate(-1px, 2px);
+  }
+  100% {
+    transform: rotate(0deg) translate(1px, -1px);
+  }
+}
+
 .doc-list {
   gap: 2px;
 
@@ -79,6 +97,11 @@
     .doc-action {
       padding: 2px;
     }
+
+    .rollable:hover {
+      animation: rattle 0.4s infinite ease-in-out;
+    }
+
     .doc-delete {
       flex: 0;
       color: var(--spider-red);
