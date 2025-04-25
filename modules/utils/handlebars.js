@@ -8,6 +8,7 @@ import Logger from "./logger.js";
  * @return {Promise}
  */
 export default async function preloadTemplates() {
+  const { loadTemplates } = foundry.applications.handlebars;
   return loadTemplates([
     // Actor Sheet
     `systems/${game.system.id}/templates/actor/combat-tab.hbs`,
