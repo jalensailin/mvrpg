@@ -2,30 +2,39 @@ import Logger from "./logger.js";
 
 export default class MVUtils {
   /**
-   * Inspect an event object for passed-in field specific to the target (link) that was clicked.
-   * This code will initially look at the current target, and if the field is not found, it will
-   * climb up the parents of the target until one is found, or print an error and return undefined.
+   * Walks up the DOM tree from the event's currentTarget, looking for a given attribute.
+   * Supports both standard attributes and data-* attributes (auto-converting kebab-case to camelCase).
+   * Stops climbing if a parent element with a specified class is reached.
    *
-   * Inspiration for this is taken from Cyberpunk Red Foundry implementation,
-   * but the code is pretty different.
-   *
-   * @param {Object} event - event data from jquery
-   * @param {String} datum - the field we are interested in getting
-   * @returns {String} - the value of the field passed in the event data
+   * @param {Event} event - The DOM event object.
+   * @param {string} key - The attribute name or dataset key to search for.
+   * @param {Object} [options] - Optional settings.
+   * @param {boolean} [options.useDataset=true] - If true, looks in dataset (data-* attributes); otherwise, uses getAttribute.
+   * @param {string} [options.stopClass="application"] - Stops climbing when this class is encountered on an ancestor.
+   * @returns {string|undefined} - The value of the attribute if found.
    */
-  static GetEventDatum(event, datum) {
-    let { currentTarget } = event;
-    let attribute = event.currentTarget.getAttribute(datum);
-    while (!attribute) {
-      // Climb up the parents
-      currentTarget = currentTarget.parentElement;
-      if (currentTarget === null) {
-        Logger.debug(`Could not find ${datum}`);
-        return undefined;
-      }
-      attribute = currentTarget.getAttribute(datum);
+  static getClosestAttribute(
+    event,
+    key,
+    { useDataset = true, stopClass = "application" } = {},
+  ) {
+    let el = event.currentTarget;
+    const camelKey = key.replace(/-([a-z])/g, (_, char) => char.toUpperCase());
+
+    while (el) {
+      const value = useDataset ? el.dataset?.[camelKey] : el.getAttribute(key);
+      if (value != null) return value;
+
+      // Stop if we've reached a boundary element
+      if (el.classList.contains(stopClass)) break;
+
+      el = el.parentElement;
     }
-    return attribute;
+
+    Logger.debug(
+      `Could not find attribute "${key}" before reaching ".${stopClass}" element.`,
+    );
+    return undefined;
   }
 
   /**
