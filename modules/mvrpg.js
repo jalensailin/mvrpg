@@ -26,6 +26,7 @@ import registerSettings from "./utils/settings.js";
 Hooks.once("init", async () => {
   Logger.log("I am GROOT");
 
+  const { DocumentSheetConfig } = foundry.applications.apps;
   const { ActorSheet, ItemSheet } = foundry.appv1.sheets;
   const { Actors, Items } = foundry.documents.collections;
 
