@@ -45,7 +45,6 @@ rules:
 globals:
   $: readonly
   ActiveEffect: readonly
-  ActiveEffectConfig: readonly
   Actor: readonly
   Actors: readonly
   CONFIG: readonly

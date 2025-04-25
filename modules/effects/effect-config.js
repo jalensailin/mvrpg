@@ -1,5 +1,7 @@
 import MVEffect from "./effects.js";
 
+const { ActiveEffectConfig } = foundry.applications.sheets;
+
 /**
  * @param {*} html
  * @override
