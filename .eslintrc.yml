@@ -59,7 +59,6 @@ globals:
   Item: readonly
   Macro: readonly
   Roll: readonly
-  TextEditor: readonly
   canvas: readonly
   duplicate: readonly
   foundry: readonly

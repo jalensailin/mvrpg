@@ -30,10 +30,13 @@ export default class MVItemSheet extends ItemSheet {
   /** @override */
   async getData() {
     const data = super.getData();
+
+    const TextEditor = foundry.applications.ux.TextEditor.implementation;
     data.enrichedDescription = await TextEditor.enrichHTML(
       this.object.system.description,
       { async: true },
     );
+
     return data;
   }
 

@@ -63,6 +63,7 @@ export default class SuperSheet extends ActorSheet {
     );
     mvrpgData.rollableItems = rollableItems;
 
+    const TextEditor = foundry.applications.ux.TextEditor.implementation;
     mvrpgData.enrichedNotes = await TextEditor.enrichHTML(
       actor.system.identity.notes,
       { async: true },
