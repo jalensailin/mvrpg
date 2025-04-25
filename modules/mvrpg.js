@@ -26,7 +26,7 @@ import registerSettings from "./utils/settings.js";
 Hooks.once("init", async () => {
   Logger.log("I am GROOT");
 
-  const { ActorSheet } = foundry.appv1.sheets;
+  const { ActorSheet, ItemSheet } = foundry.appv1.sheets;
 
   // Register rolls and dice.
   CONFIG.Dice.parser = MVRollParser;

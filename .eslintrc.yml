@@ -59,7 +59,6 @@ globals:
   Handlebars: readonly
   Hooks: readonly
   Item: readonly
-  ItemSheet: readonly
   Items: readonly
   Macro: readonly
   Roll: readonly
