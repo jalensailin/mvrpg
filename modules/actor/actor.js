@@ -34,6 +34,7 @@ export default class SuperActor extends Actor {
               icon: `<i class="fa-solid fa-spider"></i>`,
               label: game.i18n.localize("MVRPG.dialog.buttons.confirm"),
               callback: (html) => {
+                const { FormDataExtended } = foundry.applications.ux;
                 const fd = new FormDataExtended(html.find("form")[0]);
                 const formData = foundry.utils.expandObject(fd.object);
                 damageReduction = formData.damageReduction;
