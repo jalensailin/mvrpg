@@ -65,7 +65,6 @@ globals:
   fromUuidSync: readonly
   game: readonly
   globals: readonly
-  keyboard: readonly
   mergeObject: readonly
   renderTemplate: readonly
   setProperty: readonly

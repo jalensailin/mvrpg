@@ -56,12 +56,12 @@ export default function registerSettings() {
 
 export class MVSettings {
   static skipDeleteDialog() {
-    const ctrlKey = keyboard.isModifierActive("Control");
+    const ctrlKey = game.keyboard.isModifierActive("Control");
     return game.settings.get("mvrpg", "skipDeleteDialogs") ? !ctrlKey : ctrlKey;
   }
 
   static skipRollDialog() {
-    const ctrlKey = keyboard.isModifierActive("Control");
+    const ctrlKey = game.keyboard.isModifierActive("Control");
     return game.settings.get("mvrpg", "skipRollDialogs") ? !ctrlKey : ctrlKey;
   }
 }
