@@ -3,6 +3,8 @@ import EffectUtils from "../effects/effects.js";
 import { MVSettings } from "../utils/settings.js";
 import MVUtils from "../utils/utils.js";
 
+const { ActorSheet } = foundry.appv1.sheets;
+
 export default class SuperSheet extends ActorSheet {
   /** @override */
   static get defaultOptions() {
