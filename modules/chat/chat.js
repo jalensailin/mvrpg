@@ -32,7 +32,7 @@ export default class MVChatLog extends ChatLog {
    * @param {Event} event - The event object.
    */
   static async applyDamage(event) {
-    const messageId = MVUtils.getClosestAttribute(event, "data-message-id");
+    const messageId = MVUtils.getClosestAttribute(event, "message-id");
     const message = game.messages.get(messageId);
     const [originRoll] = message.rolls;
 
@@ -91,7 +91,7 @@ export default class MVChatLog extends ChatLog {
     $(damageItem).addClass("undone");
 
     // Update the message so changes persist to the database.
-    const messageId = MVUtils.getClosestAttribute(event, "data-message-id");
+    const messageId = MVUtils.getClosestAttribute(event, "message-id");
     const message = game.messages.get(messageId);
     const [content] = $(event.currentTarget).parents(".mvrpg-damage-card");
     message.update({ content: content.outerHTML });
@@ -128,15 +128,15 @@ export default class MVChatLog extends ChatLog {
   }
 
   static async onRoll(event) {
-    const messageId = MVUtils.getClosestAttribute(event, "data-message-id");
-    const dieID = MVUtils.getClosestAttribute(event, "data-die-id");
+    const messageId = MVUtils.getClosestAttribute(event, "message-id");
+    const dieID = MVUtils.getClosestAttribute(event, "die-id");
     const message = game.messages.get(messageId);
     const [originalD616] = message.rolls;
     originalD616.mvReroll(dieID, message);
   }
 
   static async undoLastReroll(event) {
-    const messageId = MVUtils.getClosestAttribute(event, "data-message-id");
+    const messageId = MVUtils.getClosestAttribute(event, "message-id");
     const message = game.messages.get(messageId);
     const [originalD616] = message.rolls;
     const skipDialog = MVSettings.skipDeleteDialog();
@@ -144,7 +144,7 @@ export default class MVChatLog extends ChatLog {
   }
 
   static createDamageCard(event) {
-    const messageId = MVUtils.getClosestAttribute(event, "data-message-id");
+    const messageId = MVUtils.getClosestAttribute(event, "message-id");
     const message = game.messages.get(messageId);
     const [originalD616] = message.rolls;
     originalD616.createDamageCard(message.speaker.alias, messageId);

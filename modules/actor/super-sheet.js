@@ -117,7 +117,7 @@ export default class SuperSheet extends ActorSheet {
    */
   onItemAction(event) {
     const { action, docType } = event.currentTarget.dataset;
-    const itemId = MVUtils.getClosestAttribute(event, "data-item-id");
+    const itemId = MVUtils.getClosestAttribute(event, "item-id");
     const doc = this.actor.items.get(itemId);
 
     switch (action) {
@@ -168,7 +168,7 @@ export default class SuperSheet extends ActorSheet {
    * @return {Promise} A promise that resolves when the roll event is handled
    */
   async onRoll(event) {
-    const itemId = MVUtils.getClosestAttribute(event, "data-item-id");
+    const itemId = MVUtils.getClosestAttribute(event, "item-id");
     if (itemId) return D616.createItemRoll(this.actor, itemId);
 
     const { rollType, ability } = event.currentTarget.dataset;
