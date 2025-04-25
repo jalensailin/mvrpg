@@ -157,12 +157,12 @@ export default class MVChatLog extends ChatLog {
     // Remove the undo button if the user is not the GM.
     const { isGM } = game.user;
     if (isGM) return;
-    html.find(".undo-last-reroll").remove();
+    html.querySelector(".undo-last-reroll").remove();
 
     // Remove the reroll links if the user is not the author of the message.
     const { isAuthor } = message;
     if (isAuthor) return;
-    html.find(".roll-single-result").addClass("mv-inactive-link");
+    html.querySelector(".roll-single-result").classList.add("mv-inactive-link");
   }
 }
 
@@ -170,10 +170,10 @@ export default class MVChatLog extends ChatLog {
  * Perform message-specific actions on render.
  *
  * @param {ChatMessage} message - The ChatMessage document being rendered
- * @param {jQuery} html - The inner HTML of the document that will be displayed and may be modified
+ * @param {HTMLElement} html - The inner HTML of the document that will be displayed and may be modified
  * @param {Object} messageData - The object of data used when rendering the application
  * @return {void}
  */
-Hooks.on("renderChatMessage", async (message, html, messageData) => {
+Hooks.on("renderChatMessageHTML", async (message, html, messageData) => {
   MVChatLog.denyPlayerAccess(message, html);
 });
