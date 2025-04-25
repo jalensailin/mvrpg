@@ -46,7 +46,6 @@ globals:
   $: readonly
   ActiveEffect: readonly
   Actor: readonly
-  Actors: readonly
   CONFIG: readonly
   ChatMessage: readonly
   Combat: readonly
@@ -59,7 +58,6 @@ globals:
   Handlebars: readonly
   Hooks: readonly
   Item: readonly
-  Items: readonly
   Macro: readonly
   Roll: readonly
   TextEditor: readonly

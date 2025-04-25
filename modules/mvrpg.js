@@ -27,6 +27,7 @@ Hooks.once("init", async () => {
   Logger.log("I am GROOT");
 
   const { ActorSheet, ItemSheet } = foundry.appv1.sheets;
+  const { Actors, Items } = foundry.documents.collections;
 
   // Register rolls and dice.
   CONFIG.Dice.parser = MVRollParser;
