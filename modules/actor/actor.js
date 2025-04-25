@@ -16,6 +16,7 @@ export default class SuperActor extends Actor {
     const targetName = target.name;
     const targetUuid = target.uuid;
     // Set up dialog for each this.
+    const { renderTemplate } = foundry.applications.handlebars;
     const dialogContent = await renderTemplate(
       `systems/${game.system.id}/templates/dialogs/damage-confirmation.hbs`,
       {

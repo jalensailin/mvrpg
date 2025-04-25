@@ -50,10 +50,13 @@ export default class MVChatLog extends ChatLog {
     }
     const updates = (await Promise.all(promises)).filter((u) => u);
     if (updates.length === 0) return;
+
+    const { renderTemplate } = foundry.applications.handlebars;
     const content = await renderTemplate(
       "systems/mvrpg/templates/chat/damage-application.hbs",
       { lifepoolTarget: originRoll.lifepoolTarget, damageList: updates },
     );
+
     ChatMessage.create({
       content,
     });

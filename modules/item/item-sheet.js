@@ -68,10 +68,13 @@ export default class MVItemSheet extends ItemSheet {
   async configureMultipleSelections(selectionSet) {
     const configObj = MVRPG[selectionSet];
     const title = game.i18n.localize(`MVRPG.dialog.${selectionSet}.title`);
+
+    const { renderTemplate } = foundry.applications.handlebars;
     const content = await renderTemplate(
       `systems/${game.system.id}/templates/dialogs/configure-multiple-selections.hbs`,
       { title, itemProperty: this.item.system[selectionSet], configObj },
     );
+
     const dialog = new Dialog(
       {
         content,

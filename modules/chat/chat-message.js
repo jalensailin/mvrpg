@@ -20,6 +20,7 @@ export default class MVChatMessage extends ChatMessage {
     // Regenerate chat data, taking into account the reroll.
     const chatData = roll.prepareChatTemplateData();
     // Prepare chat template.
+    const { renderTemplate } = foundry.applications.handlebars;
     const msgContent = await renderTemplate(roll.template, chatData);
     this.update({ rolls: [roll], content: msgContent });
   }

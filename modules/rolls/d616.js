@@ -207,6 +207,7 @@ export default class D616 extends Roll {
    */
   async toMessage(messageData = {}, { rollMode, create = true } = {}) {
     const chatData = this.prepareChatTemplateData();
+    const { renderTemplate } = foundry.applications.handlebars;
     const content = await renderTemplate(this.template, chatData).catch(
       (error) => {
         // eslint-disable-next-line no-console
@@ -419,6 +420,7 @@ export default class D616 extends Roll {
     // Get the correct roll key.
     let rollKey = `MVRPG.sheets.superSheet.abilities.${this.ability}`;
     if (this.type === "initiative") rollKey = "MVRPG.rolls.initiative";
+    const { renderTemplate } = foundry.applications.handlebars;
     const content = await renderTemplate(
       `systems/${game.system.id}/templates/dialogs/roll-confirmation.hbs`,
       {
@@ -505,6 +507,7 @@ export default class D616 extends Roll {
     // Regenerate chat data, taking into account the reroll.
     const chatData = this.prepareChatTemplateData();
     // Prepare chat template.
+    const { renderTemplate } = foundry.applications.handlebars;
     const content = await renderTemplate(this.template, chatData);
 
     // Update initiative tracker if applicable.
@@ -532,6 +535,7 @@ export default class D616 extends Roll {
     // Regenerate chat data, taking into account the reroll.
     const chatData = this.prepareChatTemplateData();
     // Prepare chat template.
+    const { renderTemplate } = foundry.applications.handlebars;
     const content = await renderTemplate(this.template, chatData);
 
     // Update initiative tracker if applicable.
@@ -646,6 +650,7 @@ export default class D616 extends Roll {
       total,
     };
     // Prepare chat template.
+    const { renderTemplate } = foundry.applications.handlebars;
     const content = await renderTemplate(
       `systems/${game.system.id}/templates/chat/damage-card.hbs`,
       chatData,

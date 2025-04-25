@@ -177,11 +177,13 @@ Hooks.on("renderActiveEffectConfig", async (app, html, data) => {
 
   const effectOptions = MVEffect.getEffectOptions();
   for (const [index, input] of Array.from(effectKeyInputs).entries()) {
+    const { renderTemplate } = foundry.applications.handlebars;
     // eslint-disable-next-line no-await-in-loop
     const selectTemplate = await renderTemplate(
       `systems/${game.system.id}/templates/effects/effects-drop-down.hbs`,
       { changes: app.object.changes, index, effectOptions },
     );
+
     const selectOptions = MVEffect.getEffectKeys();
     const valueInOptions = selectOptions.includes(input.value);
 

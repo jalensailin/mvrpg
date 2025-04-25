@@ -200,6 +200,7 @@ export default class SuperSheet extends ActorSheet {
   }
 
   async showConfig() {
+    const { renderTemplate } = foundry.applications.handlebars;
     const content = await renderTemplate(
       `systems/${game.system.id}/templates/dialogs/init-speed-dialog.hbs`,
       { actor: this.actor },

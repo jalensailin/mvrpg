@@ -66,7 +66,6 @@ globals:
   game: readonly
   globals: readonly
   mergeObject: readonly
-  renderTemplate: readonly
   setProperty: readonly
   ui: readonly
 settings:

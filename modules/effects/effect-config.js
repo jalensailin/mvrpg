@@ -66,10 +66,13 @@ export default class MVEffectConfig extends ActiveEffectConfig {
         }
 
         const effectOptions = MVEffect.getEffectOptions();
+
+        const { renderTemplate } = foundry.applications.handlebars;
         const selectTemplate = await renderTemplate(
           `systems/${game.system.id}/templates/effects/effects-drop-down.hbs`,
           { changes: this.object.changes, index, effectOptions },
         );
+
         const jquerySelectObject = $(selectTemplate);
         jquerySelectObject.val(value || selectOptions[0]);
         finalTemplate = jquerySelectObject;
