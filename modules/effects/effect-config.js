@@ -11,11 +11,11 @@ export default class MVEffectConfig extends ActiveEffectConfig {
    * Open AE config on the "effects" tab.
    * @override
    */
-  static get defaultOptions() {
-    const [tabs] = foundry.utils.duplicate(super.defaultOptions.tabs);
-    tabs.initial = "effects";
-    return foundry.utils.mergeObject(super.defaultOptions, { tabs: [tabs] });
-  }
+  static TABS = (() => {
+    const tabs = super.TABS;
+    tabs.sheet.initial = "changes";
+    return tabs;
+  })();
 
   /**
    * @param {*} html
