@@ -59,7 +59,7 @@ export default class SuperSheet extends ActorSheet {
 
     // Prepare rollable items for combat tab.
     const rollableItems = actor.items.filter(
-      (item) => item.system.roll.hasRoll,
+      (item) => item.system.roll?.hasRoll,
     );
     mvrpgData.rollableItems = rollableItems;
 
