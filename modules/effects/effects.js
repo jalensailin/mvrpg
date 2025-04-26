@@ -171,8 +171,8 @@ export default class MVEffect extends ActiveEffect {
  * the appropriate button and leave it as a text-input.
  */
 Hooks.on("renderActiveEffectConfig", async (app, html, data) => {
-  const effectKeyInputs = html.find(
-    "li.effect-change > .key > input[type='text']",
+  const effectKeyInputs = html.querySelectorAll(
+    "ol[data-changes] > li > .key > input[type='text']",
   );
 
   const effectOptions = MVEffect.getEffectOptions();
@@ -181,7 +181,7 @@ Hooks.on("renderActiveEffectConfig", async (app, html, data) => {
     // eslint-disable-next-line no-await-in-loop
     const selectTemplate = await renderTemplate(
       `systems/${game.system.id}/templates/effects/effects-drop-down.hbs`,
-      { changes: app.object.changes, index, effectOptions },
+      { changes: app.document.changes, index, effectOptions },
     );
 
     const selectOptions = MVEffect.getEffectKeys();
@@ -205,7 +205,7 @@ Hooks.on("renderActiveEffectConfig", async (app, html, data) => {
       $(input).replaceWith(`${buttonTemplate}${selectTemplate}`);
     } else {
       $(input).before(`${buttonTemplate} `);
-      const iconWidth = html.find(".toggle-text-input").outerWidth();
+      const iconWidth = html.querySelector(".toggle-text-input").outerWidth();
       $(input).css("width", `calc(100% - ${(iconWidth || 16) + 8}px)`);
     }
   }
