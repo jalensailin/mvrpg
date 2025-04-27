@@ -6,7 +6,7 @@ export default class MVUtils {
    * Supports both standard attributes and data-* attributes (auto-converting kebab-case to camelCase).
    * Stops climbing if a parent element with a specified class is reached.
    *
-   * @param {Event} event - The DOM event object.
+   * @param {HTMLElement} target - The DOM event object.
    * @param {string} key - The attribute name or dataset key to search for.
    * @param {Object} [options] - Optional settings.
    * @param {boolean} [options.useDataset=true] - If true, looks in dataset (data-* attributes); otherwise, uses getAttribute.
@@ -14,11 +14,11 @@ export default class MVUtils {
    * @returns {string|undefined} - The value of the attribute if found.
    */
   static getClosestAttribute(
-    event,
+    target,
     key,
     { useDataset = true, stopClass = "application" } = {},
   ) {
-    let el = event.currentTarget;
+    let el = target;
     const camelKey = key.replace(/-([a-z])/g, (_, char) => char.toUpperCase());
 
     while (el) {

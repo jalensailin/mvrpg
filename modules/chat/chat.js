@@ -31,8 +31,8 @@ export default class MVChatLog extends ChatLog {
    *
    * @param {Event} event - The event object.
    */
-  static async applyDamage(event) {
-    const messageId = MVUtils.getClosestAttribute(event, "message-id");
+  static async applyDamage(event, target) {
+    const messageId = MVUtils.getClosestAttribute(target, "message-id");
     const message = game.messages.get(messageId);
     const [originRoll] = message.rolls;
 
@@ -68,13 +68,12 @@ export default class MVChatLog extends ChatLog {
    * @param {Event} event - The event object.
    * @return {void}
    */
-  static undoDamage(event) {
-    const button = event.currentTarget;
+  static undoDamage(event, target) {
+    const button = target;
     const damageItem = button.parentElement;
 
-    const { targetUuid, lifepoolTarget, damageTotal } =
-      event.currentTarget.dataset;
-    const target = fromUuidSync(targetUuid);
+    const { targetUuid, lifepoolTarget, damageTotal } = button.dataset;
+
 
     if (!target) {
       ui.notifications.error(
@@ -91,7 +90,7 @@ export default class MVChatLog extends ChatLog {
     $(damageItem).addClass("undone");
 
     // Update the message so changes persist to the database.
-    const messageId = MVUtils.getClosestAttribute(event, "message-id");
+    const messageId = MVUtils.getClosestAttribute(target, "message-id");
     const message = game.messages.get(messageId);
     const [content] = $(event.currentTarget).parents(".mvrpg-damage-card");
     message.update({ content: content.outerHTML });
@@ -127,16 +126,16 @@ export default class MVChatLog extends ChatLog {
     return options;
   }
 
-  static async onRoll(event) {
-    const messageId = MVUtils.getClosestAttribute(event, "message-id");
-    const dieID = MVUtils.getClosestAttribute(event, "die-id");
+  static async onRoll(event, target) {
+    const messageId = MVUtils.getClosestAttribute(target, "message-id");
+    const dieID = MVUtils.getClosestAttribute(target, "die-id");
     const message = game.messages.get(messageId);
     const [originalD616] = message.rolls;
     originalD616.mvReroll(dieID, message);
   }
 
-  static async undoLastReroll(event) {
-    const messageId = MVUtils.getClosestAttribute(event, "message-id");
+  static async undoLastReroll(event, target) {
+    const messageId = MVUtils.getClosestAttribute(target, "message-id");
     const message = game.messages.get(messageId);
     const [originalD616] = message.rolls;
     const skipDialog = MVSettings.skipDeleteDialog();
@@ -144,7 +143,8 @@ export default class MVChatLog extends ChatLog {
   }
 
   static createDamageCard(event) {
-    const messageId = MVUtils.getClosestAttribute(event, "message-id");
+  static createDamageCard(event, target) {
+    const messageId = MVUtils.getClosestAttribute(target, "message-id");
     const message = game.messages.get(messageId);
     const [originalD616] = message.rolls;
     originalD616.createDamageCard(message.speaker.alias, messageId);
