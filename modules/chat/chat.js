@@ -9,18 +9,11 @@ export default class MVChatLog extends ChatLog {
     actions: {
       applyDamage: MVChatLog.applyDamage,
       createDamageCard: MVChatLog.createDamageCard,
+      reroll: MVChatLog.reroll,
       undoDamage: MVChatLog.undoDamage,
       undoLastReroll: MVChatLog.undoLastReroll,
     },
   };
-
-  /** @override */
-  activateListeners(html) {
-    super.activateListeners(html);
-    html.on("click", ".reroll-links a:not(.mv-inactive-link)", (event) =>
-      MVChatLog.onRoll(event),
-    );
-  }
 
   /**
    * Iterates over the selected tokens and applies damage to each.
@@ -67,7 +60,7 @@ export default class MVChatLog extends ChatLog {
    * Undoes the damage applied to a target and updates the message.
    *
    * @param {Event} event - The event object.
-   * @param {HTMLElement} target - The target element.
+   * @param {HTMLAnchorElement} target - The target element.
    * @return {Promise<void>}
    */
   static undoDamage(event, target) {
@@ -127,11 +120,21 @@ export default class MVChatLog extends ChatLog {
     return options;
   }
 
-  static async onRoll(event, target) {
+  /**
+   * Handle the event to reroll a D616.
+   *
+   * @param {Event} event - The event that triggered the reroll.
+   * @param {HTMLDivElement} target - The target element that triggered the event.
+   * @return {Promise<void>}
+   */
+  static async reroll(event, target) {
+    if (event.target.classList.contains("mv-inactive-link")) return;
     const messageId = MVUtils.getClosestAttribute(target, "message-id");
-    const dieID = MVUtils.getClosestAttribute(target, "die-id");
     const message = game.messages.get(messageId);
+
+    const dieID = event.target.getAttribute("data-die-id");
     const [originalD616] = message.rolls;
+
     originalD616.mvReroll(dieID, message);
   }
 
@@ -139,7 +142,7 @@ export default class MVChatLog extends ChatLog {
    * Handle the event to undo the last reroll of a D616.
    *
    * @param {Event} event - The event that triggered the undo last reroll.
-   * @param {HTMLElement} target - The target element that triggered the event.
+   * @param {HTMLAnchorElement} target - The target element that triggered the event.
    * @return {Promise<void>}
    */
   static async undoLastReroll(event, target) {
@@ -154,7 +157,7 @@ export default class MVChatLog extends ChatLog {
    * Creates a damage card for a D616 roll and sends it to the chat.
    *
    * @param {Event} event - The event object that triggered the creation of the damage card.
-   * @param {HTMLElement} target - The target element associated with the event.
+   * @param {HTMLAnchorElement} target - The target element associated with the event.
    * @returns {void}
    */
   static createDamageCard(event, target) {
