@@ -7,6 +7,13 @@ const { ActiveEffectConfig } = foundry.applications.sheets;
  * @override
  */
 export default class MVEffectConfig extends ActiveEffectConfig {
+  /** @inheritdoc */
+  static DEFAULT_OPTIONS = {
+    actions: {
+      toggleInput: MVEffectConfig.toggleInput,
+    },
+  };
+
   /**
    * Open AE config on the "changes" tab.
    * @inheritdoc
@@ -21,20 +28,14 @@ export default class MVEffectConfig extends ActiveEffectConfig {
 
     await this._insertDropDowns();
 
-    const html = this.element;
-
-    // Add event listeners
-    html.querySelectorAll(".toggle-text-input").forEach((button) => {
-      button.addEventListener("click", (event) => {
-        this.toggleTextInput(event);
+    // Add event listeners.
+    this.element
+      .querySelectorAll("select.effect-drop-down")
+      .forEach((select) => {
+        select.addEventListener("change", (event) => {
+          MVEffectConfig.updateDropDownToolTip(event.target);
+        });
       });
-    });
-
-    html.querySelectorAll("select.effect-drop-down").forEach((select) => {
-      select.addEventListener("change", (event) => {
-        MVEffectConfig.updateDropDownToolTip(event.target);
-      });
-    });
   }
 
   /**
@@ -72,8 +73,8 @@ export default class MVEffectConfig extends ActiveEffectConfig {
       }
 
       const buttonTemplate = document.createElement("a");
-      buttonTemplate.className = "toggle-text-input";
       buttonTemplate.dataset.index = index;
+      buttonTemplate.dataset.action = "toggleInput";
       buttonTemplate.dataset.tooltip = buttonTooltip;
       buttonTemplate.innerHTML = `<i class="fa-solid ${iconClass}"></i>`;
 
@@ -99,8 +100,8 @@ export default class MVEffectConfig extends ActiveEffectConfig {
    * @param {Event} event
    * @return {void}
    */
-  async toggleTextInput(event) {
-    const button = event.currentTarget;
+  static async toggleInput(event, target) {
+    const button = target;
     const { index } = button.dataset;
     const keyInput = button.nextElementSibling;
     if (!keyInput) return;
