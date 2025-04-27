@@ -11,11 +11,9 @@ export default class MVEffectConfig extends ActiveEffectConfig {
    * Open AE config on the "changes" tab.
    * @inheritdoc
    */
-  static TABS = (() => {
-    const tabs = super.TABS;
-    tabs.sheet.initial = "changes";
-    return tabs;
-  })();
+  static TABS = {
+    sheet: { ...super.TABS.sheet, initial: "changes" },
+  };
 
   /** @inheritdoc */
   async _onRender(context, options) {
