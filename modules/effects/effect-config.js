@@ -8,8 +8,8 @@ const { ActiveEffectConfig } = foundry.applications.sheets;
  */
 export default class MVEffectConfig extends ActiveEffectConfig {
   /**
-   * Open AE config on the "effects" tab.
-   * @override
+   * Open AE config on the "changes" tab.
+   * @inheritdoc
    */
   static TABS = (() => {
     const tabs = super.TABS;
@@ -17,20 +17,74 @@ export default class MVEffectConfig extends ActiveEffectConfig {
     return tabs;
   })();
 
-  /**
-   * @param {*} html
-   * @override
-   */
-  activateListeners(html) {
-    super.activateListeners(html);
-    html.on("click", ".toggle-text-input", (event) => {
-      this.toggleTextInput(event);
+  /** @inheritdoc */
+  async _onRender(context, options) {
+    await super._onRender(context, options);
+
+    await this._insertDropDowns();
+
+    // Add event listeners.
+    const html = this.element;
+    html.querySelectorAll(".toggle-text-input").forEach((button) => {
+      button.addEventListener("click", (event) => {
+        this.toggleTextInput(event);
+      });
     });
 
-    html.on("change", "select.effect-drop-down", (event) => {
-      const selectElement = event.currentTarget;
-      MVEffectConfig.updateDropDownToolTip(selectElement);
+    html.querySelectorAll("select.effect-drop-down").forEach((select) => {
+      select.addEventListener("change", (event) => {
+        MVEffectConfig.updateDropDownToolTip(select);
+      });
     });
+  }
+
+  /**
+   * Insert a drop-down for the effect's change key, replacing the default text-input.
+   * We only replace it if the value is in the list of options, otherwise we just insert
+   * the appropriate button and leave it as a text-input.
+   *
+   * @returns {Promise<void>}
+   */
+  async _insertDropDowns() {
+    const html = this.element;
+    const effectKeyInputs = html.querySelectorAll(
+      "ol[data-changes] > li > .key > input[type='text']",
+    );
+
+    const effectOptions = MVEffect.getEffectOptions();
+    for (const [index, input] of Array.from(effectKeyInputs).entries()) {
+      const { renderTemplate } = foundry.applications.handlebars;
+      // eslint-disable-next-line no-await-in-loop
+      const selectTemplate = await renderTemplate(
+        `systems/${game.system.id}/templates/effects/effects-drop-down.hbs`,
+        { changes: this.document.changes, index, effectOptions },
+      );
+
+      const selectOptions = MVEffect.getEffectKeys();
+      const valueInOptions = selectOptions.includes(input.value);
+
+      let buttonTooltip = game.i18n.localize(
+        "MVRPG.sheets.effects.tooltips.toggleTextInput",
+      );
+      let iconClass = "fa-keyboard";
+      if (!valueInOptions && input.value) {
+        // If the value is not in the list of options AND not empty, then it's a custom key.
+        buttonTooltip = game.i18n.localize(
+          "MVRPG.sheets.effects.tooltips.toggleDropDown",
+        );
+        iconClass = "fa-list";
+      }
+      const buttonTemplate = `<a class="toggle-text-input" data-index="${index}" data-tooltip="${buttonTooltip}"><i class="fa-solid ${iconClass}"></i></a>`;
+
+      if (valueInOptions || !input.value) {
+        // If the value is in the list of options OR empty, then it's a default key (or empty).
+        $(input).replaceWith(`${buttonTemplate}${selectTemplate}`);
+      } else {
+        $(input).before(`${buttonTemplate} `);
+        const iconWidth = html.querySelector(".toggle-text-input").outerWidth();
+        $(input).css("width", `calc(100% - ${(iconWidth || 16) + 8}px)`);
+      }
+    }
   }
 
   /**
@@ -70,7 +124,7 @@ export default class MVEffectConfig extends ActiveEffectConfig {
         const { renderTemplate } = foundry.applications.handlebars;
         const selectTemplate = await renderTemplate(
           `systems/${game.system.id}/templates/effects/effects-drop-down.hbs`,
-          { changes: this.object.changes, index, effectOptions },
+          { changes: this.document.changes, index, effectOptions },
         );
 
         const jquerySelectObject = $(selectTemplate);
@@ -88,8 +142,7 @@ export default class MVEffectConfig extends ActiveEffectConfig {
       // Replace the <select> element with an <input> element.
       case "select": {
         // Typically it's best to keep all styling in a css file, but in this case, the width relies on a value derived above so we need to add it here.
-        const inputTemplate = `<input type="text" name="${name}" value="${value || ""}" style="width: calc(100% - ${buttonWidth + 8}px);"/>`;
-        finalTemplate = inputTemplate;
+        finalTemplate = `<input type="text" name="${name}" value="${value || ""}" style="width: calc(100% - ${buttonWidth + 8}px);"/>`;
 
         buttonIcon.removeClass("fa-keyboard"); // Remove keyboard icon.
         buttonIcon.addClass("fa-list"); // Toggle to list icon.
