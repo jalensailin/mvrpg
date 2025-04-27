@@ -1,13 +1,16 @@
 import MVRPG from "../config.js";
 import MVEffect from "../effects/effects.js";
 
-const { ItemSheet } = foundry.appv1.sheets;
+const { ItemSheetV2 } = foundry.applications.sheets;
+const { HandlebarsApplicationMixin } = foundry.applications.api;
 
 /**
  * Extend the basic ItemSheet with some very simple modifications
  * @extends {ItemSheet}
  */
-export default class MVItemSheet extends ItemSheet {
+export default class MVItemSheet extends HandlebarsApplicationMixin(
+  ItemSheetV2,
+) {
   /** @override */
   static get defaultOptions() {
     return foundry.utils.mergeObject(super.defaultOptions, {
@@ -23,6 +26,60 @@ export default class MVItemSheet extends ItemSheet {
         },
       ],
     });
+  }
+
+  /** @inheritdoc */
+  static DEFAULT_OPTIONS = {
+    classes: ["mvrpg", "sheet", "item"],
+    position: {
+      width: 580,
+      height: 370,
+    },
+  };
+
+  /** @inheritdoc */
+  static TABS = {
+    primary: {
+      initial: "description",
+      labelPrefix: "MVRPG.sheets.itemSheet.titles",
+      tabs: [{ id: "description" }, { id: "settings" }, { id: "effects" }],
+    },
+  };
+
+  /** @inheritdoc */
+  static PARTS = {
+    halftone: {
+      template: `systems/mvrpg/templates/item/halftone.hbs`,
+    },
+    header: {
+      template: `systems/mvrpg/templates/item/header.hbs`,
+    },
+    tabNav: {
+      template: `systems/mvrpg/templates/item/tab-nav.hbs`,
+    },
+    description: {
+      template: `systems/mvrpg/templates/item/description.hbs`,
+    },
+    powerSettings: {
+      template: `systems/mvrpg/templates/item/power-settings.hbs`,
+    },
+    // simpleItemSettings: {
+    //   template: `systems/mvrpg/templates/item/simple-item-settings.hbs`,
+    // },
+    effects: {
+      template: `systems/mvrpg/templates/item/effects.hbs`,
+    },
+  };
+
+  /** @inheritdoc */
+  async _preparePartContext(partId, context, options) {
+    // By default, this returns the same mutated context.
+    // eslint-disable-next-line no-param-reassign
+    context = await super._preparePartContext(partId, context, options);
+
+    context.tab = context.tabs[partId];
+
+    return context;
   }
 
   /* -------------------------------------------- */
