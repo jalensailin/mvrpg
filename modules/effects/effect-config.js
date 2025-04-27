@@ -98,7 +98,7 @@ export default class MVEffectConfig extends ActiveEffectConfig {
   /**
    * Toggle between <input> and <select> in the Active Effect config.
    * @param {Event} event
-   * @return {void}
+   * @return {Promise<void>}
    */
   static async toggleInput(event, target) {
     const button = target;
@@ -171,6 +171,7 @@ export default class MVEffectConfig extends ActiveEffectConfig {
   /**
    * Update the tooltip for the drop-down to display the selected key.
    * @param {HTMLSelectElement} selectElement
+   * @returns {void}
    */
   static updateDropDownToolTip(selectElement) {
     selectElement.setAttribute("data-tooltip", selectElement.value);
