@@ -16,7 +16,10 @@
           <div class="damage-blurb">
             {{localize "MVRPG.rolls.damageApplicationTarget" total=damageTotal target=targetName}}
           </div>
-          <a class="undo-damage-application" data-damage-total="{{damageTotal}}" data-lifepool-target="{{../lifepoolTarget}}" data-target-uuid="{{targetUuid}}">
+          <a data-action="undoDamage"
+             data-damage-total="{{damageTotal}}"
+             data-lifepool-target="{{../lifepoolTarget}}"
+             data-target-uuid="{{targetUuid}}">
             <i class="fa-solid fa-rotate-left"></i>
           </a>
         </div>

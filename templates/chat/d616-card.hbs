@@ -25,8 +25,9 @@
       <div class="reroll-count" data-tooltip="{{localize "MVRPG.rolls.edges"}}: {{edges}}<br>{{localize "MVRPG.rolls.troubles"}}: {{troubles}}">
         {{localize edgeOrTroubleString}}: <span>{{edgeOrTroubleCurrent}} / {{edgeOrTroubleTotal}}</span>
       </div>
-      {{#if hasEvaluatedRerolls}}
-        <a class="undo-last-reroll" data-tooltip="MVRPG.rolls.tooltips.undoLastReroll">
+      {{#if hasEvaluatedRerolls }}
+        <a data-action="undoLastReroll"
+           data-tooltip="MVRPG.rolls.tooltips.undoLastReroll">
           <i class="fa-solid fa-rotate-left"></i>
         </a>
       {{/if}}
@@ -78,8 +79,9 @@
     <div>
       {{localize "MVRPG.rolls.total"}}: <span class="total-number">{{rollTotal}}</span>
     </div>
-    {{#if displayDamageButton}}
-      <a class="create-damage-card" data-tooltip="{{localize "MVRPG.rolls.tooltips.calculateDamage"}}">
+    {{#if displayDamageButton }}
+      <a data-action="createDamageCard"
+         data-tooltip="{{localize "MVRPG.rolls.tooltips.calculateDamage"}}">
         <i class="fa-solid fa-user-injured"></i>
       </a>
     {{/if}}
