@@ -178,12 +178,15 @@ export default class MVChatLog extends ChatLog {
     // Remove the undo button if the user is not the GM.
     const { isGM } = game.user;
     if (isGM) return;
-    html.querySelector("[data-action='undoLastReroll']").remove();
+    html.querySelector("[data-action='undoLastReroll']")?.remove();
 
     // Remove the reroll links if the user is not the author of the message.
     const { isAuthor } = message;
     if (isAuthor) return;
-    html.querySelector(".roll-single-result").classList.add("mv-inactive-link");
+
+    html
+      .querySelectorAll(".roll-single-result")
+      .forEach((el) => el.classList.add("mv-inactive-link"));
   }
 }
 
