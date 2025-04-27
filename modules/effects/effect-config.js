@@ -23,8 +23,9 @@ export default class MVEffectConfig extends ActiveEffectConfig {
 
     await this._insertDropDowns();
 
-    // Add event listeners.
     const html = this.element;
+
+    // Add event listeners
     html.querySelectorAll(".toggle-text-input").forEach((button) => {
       button.addEventListener("click", (event) => {
         this.toggleTextInput(event);
@@ -33,16 +34,13 @@ export default class MVEffectConfig extends ActiveEffectConfig {
 
     html.querySelectorAll("select.effect-drop-down").forEach((select) => {
       select.addEventListener("change", (event) => {
-        MVEffectConfig.updateDropDownToolTip(select);
+        MVEffectConfig.updateDropDownToolTip(event.target);
       });
     });
   }
 
   /**
    * Insert a drop-down for the effect's change key, replacing the default text-input.
-   * We only replace it if the value is in the list of options, otherwise we just insert
-   * the appropriate button and leave it as a text-input.
-   *
    * @returns {Promise<void>}
    */
   async _insertDropDowns() {
@@ -52,6 +50,8 @@ export default class MVEffectConfig extends ActiveEffectConfig {
     );
 
     const effectOptions = MVEffect.getEffectOptions();
+    const selectOptions = MVEffect.getEffectKeys();
+
     for (const [index, input] of Array.from(effectKeyInputs).entries()) {
       const { renderTemplate } = foundry.applications.handlebars;
       // eslint-disable-next-line no-await-in-loop
@@ -60,7 +60,6 @@ export default class MVEffectConfig extends ActiveEffectConfig {
         { changes: this.document.changes, index, effectOptions },
       );
 
-      const selectOptions = MVEffect.getEffectKeys();
       const valueInOptions = selectOptions.includes(input.value);
 
       let buttonTooltip = game.i18n.localize(
@@ -68,44 +67,54 @@ export default class MVEffectConfig extends ActiveEffectConfig {
       );
       let iconClass = "fa-keyboard";
       if (!valueInOptions && input.value) {
-        // If the value is not in the list of options AND not empty, then it's a custom key.
         buttonTooltip = game.i18n.localize(
           "MVRPG.sheets.effects.tooltips.toggleDropDown",
         );
         iconClass = "fa-list";
       }
-      const buttonTemplate = `<a class="toggle-text-input" data-index="${index}" data-tooltip="${buttonTooltip}"><i class="fa-solid ${iconClass}"></i></a>`;
+
+      const buttonTemplate = document.createElement("a");
+      buttonTemplate.className = "toggle-text-input";
+      buttonTemplate.dataset.index = index;
+      buttonTemplate.dataset.tooltip = buttonTooltip;
+      buttonTemplate.innerHTML = `<i class="fa-solid ${iconClass}"></i>`;
 
       if (valueInOptions || !input.value) {
-        // If the value is in the list of options OR empty, then it's a default key (or empty).
-        $(input).replaceWith(`${buttonTemplate}${selectTemplate}`);
+        const wrapper = document.createElement("div");
+        wrapper.innerHTML = selectTemplate;
+        const selectElement = wrapper.firstElementChild;
+
+        input.parentNode.replaceChild(buttonTemplate, input);
+        buttonTemplate.insertAdjacentElement("afterend", selectElement);
       } else {
-        $(input).before(`${buttonTemplate} `);
-        const iconWidth = html.querySelector(".toggle-text-input").outerWidth();
-        $(input).css("width", `calc(100% - ${(iconWidth || 16) + 8}px)`);
+        input.parentNode.insertBefore(buttonTemplate, input);
+
+        const icon = buttonTemplate.querySelector("i");
+        const iconWidth = icon?.offsetWidth || 16;
+        input.style.width = `calc(100% - ${iconWidth + 8}px)`;
       }
     }
   }
 
   /**
-   * A function to toggle between <input> and <select> elements in the Active Effect config.
-   * In general, users will want the drop-down option, because it is more intuitive, but some
-   * may still wish to input custom values, in which case they can switch to the text input.
-   *
-   * @param {Event} event - The event triggering the function.
+   * Toggle between <input> and <select> in the Active Effect config.
+   * @param {Event} event
    * @return {void}
    */
   async toggleTextInput(event) {
-    const index = $(event.currentTarget).data("index"); // Get the index from the button.
-    const keyInput = $(event.currentTarget).next(); // Get the input, either an actual <input> element, or a <select> element.
-    const elementType = keyInput.prop("nodeName").toLowerCase(); // Get the element type ("input" or "select").
-    const name = keyInput.attr("name");
-    const value = keyInput.val();
+    const button = event.currentTarget;
+    const { index } = button.dataset;
+    const keyInput = button.nextElementSibling;
+    if (!keyInput) return;
 
-    const buttonIcon = $(event.currentTarget).find("i"); // Find the button icon.
-    const buttonWidth = buttonIcon.outerWidth();
+    const elementType = keyInput.nodeName.toLowerCase();
+    const name = keyInput.getAttribute("name");
+    const { value } = keyInput;
+    const buttonIcon = button.querySelector("i");
+    const buttonWidth = buttonIcon?.offsetWidth || 16;
 
     let finalTemplate;
+
     switch (elementType) {
       // Replace the <input> element with a <select> element.
       case "input": {
@@ -120,36 +129,37 @@ export default class MVEffectConfig extends ActiveEffectConfig {
         }
 
         const effectOptions = MVEffect.getEffectOptions();
-
         const { renderTemplate } = foundry.applications.handlebars;
-        const selectTemplate = await renderTemplate(
+        const selectHTML = await renderTemplate(
           `systems/${game.system.id}/templates/effects/effects-drop-down.hbs`,
           { changes: this.document.changes, index, effectOptions },
         );
 
-        const jquerySelectObject = $(selectTemplate);
-        jquerySelectObject.val(value || selectOptions[0]);
-        finalTemplate = jquerySelectObject;
+        const wrapper = document.createElement("div");
+        wrapper.innerHTML = selectHTML;
+        finalTemplate = wrapper.firstElementChild;
 
-        buttonIcon.removeClass("fa-list"); // Remove list icon.
-        buttonIcon.addClass("fa-keyboard"); // Toggle to keyboard icon.
-        const buttonTooltip = game.i18n.localize(
+        finalTemplate.value = value || selectOptions[0];
+
+        buttonIcon.classList.remove("fa-list");
+        buttonIcon.classList.add("fa-keyboard");
+        button.dataset.tooltip = game.i18n.localize(
           "MVRPG.sheets.effects.tooltips.toggleTextInput",
         );
-        buttonIcon.attr("data-tooltip", buttonTooltip);
         break;
       }
-      // Replace the <select> element with an <input> element.
       case "select": {
-        // Typically it's best to keep all styling in a css file, but in this case, the width relies on a value derived above so we need to add it here.
-        finalTemplate = `<input type="text" name="${name}" value="${value || ""}" style="width: calc(100% - ${buttonWidth + 8}px);"/>`;
+        finalTemplate = document.createElement("input");
+        finalTemplate.type = "text";
+        finalTemplate.name = name;
+        finalTemplate.value = value || "";
+        finalTemplate.style.width = `calc(100% - ${buttonWidth + 8}px)`;
 
-        buttonIcon.removeClass("fa-keyboard"); // Remove keyboard icon.
-        buttonIcon.addClass("fa-list"); // Toggle to list icon.
-        const buttonTooltip = game.i18n.localize(
+        buttonIcon.classList.remove("fa-keyboard");
+        buttonIcon.classList.add("fa-list");
+        button.dataset.tooltip = game.i18n.localize(
           "MVRPG.sheets.effects.tooltips.toggleDropDown",
         );
-        buttonIcon.attr("data-tooltip", buttonTooltip);
         break;
       }
       default:
@@ -161,11 +171,9 @@ export default class MVEffectConfig extends ActiveEffectConfig {
 
   /**
    * Update the tooltip for the drop-down to display the selected key.
-   *
-   * @param {*} selectElement
+   * @param {HTMLSelectElement} selectElement
    */
   static updateDropDownToolTip(selectElement) {
-    const newVal = $(selectElement).val();
-    $(selectElement).attr("data-tooltip", newVal);
+    selectElement.setAttribute("data-tooltip", selectElement.value);
   }
 }
