@@ -1,6 +1,4 @@
-.item-sheet {
-  gap: 8px;
-
+.item {
   .name-panel {
     flex: 0;
     text-align: center;
@@ -17,6 +15,7 @@
       border-right: 3px solid var(--border-black);
 
       > img {
+        cursor: pointer;
         border: none;
         border-radius: unset;
         height: 100%;

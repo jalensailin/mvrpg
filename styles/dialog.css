@@ -82,11 +82,12 @@
 }
 
 .mvrpg-dialog-input {
-  flex: 0;
+  flex: 0 0 2rem;
   text-align: right;
 
   input {
-    padding-right: 0;
+    text-align: center;
+    padding-right: 0.5rem;
   }
 
   :disabled {
@@ -102,14 +103,13 @@
 }
 
 .mvrpg-dialog-input input[type="checkbox"] {
-  /* Add if not using autoprefixer */
-  -webkit-appearance: none;
   appearance: none;
-  /* For iOS < 15 to remove gradient background */
   background-color: #fff;
-  /* Not removed via appearance */
   margin: 0;
   transform: translateY(2px);
+
+  width: 1.25rem;
+  height: 1.25rem;
 
   border-style: solid;
   border-color: inherit;
@@ -123,10 +123,19 @@
   background-position-x: 1.15em;
 
   transition: background-position 0.2s ease-out;
+
+  &::before {
+    content: unset;
+  }
 }
 
 .mvrpg-dialog-input input[type="checkbox"]:checked {
   background-position-x: 0;
+
+  &::before,
+  &::after {
+    content: unset;
+  }
 }
 
 select.mvrpg-dialog-input {

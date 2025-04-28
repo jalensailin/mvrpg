@@ -86,7 +86,7 @@ section {
   scrollbar-width: thin;
 }
 
-.mvrpg form {
+form.mvrpg {
   font-family: KomikaText;
 }
 
@@ -177,7 +177,7 @@ section {
   flex: 0;
   gap: 5px;
   border: unset;
-  margin: 0;
+  margin-top: 8px;
   justify-content: unset;
   /* Unset Foundry's default padding for tabs */
   > [data-tab] {
