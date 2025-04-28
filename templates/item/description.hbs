@@ -1,6 +1,6 @@
 {{!-- Sheet Tab Navigation --}}
-<div class="tab description-section flexcol"
-     data-group="primary"
-     data-tab="description">
+<div class="tab description-section flexcol {{tabs.description.cssClass}}"
+     data-group="{{tabs.description.group}}"
+     data-tab="{{tabs.description.id}}">
   {{editor document.system.description target="system.description" button="true" engine="prosemirror"}}
 </div>

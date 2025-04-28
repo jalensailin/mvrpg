@@ -63,23 +63,41 @@ export default class MVItemSheet extends HandlebarsApplicationMixin(
     powerSettings: {
       template: `systems/mvrpg/templates/item/power-settings.hbs`,
     },
-    // simpleItemSettings: {
-    //   template: `systems/mvrpg/templates/item/simple-item-settings.hbs`,
-    // },
+    simpleItemSettings: {
+      template: `systems/mvrpg/templates/item/simple-item-settings.hbs`,
+    },
     effects: {
       template: `systems/mvrpg/templates/item/effects.hbs`,
     },
   };
 
-  /** @inheritdoc */
-  async _preparePartContext(partId, context, options) {
-    // By default, this returns the same mutated context.
-    // eslint-disable-next-line no-param-reassign
-    context = await super._preparePartContext(partId, context, options);
+  /**
+   * Manipulate which parts of the sheet are rendered.
+   * @inheritdoc
+   */
+  _configureRenderOptions(options) {
+    super._configureRenderOptions(options);
 
-    context.tab = context.tabs[partId];
+    // Remove the unused settings part(s).
+    options.parts = options.parts.filter((part) => {
+      const { type } = this.document;
+      return !part.endsWith("Settings") || part === `${type}Settings`;
+    });
+  }
 
-    return context;
+  /**
+   * Manipulate which tabs are rendered.
+   * @inheritdoc
+   */
+  _prepareTabs(group) {
+    const tabs = super._prepareTabs(group);
+
+    // Don't show settings tab for simple Items.
+    const itemsWithSettingsTab = ["power", "simpleItem"];
+    if (!itemsWithSettingsTab.includes(this.document.type))
+      delete tabs.settings;
+
+    return tabs;
   }
 
   /* -------------------------------------------- */
