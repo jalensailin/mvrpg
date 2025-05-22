@@ -6,7 +6,8 @@
       <div class="mvrpg-dialog-label">
         {{localize "MVRPG.sheets.itemSheet.settings.labels.powerSets"}}
       </div>
-      <a class="mvrpg-dialog-data configure-multiple-selections"
+      <a class="mvrpg-dialog-data"
+         data-action="configureMultipleSelections"
          data-selection-set="powerSets"
          data-tooltip="{{localize "MVRPG.sheets.itemSheet.settings.tooltips.configurePowerSets"}}">
         {{#each document.system.powerSets as |powerSetSlug| }}
@@ -19,7 +20,8 @@
 
     <div class="mvrpg-dialog-item flexrow">
       <div class="mvrpg-dialog-label">{{localize "MVRPG.sheets.itemSheet.settings.labels.action"}}</div>
-      <a class="mvrpg-dialog-data configure-multiple-selections"
+      <a class="mvrpg-dialog-data"
+         data-action="configureMultipleSelections"
          data-selection-set="actions"
          data-tooltip="{{localize "MVRPG.sheets.itemSheet.settings.tooltips.configurePowerSets"}}">
         {{#each document.system.actions as |action| }}
