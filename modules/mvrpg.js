@@ -47,6 +47,7 @@ Hooks.once("init", async () => {
   Items.unregisterSheet("core", ItemSheet);
   Items.registerSheet("mvrpg", MVItemSheet, {
     makeDefault: true,
+    themes: null,
   });
 
   // Register Active Effect Class/Sheet.
