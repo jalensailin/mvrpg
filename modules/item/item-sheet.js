@@ -19,6 +19,7 @@ export default class MVItemSheet extends HbsAppMixin(ItemSheetV2) {
     actions: {
       configureMultipleSelections: MVItemSheet.#configureMultipleSelections,
     },
+    form: { submitOnChange: true },
   };
 
   /** @inheritdoc */
