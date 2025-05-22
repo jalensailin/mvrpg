@@ -91,13 +91,17 @@ export default class MVItemSheet extends HbsAppMixin(ItemSheetV2) {
   async _prepareContext(options) {
     const context = await super._prepareContext(options);
 
+    const { system } = this.document;
+
     const TextEditor = foundry.applications.ux.TextEditor.implementation;
-
-    context.enrichedDescription = await TextEditor.enrichHTML(
-      this.document.system.description,
-      { async: true },
-    );
-
+    context.description = {
+      field: system.schema.getField("description"),
+      value: system.description,
+      enriched: await TextEditor.enrichHTML(this.document.system.description, {
+        rollData: this.document.getRollData(),
+        relativeTo: this.document,
+      }),
+    };
     return context;
   }
 
