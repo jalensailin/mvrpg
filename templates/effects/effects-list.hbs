@@ -1,27 +1,26 @@
-
 <div class="doc-list-header flexrow">
-  <div class="doc-icon-dummy">
-  </div>
-  <div class="doc-data">
-    {{localize "MVRPG.sheets.itemSheet.effects.dataHeader"}}
-  </div>
-  <a class="effect-action doc-create" data-action="create" data-tooltip="{{localize "MVRPG.sheets.itemSheet.effects.tooltips.create"}}">
+  <div class="doc-icon-dummy"></div>
+  <div class="doc-data">{{localize "MVRPG.sheets.itemSheet.effects.dataHeader"}}</div>
+  <a class="effect-action doc-create"
+     data-action="create"
+     data-tooltip="{{localize "MVRPG.sheets.itemSheet.effects.tooltips.create"}}">
     <i class="fa-solid fa-plus"></i>
   </a>
 </div>
 
-{{#each this as |effect|}}
+{{#each this as |effect| }}
   <div class="doc-entry flexrow">
     <div class="doc-icon">
-      <img src="{{effect.img}}" title="{{effect.name}}"/>
+      <img src="{{effect.img}}" title="{{effect.name}}" />
     </div>
-    <a class="effect-action doc-data flexcol" data-action="edit" data-effect-id="{{effect.id}}" data-tooltip="{{localize "MVRPG.sheets.generic.tooltips.edit"}}">
-      <div class="doc-name">
-        {{effect.name}}
-      </div>
+    <a class="effect-action doc-data flexcol"
+       data-action="edit"
+       data-effect-id="{{effect.id}}"
+       data-tooltip="{{localize "MVRPG.sheets.generic.tooltips.edit"}}">
+      <div class="doc-name">{{effect.name}}</div>
       <div class="effect-data">
-        {{#each effect.changes as |change|}}
-          {{#if change.key}}
+        {{#each effect.changes as |change| }}
+          {{#if change.key }}
             <span class="info-pill">
               {{mvGetEffectLabel change.key includeCategory=true}}: {{changeModeSymbol change}}{{~change.value~}}
             </span>
@@ -30,14 +29,21 @@
       </div>
     </a>
     <div class="action-icons flexrow">
-      <a class="effect-action doc-toggle" data-action="toggle" data-effect-id="{{effect.id}}">
-        {{#if effect.disabled}}
-          <i class="fa-solid fa-toggle-off" data-tooltip="{{localize "MVRPG.sheets.itemSheet.effects.tooltips.toggleOn"}}"></i>
+      <a class="effect-action doc-toggle"
+         data-action="toggle"
+         data-effect-id="{{effect.id}}">
+        {{#if effect.disabled }}
+          <i class="fa-solid fa-toggle-off"
+             data-tooltip="{{localize "MVRPG.sheets.itemSheet.effects.tooltips.toggleOn"}}"></i>
         {{else}}
-          <i class="fa-solid fa-toggle-on"  data-tooltip="{{localize "MVRPG.sheets.itemSheet.effects.tooltips.toggleOff"}}"></i>
+          <i class="fa-solid fa-toggle-on"
+             data-tooltip="{{localize "MVRPG.sheets.itemSheet.effects.tooltips.toggleOff"}}"></i>
         {{/if}}
       </a>
-      <a class="effect-action doc-delete" data-action="delete" data-effect-id="{{effect.id}}" data-tooltip="{{localize "MVRPG.sheets.generic.tooltips.delete"}}">
+      <a class="effect-action doc-delete"
+         data-action="delete"
+         data-effect-id="{{effect.id}}"
+         data-tooltip="{{localize "MVRPG.sheets.generic.tooltips.delete"}}">
         <i class="fa-solid fa-trash"></i>
       </a>
     </div>
