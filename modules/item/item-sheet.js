@@ -6,7 +6,7 @@ const HbsAppMixin = foundry.applications.api.HandlebarsApplicationMixin;
 
 /**
  * Extend the basic ItemSheet with some very simple modifications
- * @extends {ItemSheet}
+ * @extends {ItemSheetV2}
  */
 export default class MVItemSheet extends HbsAppMixin(ItemSheetV2) {
   /** @inheritdoc */
