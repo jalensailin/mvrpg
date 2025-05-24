@@ -1,148 +1,150 @@
 @use "fonts" as *;
 
 /* Dialogs */
-.dialog .dialog-buttons button {
-  border-style: solid;
-  border-width: 3px;
-  border-radius: 1px;
-  border-color: var(--border-black);
-  box-shadow: 5px 5px;
+.mvrpg.dialog {
+  .dialog-buttons button {
+    border-style: solid;
+    border-width: 3px;
+    border-radius: 1px;
+    border-color: var(--border-black);
+    box-shadow: 5px 5px;
 
-  font-family: $komika-base;
-  font-size: var(--dialog-text-size);
-  transition: text-shadow 200ms ease-in;
+    font-family: $komika-base;
+    font-size: var(--dialog-text-size);
+    transition: text-shadow 200ms ease-in;
 
-  i {
-    color: var(--spider-red);
-    transform: translateY(0) rotate(180deg);
-    transition:
-      transform 1s cubic-bezier(0.68, -0.55, 0.27, 1.55),
-      color 1s ease-in;
+    i {
+      color: var(--spider-red);
+      transform: translateY(0) rotate(180deg);
+      transition:
+        transform 1s cubic-bezier(0.68, -0.55, 0.27, 1.55),
+        color 1s ease-in;
+    }
+
+    &:hover {
+      text-shadow: 1px 1px 2px var(--spider-red);
+      i {
+        text-shadow: none;
+        color: var(--venom-black);
+        transform: translateY(-9px) rotate(180deg);
+      }
+    }
   }
 }
 
-.dialog .dialog-buttons button:hover {
-  text-shadow: 1px 1px 2px var(--spider-red);
-  i {
-    text-shadow: none;
-    color: var(--venom-black);
-    transform: translateY(-9px) rotate(180deg);
-  }
-}
-
-.dialog-container {
+.mvrpg .dialog-container {
   gap: 8px 8px;
   padding-bottom: 8px;
   font-size: var(--dialog-text-size);
   font-weight: bold;
-}
 
-.dialog-section {
-  background-color: var(--wasp-yellow);
-}
+  .dialog-section {
+    background-color: var(--wasp-yellow);
 
-.dialog-item {
-  justify-items: center;
-  align-items: center;
-  padding: 0 15px;
-}
+    .dialog-header {
+      border-bottom: 3px solid var(--border-black);
+      background: linear-gradient(
+        180deg,
+        var(--header-yellow) 0%,
+        var(--header-gray) 100%
+      );
 
-.dialog-item:nth-child(odd) {
-  background-color: var(--thing-orange);
-}
+      font-family: $komika-smallcaps;
+      line-height: var(--header-text-size);
+      font-size: var(--header-text-size);
+      font-weight: bold;
+      font-style: italic;
+      text-align: center;
+    }
 
-.dialog-header {
-  border-bottom: 3px solid var(--border-black);
-  background: linear-gradient(
-    180deg,
-    var(--header-yellow) 0%,
-    var(--header-gray) 100%
-  );
+    .dialog-item {
+      justify-items: center;
+      align-items: center;
+      padding: 0 15px;
 
-  font-family: $komika-smallcaps;
-  line-height: var(--header-text-size);
-  font-size: var(--header-text-size);
-  font-weight: bold;
-  font-style: italic;
-  text-align: center;
-}
+      &:nth-child(odd) {
+        background-color: var(--thing-orange);
+      }
 
-.dialog-label {
-  align-items: center;
+      .dialog-label {
+        align-items: center;
 
-  .mvrpg-label-hint {
-    color: rgb(70, 70, 70);
-    font-size: 0.8em;
+        .dialog-icon {
+          flex: 0;
+          border: unset;
+          height: var(--sub-info-text-size);
+          padding-right: 2px;
+        }
+
+        .mvrpg-label-hint {
+          color: rgb(70, 70, 70);
+          font-size: 0.8em;
+        }
+      }
+
+      .dialog-input {
+        flex: 0 0 2rem;
+        text-align: right;
+
+        input {
+          text-align: center;
+          padding-right: 0.5rem;
+
+          &:disabled {
+            color: var(--label-gray);
+            text-decoration: line-through;
+          }
+
+          &[type="checkbox"] {
+            appearance: none;
+            background-color: #fff;
+            margin: 0;
+            transform: translateY(2px);
+
+            width: 1.25rem;
+            height: 1.25rem;
+
+            border-style: solid;
+            border-color: inherit;
+            border-width: 2px;
+            border-radius: 1px;
+            box-shadow: 3px 3px;
+
+            background-image: url(../assets/sheets/checkmark.svg);
+            background-size: contain;
+            background-repeat: no-repeat;
+            background-position-x: 1.15em;
+
+            transition: background-position 0.2s ease-out;
+
+            &::before {
+              content: unset;
+            }
+
+            &:checked {
+              background-position-x: 0;
+
+              &::before,
+              &::after {
+                content: unset;
+              }
+            }
+          }
+        }
+      }
+
+      select.dialog-input {
+        width: unset;
+        height: unset;
+      }
+
+      .dialog-data {
+        flex: 0 0 fit-content;
+        padding-left: 2px;
+        text-align: right;
+      }
+    }
   }
-}
-
-.dialog-icon {
-  flex: 0;
-  border: unset;
-  height: var(--sub-info-text-size);
-  padding-right: 2px;
-}
-
-.dialog-input {
-  flex: 0 0 2rem;
-  text-align: right;
-
-  input {
-    text-align: center;
-    padding-right: 0.5rem;
-  }
-
-  :disabled {
-    color: var(--label-gray);
-    text-decoration: line-through;
-  }
-}
-
-.dialog-data {
-  flex: 0 0 fit-content;
-  padding-left: 2px;
-  text-align: right;
-}
-
-.dialog-input input[type="checkbox"] {
-  appearance: none;
-  background-color: #fff;
-  margin: 0;
-  transform: translateY(2px);
-
-  width: 1.25rem;
-  height: 1.25rem;
-
-  border-style: solid;
-  border-color: inherit;
-  border-width: 2px;
-  border-radius: 1px;
-  box-shadow: 3px 3px;
-
-  background-image: url(../assets/sheets/checkmark.svg);
-  background-size: contain;
-  background-repeat: no-repeat;
-  background-position-x: 1.15em;
-
-  transition: background-position 0.2s ease-out;
-
-  &::before {
-    content: unset;
-  }
-}
-
-.dialog-input input[type="checkbox"]:checked {
-  background-position-x: 0;
-
-  &::before,
-  &::after {
-    content: unset;
-  }
-}
-
-select.dialog-input {
-  width: unset;
-  height: unset;
 }
 
 /* Foundry override */

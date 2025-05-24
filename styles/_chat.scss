@@ -12,11 +12,143 @@
   background-color: var(--background-white);
   margin-bottom: 2px;
   margin-right: 2px;
-}
 
-.damage-label,
-.roll-label {
-  padding: 1px;
+  .damage-label,
+  .roll-label {
+    padding: 1px;
+  }
+
+  .rolling-against,
+  .lifepool-target {
+    font-size: 0.95rem;
+    font-weight: bold;
+    border-bottom: solid 2px;
+  }
+
+  .edges-and-troubles {
+    border-bottom-style: solid;
+    border-bottom-width: 2px;
+    padding: 0 5px;
+    padding-top: 1px;
+    display: grid;
+    grid-template-columns: 1fr 3fr 1fr;
+
+    .reroll-history {
+      text-align: left;
+      padding-left: 6px;
+      cursor: unset;
+    }
+
+    .reroll-count > span {
+      font-weight: bold;
+    }
+
+    [data-action="undoLastReroll"] {
+      text-align: right;
+      padding-right: 6px;
+    }
+  }
+
+  .roll-results {
+    padding: 2px;
+    border-bottom-style: solid;
+    border-bottom-width: 2px;
+    align-items: end;
+
+    .result-container {
+      flex-wrap: nowrap;
+
+      align-items: end;
+      align-content: end;
+      justify-content: center;
+
+      .roll-single-result {
+        flex: 0;
+        min-width: 28px;
+        background-image: url(/icons/svg/d6-grey.svg);
+        background-size: 28px 28px;
+        background-repeat: no-repeat;
+        line-height: 28px;
+        font-size: var(--sub-info-text-size);
+        font-weight: bold;
+        float: left;
+      }
+
+      .multiverse-die {
+        background-size: 32px 32px;
+        min-width: 32px;
+
+        font-size: var(--header-text-size);
+        line-height: 32px;
+      }
+
+      /* This styling (particularly, the `filter`) comes from Foundry code */
+      .fantastic {
+        color: var(--spider-red);
+        filter: sepia(0.5) hue-rotate(-60deg)
+          drop-shadow(3px 3px 2px var(--spider-red));
+      }
+    }
+
+    .roll-modifier .mod-number {
+      font-size: var(--sub-info-text-size);
+      font-weight: bold;
+    }
+  }
+
+  .roll-total {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    align-items: center;
+
+    [data-action="create-damage-card"] {
+      transform: translateY(0.125rem);
+      text-align: right;
+      padding-right: 11px;
+    }
+
+    .roll-success-or-failure {
+      .success {
+        color: var(--lizard-green);
+      }
+      .failure {
+        color: var(--spider-red);
+      }
+    }
+
+    .total-number {
+      font-size: var(--main-info-text-size);
+      font-weight: bold;
+    }
+  }
+
+  .damage-application {
+    border-top: solid 2px;
+  }
+
+  .damage-application-list {
+    text-align: start;
+    font-size: 0.9rem;
+
+    .damage-application-item {
+      padding: 0 4px;
+
+      .damage-index {
+        text-align: right;
+        padding-right: 4px;
+        flex: 0 0 1.2rem;
+      }
+
+      [data-action="undoDamage"] {
+        flex: 0;
+      }
+
+      &.undone {
+        color: gray;
+        text-decoration: line-through;
+      }
+    }
+  }
 }
 
 .roll-source-header {
@@ -26,136 +158,4 @@
   color: white;
   background-color: var(--venom-black);
   padding-bottom: 2px;
-}
-
-.rolling-against,
-.lifepool-target {
-  font-size: 0.95rem;
-  font-weight: bold;
-  border-bottom: solid 2px;
-}
-
-.edges-and-troubles {
-  border-bottom-style: solid;
-  border-bottom-width: 2px;
-  padding: 0 5px;
-  padding-top: 1px;
-  display: grid;
-  grid-template-columns: 1fr 3fr 1fr;
-
-  .reroll-history {
-    text-align: left;
-    padding-left: 6px;
-    cursor: unset;
-  }
-
-  .reroll-count > span {
-    font-weight: bold;
-  }
-
-  [data-action="undoLastReroll"] {
-    text-align: right;
-    padding-right: 6px;
-  }
-}
-
-.roll-results {
-  padding: 2px;
-  border-bottom-style: solid;
-  border-bottom-width: 2px;
-  align-items: end;
-}
-
-.result-container {
-  flex-wrap: nowrap;
-
-  align-items: end;
-  align-content: end;
-  justify-content: center;
-}
-
-.roll-single-result {
-  flex: 0;
-  min-width: 28px;
-  background-image: url(/icons/svg/d6-grey.svg);
-  background-size: 28px 28px;
-  background-repeat: no-repeat;
-  line-height: 28px;
-  font-size: var(--sub-info-text-size);
-  font-weight: bold;
-  float: left;
-}
-
-.multiverse-die {
-  background-size: 32px 32px;
-  min-width: 32px;
-
-  font-size: var(--header-text-size);
-  line-height: 32px;
-}
-
-/* This styling (particularly, the `filter`) comes from Foundry code */
-.fantastic {
-  color: var(--spider-red);
-  filter: sepia(0.5) hue-rotate(-60deg)
-    drop-shadow(3px 3px 2px var(--spider-red));
-}
-
-.mod-number {
-  font-size: var(--sub-info-text-size);
-  font-weight: bold;
-}
-
-.roll-success-or-failure {
-  .success {
-    color: var(--lizard-green);
-  }
-  .failure {
-    color: var(--spider-red);
-  }
-}
-
-.roll-total {
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
-  align-items: center;
-
-  [data-action="create-damage-card"] {
-    transform: translateY(0.125rem);
-    text-align: right;
-    padding-right: 11px;
-  }
-}
-
-.total-number {
-  font-size: var(--main-info-text-size);
-  font-weight: bold;
-}
-
-.damage-application {
-  border-top: solid 2px;
-}
-
-.damage-application-list {
-  text-align: start;
-  font-size: 0.9rem;
-
-  .damage-application-item {
-    padding: 0 4px;
-
-    .damage-index {
-      text-align: right;
-      padding-right: 4px;
-      flex: 0 0 1.2rem;
-    }
-
-    [data-action="undoDamage"] {
-      flex: 0;
-    }
-  }
-
-  .damage-application-item.undone {
-    color: gray;
-    text-decoration: line-through;
-  }
 }

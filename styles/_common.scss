@@ -33,147 +33,150 @@ section {
   scrollbar-width: thin;
 }
 
-form.mvrpg {
+.mvrpg {
   font-family: $komika-base;
-}
 
-.mvrpg select,
-.mvrpg input[type="text"],
-.mvrpg input[type="number"] {
-  width: calc(100% - 2px);
-  border: none;
-  background: none;
-}
+  select,
+  input[type="text"],
+  input[type="number"] {
+    width: calc(100% - 2px);
+    border: none;
+    background: none;
 
-.mvrpg select:hover,
-.mvrpg input[type="text"]:hover,
-.mvrpg input[type="number"]:hover {
-  color: var(--spider-red);
-}
-
-.mvrpg section.window-content {
-  background:
-    radial-gradient(circle, rgba(255, 137, 180, 0.1) 0%, #ffebf2 100%),
-    url(/ui/parchment.jpg) repeat;
-}
-
-.half-tone-overlay {
-  position: absolute;
-  top: 0;
-  left: 0;
-  z-index: 1000;
-  margin: auto;
-  width: 100%;
-  height: 100%;
-  pointer-events: none;
-  opacity: 0.08;
-  background-repeat: repeat;
-  background-size: 30rem;
-  background-image: url("../assets/sheets/comic-book-overlay.svg");
-}
-
-.comic-frame {
-  border-style: solid;
-  border-width: 3px;
-  border-radius: 1px;
-  border-color: var(--border-black);
-  box-shadow: 5px 5px;
-}
-
-.panel-title {
-  flex: 0;
-  font-family: $komika-smallcaps;
-  line-height: var(--header-text-size);
-  font-size: var(--header-text-size);
-  font-weight: bold;
-  font-style: italic;
-  text-align: center;
-
-  background-color: var(--header-yellow);
-}
-
-.panel-header {
-  border-bottom: 3px solid var(--border-black);
-  background: linear-gradient(
-    180deg,
-    var(--header-yellow) 0%,
-    var(--header-gray) 100%
-  );
-}
-
-.panel-footer {
-  border-top: 3px solid var(--border-black);
-  background: linear-gradient(
-    180deg,
-    var(--header-gray) 0%,
-    var(--header-yellow) 100%
-  );
-}
-
-.sheet-body {
-  overflow-y: auto;
-  background-color: var(--wasp-yellow);
-}
-
-.editor,
-.editor.prosemirror {
-  height: 100%;
-}
-
-.mvrpg .sheet-tabs.tabs {
-  flex: 0;
-  gap: 5px;
-  border: unset;
-  margin-top: 8px;
-  justify-content: unset;
-  /* Unset Foundry's default padding for tabs */
-  > [data-tab] {
-    padding: unset;
+    &:hover {
+      color: var(--spider-red);
+    }
   }
-}
 
-.tab-header {
-  flex: 1;
-  border-bottom: unset;
-  border-top: 3px solid;
-  border-left: 3px solid;
-  border-right: 3px solid;
-  border-color: var(--label-gray);
-  color: var(--label-gray);
-  padding: 0 2px;
-  font-weight: normal;
-}
+  section.window-content {
+    background:
+      radial-gradient(circle, rgba(255, 137, 180, 0.1) 0%, #ffebf2 100%),
+      url(/ui/parchment.jpg) repeat;
+  }
 
-.tab-header.active {
-  border-color: var(--border-black);
-  color: var(--border-black);
-  font-weight: bold;
-}
+  .panel- {
+    &title {
+      flex: 0;
+      font-family: $komika-smallcaps;
+      line-height: var(--header-text-size);
+      font-size: var(--header-text-size);
+      font-weight: bold;
+      font-style: italic;
+      text-align: center;
 
-.comic-bubble-background {
-  padding: 2px;
-  background-origin: content-box;
-  background-repeat: no-repeat;
-  background-size: contain;
-  background-position: center;
-}
+      background-color: var(--header-yellow);
+    }
 
-.bubble-label {
-  color: var(--label-gray);
-  position: relative;
-  top: 14%;
-}
+    &header {
+      border-bottom: 3px solid var(--border-black);
+      background: linear-gradient(
+        180deg,
+        var(--header-yellow) 0%,
+        var(--header-gray) 100%
+      );
+    }
 
-a:hover.mv-inactive-link {
-  text-shadow: unset;
-  cursor: unset;
-}
+    &footer {
+      border-top: 3px solid var(--border-black);
+      background: linear-gradient(
+        180deg,
+        var(--header-gray) 0%,
+        var(--header-yellow) 100%
+      );
+    }
+  }
 
-.info-pill {
-  border-radius: 5px;
-  background-color: rgb(200, 211, 211, 0.75);
-  text-align: center;
-  padding: 0 2px;
+  .comic-bubble-background {
+    padding: 2px;
+    background-origin: content-box;
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: center;
+
+    .bubble-label {
+      color: var(--label-gray);
+      position: relative;
+      top: 14%;
+    }
+  }
+
+  .sheet-tabs.tabs {
+    flex: 0;
+    gap: 5px;
+    border: unset;
+    margin-top: 8px;
+    margin-bottom: 0;
+    justify-content: unset;
+
+    /* Unset Foundry's default padding for tabs */
+    > [data-tab] {
+      padding: unset;
+    }
+
+    .tab-header {
+      flex: 1;
+      border-bottom: unset;
+      border-top: 3px solid;
+      border-left: 3px solid;
+      border-right: 3px solid;
+      border-color: var(--label-gray);
+      color: var(--label-gray);
+      padding: 0 2px;
+      font-weight: normal;
+
+      &.active {
+        border-color: var(--border-black);
+        color: var(--border-black);
+        font-weight: bold;
+      }
+    }
+  }
+
+  .sheet-body {
+    overflow-y: auto;
+    background-color: var(--wasp-yellow);
+
+    .editor,
+    .editor.prosemirror {
+      height: 100%;
+    }
+  }
+
+  /* ---------------- Utility Classes ---------------- */
+  .half-tone-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+    margin: auto;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    opacity: 0.08;
+    background-repeat: repeat;
+    background-size: 30rem;
+    background-image: url("../assets/sheets/comic-book-overlay.svg");
+  }
+
+  .comic-frame {
+    border-style: solid;
+    border-width: 3px;
+    border-radius: 1px;
+    border-color: var(--border-black);
+    box-shadow: 5px 5px;
+  }
+
+  a.mv-inactive-link:hover {
+    text-shadow: unset;
+    cursor: unset;
+  }
+
+  .info-pill {
+    border-radius: 5px;
+    background-color: rgb(200, 211, 211, 0.75);
+    text-align: center;
+    padding: 0 2px;
+  }
 }
 
 /** Glow Combatant if Fantastic Result **/

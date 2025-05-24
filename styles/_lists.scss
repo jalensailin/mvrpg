@@ -41,10 +41,10 @@
   .doc-entry {
     place-content: center;
     place-items: center;
-  }
 
-  .doc-entry:nth-child(even) {
-    background-color: var(--thing-orange);
+    &:nth-child(even) {
+      background-color: var(--thing-orange);
+    }
   }
 
   .doc-name {
@@ -73,10 +73,10 @@
       opacity: 0;
       transition: opacity 0.4s ease-in-out;
     }
-  }
 
-  .doc-icon:hover .overlay {
-    opacity: 0.75;
+    &:hover .overlay {
+      opacity: 0.75;
+    }
   }
 
   .doc-data {

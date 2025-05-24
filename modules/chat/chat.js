@@ -199,5 +199,8 @@ export default class MVChatLog extends ChatLog {
  * @return {void}
  */
 Hooks.on("renderChatMessageHTML", async (message, html, messageData) => {
+  // Add the MVRPG class to the chat message for styling.
+  html.classList.add("mvrpg");
+
   MVChatLog.denyPlayerAccess(message, html);
 });

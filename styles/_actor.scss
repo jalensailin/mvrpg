@@ -1,524 +1,525 @@
 @use "fonts" as *;
 
-.mvrpg.sheet.actor {
+.mvrpg.actor {
   min-width: 360px;
   min-height: 594px;
-}
 
-.super-sheet-grid {
-  display: grid;
-  height: 100%;
-  grid-template-columns: 1fr 1fr 1fr;
-  grid-template-rows: 32% minmax(0, 1fr);
-  gap: 8px 14px;
-  grid-auto-flow: row;
-  grid-template-areas:
-    "codename-panel lifepool-panel rank-panel"
-    "abilities-panel tabbed-panel tabbed-panel";
-}
-
-/* Codename panel */
-.codename-panel {
-  display: grid;
-  grid-template-columns: 1fr;
-  grid-template-rows: 1fr 74%;
-  gap: 8px 0px;
-  grid-auto-flow: row;
-  grid-template-areas:
-    "codename"
-    "portrait";
-  grid-area: codename-panel;
-
-  .codename {
-    grid-area: codename;
-    align-items: center;
-    justify-items: center;
-  }
-
-  .codename > .codename-input {
-    border: none;
-    background: none;
-    font-family: $komika-smallcaps;
-    font-size: var(--name-text-size);
-    text-align: center;
-  }
-
-  .portrait {
-    grid-area: portrait;
-  }
-
-  .portrait > img {
-    border: none;
-    width: 100%;
+  .super-sheet-grid {
+    display: grid;
     height: 100%;
-    object-fit: cover;
-  }
-}
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 32% minmax(0, 1fr);
+    gap: 8px 14px;
+    grid-auto-flow: row;
+    grid-template-areas:
+      "codename-panel lifepool-panel rank-panel"
+      "abilities-panel tabbed-panel tabbed-panel";
 
-/* LifePool (Health and Focus)*/
-.lifepool-panel {
-  display: grid;
-  grid-template-columns: 1fr;
-  grid-template-rows: 1fr 1fr;
-  gap: 0px 0px;
-  grid-auto-flow: row;
-  grid-template-areas:
-    "health"
-    "focus";
-  grid-area: lifepool-panel;
+    /* Codename panel */
+    .codename-panel {
+      display: grid;
+      grid-template-columns: 1fr;
+      grid-template-rows: 1fr 74%;
+      gap: 8px 0px;
+      grid-auto-flow: row;
+      grid-template-areas:
+        "codename"
+        "portrait";
+      grid-area: codename-panel;
 
-  .health-section {
-    grid-area: health;
-    border-bottom: 2px solid;
+      .codename {
+        grid-area: codename;
+        align-items: center;
+        justify-items: center;
 
-    .health-content {
-      background-color: var(--gwen-pink);
-    }
-
-    .health-content > .health-max {
-      background-image: url(../assets/sheets/actor/pool-max.svg);
-      align-items: center;
-      text-align: center;
-    }
-
-    .health-max > .health-max-input {
-      font-size: var(--sub-info-text-size);
-      position: relative;
-      top: -18%;
-    }
-
-    .health-content > .health-points {
-      background-image: url(../assets/sheets/actor/pool-current.svg);
-      align-items: center;
-      text-align: center;
-    }
-
-    .health-points > .health-points-input {
-      font-size: var(--main-info-text-size);
-      position: relative;
-      top: -18%;
-    }
-
-    .health-content > .health-damage-reduction {
-      background-image: url(../assets/sheets/actor/damage-reduction.svg);
-      align-items: center;
-      text-align: center;
-    }
-
-    .health-damage-reduction > .health-damage-reduction-value {
-      font-size: var(--sub-info-text-size);
-      position: relative;
-      top: -13%;
-    }
-  }
-
-  .focus-section {
-    grid-area: focus;
-    border-top: 1px solid;
-
-    .focus-content {
-      background-color: var(--cap-blue);
-    }
-
-    .focus-content > .focus-max {
-      background-image: url(../assets/sheets/actor/pool-max.svg);
-      align-items: center;
-      text-align: center;
-    }
-
-    .focus-max > .focus-max-input {
-      font-size: var(--sub-info-text-size);
-      position: relative;
-      top: -18%;
-    }
-
-    .focus-content > .focus-points {
-      background-image: url(../assets/sheets/actor/pool-current.svg);
-      align-items: center;
-      text-align: center;
-    }
-
-    .focus-points > .focus-points-input {
-      font-size: var(--main-info-text-size);
-      position: relative;
-      top: -18%;
-    }
-
-    .focus-content > .focus-damage-reduction {
-      background-image: url(../assets/sheets/actor/damage-reduction.svg);
-      align-items: center;
-      text-align: center;
-    }
-
-    .focus-damage-reduction > .focus-damage-reduction-value {
-      font-size: var(--sub-info-text-size);
-      position: relative;
-      top: -13%;
-    }
-  }
-}
-
-/* Rank panel */
-.rank-panel {
-  display: grid;
-  grid-template-columns: 49% 1fr;
-  grid-template-rows: 49% 1fr;
-  gap: 0px 0px;
-  grid-auto-flow: row;
-  grid-template-areas:
-    "speed karma"
-    "initiative rank";
-  grid-area: rank-panel;
-  position: relative;
-
-  .cog-wheel {
-    position: absolute;
-    top: calc(50% - 0.75rem);
-    left: calc(50% - 0.75rem);
-    z-index: 500;
-
-    border-style: solid;
-    border-width: 2px;
-    border-radius: 5px;
-    background-color: var(--background-white);
-
-    i {
-      text-align: center;
-      line-height: unset;
-      padding: 1px;
-
-      transform: rotate(0);
-      transition: transform 2s;
-    }
-
-    i:hover {
-      transform: rotate(360deg);
-    }
-  }
-
-  .speed-section {
-    grid-area: speed;
-    border-right: 2px solid;
-    border-bottom: 2px solid;
-
-    .speed-content {
-      place-content: center;
-      place-items: center;
-      background-color: var(--hulk-green);
-      background-image: url(../assets/sheets/actor/speed.svg);
-      position: relative;
-    }
-
-    .speed-selector {
-      flex: 0;
-      padding: 0;
-      width: 80%;
-      top: 5%;
-
-      font-size: 0.9rem;
-      text-align: center;
-
-      z-index: 2000;
-    }
-
-    .speed-item {
-      place-content: center;
-      place-items: center;
-      position: relative;
-      top: -10%;
-    }
-
-    .speed-icon {
-      border: unset;
-      height: var(--main-info-text-size);
-      padding: 1px;
-    }
-
-    .speed-value {
-      font-size: var(--main-info-text-size);
-      padding: 1px;
-    }
-  }
-
-  .karma-section {
-    grid-area: karma;
-    border-left: 1px solid;
-    border-bottom: 2px solid;
-
-    .karma-content {
-      padding: 2px;
-      background-color: var(--hulk-green);
-      background-image: url(../assets/sheets/actor/karma.svg);
-      align-items: center;
-      text-align: center;
-    }
-
-    .karma-content > .karma-input {
-      font-size: var(--main-info-text-size);
-    }
-  }
-
-  .initiative-section {
-    grid-area: initiative;
-    border-right: 2px solid;
-    border-top: 1px solid;
-
-    .initiative-content {
-      padding: 2px;
-      background-color: var(--hulk-green);
-      background-image: url(../assets/sheets/actor/initiative.svg);
-      align-items: center;
-      text-align: center;
-    }
-
-    .initiative-content > .initiative-input {
-      font-size: var(--main-info-text-size);
-    }
-  }
-
-  .rank-section {
-    grid-area: rank;
-    border-left: 1px solid;
-    border-top: 1px solid;
-
-    .rank-content {
-      padding: 2px;
-      background-color: var(--hulk-green);
-      background-image: url(../assets/sheets/actor/star.svg);
-      align-items: center;
-      text-align: center;
-    }
-
-    .rank-content > .rank-input {
-      font-size: var(--main-info-text-size);
-    }
-  }
-}
-
-/* Abilities panel */
-.abilities-panel {
-  grid-area: abilities-panel;
-
-  .abilities-content {
-    padding: 8px;
-    gap: 4px;
-    place-content: center;
-    place-items: center;
-
-    background-color: var(--thing-orange);
-
-    .ability-item {
-      text-align: center;
-      place-content: center;
-      place-items: center;
-
-      background-color: var(--background-white);
-
-      border-style: solid;
-      border-width: 2px;
-      border-radius: 5px;
-    }
-
-    .ability-info {
-      place-content: center;
-      place-items: center;
-      font-size: var(--main-info-text-size);
-    }
-
-    .ability-labels {
-      flex: 0;
-
-      place-content: center;
-      place-items: center;
-
-      font-size: 0.95rem;
-
-      width: 100%;
-      border-radius: 0 0 2px 2px;
-      background-color: var(--thanos-purple);
-    }
-
-    .ability-defense,
-    .ability-non-combat-bonus {
-      font-size: var(--sub-info-text-size);
-    }
-
-    .ability-name::first-letter {
-      font-weight: bold;
-      text-decoration: underline;
-    }
-
-    .ability-sub-label {
-      color: var(--label-gray);
-    }
-  }
-}
-
-/* Tabbed panel */
-.tabbed-panel {
-  position: relative;
-  grid-area: tabbed-panel;
-
-  .powers-panel {
-    .powers-tabs {
-      padding: 3px 0;
-      border-bottom: dashed 2px;
-      margin-bottom: 3px;
-
-      .sub-tab-header {
-        color: var(--label-gray);
-        border: solid 1px var(--label-gray);
-        border-radius: 5px;
-        background-color: var(--background-white);
-        padding: 2px;
+        > .codename-input {
+          border: none;
+          background: none;
+          font-family: $komika-smallcaps;
+          font-size: var(--name-text-size);
+          text-align: center;
+        }
       }
 
-      .sub-tab-header.active {
-        font-weight: bold;
-        font-style: italic;
-        color: unset;
-        border-width: 2px;
-        border-color: var(--border-black);
+      .portrait {
+        grid-area: portrait;
+
+        > img {
+          border: none;
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+        }
       }
     }
-  }
 
-  .combat-panel {
-    text-align: center;
-    height: 100%;
+    /* LifePool (Health and Focus)*/
+    .lifepool-panel {
+      display: grid;
+      grid-template-columns: 1fr;
+      grid-template-rows: 1fr 1fr;
+      gap: 0px 0px;
+      grid-auto-flow: row;
+      grid-template-areas:
+        "health"
+        "focus";
+      grid-area: lifepool-panel;
 
-    .combat-panel-title {
-      color: white;
-      background-color: var(--venom-black);
-      padding-bottom: 2px;
-    }
+      .health-section {
+        grid-area: health;
+        border-bottom: 2px solid;
 
-    .damage-section {
-      .damage-multiplier-list {
-        padding: 3px;
-        gap: 3px;
+        .health-content {
+          background-color: var(--gwen-pink);
 
-        .damage-multiplier-item {
-          border-style: solid;
-          border-width: 2px;
-          border-radius: 5px;
-          border-color: var(--border-black);
-          background-color: var(--background-white);
+          > .health-max {
+            background-image: url(../assets/sheets/actor/pool-max.svg);
+            align-items: center;
+            text-align: center;
 
-          .damage-multiplier-value {
-            font-weight: bold;
-            font-size: var(--sub-info-text-size);
-
-            .damage-modifier {
-              color: var(--label-gray);
-              font-weight: normal;
+            > .health-max-input {
+              font-size: var(--sub-info-text-size);
+              position: relative;
+              top: -18%;
             }
           }
 
-          .damage-multiplier-label {
-            background-color: var(--thanos-purple);
-            border-bottom-left-radius: inherit;
-            border-bottom-right-radius: inherit;
+          > .health-points {
+            background-image: url(../assets/sheets/actor/pool-current.svg);
+            align-items: center;
+            text-align: center;
+
+            > .health-points-input {
+              font-size: var(--main-info-text-size);
+              position: relative;
+              top: -18%;
+            }
+          }
+
+          > .health-damage-reduction {
+            background-image: url(../assets/sheets/actor/damage-reduction.svg);
+            align-items: center;
+            text-align: center;
+
+            > .health-damage-reduction-value {
+              font-size: var(--sub-info-text-size);
+              position: relative;
+              top: -13%;
+            }
+          }
+        }
+      }
+
+      .focus-section {
+        grid-area: focus;
+        border-top: 1px solid;
+
+        .focus-content {
+          background-color: var(--cap-blue);
+
+          > .focus-max {
+            background-image: url(../assets/sheets/actor/pool-max.svg);
+            align-items: center;
+            text-align: center;
+
+            > .focus-max-input {
+              font-size: var(--sub-info-text-size);
+              position: relative;
+              top: -18%;
+            }
+          }
+
+          > .focus-points {
+            background-image: url(../assets/sheets/actor/pool-current.svg);
+            align-items: center;
+            text-align: center;
+
+            > .focus-points-input {
+              font-size: var(--main-info-text-size);
+              position: relative;
+              top: -18%;
+            }
+          }
+
+          > .focus-damage-reduction {
+            background-image: url(../assets/sheets/actor/damage-reduction.svg);
+            align-items: center;
+            text-align: center;
+
+            > .focus-damage-reduction-value {
+              font-size: var(--sub-info-text-size);
+              position: relative;
+              top: -13%;
+            }
           }
         }
       }
     }
 
-    .rollable-section {
-      flex: 10;
-      overflow-y: auto;
+    /* Rank panel */
+    .rank-panel {
+      display: grid;
+      grid-template-columns: 49% 1fr;
+      grid-template-rows: 49% 1fr;
+      gap: 0px 0px;
+      grid-auto-flow: row;
+      grid-template-areas:
+        "speed karma"
+        "initiative rank";
+      grid-area: rank-panel;
+      position: relative;
 
-      .combat-panel-title {
-        position: sticky;
-        top: 0;
-        z-index: 1;
-      }
-
-      .rollable-list {
-        flex-wrap: wrap;
-
-        .rollable-item {
-          flex: 0 0 calc(50% - 1px);
-        }
-
-        /** override */
-        .doc-icon {
-          width: 1.5rem;
-          height: 1.5rem;
-          flex: 0 0 1.5rem;
-
-          .overlay {
-            font-size: 1rem;
-          }
-        }
-      }
-    }
-
-    .team-maneuver-section {
-      .team-maneuver-item.maneuver-active {
-        box-shadow: 0 0 1em 0.5em var(--thanos-purple);
-      }
-      .team-maneuver-item {
-        margin: 3px;
-
-        text-align: center;
-        place-content: center;
-
-        background-color: var(--background-white);
+      .cog-wheel {
+        position: absolute;
+        top: calc(50% - 0.75rem);
+        left: calc(50% - 0.75rem);
+        z-index: 500;
 
         border-style: solid;
         border-width: 2px;
         border-radius: 5px;
+        background-color: var(--background-white);
 
-        .team-maneuver-data {
-          place-items: center;
+        i {
+          text-align: center;
+          line-height: unset;
+          padding: 1px;
 
-          :not(.toggle-maneuver, .toggle-maneuver i) {
-            font-size: var(--sub-info-text-size);
-          }
+          transform: rotate(0);
+          transition: transform 2s;
         }
 
-        .team-maneuver-labels {
-          flex: 0;
+        i:hover {
+          transform: rotate(360deg);
+        }
+      }
 
+      .speed-section {
+        grid-area: speed;
+        border-right: 2px solid;
+        border-bottom: 2px solid;
+
+        .speed-content {
           place-content: center;
           place-items: center;
+          background-color: var(--hulk-green);
+          background-image: url(../assets/sheets/actor/speed.svg);
+          position: relative;
 
-          width: 100%;
-          border-radius: 0 0 2px 2px;
-          background-color: var(--thanos-purple);
+          .speed-selector {
+            flex: 0;
+            padding: 0;
+            width: 80%;
+            top: 5%;
 
-          .team-maneuver-select {
-            height: unset;
+            font-size: 0.9rem;
+            text-align: center;
+
+            z-index: 2000;
+          }
+
+          .speed-item {
+            place-content: center;
+            place-items: center;
+            position: relative;
+            top: -10%;
+
+            .speed-icon {
+              border: unset;
+              height: var(--main-info-text-size);
+              padding: 1px;
+            }
+
+            .speed-value {
+              font-size: var(--main-info-text-size);
+              padding: 1px;
+            }
+          }
+        }
+      }
+
+      .karma-section {
+        grid-area: karma;
+        border-left: 1px solid;
+        border-bottom: 2px solid;
+
+        .karma-content {
+          padding: 2px;
+          background-color: var(--hulk-green);
+          background-image: url(../assets/sheets/actor/karma.svg);
+          align-items: center;
+          text-align: center;
+
+          > .karma-input {
+            font-size: var(--main-info-text-size);
+          }
+        }
+      }
+
+      .initiative-section {
+        grid-area: initiative;
+        border-right: 2px solid;
+        border-top: 1px solid;
+
+        .initiative-content {
+          padding: 2px;
+          background-color: var(--hulk-green);
+          background-image: url(../assets/sheets/actor/initiative.svg);
+          align-items: center;
+          text-align: center;
+
+          > .initiative-input {
+            font-size: var(--main-info-text-size);
+          }
+        }
+      }
+
+      .rank-section {
+        grid-area: rank;
+        border-left: 1px solid;
+        border-top: 1px solid;
+
+        .rank-content {
+          padding: 2px;
+          background-color: var(--hulk-green);
+          background-image: url(../assets/sheets/actor/star.svg);
+          align-items: center;
+          text-align: center;
+
+          > .rank-input {
+            font-size: var(--main-info-text-size);
           }
         }
       }
     }
-  }
 
-  .identity-panel {
-    height: 100%;
-    padding: 0 3px;
+    /* Abilities panel */
+    .abilities-panel {
+      grid-area: abilities-panel;
 
-    > div {
-      gap: 3px;
-      flex: 0;
+      .abilities-content {
+        padding: 8px;
+        gap: 4px;
+        place-content: center;
+        place-items: center;
+
+        background-color: var(--thing-orange);
+
+        .ability-item {
+          text-align: center;
+          place-content: center;
+          place-items: center;
+
+          background-color: var(--background-white);
+
+          border-style: solid;
+          border-width: 2px;
+          border-radius: 5px;
+
+          .ability-info {
+            place-content: center;
+            place-items: center;
+            font-size: var(--main-info-text-size);
+
+            .ability-defense,
+            .ability-non-combat-bonus {
+              font-size: var(--sub-info-text-size);
+            }
+          }
+
+          .ability-labels {
+            flex: 0;
+
+            place-content: center;
+            place-items: center;
+
+            font-size: 0.95rem;
+
+            width: 100%;
+            border-radius: 0 0 2px 2px;
+            background-color: var(--thanos-purple);
+
+            .ability-name::first-letter {
+              font-weight: bold;
+              text-decoration: underline;
+            }
+
+            .ability-sub-label {
+              color: var(--label-gray);
+            }
+          }
+        }
+      }
     }
 
-    .identity-label {
-      font-family: $komika-smallcaps;
-      font-weight: bold;
-      flex: 0;
-    }
+    /* Tabbed panel */
+    .tabbed-panel {
+      position: relative;
+      grid-area: tabbed-panel;
 
-    .identity-input {
-      background-color: rgb(200, 211, 211, 0.75) !important;
-      flex: 0;
-    }
+      .powers-panel {
+        .powers-tabs {
+          padding: 3px 0;
+          border-bottom: dashed 2px;
+          margin-bottom: 3px;
 
-    select.identity-input {
-      border: unset;
-      padding: unset;
+          .sub-tab-header {
+            color: var(--label-gray);
+            border: solid 1px var(--label-gray);
+            border-radius: 5px;
+            background-color: var(--background-white);
+            padding: 2px;
+          }
+
+          .sub-tab-header.active {
+            font-weight: bold;
+            font-style: italic;
+            color: unset;
+            border-width: 2px;
+            border-color: var(--border-black);
+          }
+        }
+      }
+
+      .combat-panel {
+        text-align: center;
+        height: 100%;
+
+        .combat-panel-title {
+          color: white;
+          background-color: var(--venom-black);
+          padding-bottom: 2px;
+        }
+
+        .damage-section {
+          .damage-multiplier-list {
+            padding: 3px;
+            gap: 3px;
+
+            .damage-multiplier-item {
+              border-style: solid;
+              border-width: 2px;
+              border-radius: 5px;
+              border-color: var(--border-black);
+              background-color: var(--background-white);
+
+              .damage-multiplier-value {
+                font-weight: bold;
+                font-size: var(--sub-info-text-size);
+
+                .damage-modifier {
+                  color: var(--label-gray);
+                  font-weight: normal;
+                }
+              }
+
+              .damage-multiplier-label {
+                background-color: var(--thanos-purple);
+                border-bottom-left-radius: inherit;
+                border-bottom-right-radius: inherit;
+              }
+            }
+          }
+        }
+
+        .rollable-section {
+          flex: 10;
+          overflow-y: auto;
+
+          .combat-panel-title {
+            position: sticky;
+            top: 0;
+            z-index: 1;
+          }
+
+          .rollable-list {
+            flex-wrap: wrap;
+
+            .rollable-item {
+              flex: 0 0 calc(50% - 1px);
+            }
+
+            /** override */
+            .doc-icon {
+              width: 1.5rem;
+              height: 1.5rem;
+              flex: 0 0 1.5rem;
+
+              .overlay {
+                font-size: 1rem;
+              }
+            }
+          }
+        }
+
+        .team-maneuver-section {
+          .team-maneuver-item {
+            margin: 3px;
+
+            text-align: center;
+            place-content: center;
+
+            background-color: var(--background-white);
+
+            border-style: solid;
+            border-width: 2px;
+            border-radius: 5px;
+
+            &.maneuver-active {
+              box-shadow: 0 0 1em 0.5em var(--thanos-purple);
+            }
+
+            .team-maneuver-data {
+              place-items: center;
+
+              :not(.toggle-maneuver, .toggle-maneuver i) {
+                font-size: var(--sub-info-text-size);
+              }
+            }
+
+            .team-maneuver-labels {
+              flex: 0;
+
+              place-content: center;
+              place-items: center;
+
+              width: 100%;
+              border-radius: 0 0 2px 2px;
+              background-color: var(--thanos-purple);
+
+              .team-maneuver-select {
+                height: unset;
+              }
+            }
+          }
+        }
+      }
+
+      .identity-panel {
+        height: 100%;
+        padding: 0 3px;
+
+        > div {
+          gap: 3px;
+          flex: 0;
+        }
+
+        .identity-label {
+          font-family: $komika-smallcaps;
+          font-weight: bold;
+          flex: 0;
+        }
+
+        .identity-input {
+          background-color: rgb(200, 211, 211, 0.75) !important;
+          flex: 0;
+        }
+
+        select.identity-input {
+          border: unset;
+          padding: unset;
+        }
+      }
     }
   }
 }
