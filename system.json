@@ -17,14 +17,7 @@
     }
   ],
   "esmodules": ["modules/mvrpg.js"],
-  "styles": [
-    "styles/actor.css",
-    "styles/chat.css",
-    "styles/common.css",
-    "styles/dialog.css",
-    "styles/item.css",
-    "styles/lists.css"
-  ],
+  "styles": ["styles/main.css"],
   "languages": [
     {
       "lang": "en",
