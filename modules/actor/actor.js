@@ -36,23 +36,23 @@ export default class SuperActor extends Actor {
         classes: ["mvrpg", "dialog"],
         buttons: [
           {
-            icon: "fas  fa-spider",
+            action: "confirm",
+            icon: "fas fa-spider",
             class: "dialog-button",
             label: game.i18n.localize("MVRPG.dialog.buttons.confirm"),
-            callback: (html) => {
+            callback: (event, button) => {
               const { FormDataExtended } = foundry.applications.ux;
-              const fd = new FormDataExtended(html.find("form")[0]);
+              const fd = new FormDataExtended(button.form);
               const formData = foundry.utils.expandObject(fd.object);
               damageReduction = formData.damageReduction;
             },
           },
         ],
-      }).catch((err) => {
-        Logger.log("Damage calculation cancelled", err);
-        return false;
       });
+
       if (!confirmDamage) return null;
     }
+
     const damageTotal = parseInt(
       originRoll.calculateDamage(damageReduction).total,
     );
