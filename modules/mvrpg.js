@@ -88,4 +88,9 @@ Hooks.once("init", async () => {
   registerSettings();
 });
 
+// Render ChatLog by default.
+Hooks.on("renderSidebar", () => {
+  ui.chat.activate();
+});
+
 Hooks.on("hotbarDrop", (bar, data, slot) => createItemMacro(data, slot));
