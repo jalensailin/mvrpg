@@ -1,3 +1,5 @@
+@use "fonts" as *;
+
 .mvrpg.sheet.actor {
   min-width: 360px;
   min-height: 594px;
@@ -36,7 +38,7 @@
   .codename > .codename-input {
     border: none;
     background: none;
-    font-family: KomikaTextSmallCaps;
+    font-family: $komika-smallcaps;
     font-size: var(--name-text-size);
     text-align: center;
   }
@@ -504,7 +506,7 @@
     }
 
     .identity-label {
-      font-family: KomikaTextSmallCaps;
+      font-family: $komika-smallcaps;
       font-weight: bold;
       flex: 0;
     }

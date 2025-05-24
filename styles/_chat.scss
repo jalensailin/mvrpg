@@ -1,7 +1,9 @@
+@use "fonts" as *;
+
 /* Chat Cards */
 .mvrpg-damage-card,
 .mvrpg-roll-card {
-  font-family: KomikaText;
+  font-family: $komika-base;
   font-size: var(--dialog-text-size);
   position: relative;
 

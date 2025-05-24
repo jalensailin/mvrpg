@@ -1,9 +1,11 @@
+@use "fonts" as *;
+
 .item {
   .name-panel {
     flex: 0;
     text-align: center;
     font-weight: bold;
-    font-family: "KomikaTextSmallCaps";
+    font-family: $komika-smallcaps;
     font-size: var(--name-text-size);
     place-content: center;
     place-items: center;

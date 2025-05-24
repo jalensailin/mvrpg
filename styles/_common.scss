@@ -1,57 +1,4 @@
-/* Komika Text - Base */
-@font-face {
-  font-family: KomikaText;
-  src: url(../assets/fonts/komika-text/KOMTXT__.ttf) format("truetype");
-}
-@font-face {
-  font-family: KomikaText;
-  src: url(../assets/fonts/komika-text/KOMTXTB_.ttf) format("truetype");
-  font-weight: bold;
-}
-@font-face {
-  font-family: KomikaText;
-  src: url(../assets/fonts/komika-text/KOMTXTI_.ttf) format("truetype");
-  font-style: italic;
-}
-@font-face {
-  font-family: KomikaText;
-  src: url(../assets/fonts/komika-text/KOMTXTBI.ttf) format("truetype");
-  font-style: italic;
-  font-weight: bold;
-}
-
-/* Komika Text - Small Caps */
-@font-face {
-  font-family: KomikaTextSmallCaps;
-  src: url(../assets/fonts/komika-text/KOMTXTK_.ttf) format("truetype");
-}
-@font-face {
-  font-family: KomikaTextSmallCaps;
-  src: url(../assets/fonts/komika-text/KOMTXTKB.ttf) format("truetype");
-  font-weight: bold;
-}
-@font-face {
-  font-family: KomikaTextSmallCaps;
-  src: url(../assets/fonts/komika-text/KOMTXTKI.ttf) format("truetype");
-  font-style: italic;
-}
-@font-face {
-  font-family: KomikaTextSmallCaps;
-  src: url(../assets/fonts/komika-text/KOMTXKBI.ttf) format("truetype");
-  font-style: italic;
-  font-weight: bold;
-}
-
-/* Komika Text - Tight */
-@font-face {
-  font-family: KomikaTextTight;
-  src: url(../assets/fonts/komika-text/KOMTXTT_.ttf) format("truetype");
-}
-@font-face {
-  font-family: KomikaTextTight;
-  src: url(../assets/fonts/komika-text/KOMTXTTI.ttf) format("truetype");
-  font-style: italic;
-}
+@use "fonts" as *;
 
 :root {
   /* Component Colors */
@@ -87,7 +34,7 @@ section {
 }
 
 form.mvrpg {
-  font-family: KomikaText;
+  font-family: $komika-base;
 }
 
 .mvrpg select,
@@ -135,7 +82,7 @@ form.mvrpg {
 
 .panel-title {
   flex: 0;
-  font-family: KomikaTextSmallCaps;
+  font-family: $komika-smallcaps;
   line-height: var(--header-text-size);
   font-size: var(--header-text-size);
   font-weight: bold;
