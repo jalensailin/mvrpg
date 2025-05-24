@@ -2,20 +2,27 @@
 
 /* Dialogs */
 .mvrpg.dialog {
-  .dialog-buttons button {
+  .dialog-buttons button,
+  .form-footer button {
+    color: black;
+    font-family: $komika-base;
+    font-size: var(--dialog-text-size);
+
+    background-color: transparent;
+
     border-style: solid;
     border-width: 3px;
     border-radius: 1px;
     border-color: var(--border-black);
+
     box-shadow: 5px 5px;
 
-    font-family: $komika-base;
-    font-size: var(--dialog-text-size);
     transition: text-shadow 200ms ease-in;
 
     i {
       color: var(--spider-red);
       transform: translateY(0) rotate(180deg);
+
       transition:
         transform 1s cubic-bezier(0.68, -0.55, 0.27, 1.55),
         color 1s ease-in;
@@ -23,6 +30,7 @@
 
     &:hover {
       text-shadow: 1px 1px 2px var(--spider-red);
+
       i {
         text-shadow: none;
         color: var(--venom-black);
@@ -32,116 +40,124 @@
   }
 }
 
-.mvrpg .dialog-container {
-  gap: 8px 8px;
-  padding-bottom: 8px;
-  font-size: var(--dialog-text-size);
-  font-weight: bold;
+// This isn't nested in the above, because it's reused elsewhere.
+// TODO: Refactor using mixins or something else.
+.mvrpg {
+  .standard-form {
+    gap: 0;
+  }
 
-  .dialog-section {
-    background-color: var(--wasp-yellow);
+  .dialog-container {
+    gap: 8px 8px;
+    padding-bottom: 8px;
+    font-size: var(--dialog-text-size);
+    font-weight: bold;
 
-    .dialog-header {
-      border-bottom: 3px solid var(--border-black);
-      background: linear-gradient(
-        180deg,
-        var(--header-yellow) 0%,
-        var(--header-gray) 100%
-      );
+    .dialog-section {
+      background-color: var(--wasp-yellow);
 
-      font-family: $komika-smallcaps;
-      line-height: var(--header-text-size);
-      font-size: var(--header-text-size);
-      font-weight: bold;
-      font-style: italic;
-      text-align: center;
-    }
+      .dialog-header {
+        border-bottom: 3px solid var(--border-black);
+        background: linear-gradient(
+          180deg,
+          var(--header-yellow) 0%,
+          var(--header-gray) 100%
+        );
 
-    .dialog-item {
-      justify-items: center;
-      align-items: center;
-      padding: 0 15px;
-
-      &:nth-child(odd) {
-        background-color: var(--thing-orange);
+        font-family: $komika-smallcaps;
+        line-height: var(--header-text-size);
+        font-size: var(--header-text-size);
+        font-weight: bold;
+        font-style: italic;
+        text-align: center;
       }
 
-      .dialog-label {
+      .dialog-item {
+        justify-items: center;
         align-items: center;
+        padding: 0 15px;
 
-        .dialog-icon {
-          flex: 0;
-          border: unset;
-          height: var(--sub-info-text-size);
-          padding-right: 2px;
+        &:nth-child(odd) {
+          background-color: var(--thing-orange);
         }
 
-        .mvrpg-label-hint {
-          color: rgb(70, 70, 70);
-          font-size: 0.8em;
-        }
-      }
+        .dialog-label {
+          align-items: center;
 
-      .dialog-input {
-        flex: 0 0 2rem;
-        text-align: right;
-
-        input {
-          text-align: center;
-          padding-right: 0.5rem;
-
-          &:disabled {
-            color: var(--label-gray);
-            text-decoration: line-through;
+          .dialog-icon {
+            flex: 0;
+            border: unset;
+            height: var(--sub-info-text-size);
+            padding-right: 2px;
           }
 
-          &[type="checkbox"] {
-            appearance: none;
-            background-color: #fff;
-            margin: 0;
-            transform: translateY(2px);
+          .mvrpg-label-hint {
+            color: rgb(70, 70, 70);
+            font-size: 0.8em;
+          }
+        }
 
-            width: 1.25rem;
-            height: 1.25rem;
+        .dialog-input {
+          flex: 0 0 2rem;
+          text-align: right;
 
-            border-style: solid;
-            border-color: inherit;
-            border-width: 2px;
-            border-radius: 1px;
-            box-shadow: 3px 3px;
+          input {
+            text-align: center;
+            padding-right: 0.5rem;
 
-            background-image: url(../assets/sheets/checkmark.svg);
-            background-size: contain;
-            background-repeat: no-repeat;
-            background-position-x: 1.15em;
-
-            transition: background-position 0.2s ease-out;
-
-            &::before {
-              content: unset;
+            &:disabled {
+              color: var(--label-gray);
+              text-decoration: line-through;
             }
 
-            &:checked {
-              background-position-x: 0;
+            &[type="checkbox"] {
+              appearance: none;
+              background-color: #fff;
+              margin: 0;
+              transform: translateY(2px);
 
-              &::before,
-              &::after {
+              width: 1.25rem;
+              height: 1.25rem;
+
+              border-style: solid;
+              border-color: inherit;
+              border-width: 2px;
+              border-radius: 1px;
+              box-shadow: 3px 3px;
+
+              background-image: url(../assets/sheets/checkmark.svg);
+              background-size: contain;
+              background-repeat: no-repeat;
+              background-position-x: 1.15em;
+
+              transition: background-position 0.2s ease-out;
+
+              &::before {
                 content: unset;
+              }
+
+              &:checked {
+                background-position-x: 0;
+
+                &::before,
+                &::after {
+                  content: unset;
+                }
               }
             }
           }
         }
-      }
 
-      select.dialog-input {
-        width: unset;
-        height: unset;
-      }
+        select.dialog-input {
+          width: unset;
+          height: unset;
+        }
 
-      .dialog-data {
-        flex: 0 0 fit-content;
-        padding-left: 2px;
-        text-align: right;
+        .dialog-data {
+          flex: 0 0 fit-content;
+          padding-left: 2px;
+          text-align: right;
+        }
       }
     }
   }

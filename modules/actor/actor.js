@@ -1,6 +1,8 @@
 import Logger from "../utils/logger.js";
 import { MVSettings } from "../utils/settings.js";
 
+const { Dialog } = foundry.applications.api;
+
 export default class SuperActor extends Actor {
   /**
    * Applies damage to the selected targets.
@@ -25,28 +27,27 @@ export default class SuperActor extends Actor {
       },
     );
     if (!MVSettings.skipRollDialog()) {
-      const confirmDamage = await Dialog.wait(
-        {
-          content: dialogContent,
+      const confirmDamage = await Dialog.wait({
+        content: dialogContent,
+        position: { width: 300 },
+        window: {
           title: game.i18n.localize("MVRPG.dialog.damageConfirm.title"),
-          buttons: {
-            confirm: {
-              icon: `<i class="fa-solid fa-spider"></i>`,
-              label: game.i18n.localize("MVRPG.dialog.buttons.confirm"),
-              callback: (html) => {
-                const { FormDataExtended } = foundry.applications.ux;
-                const fd = new FormDataExtended(html.find("form")[0]);
-                const formData = foundry.utils.expandObject(fd.object);
-                damageReduction = formData.damageReduction;
-              },
+        },
+        classes: ["mvrpg", "dialog"],
+        buttons: [
+          {
+            icon: "fas  fa-spider",
+            class: "dialog-button",
+            label: game.i18n.localize("MVRPG.dialog.buttons.confirm"),
+            callback: (html) => {
+              const { FormDataExtended } = foundry.applications.ux;
+              const fd = new FormDataExtended(html.find("form")[0]);
+              const formData = foundry.utils.expandObject(fd.object);
+              damageReduction = formData.damageReduction;
             },
           },
-        },
-        {
-          classes: ["mvrpg", "dialog"],
-          width: 300,
-        },
-      ).catch((err) => {
+        ],
+      }).catch((err) => {
         Logger.log("Damage calculation cancelled", err);
         return false;
       });
