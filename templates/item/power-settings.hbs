@@ -1,12 +1,10 @@
-<div class="tab mvrpg-dialog-container sheet-body comic-frame flexcol {{tabs.settings.cssClass}}"
+<div class="tab dialog-container sheet-body comic-frame flexcol {{tabs.settings.cssClass}}"
      data-group="{{tabs.settings.group}}"
      data-tab="{{tabs.settings.id}}">
-  <div class="mvrpg-dialog-section flexcol">
-    <div class="mvrpg-dialog-item flexrow">
-      <div class="mvrpg-dialog-label">
-        {{localize "MVRPG.sheets.itemSheet.settings.labels.powerSets"}}
-      </div>
-      <a class="mvrpg-dialog-data"
+  <div class="dialog-section flexcol">
+    <div class="dialog-item flexrow">
+      <div class="dialog-label">{{localize "MVRPG.sheets.itemSheet.settings.labels.powerSets"}}</div>
+      <a class="dialog-data"
          data-action="configureMultipleSelections"
          data-selection-set="powerSets"
          data-tooltip="{{localize "MVRPG.sheets.itemSheet.settings.tooltips.configurePowerSets"}}">
@@ -18,9 +16,9 @@
       </a>
     </div>
 
-    <div class="mvrpg-dialog-item flexrow">
-      <div class="mvrpg-dialog-label">{{localize "MVRPG.sheets.itemSheet.settings.labels.action"}}</div>
-      <a class="mvrpg-dialog-data"
+    <div class="dialog-item flexrow">
+      <div class="dialog-label">{{localize "MVRPG.sheets.itemSheet.settings.labels.action"}}</div>
+      <a class="dialog-data"
          data-action="configureMultipleSelections"
          data-selection-set="actions"
          data-tooltip="{{localize "MVRPG.sheets.itemSheet.settings.tooltips.configurePowerSets"}}">
@@ -32,18 +30,16 @@
       </a>
     </div>
 
-    <div class="mvrpg-dialog-item flexrow">
-      <div class="mvrpg-dialog-label">
-        {{localize "MVRPG.sheets.itemSheet.settings.labels.duration"}}
-      </div>
-      <select class="mvrpg-dialog-input" name="system.duration">
+    <div class="dialog-item flexrow">
+      <div class="dialog-label">{{localize "MVRPG.sheets.itemSheet.settings.labels.duration"}}</div>
+      <select class="dialog-input" name="system.duration">
         {{selectOptions (mvGetConfigObj "powerDurations") selected=document.system.duration localize=true}}
       </select>
     </div>
 
-    <div class="mvrpg-dialog-item flexrow">
-      <div class="mvrpg-dialog-label">{{localize "MVRPG.sheets.itemSheet.settings.labels.cost"}}</div>
-      <div class="mvrpg-dialog-input">
+    <div class="dialog-item flexrow">
+      <div class="dialog-label">{{localize "MVRPG.sheets.itemSheet.settings.labels.cost"}}</div>
+      <div class="dialog-input">
         <input name="system.cost" type="number" value="{{document.system.cost}}">
       </div>
     </div>

@@ -1,57 +1,83 @@
 <form>
   <div class="half-tone-overlay"></div>
-  <div class="mvrpg-dialog-container flexcol">
-    <div class="mvrpg-dialog-section comic-frame flexcol">
-      <div class="mvrpg-dialog-header">
-        {{title}}
-      </div>
-      {{#if rollSource}}
-        <div class="roll-source-header">
-          {{rollSource}}
-        </div>
+  <div class="dialog-container flexcol">
+    <div class="dialog-section comic-frame flexcol">
+      <div class="dialog-header">{{title}}</div>
+      {{#if rollSource }}
+        <div class="roll-source-header">{{rollSource}}</div>
       {{/if}}
 
-      <div class="mvrpg-dialog-item flexrow">
-        <div class="mvrpg-dialog-label">{{rollKey}} {{#mvCompare type "nonCombat"}}({{localize "MVRPG.rolls.nonCombat"}}){{/mvCompare}}</div>
-        <div class="mvrpg-dialog-data">{{modifier}}</div>
-      </div>
-
-      {{#mvCompare type "!==" "initiative"}}
-        <div class="mvrpg-dialog-item flexrow">
-          <div class="mvrpg-dialog-label">{{localize "MVRPG.dialog.rollConfirm.against"}}</div>
-          <select name="against" class="mvrpg-dialog-input">
-            <option value="none">{{localize "MVRPG.sheets.generic.none"}}</option>
-            {{selectOptions (mvGetConfigObj "abilities") selected=against localize=true}}
-          </select>
+      <div class="dialog-item flexrow">
+        <div class="dialog-label">
+          {{rollKey}}
+          {{#mvCompare type "nonCombat"}}
+            ({{localize "MVRPG.rolls.nonCombat"}}){{/mvCompare}}
+          </div>
+          <div class="dialog-data">{{modifier}}</div>
         </div>
 
-        <div class="mvrpg-dialog-item flexrow">
-          <div class="mvrpg-dialog-label">{{localize "MVRPG.dialog.rollConfirm.tn"}}</div>
-          <div class="mvrpg-dialog-input"><input name="tn" type="number" value="{{tn}}" min="0"></div>
+        {{#mvCompare type "!==" "initiative"}}
+          <div class="dialog-item flexrow">
+            <div class="dialog-label">{{localize "MVRPG.dialog.rollConfirm.against"}}</div>
+            <select name="against" class="dialog-input">
+              <option value="none">{{localize "MVRPG.sheets.generic.none"}}</option>
+              {{selectOptions (mvGetConfigObj "abilities") selected=against localize=true}}
+            </select>
+          </div>
+
+          <div class="dialog-item flexrow">
+            <div class="dialog-label">{{localize "MVRPG.dialog.rollConfirm.tn"}}</div>
+            <div class="dialog-input">
+              <input name="tn" type="number" value="{{tn}}" min="0">
+            </div>
+          </div>
+        {{/mvCompare}}
+
+        {{#mvCompare type "===" "combat"}}
+          <div class="dialog-item flexrow">
+            <div class="dialog-label">{{localize "MVRPG.dialog.rollConfirm.lifepoolTarget"}}</div>
+            <select name="lifepoolTarget" class="dialog-input">
+              <option value="none">{{localize "MVRPG.sheets.generic.none"}}</option>
+              {{selectOptions (mvGetConfigObj "lifepoolTargets") selected=lifepoolTarget localize=true}}
+            </select>
+          </div>
+        {{/mvCompare}}
+
+        <div class="dialog-item flexrow">
+          <div class="dialog-label">{{localize "MVRPG.dialog.rollConfirm.edges"}}</div>
+          <div class="dialog-input">
+            <input data-reference="edges" type="checkbox" {{#if edges }}checked{{/if}}>
+          </div>
+          <div class="dialog-input">
+            <input name="edges"
+                   type="number"
+                   value="{{edges}}"
+                   min="0"
+                   {{#unless edges}}
+                   disabled
+                   {{/unless}}>
+          </div>
         </div>
-      {{/mvCompare}}
 
-      {{#mvCompare type "===" "combat"}}
-        <div class="mvrpg-dialog-item flexrow">
-          <div class="mvrpg-dialog-label">{{localize "MVRPG.dialog.rollConfirm.lifepoolTarget"}}</div>
-          <select name="lifepoolTarget" class="mvrpg-dialog-input">
-            <option value="none">{{localize "MVRPG.sheets.generic.none"}}</option>
-            {{selectOptions (mvGetConfigObj "lifepoolTargets") selected=lifepoolTarget localize=true}}
-          </select>
+        <div class="dialog-item flexrow">
+          <div class="dialog-label">{{localize "MVRPG.dialog.rollConfirm.troubles"}}</div>
+          <div class="dialog-input">
+            <input data-reference="troubles"
+                   type="checkbox"
+                   {{#if troubles }}
+                   checked
+                   {{/if}}>
+          </div>
+          <div class="dialog-input">
+            <input name="troubles"
+                   type="number"
+                   value="{{troubles}}"
+                   min="0"
+                   {{#unless troubles}}
+                   disabled
+                   {{/unless}}>
+          </div>
         </div>
-      {{/mvCompare}}
-
-      <div class="mvrpg-dialog-item flexrow">
-        <div class="mvrpg-dialog-label">{{localize "MVRPG.dialog.rollConfirm.edges"}}</div>
-        <div class="mvrpg-dialog-input"><input data-reference="edges" type="checkbox" {{#if edges}}checked{{/if}}></div>
-        <div class="mvrpg-dialog-input"><input name="edges" type="number" value="{{edges}}" min="0" {{#unless edges}}disabled{{/unless}}></div>
-      </div>
-
-      <div class="mvrpg-dialog-item flexrow">
-        <div class="mvrpg-dialog-label">{{localize "MVRPG.dialog.rollConfirm.troubles"}}</div>
-        <div class="mvrpg-dialog-input"><input data-reference="troubles" type="checkbox" {{#if troubles}}checked{{/if}}></div>
-        <div class="mvrpg-dialog-input"><input name="troubles" type="number" value="{{troubles}}" min="0" {{#unless troubles}}disabled{{/unless}}></div>
       </div>
     </div>
-  </div>
-</form>
+  </form>

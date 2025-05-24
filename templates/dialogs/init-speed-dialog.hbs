@@ -1,27 +1,33 @@
 <form>
   <div class="half-tone-overlay"></div>
 
-  <div class="mvrpg-dialog-container flexcol">
-    <div class="mvrpg-dialog-section comic-frame flexcol">
-      <div class="mvrpg-dialog-header">
-        {{localize "MVRPG.dialog.initSpeed.initiativeSettings"}}
-      </div>
+  <div class="dialog-container flexcol">
+    <div class="dialog-section comic-frame flexcol">
+      <div class="dialog-header">{{localize "MVRPG.dialog.initSpeed.initiativeSettings"}}</div>
 
-      <div class="mvrpg-dialog-item flexrow">
-        <div class="mvrpg-dialog-label">{{localize "MVRPG.dialog.initSpeed.edge"}}</div>
-        <div class="mvrpg-dialog-input"><input name="system.initiative.edge" type="checkbox" {{checked actor.system.initiative.edge}}></div>
+      <div class="dialog-item flexrow">
+        <div class="dialog-label">{{localize "MVRPG.dialog.initSpeed.edge"}}</div>
+        <div class="dialog-input">
+          <input name="system.initiative.edge"
+                 type="checkbox"
+                 {{checked actor.system.initiative.edge}}>
+        </div>
       </div>
     </div>
 
-    <div class="mvrpg-dialog-section comic-frame flexcol">
-      <div class="mvrpg-dialog-header">
-        {{localize "MVRPG.dialog.initSpeed.speedSettings"}}
-      </div>
+    <div class="dialog-section comic-frame flexcol">
+      <div class="dialog-header">{{localize "MVRPG.dialog.initSpeed.speedSettings"}}</div>
 
-      {{#each actor.system.speed as |speedVal speedName|}}
-        <div class="mvrpg-dialog-item flexrow">
-          <div class="mvrpg-dialog-label flexrow"><img class="mvrpg-dialog-icon" src="{{concat (systemFilePath "assets/sheets/actor/speed-icons/") speedName ".png"}}" />{{localize (concat "MVRPG.sheets.superSheet.speed." speedName)}}.</div>
-          <div class="mvrpg-dialog-input"><input name="system.speed.{{speedName}}" type="number" value="{{speedVal}}"></div>
+      {{#each actor.system.speed as |speedVal speedName| }}
+        <div class="dialog-item flexrow">
+          <div class="dialog-label flexrow">
+            <img class="dialog-icon"
+                 src="{{concat (systemFilePath "assets/sheets/actor/speed-icons/") speedName ".png"}}" />
+            {{localize (concat "MVRPG.sheets.superSheet.speed." speedName)}}.
+          </div>
+          <div class="dialog-input">
+            <input name="system.speed.{{speedName}}" type="number" value="{{speedVal}}">
+          </div>
         </div>
       {{/each}}
     </div>

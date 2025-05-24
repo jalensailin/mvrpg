@@ -1,9 +1,9 @@
-<div class="mvrpg-dialog-item flexrow">
-  <div class="mvrpg-dialog-label">
+<div class="dialog-item flexrow">
+  <div class="dialog-label">
     {{localize "MVRPG.sheets.itemSheet.settings.labels.range"}}
     <span class="mvrpg-label-hint">[{{localize "MVRPG.sheets.itemSheet.settings.labels.rangeUnit"}}]</span>
   </div>
-  <div class="mvrpg-dialog-input range-input">
+  <div class="dialog-input range-input">
     <input name="system.range.value"
            type="text"
            value="{{document.system.range.value}}">
@@ -11,11 +11,11 @@
 </div>
 
 {{#if document.system.range.rangeIsInt }}
-  <div class="mvrpg-dialog-item flexrow">
-    <div class="mvrpg-dialog-label">
+  <div class="dialog-item flexrow">
+    <div class="dialog-label">
       {{localize "MVRPG.sheets.itemSheet.settings.labels.multiplyByRank"}}
     </div>
-    <div class="mvrpg-dialog-input">
+    <div class="dialog-input">
       <input name="system.range.multiplyByRank"
              type="checkbox"
              {{checked document.system.range.multiplyByRank}}>

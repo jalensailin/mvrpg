@@ -43,7 +43,7 @@ export default class SuperActor extends Actor {
           },
         },
         {
-          classes: ["mvrpg", "mvrpg-dialog"],
+          classes: ["mvrpg", "dialog"],
           width: 300,
         },
       ).catch((err) => {

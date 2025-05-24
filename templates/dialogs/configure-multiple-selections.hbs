@@ -1,16 +1,16 @@
 <form>
   <div class="half-tone-overlay"></div>
 
-  <div class="mvrpg-dialog-container flexcol">
-    <div class="mvrpg-dialog-section comic-frame flexcol">
-      <div class="mvrpg-dialog-header">
-        {{title}}
-      </div>
-      {{#each configObj as |objI18nString objKey|}}
-        <div class="mvrpg-dialog-item flexrow">
-          <div class="mvrpg-dialog-label">{{localize objI18nString}}</div>
-          <div class="mvrpg-dialog-input">
-            <input name="{{objKey}}" type="checkbox" {{checked (mvListIncludes ../itemProperty objKey)}}>
+  <div class="dialog-container flexcol">
+    <div class="dialog-section comic-frame flexcol">
+      <div class="dialog-header">{{title}}</div>
+      {{#each configObj as |objI18nString objKey| }}
+        <div class="dialog-item flexrow">
+          <div class="dialog-label">{{localize objI18nString}}</div>
+          <div class="dialog-input">
+            <input name="{{objKey}}"
+                   type="checkbox"
+                   {{checked (mvListIncludes ../itemProperty objKey)}}>
           </div>
         </div>
       {{/each}}

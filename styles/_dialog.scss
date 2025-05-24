@@ -1,7 +1,7 @@
 @use "fonts" as *;
 
 /* Dialogs */
-.mvrpg-dialog .dialog-buttons button {
+.dialog .dialog-buttons button {
   border-style: solid;
   border-width: 3px;
   border-radius: 1px;
@@ -21,7 +21,7 @@
   }
 }
 
-.mvrpg-dialog .dialog-buttons button:hover {
+.dialog .dialog-buttons button:hover {
   text-shadow: 1px 1px 2px var(--spider-red);
   i {
     text-shadow: none;
@@ -30,28 +30,28 @@
   }
 }
 
-.mvrpg-dialog-container {
+.dialog-container {
   gap: 8px 8px;
   padding-bottom: 8px;
   font-size: var(--dialog-text-size);
   font-weight: bold;
 }
 
-.mvrpg-dialog-section {
+.dialog-section {
   background-color: var(--wasp-yellow);
 }
 
-.mvrpg-dialog-item {
+.dialog-item {
   justify-items: center;
   align-items: center;
   padding: 0 15px;
 }
 
-.mvrpg-dialog-item:nth-child(odd) {
+.dialog-item:nth-child(odd) {
   background-color: var(--thing-orange);
 }
 
-.mvrpg-dialog-header {
+.dialog-header {
   border-bottom: 3px solid var(--border-black);
   background: linear-gradient(
     180deg,
@@ -67,7 +67,7 @@
   text-align: center;
 }
 
-.mvrpg-dialog-label {
+.dialog-label {
   align-items: center;
 
   .mvrpg-label-hint {
@@ -76,14 +76,14 @@
   }
 }
 
-.mvrpg-dialog-icon {
+.dialog-icon {
   flex: 0;
   border: unset;
   height: var(--sub-info-text-size);
   padding-right: 2px;
 }
 
-.mvrpg-dialog-input {
+.dialog-input {
   flex: 0 0 2rem;
   text-align: right;
 
@@ -98,13 +98,13 @@
   }
 }
 
-.mvrpg-dialog-data {
+.dialog-data {
   flex: 0 0 fit-content;
   padding-left: 2px;
   text-align: right;
 }
 
-.mvrpg-dialog-input input[type="checkbox"] {
+.dialog-input input[type="checkbox"] {
   appearance: none;
   background-color: #fff;
   margin: 0;
@@ -131,7 +131,7 @@
   }
 }
 
-.mvrpg-dialog-input input[type="checkbox"]:checked {
+.dialog-input input[type="checkbox"]:checked {
   background-position-x: 0;
 
   &::before,
@@ -140,7 +140,7 @@
   }
 }
 
-select.mvrpg-dialog-input {
+select.dialog-input {
   width: unset;
   height: unset;
 }

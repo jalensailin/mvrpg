@@ -225,7 +225,7 @@ export default class SuperSheet extends ActorSheet {
       },
       {
         id: "init-speed-dialog",
-        classes: ["mvrpg", "mvrpg-dialog", "actor"],
+        classes: ["mvrpg", "dialog", "actor"],
         width: 300,
       },
     );

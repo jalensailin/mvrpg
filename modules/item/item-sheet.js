@@ -160,7 +160,7 @@ export default class MVItemSheet extends HbsAppMixin(ItemSheetV2) {
       },
       {
         id: "config-power-sets-dialog",
-        classes: ["mvrpg", "mvrpg-dialog", "item"],
+        classes: ["mvrpg", "dialog", "item"],
         width: 300,
       },
     );

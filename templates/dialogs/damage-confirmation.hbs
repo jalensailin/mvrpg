@@ -1,20 +1,20 @@
 <form>
   <div class="half-tone-overlay"></div>
 
-  <div class="mvrpg-dialog-container flexcol">
-    <div class="mvrpg-dialog-section comic-frame flexcol">
-      <div class="mvrpg-dialog-header">
-        {{localize "MVRPG.dialog.damageConfirm.title"}}
+  <div class="dialog-container flexcol">
+    <div class="dialog-section comic-frame flexcol">
+      <div class="dialog-header">{{localize "MVRPG.dialog.damageConfirm.title"}}</div>
+
+      <div class="dialog-item flexrow">
+        <div class="dialog-label">{{localize "MVRPG.dialog.damageConfirm.token"}}</div>
+        <div class="dialog-data">{{targetName}}</div>
       </div>
 
-      <div class="mvrpg-dialog-item flexrow">
-        <div class="mvrpg-dialog-label">{{localize "MVRPG.dialog.damageConfirm.token"}}</div>
-        <div class="mvrpg-dialog-data">{{targetName}}</div>
-      </div>
-
-      <div class="mvrpg-dialog-item flexrow">
-        <div class="mvrpg-dialog-label">{{localize "MVRPG.dialog.damageConfirm.damageReduction"}}</div>
-        <div class="mvrpg-dialog-input"><input name="damageReduction" type="number" value="{{damageReduction}}"></div>
+      <div class="dialog-item flexrow">
+        <div class="dialog-label">{{localize "MVRPG.dialog.damageConfirm.damageReduction"}}</div>
+        <div class="dialog-input">
+          <input name="damageReduction" type="number" value="{{damageReduction}}">
+        </div>
       </div>
 
     </div>

@@ -475,7 +475,7 @@ export default class D616 extends Roll {
         },
       },
       {
-        classes: ["mvrpg", "mvrpg-dialog", "roll"],
+        classes: ["mvrpg", "dialog", "roll"],
         width: 300,
       },
     );
