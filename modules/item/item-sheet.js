@@ -12,15 +12,12 @@ const HbsAppMixin = foundry.applications.api.HandlebarsApplicationMixin;
 export default class MVItemSheet extends HbsAppMixin(ItemSheetV2) {
   /** @inheritdoc */
   static DEFAULT_OPTIONS = {
-    classes: ["mvrpg", "sheet", "item"],
-    position: {
-      width: 580,
-      height: 370,
-    },
+    classes: [MVRPG.ID, "sheet", "item"],
+    position: { width: 580, height: 370 },
+    form: { submitOnChange: true },
     actions: {
       configureMultipleSelections: MVItemSheet.#configureMultipleSelections,
     },
-    form: { submitOnChange: true },
   };
 
   /** @inheritdoc */
@@ -32,28 +29,30 @@ export default class MVItemSheet extends HbsAppMixin(ItemSheetV2) {
     },
   };
 
+  static TEMPLATE_PATH = `systems/${MVRPG.ID}/templates`;
+
   /** @inheritdoc */
   static PARTS = {
     halftone: {
-      template: `systems/mvrpg/templates/item/halftone.hbs`,
+      template: `${this.TEMPLATE_PATH}/document-sheet/halftone.hbs`,
     },
     header: {
-      template: `systems/mvrpg/templates/item/header.hbs`,
+      template: `${this.TEMPLATE_PATH}/item/header.hbs`,
     },
     tabNav: {
-      template: `systems/mvrpg/templates/item/tab-nav.hbs`,
+      template: `${this.TEMPLATE_PATH}/document-sheet/tab-nav.hbs`,
     },
     description: {
-      template: `systems/mvrpg/templates/item/description.hbs`,
+      template: `${this.TEMPLATE_PATH}/item/description.hbs`,
     },
     powerSettings: {
-      template: `systems/mvrpg/templates/item/power-settings.hbs`,
+      template: `${this.TEMPLATE_PATH}/item/power-settings.hbs`,
     },
     simpleItemSettings: {
-      template: `systems/mvrpg/templates/item/simple-item-settings.hbs`,
+      template: `${this.TEMPLATE_PATH}/item/simple-item-settings.hbs`,
     },
     effects: {
-      template: `systems/mvrpg/templates/item/effects.hbs`,
+      template: `${this.TEMPLATE_PATH}/item/effects.hbs`,
     },
   };
 

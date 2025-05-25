@@ -1,4 +1,6 @@
 const MVRPG = {
+  /** @type {"mvrpg"} */
+  ID: "mvrpg",
   abilities: {
     melee: "MVRPG.sheets.generic.abilities.melee",
     agility: "MVRPG.sheets.generic.abilities.agility",

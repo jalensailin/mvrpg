@@ -1,16 +1,18 @@
+import MVRPG from "../config.js";
 import D616 from "../rolls/d616.js";
 import EffectUtils from "../effects/effects.js";
 import { MVSettings } from "../utils/settings.js";
 import MVUtils from "../utils/utils.js";
 import MVDialog from "../dialog/dialog-base.js";
 
-const { ActorSheet } = foundry.appv1.sheets;
+const { ActorSheetV2 } = foundry.applications.sheets;
+const HbsAppMixin = foundry.applications.api.HandlebarsApplicationMixin;
 
-export default class SuperSheet extends ActorSheet {
+export default class SuperSheet extends HbsAppMixin(ActorSheetV2) {
   /** @override */
   static get defaultOptions() {
     return foundry.utils.mergeObject(super.defaultOptions, {
-      classes: ["mvrpg", "sheet", "actor"],
+      classes: [MVRPG.ID, "sheet", "actor"],
       template: `systems/${game.system.id}/templates/actor/super-sheet.hbs`,
       width: 600,
       height: 670,
@@ -29,6 +31,41 @@ export default class SuperSheet extends ActorSheet {
       scrollY: [".editor-content"],
     });
   }
+
+  /** @inheritdoc */
+  static DEFAULT_OPTIONS = {
+    classes: [MVRPG.ID, "sheet", "actor"],
+    position: { width: 600, height: 670 },
+    form: { submitOnChange: true },
+    // actions: {},
+  };
+
+  /** @inheritdoc */
+  static TABS = {
+    primary: {
+      initial: "combat",
+      labelPrefix: "MVRPG.sheets.actorSheet.titles",
+      tabs: [{ id: "powers" }, { id: "combat" }, { id: "identity" }],
+    },
+    secondary: {
+      initial: "powers",
+      labelPrefix: "MVRPG.sheets.actorSheet.titles",
+      tabs: [
+        { id: "powers" },
+        { id: "traits" },
+        { id: "tags" },
+        { id: "inventory" },
+        { id: "effects" },
+      ],
+    },
+  };
+
+  /** @inheritdoc */
+  static PARTS = {
+    main: {
+      template: `systems/${MVRPG.ID}/templates/actor/super-sheet.hbs`,
+    },
+  };
 
   /**
    * @override
@@ -74,6 +111,52 @@ export default class SuperSheet extends ActorSheet {
     mvrpgData.allEffects = allEffects;
 
     return { ...foundryData, ...mvrpgData };
+  }
+
+  async _prepareContext(options) {
+    const context = await super._prepareContext(options);
+    const mvrpgData = {};
+    const { actor } = this;
+
+    mvrpgData.actor = actor;
+
+    // Prepare speed data for the template.
+    mvrpgData.displaySpeed =
+      actor.getFlag(game.system.id, "displaySpeed") || "run";
+    mvrpgData.speedSelectOptions = {};
+    Object.entries(actor.system.speed).forEach(([speedName, speedVal]) => {
+      if (!speedVal) return;
+      mvrpgData.speedSelectOptions[speedName] = game.i18n.localize(
+        `MVRPG.sheets.superSheet.speed.${speedName}`,
+      );
+    });
+
+    // Prepare only data relevant to damage mutipliers for simplicity in the template.
+    const damageData = Object.entries(actor.system.abilities)
+      .filter(([name]) => name !== "resilience" && name !== "vigilance")
+      .map(([name, abilityData]) => ({
+        name,
+        damageModifier: abilityData.damageModifier,
+        damageMultiplier: abilityData.damageMultiplier,
+      }));
+    mvrpgData.damageData = damageData;
+
+    // Prepare rollable items for combat tab.
+    const rollableItems = actor.items.filter(
+      (item) => item.system.roll?.hasRoll,
+    );
+    mvrpgData.rollableItems = rollableItems;
+
+    const TextEditor = foundry.applications.ux.TextEditor.implementation;
+    mvrpgData.enrichedNotes = await TextEditor.enrichHTML(
+      actor.system.identity.notes,
+      { async: true },
+    );
+
+    const allEffects = Array.from(this.actor.allApplicableEffects());
+    mvrpgData.allEffects = allEffects;
+
+    return { ...context, ...mvrpgData };
   }
 
   /**
