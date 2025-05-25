@@ -1,7 +1,5 @@
-import Logger from "../utils/logger.js";
+import MVDialog from "../dialog/dialog-base.js";
 import { MVSettings } from "../utils/settings.js";
-
-const { Dialog } = foundry.applications.api;
 
 export default class SuperActor extends Actor {
   /**
@@ -27,27 +25,15 @@ export default class SuperActor extends Actor {
       },
     );
     if (!MVSettings.skipRollDialog()) {
-      const confirmDamage = await Dialog.wait({
+      const confirmDamage = await MVDialog.wait({
         content: dialogContent,
-        position: { width: 300 },
         window: {
           title: game.i18n.localize("MVRPG.dialog.damageConfirm.title"),
         },
-        classes: ["mvrpg", "dialog"],
-        buttons: [
-          {
-            action: "confirm",
-            icon: "fas fa-spider",
-            class: "dialog-button",
-            label: game.i18n.localize("MVRPG.dialog.buttons.confirm"),
-            callback: (event, button) => {
-              const { FormDataExtended } = foundry.applications.ux;
-              const fd = new FormDataExtended(button.form);
-              const formData = foundry.utils.expandObject(fd.object);
-              damageReduction = formData.damageReduction;
-            },
-          },
-        ],
+        submit: (result, dialog) => {
+          const formData = MVDialog.getFormData(dialog);
+          damageReduction = formData.damageReduction;
+        },
       });
 
       if (!confirmDamage) return null;

@@ -2,6 +2,7 @@ import D616 from "../rolls/d616.js";
 import EffectUtils from "../effects/effects.js";
 import { MVSettings } from "../utils/settings.js";
 import MVUtils from "../utils/utils.js";
+import MVDialog from "../dialog/dialog-base.js";
 
 const { ActorSheet } = foundry.appv1.sheets;
 
@@ -149,8 +150,10 @@ export default class SuperSheet extends ActorSheet {
 
   async deleteOwnedItem(doc, skipDialog) {
     if (!skipDialog) {
-      const confirmDelete = await Dialog.confirm({
-        title: game.i18n.localize("MVRPG.dialog.deleteOwnedItem.title"),
+      const confirmDelete = await MVDialog.wait({
+        window: {
+          title: game.i18n.localize("MVRPG.dialog.deleteOwnedItem.title"),
+        },
         content: game.i18n.format("MVRPG.dialog.deleteOwnedItem.text", {
           itemType: game.i18n.localize(`TYPES.Item.${doc.type}`),
           itemName: doc.name,
@@ -205,31 +208,16 @@ export default class SuperSheet extends ActorSheet {
       `systems/${game.system.id}/templates/dialogs/init-speed-dialog.hbs`,
       { actor: this.actor },
     );
-    const dialog = new Dialog(
-      {
-        content,
-        title: game.i18n.localize("MVRPG.dialog.initSpeed.title"),
-        default: "confirm",
-        buttons: {
-          confirm: {
-            icon: `<i class="fa-solid fa-spider"></i>`,
-            label: game.i18n.localize("MVRPG.dialog.buttons.confirm"),
-            callback: (html) => {
-              const { FormDataExtended } = foundry.applications.ux;
-              const fd = new FormDataExtended(html.find("form")[0]);
-              const formData = foundry.utils.expandObject(fd.object);
-              this.actor.update(formData);
-            },
-          },
-        },
+
+    MVDialog.wait({
+      content,
+      id: "init-speed-dialog",
+      window: { title: game.i18n.localize("MVRPG.dialog.initSpeed.title") },
+      submit: (result, dialog) => {
+        const formData = MVDialog.getFormData(dialog);
+        this.actor.update(formData);
       },
-      {
-        id: "init-speed-dialog",
-        classes: ["mvrpg", "dialog", "actor"],
-        width: 300,
-      },
-    );
-    dialog.render(true);
+    });
   }
 
   sendItemToChat(item) {
