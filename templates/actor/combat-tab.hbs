@@ -1,16 +1,20 @@
-<div class="tab combat-panel flexcol" data-group="primary" data-tab="combat">
+<div class="tab combat-panel flexcol {{tabs.combat.cssClass}}"
+     data-group="{{tabs.combat.group}}"
+     data-tab="{{tabs.combat.id}}">
   <section class="damage-section">
-    <div class="combat-panel-title">{{localize "MVRPG.sheets.superSheet.dataHeaders.damageMultipliers"}}</div>
+    <div class="combat-panel-title">
+      {{localize "MVRPG.sheets.superSheet.dataHeaders.damageMultipliers"}}
+    </div>
     <div class="damage-multiplier-list flexrow">
-      {{#each damageData as |abilityData|}}
+      {{#each damageData as |abilityData| }}
         <div class="damage-multiplier-item flexcol">
           <div class="damage-multiplier-value">
             x{{abilityData.damageMultiplier}}
-            <span class="damage-modifier">
-              ({{numberFormat abilityData.damageModifier sign=true}})
-            </span>
+            <span class="damage-modifier">({{numberFormat abilityData.damageModifier sign=true}})</span>
           </div>
-          <div class="damage-multiplier-label">{{localize (concat "MVRPG.sheets.superSheet.abilities." abilityData.name)}}</div>
+          <div class="damage-multiplier-label">
+            {{localize (concat "MVRPG.sheets.superSheet.abilities." abilityData.name)}}
+          </div>
         </div>
       {{/each}}
     </div>
@@ -18,19 +22,22 @@
   <section class="rollable-section">
     <div class="combat-panel-title">{{localize "MVRPG.sheets.superSheet.dataHeaders.actions"}}</div>
     <div class="rollable-list doc-list flexrow">
-      {{#each rollableItems as |item|}}
+      {{#each rollableItems as |item| }}
         <div class="rollable-item doc-entry flexrow" data-item-id="{{item.id}}">
-          <a class="doc-action doc-icon" data-action="toChat" data-tooltip="{{localize "MVRPG.sheets.generic.tooltips.toChat"}}">
-            <img src="{{item.img}}" title="{{item.name}}"/>
+          <a class="doc-action doc-icon"
+             data-action="toChat"
+             data-tooltip="{{localize "MVRPG.sheets.generic.tooltips.toChat"}}">
+            <img src="{{item.img}}" title="{{item.name}}" />
             <i class="overlay fa-solid fa-comment"></i>
           </a>
-          <a class="doc-action doc-data flexcol" data-action="edit" data-tooltip="{{localize "MVRPG.sheets.generic.tooltips.edit"}}">
-            <div class="doc-name">
-              {{item.name}}
-            </div>
+          <a class="doc-action doc-data flexcol"
+             data-action="edit"
+             data-tooltip="{{localize "MVRPG.sheets.generic.tooltips.edit"}}">
+            <div class="doc-name">{{item.name}}</div>
           </a>
           <div class="action-icons flexrow">
-            <a class="doc-action rollable" data-tooltip="{{localize "MVRPG.sheets.superSheet.tooltips.rollFromItem"}}">
+            <a class="doc-action rollable"
+               data-tooltip="{{localize "MVRPG.sheets.superSheet.tooltips.rollFromItem"}}">
               <i class="fa-solid fa-dice"></i>
             </a>
           </div>
@@ -39,15 +46,24 @@
     </div>
   </section>
   <section class="team-maneuver-section">
-    <div class="combat-panel-title">{{localize "MVRPG.sheets.superSheet.dataHeaders.teamManeuver"}}</div>
-    <div class="team-maneuver-item flexcol {{#if actor.system.teamManeuver.active}}maneuver-active{{/if}}">
+    <div class="combat-panel-title">
+      {{localize "MVRPG.sheets.superSheet.dataHeaders.teamManeuver"}}
+    </div>
+    <div class="team-maneuver-item flexcol
+                {{#if actor.system.teamManeuver.active }}
+                  maneuver-active{{/if }}">
       <div class="team-maneuver-data flexrow">
-        {{#if actor.system.teamManeuver.active}}
-          <a class="toggle-maneuver" data-tooltip="{{localize "MVRPG.sheets.superSheet.tooltips.deactivateManeuver"}}"><i class="fa-solid fa-handshake-simple-slash"></i> </a>
+        {{#if actor.system.teamManeuver.active }}
+          <a class="toggle-maneuver"
+             data-tooltip="{{localize "MVRPG.sheets.superSheet.tooltips.deactivateManeuver"}}"><i class="fa-solid fa-handshake-simple-slash"></i> </a>
         {{else}}
-          <a class="toggle-maneuver" data-tooltip="{{localize "MVRPG.sheets.superSheet.tooltips.activateManeuver"}}"><i class="fa-solid fa-handshake-simple"></i> </a>
+          <a class="toggle-maneuver"
+             data-tooltip="{{localize "MVRPG.sheets.superSheet.tooltips.activateManeuver"}}"><i class="fa-solid fa-handshake-simple"></i> </a>
         {{/if}}
-        <input class="team-maneuver-average-rank" name="system.teamManeuver.averageRank" type="number" value="{{actor.system.teamManeuver.averageRank}}">
+        <input class="team-maneuver-average-rank"
+               name="system.teamManeuver.averageRank"
+               type="number"
+               value="{{actor.system.teamManeuver.averageRank}}">
         <div class="team-maneuver-level">{{actor.system.teamManeuver.maneuverLevel}}</div>
         <div class="team-maneuver-cost">{{actor.system.teamManeuver.focusCost}}</div>
       </div>

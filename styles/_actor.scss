@@ -56,10 +56,6 @@
     /* LifePool (Health and Focus)*/
     .lifepool-panel {
       display: grid;
-      grid-template-columns: 1fr;
-      grid-template-rows: 1fr 1fr;
-      gap: 0px 0px;
-      grid-auto-flow: row;
       grid-template-areas:
         "health"
         "focus";
@@ -367,18 +363,23 @@
 
           .sub-tab-header {
             color: var(--label-gray);
+
+            line-height: 1.5rem;
+
+            background-color: var(--background-white);
+
             border: solid 1px var(--label-gray);
             border-radius: 5px;
-            background-color: var(--background-white);
             padding: 2px;
-          }
 
-          .sub-tab-header.active {
-            font-weight: bold;
-            font-style: italic;
-            color: unset;
-            border-width: 2px;
-            border-color: var(--border-black);
+            &.active {
+              color: unset;
+              font-weight: bold;
+              font-style: italic;
+
+              border-width: 2px;
+              border-color: var(--border-black);
+            }
           }
         }
       }
@@ -509,17 +510,11 @@
         .identity-label {
           font-family: $komika-smallcaps;
           font-weight: bold;
-          flex: 0;
         }
 
         .identity-input {
-          background-color: rgb(200, 211, 211, 0.75) !important;
-          flex: 0;
-        }
-
-        select.identity-input {
-          border: unset;
-          padding: unset;
+          background-color: rgb(200, 211, 211, 0.75);
+          line-height: 1.5rem;
         }
       }
     }
