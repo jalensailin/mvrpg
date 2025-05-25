@@ -1,5 +1,5 @@
 import MVRPG from "../config.js";
-import MVEffect from "../effects/effects.js";
+import MVEffect from "../documents/effects.js";
 import Logger from "./logger.js";
 
 /**

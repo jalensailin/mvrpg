@@ -1,9 +1,9 @@
 import MVRPG from "../config.js";
 import D616 from "../rolls/d616.js";
-import EffectUtils from "../effects/effects.js";
+import EffectUtils from "../documents/effects.js";
 import { MVSettings } from "../utils/settings.js";
 import MVUtils from "../utils/utils.js";
-import MVDialog from "../dialog/dialog-base.js";
+import MVDialog from "./dialog-base.js";
 
 const { ActorSheetV2 } = foundry.applications.sheets;
 const HbsAppMixin = foundry.applications.api.HandlebarsApplicationMixin;

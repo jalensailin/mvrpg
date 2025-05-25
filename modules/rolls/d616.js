@@ -1,5 +1,5 @@
-import SuperActor from "../actor/actor.js";
-import MVDialog from "../dialog/dialog-base.js";
+import SuperActor from "../documents/actor.js";
+import MVDialog from "../sheets/dialog-base.js";
 import Logger from "../utils/logger.js";
 import { MVSettings } from "../utils/settings.js";
 import MultiverseDie from "./multiverse-die.js";

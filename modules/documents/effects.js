@@ -1,5 +1,5 @@
 import MVRPG from "../config.js";
-import MVDialog from "../dialog/dialog-base.js";
+import MVDialog from "../sheets/dialog-base.js";
 import { MVSettings } from "../utils/settings.js";
 
 export default class MVEffect extends ActiveEffect {

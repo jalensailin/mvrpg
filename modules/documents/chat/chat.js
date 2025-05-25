@@ -1,5 +1,5 @@
-import { MVSettings } from "../utils/settings.js";
-import MVUtils from "../utils/utils.js";
+import { MVSettings } from "../../utils/settings.js";
+import MVUtils from "../../utils/utils.js";
 
 const { ChatLog } = foundry.applications.sidebar.tabs;
 

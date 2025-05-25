@@ -1,5 +1,5 @@
-import MVDialog from "../dialog/dialog-base.js";
-import MVEffect from "./effects.js";
+import MVDialog from "./dialog-base.js";
+import MVEffect from "../documents/effects.js";
 
 const { ActiveEffectConfig } = foundry.applications.sheets;
 

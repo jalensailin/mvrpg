@@ -1,4 +1,4 @@
-import D616 from "../rolls/d616.js";
+import D616 from "../../rolls/d616.js";
 
 export default class MVCombatant extends Combatant {
   /**

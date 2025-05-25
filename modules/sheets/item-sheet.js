@@ -1,6 +1,6 @@
 import MVRPG from "../config.js";
-import MVDialog from "../dialog/dialog-base.js";
-import MVEffect from "../effects/effects.js";
+import MVDialog from "./dialog-base.js";
+import MVEffect from "../documents/effects.js";
 
 const { ItemSheetV2 } = foundry.applications.sheets;
 const HbsAppMixin = foundry.applications.api.HandlebarsApplicationMixin;

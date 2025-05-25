@@ -1,18 +1,19 @@
-import SuperActor from "./actor/actor.js";
-import SuperSheet from "./actor/super-sheet.js";
-import MVChatMessage from "./chat/chat-message.js";
-import MVChatLog from "./chat/chat.js";
-import MVCombat from "./combat/combat.js";
-import MVCombatant from "./combat/combatant.js";
+import MVRPG from "./config.js";
+import SuperActor from "./documents/actor.js";
+import SuperSheet from "./sheets/super-sheet.js";
+import MVChatMessage from "./documents/chat/chat-message.js";
+import MVChatLog from "./documents/chat/chat.js";
+import MVCombat from "./documents/combat/combat.js";
+import MVCombatant from "./documents/combat/combatant.js";
 import SuperDataModel from "./datamodels/actor/super-datamodel.js";
 import PowerDataModel from "./datamodels/item/power-datamodel.js";
 import SimpleItemDataModel from "./datamodels/item/simple-item-datamodel.js";
 import TagDataModel from "./datamodels/item/tag-datamodel.js";
 import TraitDataModel from "./datamodels/item/trait-datamodel.js";
-import MVEffectConfig from "./effects/effect-config.js";
-import MVEffect from "./effects/effects.js";
-import MVItemSheet from "./item/item-sheet.js";
-import MVItem from "./item/item.js";
+import MVEffectConfig from "./sheets/effect-config.js";
+import MVEffect from "./documents/effects.js";
+import MVItemSheet from "./sheets/item-sheet.js";
+import MVItem from "./documents/item.js";
 import * as MVRolls from "./rolls/d616.js";
 import MultiverseDie from "./rolls/multiverse-die.js";
 import MVRollParser from "./rolls/roll-parser.js";
@@ -38,14 +39,14 @@ Hooks.once("init", async () => {
   // Register Actor and sheet.
   CONFIG.Actor.documentClass = SuperActor;
   Actors.unregisterSheet("core", ActorSheet);
-  Actors.registerSheet("mvrpg", SuperSheet, {
+  Actors.registerSheet(MVRPG.ID, SuperSheet, {
     makeDefault: true,
   });
 
   // Register Item sheet.
   CONFIG.Item.documentClass = MVItem;
   Items.unregisterSheet("core", ItemSheet);
-  Items.registerSheet("mvrpg", MVItemSheet, {
+  Items.registerSheet(MVRPG.ID, MVItemSheet, {
     makeDefault: true,
     themes: null,
   });
