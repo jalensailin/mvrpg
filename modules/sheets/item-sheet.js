@@ -34,13 +34,13 @@ export default class MVItemSheet extends HbsAppMixin(ItemSheetV2) {
   /** @inheritdoc */
   static PARTS = {
     halftone: {
-      template: `${this.TEMPLATE_PATH}/document-sheet/halftone.hbs`,
+      template: `${this.TEMPLATE_PATH}/sheet-shared/halftone.hbs`,
     },
     header: {
       template: `${this.TEMPLATE_PATH}/item/header.hbs`,
     },
     tabNav: {
-      template: `${this.TEMPLATE_PATH}/document-sheet/tab-nav.hbs`,
+      template: `${this.TEMPLATE_PATH}/sheet-shared/tab-nav.hbs`,
     },
     description: {
       template: `${this.TEMPLATE_PATH}/item/description.hbs`,
