@@ -8,7 +8,7 @@
          data-action="configureMultipleSelections"
          data-selection-set="powerSets"
          data-tooltip="{{localize "MVRPG.sheets.itemSheet.settings.tooltips.configurePowerSets"}}">
-        {{#each document.system.powerSets as |powerSetSlug| }}
+        {{#each item.system.powerSets as |powerSetSlug| }}
           <span>{{localize (concat "MVRPG.sheets.generic.powerSets." powerSetSlug)}}
           {{~#unless @last}}, {{/unless}}</span>
         {{/each}}
@@ -22,7 +22,7 @@
          data-action="configureMultipleSelections"
          data-selection-set="actions"
          data-tooltip="{{localize "MVRPG.sheets.itemSheet.settings.tooltips.configurePowerSets"}}">
-        {{#each document.system.actions as |action| }}
+        {{#each item.system.actions as |action| }}
           <span>{{localize (mvGetConfigProperty "actions" action)}}
           {{~#unless @last}}, {{/unless}}</span>
         {{/each}}
@@ -33,14 +33,14 @@
     <div class="dialog-item flexrow">
       <div class="dialog-label">{{localize "MVRPG.sheets.itemSheet.settings.labels.duration"}}</div>
       <select class="dialog-input" name="system.duration">
-        {{selectOptions (mvGetConfigObj "powerDurations") selected=document.system.duration localize=true}}
+        {{selectOptions (mvGetConfigObj "powerDurations") selected=item.system.duration localize=true}}
       </select>
     </div>
 
     <div class="dialog-item flexrow">
       <div class="dialog-label">{{localize "MVRPG.sheets.itemSheet.settings.labels.cost"}}</div>
       <div class="dialog-input">
-        <input name="system.cost" type="number" value="{{document.system.cost}}">
+        <input name="system.cost" type="number" value="{{item.system.cost}}">
       </div>
     </div>
 

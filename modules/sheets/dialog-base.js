@@ -1,3 +1,5 @@
+import MVRPG from "../config.js";
+
 const { Dialog } = foundry.applications.api;
 
 export default class MVDialog extends Dialog {
@@ -21,7 +23,7 @@ export default class MVDialog extends Dialog {
   /** @inheritdoc */
   static DEFAULT_OPTIONS = {
     position: { width: 300 },
-    classes: ["mvrpg", "dialog"],
+    classes: [MVRPG.ID, "dialog"],
     buttons: [this.DEFAULT_BUTTON],
   };
 

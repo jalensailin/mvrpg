@@ -6,11 +6,11 @@
   <div class="dialog-input range-input">
     <input name="system.range.value"
            type="text"
-           value="{{document.system.range.value}}">
+           value="{{item.system.range.value}}">
   </div>
 </div>
 
-{{#if document.system.range.rangeIsInt }}
+{{#if item.system.range.rangeIsInt }}
   <div class="dialog-item flexrow">
     <div class="dialog-label">
       {{localize "MVRPG.sheets.itemSheet.settings.labels.multiplyByRank"}}
@@ -18,7 +18,7 @@
     <div class="dialog-input">
       <input name="system.range.multiplyByRank"
              type="checkbox"
-             {{checked document.system.range.multiplyByRank}}>
+             {{checked item.system.range.multiplyByRank}}>
     </div>
   </div>
 {{/if}}

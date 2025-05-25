@@ -1,20 +1,19 @@
 import MVRPG from "../config.js";
 import MVDialog from "./dialog-base.js";
 import MVEffect from "../documents/effects.js";
+import MVSheetMixin from "./base-document-sheet.js";
 
 const { ItemSheetV2 } = foundry.applications.sheets;
-const HbsAppMixin = foundry.applications.api.HandlebarsApplicationMixin;
 
 /**
  * Extend the basic ItemSheet with some very simple modifications
  * @extends {ItemSheetV2}
  */
-export default class MVItemSheet extends HbsAppMixin(ItemSheetV2) {
+export default class MVItemSheet extends MVSheetMixin(ItemSheetV2) {
   /** @inheritdoc */
   static DEFAULT_OPTIONS = {
-    classes: [MVRPG.ID, "sheet", "item"],
+    classes: ["item"],
     position: { width: 580, height: 370 },
-    form: { submitOnChange: true },
     actions: {
       configureMultipleSelections: MVItemSheet.#configureMultipleSelections,
     },
@@ -28,8 +27,6 @@ export default class MVItemSheet extends HbsAppMixin(ItemSheetV2) {
       tabs: [{ id: "description" }, { id: "settings" }, { id: "effects" }],
     },
   };
-
-  static TEMPLATE_PATH = `systems/${MVRPG.ID}/templates`;
 
   /** @inheritdoc */
   static PARTS = {
