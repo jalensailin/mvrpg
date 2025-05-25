@@ -1,4 +1,5 @@
 import SuperActor from "../actor/actor.js";
+import MVDialog from "../dialog/dialog-base.js";
 import Logger from "../utils/logger.js";
 import { MVSettings } from "../utils/settings.js";
 import MultiverseDie from "./multiverse-die.js";
@@ -412,7 +413,7 @@ export default class D616 extends Roll {
    * Shows when confirming a new roll or modifying an existing roll.
    *
    * @param {string} [titleStr="MVRPG.dialog.rollConfirm.title"] - The title of the dialog.
-   * @return {Promise<Dialog>} A promise that resolves to the rendered dialog.
+   * @return {Promise<DialogV2>} A promise that resolves to the rendered dialog.
    */
   async confirmRoll(titleStr = "MVRPG.dialog.rollConfirm.title") {
     // Get the localized title.
@@ -436,49 +437,39 @@ export default class D616 extends Roll {
         troubles: this.troubles,
       },
     );
-    return Dialog.wait(
-      {
-        content,
-        title,
-        default: "confirm",
-        buttons: {
-          confirm: {
-            icon: `<i class="fa-solid fa-spider"></i>`,
-            label: game.i18n.localize("MVRPG.dialog.buttons.confirm"),
-            callback: (html) => {
-              const { FormDataExtended } = foundry.applications.ux;
-              const fd = new FormDataExtended(html.find("form")[0]);
-              const formData = foundry.utils.expandObject(fd.object);
-              // Foundry constructs a new roll object every time messages are loaded.
-              // Thus, we need to make sure that the roll.options object is mutated as well
-              // as the roll itself.
-              foundry.utils.mergeObject(this.options, formData);
-              foundry.utils.mergeObject(this, formData);
-            },
-          },
-        },
-        render: (html) => {
-          // Enable/disable inputs if the checkbox is checked or unchecked
-          html.on("click", "input[type='checkbox']", (event) => {
-            const form = html.find("form");
-            const { currentTarget } = event;
-            const name = currentTarget.dataset.reference;
-            const input = form.find(`input[name="${name}"]`);
-            if ($(currentTarget).prop("checked")) {
-              input.prop("disabled", false);
-              if (input.val() === "0") input.val("1");
-            } else {
-              input.prop("disabled", true);
-              if (input.val() === "1") input.val("0");
-            }
-          });
-        },
+
+    return MVDialog.wait({
+      content,
+      window: { title },
+      submit: (result, dialog) => {
+        const { formData } = dialog;
+        // Foundry constructs a new roll object every time messages are loaded.
+        // Thus, we need to make sure that the roll.options object is mutated as well
+        // as the roll itself.
+        foundry.utils.mergeObject(this.options, formData);
+        foundry.utils.mergeObject(this, formData);
       },
-      {
-        classes: ["mvrpg", "dialog", "roll"],
-        width: 300,
+      render: (ev, dialog) => {
+        const html = dialog.element;
+
+        // Enable/disable inputs if the checkbox is checked or unchecked
+        html.addEventListener("click", (event) => {
+          const { target } = event;
+          if (target.type !== "checkbox") return;
+
+          const name = target.dataset.reference;
+          const input = html.querySelector(`input[name="${name}"]`);
+
+          if (target.checked) {
+            input.disabled = false;
+            if (input.value === "0") input.value = "1";
+          } else {
+            input.disabled = true;
+            if (input.value === "1") input.value = "0";
+          }
+        });
       },
-    );
+    });
   }
 
   async mvReroll(dieID, message) {
@@ -523,7 +514,7 @@ export default class D616 extends Roll {
     if (this.rerolls.history.length === 0) return null;
 
     if (!skipDialog) {
-      const confirmUndo = await Dialog.confirm({
+      const confirmUndo = await MVDialog.confirm({
         title: game.i18n.localize("MVRPG.dialog.confirmUndo.title"),
         content: game.i18n.localize("MVRPG.dialog.confirmUndo.text"),
       });

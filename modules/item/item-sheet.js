@@ -1,4 +1,5 @@
 import MVRPG from "../config.js";
+import MVDialog from "../dialog/dialog-base.js";
 import MVEffect from "../effects/effects.js";
 
 const { ItemSheetV2 } = foundry.applications.sheets;
@@ -136,34 +137,19 @@ export default class MVItemSheet extends HbsAppMixin(ItemSheetV2) {
       { title, itemProperty: this.item.system[selectionSet], configObj },
     );
 
-    const dialog = new Dialog(
-      {
-        content,
-        title,
-        default: "confirm",
-        buttons: {
-          confirm: {
-            icon: `<i class="fa-solid fa-spider"></i>`,
-            label: game.i18n.localize("MVRPG.dialog.buttons.confirm"),
-            callback: (html) => {
-              const { FormDataExtended } = foundry.applications.ux;
-              const fd = new FormDataExtended(html.find("form")[0]);
-              const formData = foundry.utils.expandObject(fd.object);
-              const selections = Object.entries(formData)
-                .filter(([key, value]) => value)
-                .map(([key, value]) => key);
-              const updateKey = `system.${selectionSet}`;
-              this.item.update({ [updateKey]: selections });
-            },
-          },
-        },
+    new MVDialog({
+      content,
+      window: { title },
+      id: "config-power-sets-dialog",
+      submit: (result, dialog) => {
+        const { formData } = dialog;
+        const selections = Object.entries(formData)
+          .filter(([key, value]) => value)
+          .map(([key, value]) => key);
+
+        const updateKey = `system.${selectionSet}`;
+        this.item.update({ [updateKey]: selections });
       },
-      {
-        id: "config-power-sets-dialog",
-        classes: ["mvrpg", "dialog", "item"],
-        width: 300,
-      },
-    );
-    dialog.render(true);
+    }).render(true);
   }
 }

@@ -1,4 +1,5 @@
 import MVRPG from "../config.js";
+import MVDialog from "../dialog/dialog-base.js";
 import { MVSettings } from "../utils/settings.js";
 
 export default class MVEffect extends ActiveEffect {
@@ -61,8 +62,8 @@ export default class MVEffect extends ActiveEffect {
       case "delete": {
         const skipDialog = MVSettings.skipDeleteDialog();
         if (!skipDialog) {
-          const confirmDelete = await Dialog.confirm({
-            title: game.i18n.localize("MVRPG.dialog.deleteOwnedItem.title"),
+          const confirmDelete = await MVDialog.wait({
+            window: { title: "MVRPG.dialog.deleteOwnedItem.title" },
             content: game.i18n.format("MVRPG.dialog.deleteOwnedItem.text", {
               itemType: game.i18n.translations.DOCUMENT.ActiveEffect,
               itemName: effect.name,

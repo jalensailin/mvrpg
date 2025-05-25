@@ -26,16 +26,15 @@ export default class MVDialog extends Dialog {
   };
 
   /**
-   * Get the form data of the given dialog.
+   * Retrieves and processes the form data from the dialog element.
    *
-   * @param {DialogV2} dialog - The dialog to get the form data from.
-   *
-   * @returns {Object} The form data of the dialog.
+   * @return {Object} An expanded object containing the form data.
    */
-  static getFormData(dialog) {
+
+  get formData() {
     const { FormDataExtended } = foundry.applications.ux;
 
-    const form = dialog.element.querySelector("form");
+    const form = this.element.querySelector("form");
     const fd = new FormDataExtended(form);
     return foundry.utils.expandObject(fd.object);
   }

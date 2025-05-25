@@ -1,3 +1,4 @@
+import MVDialog from "../dialog/dialog-base.js";
 import MVEffect from "./effects.js";
 
 const { ActiveEffectConfig } = foundry.applications.sheets;
@@ -120,8 +121,8 @@ export default class MVEffectConfig extends ActiveEffectConfig {
         const selectOptions = MVEffect.getEffectKeys();
         // Warn the user before swapping back to <select> if the value is not in the list of options (since it will get lost).
         if (!selectOptions.includes(value)) {
-          const confirmInput = await Dialog.confirm({
-            title: game.i18n.localize("MVRPG.dialog.confirmTextInput.title"),
+          const confirmInput = await MVDialog.wait({
+            window: { title: "MVRPG.dialog.confirmTextInput.title" },
             content: game.i18n.localize("MVRPG.dialog.confirmTextInput.text"),
           });
           if (!confirmInput) return;

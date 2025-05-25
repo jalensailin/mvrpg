@@ -27,11 +27,9 @@ export default class SuperActor extends Actor {
     if (!MVSettings.skipRollDialog()) {
       const confirmDamage = await MVDialog.wait({
         content: dialogContent,
-        window: {
-          title: game.i18n.localize("MVRPG.dialog.damageConfirm.title"),
-        },
+        window: { title: "MVRPG.dialog.damageConfirm.title" },
         submit: (result, dialog) => {
-          const formData = MVDialog.getFormData(dialog);
+          const { formData } = dialog;
           damageReduction = formData.damageReduction;
         },
       });

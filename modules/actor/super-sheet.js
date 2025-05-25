@@ -151,9 +151,7 @@ export default class SuperSheet extends ActorSheet {
   async deleteOwnedItem(doc, skipDialog) {
     if (!skipDialog) {
       const confirmDelete = await MVDialog.wait({
-        window: {
-          title: game.i18n.localize("MVRPG.dialog.deleteOwnedItem.title"),
-        },
+        window: { title: "MVRPG.dialog.deleteOwnedItem.title" },
         content: game.i18n.format("MVRPG.dialog.deleteOwnedItem.text", {
           itemType: game.i18n.localize(`TYPES.Item.${doc.type}`),
           itemName: doc.name,
@@ -209,15 +207,15 @@ export default class SuperSheet extends ActorSheet {
       { actor: this.actor },
     );
 
-    MVDialog.wait({
+    new MVDialog({
       content,
       id: "init-speed-dialog",
-      window: { title: game.i18n.localize("MVRPG.dialog.initSpeed.title") },
+      window: { title: "MVRPG.dialog.initSpeed.title" },
       submit: (result, dialog) => {
-        const formData = MVDialog.getFormData(dialog);
+        const { formData } = dialog;
         this.actor.update(formData);
       },
-    });
+    }).render(true);
   }
 
   sendItemToChat(item) {
