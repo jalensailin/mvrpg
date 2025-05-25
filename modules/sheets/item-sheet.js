@@ -30,9 +30,6 @@ export default class MVItemSheet extends MVSheetMixin(ItemSheetV2) {
 
   /** @inheritdoc */
   static PARTS = {
-    halftone: {
-      template: `${this.TEMPLATE_PATH}/sheet-shared/halftone.hbs`,
-    },
     header: {
       template: `${this.TEMPLATE_PATH}/item/header.hbs`,
     },

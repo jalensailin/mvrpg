@@ -38,6 +38,24 @@ export default class MVUtils {
   }
 
   /**
+   * Wrapper around document.createElement to easily
+   * create an HTML element with classes.
+   *
+   * Could be extended in the future with more options
+   *
+   * @param {Lowercase<HTMLElement.tagName>} tagName - The tag name to create
+   * @param {Object} options - Optional settings
+   * @param {string[]} [options.classes=[]] - List of classes to add to the element
+   * @returns
+   */
+  static createElement(tagName, { classes = [] } = {}) {
+    const element = document.createElement(tagName);
+    element.classList.add(...classes);
+
+    return element;
+  }
+
+  /**
    * Get targeted or selected tokens.
    *
    * @param {Object} options

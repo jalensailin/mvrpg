@@ -1,0 +1,55 @@
+<div class="rank-panel comic-frame">
+  <div class="cog-wheel"
+       data-tooltip="{{localize "MVRPG.sheets.superSheet.tooltips.openSpeedConfig"}}">
+    <a class="open-config"><i class="fa-solid fa-gear"></i></a>
+  </div>
+
+  <div class="speed-section flexcol">
+    <div class="panel-title panel-header">{{localize "MVRPG.sheets.superSheet.titles.speed"}}</div>
+    <div class="speed-content comic-bubble-background flexcol">
+      <select class="bubble-label speed-selector"
+              name="flags.mvrpg.displaySpeed"
+              data-tooltip="{{localize (concat "MVRPG.sheets.superSheet.speed." displaySpeed)}}"
+              data-tooltip-direction="UP">
+        {{selectOptions speedSelectOptions selected=displaySpeed}}
+      </select>
+      <div class="speed-item flexrow">
+        <img class="speed-icon"
+             src="{{concat (systemFilePath "assets/sheets/actor/speed-icons/") displaySpeed ".png"}}">
+        <div class="speed-value">{{lookup actor.system.speed displaySpeed}}</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="karma-section flexcol">
+    <div class="panel-title panel-header">{{localize "MVRPG.sheets.superSheet.titles.karma"}}</div>
+    <div class="karma-content comic-bubble-background flexcol">
+      <input class="karma-input"
+             name="system.karma"
+             type="number"
+             value="{{actor.system.karma}}">
+    </div>
+  </div>
+
+  <div class="initiative-section flexcol">
+    <div class="initiative-content comic-bubble-background flexcol">
+      <input class="initiative-input"
+             name="system.initiative.value"
+             type="number"
+             value="{{actor.system.initiative.value}}">
+    </div>
+    <div class="panel-title panel-footer">
+      {{localize "MVRPG.sheets.superSheet.titles.initiative"}}
+    </div>
+  </div>
+
+  <div class="rank-section flexcol">
+    <div class="rank-content comic-bubble-background flexrow">
+      <input class="rank-input"
+             name="system.rank"
+             type="number"
+             value="{{actor.system.rank}}">
+    </div>
+    <div class="panel-title panel-footer">{{localize "MVRPG.sheets.superSheet.titles.rank"}}</div>
+  </div>
+</div>

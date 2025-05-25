@@ -359,6 +359,8 @@
 
       .powers-panel {
         .powers-tabs {
+          flex: unset;
+
           padding: 3px 0;
           border-bottom: dashed 2px;
           margin-bottom: 3px;

@@ -1,0 +1,42 @@
+<div class="abilities-panel comic-frame flexcol">
+  <div class="panel-title panel-header">{{localize "MVRPG.sheets.superSheet.titles.abilities"}}</div>
+  <div class="abilities-content flexcol">
+    {{#each actor.system.abilities as |ability abilityName| }}
+      <div class="ability-item flexcol">
+        <div class="ability-info flexrow">
+          <div class="ability-defense"
+               data-tooltip="{{localize "MVRPG.sheets.superSheet.abilities.tooltip.defenseScore"}}">
+            {{ability.defenseScore}}
+          </div>
+          <input class="ability-input"
+                 type="number"
+                 name="{{concat "system.abilities." abilityName ".value"}}"
+                 value="{{ability.value}}"
+                 data-tooltip="{{localize "MVRPG.sheets.superSheet.abilities.tooltip.abilityScore"}}" />
+          <div class="ability-non-combat-bonus"
+               data-tooltip="{{localize "MVRPG.sheets.superSheet.abilities.tooltip.nonCombatChecks"}}">
+            {{numberFormat ability.nonCombatScore sign=true}}
+          </div>
+        </div>
+        <div class="ability-labels flexrow">
+          <div class="ability-sub-label"
+               data-tooltip="{{localize "MVRPG.sheets.superSheet.abilities.tooltip.defenseScore"}}">
+            <i class="fa-solid fa-shield-halved"></i>
+          </div>
+          <div class="ability-name"
+               data-tooltip="{{localize "MVRPG.sheets.superSheet.abilities.tooltip.abilityScore"}}">
+            <a class="rollable"
+               data-roll-type="combat"
+               data-ability="{{abilityName}}">{{localize (concat "MVRPG.sheets.superSheet.abilities." abilityName)}}</a>
+          </div>
+          <div class="ability-sub-label"
+               data-tooltip="{{localize "MVRPG.sheets.superSheet.abilities.tooltip.nonCombatChecks"}}">
+            <a class="rollable"
+               data-roll-type="nonCombat"
+               data-ability="{{abilityName}}"><i class="fa-solid fa-dove"></i></a>
+          </div>
+        </div>
+      </div>
+    {{/each}}
+  </div>
+</div>

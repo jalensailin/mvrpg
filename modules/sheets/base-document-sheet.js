@@ -1,4 +1,5 @@
 import MVRPG from "../config.js";
+import MVUtils from "../utils/utils.js";
 
 const HbsAppMixin = foundry.applications.api.HandlebarsApplicationMixin;
 
@@ -20,6 +21,23 @@ const MVSheetMixin = (Base) => {
       context[docName] = this.document;
 
       return context;
+    }
+
+    /** @inheritdoc */
+    async _onFirstRender(context, options) {
+      await super._onFirstRender(context, options);
+
+      // Add the half-tone overlay.
+      const windowContent = this.element.querySelector(".window-content");
+      const overlay = MVUtils.createElement("div", {
+        classes: ["half-tone-overlay"],
+      });
+      windowContent.prepend(overlay);
+
+      // Add the grid class to the window content if it's a SuperSheet.
+      if (this.constructor.name === "SuperSheet") {
+        windowContent.classList.add("super-sheet-grid");
+      }
     }
   };
 };

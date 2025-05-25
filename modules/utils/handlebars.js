@@ -10,15 +10,7 @@ import Logger from "./logger.js";
 export default async function preloadTemplates() {
   const { loadTemplates } = foundry.applications.handlebars;
   return loadTemplates([
-    // Actor Sheet
-    `systems/${game.system.id}/templates/actor/combat-tab.hbs`,
-    `systems/${game.system.id}/templates/actor/identity-tab.hbs`,
-    `systems/${game.system.id}/templates/actor/powers-tab.hbs`,
-    `systems/${game.system.id}/templates/actor/document-list.hbs`,
-
     // Item Sheet
-    `systems/${game.system.id}/templates/item/power-settings.hbs`,
-    `systems/${game.system.id}/templates/item/simple-item-settings.hbs`,
     `systems/${game.system.id}/templates/item/mixins/hasRoll-settings.hbs`,
     `systems/${game.system.id}/templates/item/mixins/range-settings.hbs`,
 

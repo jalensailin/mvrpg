@@ -36,6 +36,10 @@ section {
 .mvrpg {
   font-family: $komika-base;
 
+  input {
+    text-align: center;
+  }
+
   select,
   input[type="text"],
   input[type="number"] {
@@ -55,6 +59,13 @@ section {
     background:
       radial-gradient(circle, rgba(255, 137, 180, 0.1) 0%, #ffebf2 100%),
       url(/ui/parchment.jpg) repeat;
+
+    padding: 0.75rem;
+  }
+
+  // Override FVTT v13 default.
+  .flexcol > * {
+    flex: 1;
   }
 
   .panel- {
@@ -106,22 +117,14 @@ section {
   .sheet-tabs.tabs {
     flex: 0;
     gap: 5px;
-    border: unset;
-    margin-top: 8px;
-    margin-bottom: 0;
     justify-content: unset;
 
-    /* Unset Foundry's default padding for tabs */
-    > [data-tab] {
-      padding: unset;
-    }
+    border: unset;
 
     .tab-header {
       flex: 1;
-      border-bottom: unset;
-      border-top: 3px solid;
-      border-left: 3px solid;
-      border-right: 3px solid;
+      border-width: 3px 3px 0;
+      border-style: solid;
       border-color: var(--label-gray);
       color: var(--label-gray);
       padding: 0 2px;
@@ -137,6 +140,7 @@ section {
 
   .sheet-body {
     overflow-y: auto;
+
     background-color: var(--wasp-yellow);
 
     .editor,

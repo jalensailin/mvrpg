@@ -22,6 +22,8 @@
   gap: 2px;
 
   .doc-list-header {
+    flex: unset;
+
     color: white;
     background-color: var(--venom-black);
     padding-bottom: 2px;

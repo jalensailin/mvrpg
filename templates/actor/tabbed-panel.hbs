@@ -1,0 +1,9 @@
+<div class="tabbed-panel flexcol">
+  {{!-- Sheet Tab Navigation --}}
+  {{> (systemFilePath "templates/sheet-shared/tab-nav.hbs")}}
+  <div class="sheet-body comic-frame">
+    {{> (systemFilePath "templates/actor/powers-tab.hbs")}}
+    {{> (systemFilePath "templates/actor/combat-tab.hbs")}}
+    {{> (systemFilePath "templates/actor/identity-tab.hbs")}}
+  </div>
+</div>

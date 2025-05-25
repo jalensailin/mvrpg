@@ -43,26 +43,60 @@ export default class SuperSheet extends MVSheetMixin(ActorSheetV2) {
   static TABS = {
     primary: {
       initial: "combat",
-      labelPrefix: "MVRPG.sheets.actorSheet.titles",
+      labelPrefix: "MVRPG.sheets.superSheet.titles",
       tabs: [{ id: "powers" }, { id: "combat" }, { id: "identity" }],
     },
-    secondary: {
-      initial: "powers",
-      labelPrefix: "MVRPG.sheets.actorSheet.titles",
-      tabs: [
-        { id: "powers" },
-        { id: "traits" },
-        { id: "tags" },
-        { id: "inventory" },
-        { id: "effects" },
-      ],
-    },
+    // secondary: {
+    //   initial: "powers",
+    //   labelPrefix: "MVRPG.sheets.actorSheet.titles",
+    //   tabs: [
+    //     { id: "powers" },
+    //     { id: "traits" },
+    //     { id: "tags" },
+    //     { id: "inventory" },
+    //     { id: "effects" },
+    //   ],
+    // },
   };
+
+  /**
+   * Manipulate which tabs are rendered.
+   * @inheritdoc
+   */
+  _prepareTabs(group) {
+    const tabs = super._prepareTabs(group);
+
+    // Don't show settings tab for simple Items.
+    // const itemsWithSettingsTab = ["power", "simpleItem"];
+    // if (!itemsWithSettingsTab.includes(this.document.type))
+    //   delete tabs.settings;
+
+    return tabs;
+  }
 
   /** @inheritdoc */
   static PARTS = {
-    main: {
-      template: `${this.TEMPLATE_PATH}/actor/super-sheet.hbs`,
+    codenamePanel: {
+      template: `${this.TEMPLATE_PATH}/actor/codename-panel.hbs`,
+    },
+    lifepoolPanel: {
+      template: `${this.TEMPLATE_PATH}/actor/lifepool-panel.hbs`,
+    },
+    rankPanel: {
+      template: `${this.TEMPLATE_PATH}/actor/rank-panel.hbs`,
+    },
+    abilitiesPanel: {
+      template: `${this.TEMPLATE_PATH}/actor/abilities-panel.hbs`,
+    },
+    tabbedPanel: {
+      template: `${this.TEMPLATE_PATH}/actor/tabbed-panel.hbs`,
+      templates: [
+        `${this.TEMPLATE_PATH}/sheet-shared/tab-nav.hbs`,
+        `${this.TEMPLATE_PATH}/actor/powers-tab.hbs`,
+        `${this.TEMPLATE_PATH}/actor/combat-tab.hbs`,
+        `${this.TEMPLATE_PATH}/actor/identity-tab.hbs`,
+        `${this.TEMPLATE_PATH}/actor/document-list.hbs`,
+      ],
     },
   };
 
