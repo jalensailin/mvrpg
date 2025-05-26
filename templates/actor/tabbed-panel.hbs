@@ -1,6 +1,6 @@
 <div class="tabbed-panel flexcol">
   {{!-- Sheet Tab Navigation --}}
-  {{> (systemFilePath "templates/sheet-shared/tab-nav.hbs")}}
+  {{> (systemFilePath "templates/sheet-shared/tab-nav.hbs") tabs=tabs.primary tabGroup="primary"}}
   <div class="sheet-body comic-frame">
     {{> (systemFilePath "templates/actor/powers-tab.hbs")}}
     {{> (systemFilePath "templates/actor/combat-tab.hbs")}}

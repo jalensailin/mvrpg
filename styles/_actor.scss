@@ -355,33 +355,31 @@
       position: relative;
       grid-area: tabbed-panel;
 
-      .powers-panel {
-        .powers-tabs {
-          flex: unset;
+      .powers-panel nav.sheet-tabs[data-group="secondary"] {
+        flex: unset;
 
-          padding: 3px 0;
-          border-bottom: dashed 2px;
-          margin-bottom: 3px;
+        padding: 3px 0;
+        border-bottom: dashed 2px;
+        margin-bottom: 3px;
 
-          .sub-tab-header {
-            color: var(--label-gray);
+        > a {
+          color: var(--label-gray);
 
-            line-height: 1.5rem;
+          line-height: 1.5rem;
 
-            background-color: var(--background-white);
+          background-color: var(--background-white);
 
-            border: solid 1px var(--label-gray);
-            border-radius: 5px;
-            padding: 2px;
+          border: solid 1px var(--label-gray);
+          border-radius: 5px;
+          padding: 2px;
 
-            &.active {
-              color: unset;
-              font-weight: bold;
-              font-style: italic;
+          &.active {
+            color: unset;
+            font-weight: bold;
+            font-style: italic;
 
-              border-width: 2px;
-              border-color: var(--border-black);
-            }
+            border-width: 2px;
+            border-color: var(--border-black);
           }
         }
       }

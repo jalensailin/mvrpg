@@ -32,7 +32,7 @@ export default class SuperSheet extends MVSheetMixin(ActorSheetV2) {
   // }
 
   /** @inheritdoc */
-  static DEFAULT_OPTIONS = {
+  static DEFAULT_OPTIONS = /** @type {const} */ ({
     classes: ["actor"],
     position: { width: 600, height: 670 },
     actions: {
@@ -42,39 +42,31 @@ export default class SuperSheet extends MVSheetMixin(ActorSheetV2) {
       // effectAction: EffectUtils.onEffectAction,
       toggleManeuver: SuperSheet.toggleManeuver,
     },
-  };
+  });
 
   /** @inheritdoc */
-  static TABS = {
+  static TABS = /** @type {const} */ ({
     primary: {
       initial: "combat",
       labelPrefix: "MVRPG.sheets.superSheet.titles",
       tabs: [{ id: "powers" }, { id: "combat" }, { id: "identity" }],
     },
-    // secondary: {
-    //   initial: "powers",
-    //   labelPrefix: "MVRPG.sheets.actorSheet.titles",
-    //   tabs: [
-    //     { id: "powers" },
-    //     { id: "traits" },
-    //     { id: "tags" },
-    //     { id: "inventory" },
-    //     { id: "effects" },
-    //   ],
-    // },
-  };
 
-  /**
-   * Manipulate which tabs are rendered.
-   * @inheritdoc
-   */
-  _prepareTabs(group) {
-    const tabs = super._prepareTabs(group);
-    return tabs;
-  }
+    secondary: {
+      initial: "powers",
+      labelPrefix: "MVRPG.sheets.superSheet.titles",
+      tabs: [
+        { id: "powers" },
+        { id: "traits" },
+        { id: "tags" },
+        { id: "inventory" },
+        { id: "effects" },
+      ],
+    },
+  });
 
   /** @inheritdoc */
-  static PARTS = {
+  static PARTS = /** @type {const} */ ({
     codenamePanel: {
       template: `${this.TEMPLATE_PATH}/actor/codename-panel.hbs`,
     },
@@ -97,20 +89,25 @@ export default class SuperSheet extends MVSheetMixin(ActorSheetV2) {
         `${this.TEMPLATE_PATH}/actor/document-list.hbs`,
       ],
     },
-  };
+  });
 
   async _prepareContext(options) {
     const context = await super._prepareContext(options);
-    const mvrpgData = {};
     const { actor } = this;
 
+    // Prepare tabs
+    context.tabs = {};
+    Object.keys(SuperSheet.TABS).forEach((tabGroup) => {
+      context.tabs[tabGroup] = this._prepareTabs(tabGroup);
+    });
+
     // Prepare speed data for the template.
-    mvrpgData.displaySpeed =
+    context.displaySpeed =
       actor.getFlag(game.system.id, "displaySpeed") || "run";
-    mvrpgData.speedSelectOptions = {};
+    context.speedSelectOptions = {};
     Object.entries(actor.system.speed).forEach(([speedName, speedVal]) => {
       if (!speedVal) return;
-      mvrpgData.speedSelectOptions[speedName] = game.i18n.localize(
+      context.speedSelectOptions[speedName] = game.i18n.localize(
         `MVRPG.sheets.superSheet.speed.${speedName}`,
       );
     });
@@ -123,24 +120,24 @@ export default class SuperSheet extends MVSheetMixin(ActorSheetV2) {
         damageModifier: abilityData.damageModifier,
         damageMultiplier: abilityData.damageMultiplier,
       }));
-    mvrpgData.damageData = damageData;
+    context.damageData = damageData;
 
     // Prepare rollable items for combat tab.
     const rollableItems = actor.items.filter(
       (item) => item.system.roll?.hasRoll,
     );
-    mvrpgData.rollableItems = rollableItems;
+    context.rollableItems = rollableItems;
 
     const TextEditor = foundry.applications.ux.TextEditor.implementation;
-    mvrpgData.enrichedNotes = await TextEditor.enrichHTML(
+    context.enrichedNotes = await TextEditor.enrichHTML(
       actor.system.identity.notes,
       { async: true },
     );
 
     const allEffects = Array.from(this.actor.allApplicableEffects());
-    mvrpgData.allEffects = allEffects;
+    context.allEffects = allEffects;
 
-    return { ...context, ...mvrpgData };
+    return context;
   }
 
   /**
