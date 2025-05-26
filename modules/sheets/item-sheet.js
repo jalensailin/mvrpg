@@ -100,18 +100,6 @@ export default class MVItemSheet extends MVSheetMixin(ItemSheetV2) {
 
   /* -------------------------------------------- */
 
-  /** @inheritdoc */
-  async _onRender(context, options) {
-    await super._onRender(context, options);
-
-    const html = this.element;
-    html.querySelectorAll(".effect-action").forEach((el) => {
-      el.addEventListener("click", (event) => {
-        MVEffect.onEffectAction(this.item, event);
-      });
-    });
-  }
-
   /**
    * Show a dialog for configuring multiple selections (e.g. power sets).
    *

@@ -1,4 +1,5 @@
 import MVRPG from "../config.js";
+import MVEffect from "../documents/effects.js";
 import MVUtils from "../utils/utils.js";
 
 const HbsAppMixin = foundry.applications.api.HandlebarsApplicationMixin;
@@ -6,6 +7,7 @@ const HbsAppMixin = foundry.applications.api.HandlebarsApplicationMixin;
 const MVSheetMixin = (Base) => {
   return class MVDocumentSheet extends HbsAppMixin(Base) {
     static DEFAULT_OPTIONS = {
+      window: { resizable: true },
       classes: [MVRPG.ID, "sheet"],
       form: { submitOnChange: true },
     };
@@ -40,6 +42,30 @@ const MVSheetMixin = (Base) => {
       if (this.constructor.name === "SuperSheet") {
         windowContent.classList.add("super-sheet-grid");
       }
+    }
+
+    /** @inheritdoc */
+    async _onRender(context, options) {
+      await super._onRender(context, options);
+
+      const html = this.element;
+      html.querySelectorAll(".effect-action").forEach((el) => {
+        el.addEventListener("click", (event) => {
+          MVEffect.onEffectAction(this.document, event);
+        });
+      });
+
+      // Double-click to reset size.
+      html
+        .querySelector(".window-resize-handle")
+        .addEventListener("dblclick", () => {
+          this.resetPosition();
+        });
+    }
+
+    /** Resets the window's position to its default as specified in the Sheet's options. */
+    resetPosition() {
+      this.setPosition(this.options.position);
     }
   };
 };

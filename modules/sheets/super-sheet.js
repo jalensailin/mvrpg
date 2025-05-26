@@ -11,22 +11,6 @@ export default class SuperSheet extends MVSheetMixin(ActorSheetV2) {
   // /** @override */
   // static get defaultOptions() {
   //   return foundry.utils.mergeObject(super.defaultOptions, {
-  //     classes: [MVRPG.ID, "sheet", "actor"],
-  //     template: `systems/${game.system.id}/templates/actor/super-sheet.hbs`,
-  //     width: 600,
-  //     height: 670,
-  //     tabs: [
-  //       {
-  //         navSelector: ".sheet-tabs",
-  //         contentSelector: ".sheet-body",
-  //         initial: "combat",
-  //       },
-  //       {
-  //         navSelector: ".powers-tabs",
-  //         contentSelector: ".powers-body",
-  //         initial: "powers",
-  //       },
-  //     ],
   //     scrollY: [".editor-content"],
   //   });
   // }
@@ -39,7 +23,6 @@ export default class SuperSheet extends MVSheetMixin(ActorSheetV2) {
       rollable: SuperSheet.onRoll,
       openConfig: SuperSheet.showConfig,
       docAction: SuperSheet.onItemAction,
-      // effectAction: EffectUtils.onEffectAction,
       toggleManeuver: SuperSheet.toggleManeuver,
     },
   });
@@ -91,6 +74,7 @@ export default class SuperSheet extends MVSheetMixin(ActorSheetV2) {
     },
   });
 
+  /** @inheritdoc */
   async _prepareContext(options) {
     const context = await super._prepareContext(options);
     const { actor } = this;
@@ -145,28 +129,20 @@ export default class SuperSheet extends MVSheetMixin(ActorSheetV2) {
     return context;
   }
 
-  /**
-   * @param {*} html
-   * @override
-   */
-  activateListeners(html) {
-    super.activateListeners(html);
-
-    if (!this.options.editable) return;
-
-    html
-      .find(".effect-action")
-      .click((event) => EffectUtils.onEffectAction(this.actor, event));
+  /** @inheritdoc */
+  async _onRender(context, options) {
+    await super._onRender(context, options);
 
     // Handle Dragging of Documents.
+    const html = this.element;
     const handler = (ev) => this._onDragStart(ev);
-    html.find(".doc-entry").each((i, element) => {
+    html.querySelectorAll(".doc-entry").forEach((element) => {
       element.setAttribute("draggable", true);
       element.addEventListener("dragstart", handler, false);
     });
 
-    // Handle dragging of abilities.
-    // html.find(".ability-name").each((i, element) => {
+    // TODO: Handle dragging of abilities for macros.
+    // html.querySelectorAll(".ability-name").forEach((element) => {
     //   element.setAttribute("draggable", true);
     //   element.addEventListener("dragstart", handler, false);
     // });
