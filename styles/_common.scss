@@ -64,6 +64,14 @@ section {
     padding: 0.75rem;
   }
 
+  img[data-action="editImage"] {
+    cursor: pointer;
+    border: none;
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+  }
+
   // Override FVTT v13 default.
   .flexcol > * {
     flex: 1;

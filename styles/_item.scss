@@ -11,19 +11,8 @@
     place-items: center;
 
     .item-image {
-      width: 6rem;
-      height: 6rem;
-      flex: 0 0 6rem;
+      flex: 0 0 6.5rem;
       border-right: 3px solid var(--border-black);
-
-      > img {
-        cursor: pointer;
-        border: none;
-        border-radius: unset;
-        height: 100%;
-        width: 100%;
-        object-fit: cover;
-      }
     }
 
     .item-data {
