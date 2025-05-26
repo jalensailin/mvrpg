@@ -293,6 +293,10 @@
       position: relative;
       grid-area: tabbed-panel;
 
+      [data-group="primary"][data-tab="powers"]::after {
+        content: ".";
+      }
+
       .powers-panel nav.sheet-tabs[data-group="secondary"] {
         flex: unset;
 
@@ -302,7 +306,8 @@
 
         > a {
           color: var(--label-gray);
-
+          text-transform: uppercase;
+          // font-variant: small-caps;
           line-height: 1.25rem;
 
           background-color: var(--background-white);
