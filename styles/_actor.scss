@@ -64,43 +64,42 @@
         "focus";
       grid-area: lifepool-panel;
 
-      .health-section {
-        grid-area: health;
-        border-bottom: 2px solid;
+      @mixin lifepool-section($sectionName, $bg-color) {
+        grid-area: $sectionName;
 
-        .health-content {
-          background-color: var(--gwen-pink);
+        .#{$sectionName}-content {
+          background-color: $bg-color;
 
-          > .health-max {
+          > .#{$sectionName}-max {
             background-image: url(../assets/sheets/actor/pool-max.svg);
             align-items: center;
             text-align: center;
 
-            > .health-max-input {
+            > input {
               font-size: var(--sub-info-text-size);
               position: relative;
               top: -18%;
             }
           }
 
-          > .health-points {
+          > .#{$sectionName}-points {
             background-image: url(../assets/sheets/actor/pool-current.svg);
             align-items: center;
             text-align: center;
 
-            > .health-points-input {
+            > input {
               font-size: var(--main-info-text-size);
               position: relative;
               top: -18%;
             }
           }
 
-          > .health-damage-reduction {
+          > .#{$sectionName}-damage-reduction {
             background-image: url(../assets/sheets/actor/damage-reduction.svg);
             align-items: center;
             text-align: center;
 
-            > .health-damage-reduction-value {
+            > .value {
               font-size: var(--sub-info-text-size);
               position: relative;
               top: -13%;
@@ -109,49 +108,14 @@
         }
       }
 
+      .health-section {
+        @include lifepool-section(health, var(--gwen-pink));
+        border-bottom: 2px solid;
+      }
+
       .focus-section {
-        grid-area: focus;
+        @include lifepool-section(focus, var(--cap-blue));
         border-top: 1px solid;
-
-        .focus-content {
-          background-color: var(--cap-blue);
-
-          > .focus-max {
-            background-image: url(../assets/sheets/actor/pool-max.svg);
-            align-items: center;
-            text-align: center;
-
-            > .focus-max-input {
-              font-size: var(--sub-info-text-size);
-              position: relative;
-              top: -18%;
-            }
-          }
-
-          > .focus-points {
-            background-image: url(../assets/sheets/actor/pool-current.svg);
-            align-items: center;
-            text-align: center;
-
-            > .focus-points-input {
-              font-size: var(--main-info-text-size);
-              position: relative;
-              top: -18%;
-            }
-          }
-
-          > .focus-damage-reduction {
-            background-image: url(../assets/sheets/actor/damage-reduction.svg);
-            align-items: center;
-            text-align: center;
-
-            > .focus-damage-reduction-value {
-              font-size: var(--sub-info-text-size);
-              position: relative;
-              top: -13%;
-            }
-          }
-        }
       }
     }
 
@@ -193,10 +157,7 @@
         }
       }
 
-      @mixin rank-section-background(
-        $sectionName,
-        $bg-color: var(--hulk-green)
-      ) {
+      @mixin rank-section($sectionName, $bg-color: var(--hulk-green)) {
         grid-area: $sectionName;
 
         .#{$sectionName}-content {
@@ -215,7 +176,7 @@
       }
 
       .speed-section {
-        @include rank-section-background(speed);
+        @include rank-section(speed);
 
         border-right: 2px solid;
         border-bottom: 2px solid;
@@ -254,21 +215,21 @@
       }
 
       .karma-section {
-        @include rank-section-background(karma);
+        @include rank-section(karma);
 
         border-left: 1px solid;
         border-bottom: 2px solid;
       }
 
       .initiative-section {
-        @include rank-section-background(initiative);
+        @include rank-section(initiative);
 
         border-right: 2px solid;
         border-top: 1px solid;
       }
 
       .rank-section {
-        @include rank-section-background(rank);
+        @include rank-section(rank);
 
         border-left: 1px solid;
         border-top: 1px solid;

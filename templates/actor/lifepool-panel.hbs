@@ -8,8 +8,7 @@
            data-tooltip="{{localize "MVRPG.sheets.superSheet.lifepool.tooltips.maxHealth"}}"
            data-tooltip-direction="UP">
         <span class="bubble-label">{{localize "MVRPG.sheets.superSheet.lifepool.max"}}</span>
-        <input class="health-max-input"
-               name="system.lifepool.health.max"
+        <input name="system.lifepool.health.max"
                type="number"
                value="{{actor.system.lifepool.health.max}}">
       </div>
@@ -17,8 +16,7 @@
            data-tooltip="{{localize "MVRPG.sheets.superSheet.lifepool.tooltips.currentHealth"}}"
            data-tooltip-direction="UP">
         <span class="bubble-label">{{localize "MVRPG.sheets.superSheet.lifepool.current"}}</span>
-        <input class="health-points-input"
-               name="system.lifepool.health.value"
+        <input name="system.lifepool.health.value"
                type="number"
                value="{{actor.system.lifepool.health.value}}">
       </div>
@@ -26,7 +24,7 @@
            data-tooltip="{{localize "MVRPG.sheets.superSheet.lifepool.tooltips.damageReductionHealth"}}"
            data-tooltip-direction="UP">
         <span class="bubble-label">{{localize "MVRPG.sheets.superSheet.lifepool.damageReduction"}}</span>
-        <span class="health-damage-reduction-value">{{actor.system.lifepool.health.damageReduction}}</span>
+        <span class="value">{{actor.system.lifepool.health.damageReduction}}</span>
       </div>
     </div>
   </div>
@@ -36,23 +34,21 @@
       <div class="focus-max comic-bubble-background flexcol"
            data-tooltip="{{localize "MVRPG.sheets.superSheet.lifepool.tooltips.maxFocus"}}">
         <span class="bubble-label">{{localize "MVRPG.sheets.superSheet.lifepool.max"}}</span>
-        <input class="focus-max-input"
-               name="system.lifepool.focus.max"
+        <input name="system.lifepool.focus.max"
                type="number"
                value="{{actor.system.lifepool.focus.max}}">
       </div>
       <div class="focus-points comic-bubble-background flexcol"
            data-tooltip="{{localize "MVRPG.sheets.superSheet.lifepool.tooltips.currentFocus"}}">
         <span class="bubble-label">{{localize "MVRPG.sheets.superSheet.lifepool.current"}}</span>
-        <input class="focus-points-input"
-               name="system.lifepool.focus.value"
+        <input name="system.lifepool.focus.value"
                type="number"
                value="{{actor.system.lifepool.focus.value}}">
       </div>
       <div class="focus-damage-reduction comic-bubble-background flexcol"
            data-tooltip="{{localize "MVRPG.sheets.superSheet.lifepool.tooltips.damageReductionFocus"}}">
         <span class="bubble-label">{{localize "MVRPG.sheets.superSheet.lifepool.damageReduction"}}</span>
-        <span class="focus-damage-reduction-value">{{actor.system.lifepool.focus.damageReduction}}</span>
+        <span class="value">{{actor.system.lifepool.focus.damageReduction}}</span>
       </div>
     </div>
     <footer class="panel-title">

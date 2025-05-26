@@ -75,7 +75,10 @@ section {
   }
 
   .comic-bubble-background {
+    height: 100%;
+
     padding: 2px;
+
     background-origin: content-box;
     background-repeat: no-repeat;
     background-size: contain;
