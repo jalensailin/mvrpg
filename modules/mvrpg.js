@@ -28,7 +28,6 @@ Hooks.once("init", async () => {
   Logger.log("I am GROOT");
 
   const { DocumentSheetConfig } = foundry.applications.apps;
-  const { ActorSheet, ItemSheet } = foundry.appv1.sheets;
   const { Actors, Items } = foundry.documents.collections;
 
   // Register rolls and dice.
@@ -38,14 +37,13 @@ Hooks.once("init", async () => {
 
   // Register Actor and sheet.
   CONFIG.Actor.documentClass = SuperActor;
-  Actors.unregisterSheet("core", ActorSheet);
   Actors.registerSheet(MVRPG.ID, SuperSheet, {
     makeDefault: true,
+    themes: null,
   });
 
   // Register Item sheet.
   CONFIG.Item.documentClass = MVItem;
-  Items.unregisterSheet("core", ItemSheet);
   Items.registerSheet(MVRPG.ID, MVItemSheet, {
     makeDefault: true,
     themes: null,
