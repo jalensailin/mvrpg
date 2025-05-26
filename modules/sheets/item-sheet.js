@@ -1,6 +1,5 @@
 import MVRPG from "../config.js";
 import MVDialog from "./dialog-base.js";
-import MVEffect from "../documents/effects.js";
 import MVSheetMixin from "./base-document-sheet.js";
 
 const { ItemSheetV2 } = foundry.applications.sheets;
@@ -38,15 +37,19 @@ export default class MVItemSheet extends MVSheetMixin(ItemSheetV2) {
     },
     description: {
       template: `${this.TEMPLATE_PATH}/item/description.hbs`,
+      scrollable: ["", "div.editor-content"],
     },
     powerSettings: {
       template: `${this.TEMPLATE_PATH}/item/power-settings.hbs`,
+      scrollable: [""],
     },
     simpleItemSettings: {
       template: `${this.TEMPLATE_PATH}/item/simple-item-settings.hbs`,
+      scrollable: [""],
     },
     effects: {
       template: `${this.TEMPLATE_PATH}/item/effects.hbs`,
+      scrollable: [""],
     },
   };
 

@@ -1,5 +1,4 @@
 import D616 from "../rolls/d616.js";
-import EffectUtils from "../documents/effects.js";
 import { MVSettings } from "../utils/settings.js";
 import MVUtils from "../utils/utils.js";
 import MVDialog from "./dialog-base.js";
@@ -8,13 +7,6 @@ import MVSheetMixin from "./base-document-sheet.js";
 const { ActorSheetV2 } = foundry.applications.sheets;
 
 export default class SuperSheet extends MVSheetMixin(ActorSheetV2) {
-  // /** @override */
-  // static get defaultOptions() {
-  //   return foundry.utils.mergeObject(super.defaultOptions, {
-  //     scrollY: [".editor-content"],
-  //   });
-  // }
-
   /** @inheritdoc */
   static DEFAULT_OPTIONS = /** @type {const} */ ({
     classes: ["actor"],
@@ -71,6 +63,8 @@ export default class SuperSheet extends MVSheetMixin(ActorSheetV2) {
         `${this.TEMPLATE_PATH}/actor/identity-tab.hbs`,
         `${this.TEMPLATE_PATH}/actor/document-list.hbs`,
       ],
+      // TODO: `.editor-content` not preserving scroll position for some reason.
+      scrollable: [".sheet-body", ".rollable-section", ".editor-content"],
     },
   });
 
@@ -123,6 +117,7 @@ export default class SuperSheet extends MVSheetMixin(ActorSheetV2) {
       }),
     };
 
+    // Prepare all effects
     const allEffects = Array.from(this.actor.allApplicableEffects());
     context.allEffects = allEffects;
 
