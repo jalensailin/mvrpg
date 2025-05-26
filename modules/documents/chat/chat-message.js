@@ -1,5 +1,3 @@
-import Logger from "../../utils/logger.js";
-
 export default class MVChatMessage extends ChatMessage {
   /**
    * Allow user to modify Edges and Troubles on an already rolled D616.
@@ -9,12 +7,10 @@ export default class MVChatMessage extends ChatMessage {
   async modifyRoll() {
     const [roll] = this.rolls;
 
-    const confirmChange = await roll
-      .confirmRoll("MVRPG.dialog.rollConfirm.modifyRoll")
-      .catch(() => {
-        Logger.log("Roll modification cancelled");
-        return false;
-      });
+    const confirmChange = await roll.confirmRoll(
+      "MVRPG.dialog.rollConfirm.modifyRoll",
+    );
+
     if (!confirmChange) return;
 
     // Regenerate chat data, taking into account the reroll.

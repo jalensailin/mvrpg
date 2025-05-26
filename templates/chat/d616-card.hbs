@@ -42,13 +42,14 @@
         </div>
         <div class="result-container flexrow reroll-links"
              {{#if edgeOrTroubleCurrent }}
-             data-tooltip="{{localize "MVRPG.rolls.tooltips.rerollDie"}}"
+             data-tooltip="{{localize "MVRPG.rolls.tooltips.rerollDie" }}"
              {{/if}}>
           <a class="roll-single-result
                     {{#if ultimateFantasticResult }}
-                      fantastic{{/if}}
+                      fantastic{{/if }}
                       {{#unless edgeOrTroubleCurrent}}
                         mv-inactive-link{{/unless}}"
+             data-action="reroll"
              data-die-id="die1">
             {{#if ultimateFantasticResult }}
               {{localize "MVRPG.rolls.fantasticResultDie"}}
@@ -57,9 +58,10 @@
             {{/if}}      </a>
             <a class="roll-single-result multiverse-die
                       {{#if fantasticResult }}
-                        fantastic{{/if}}
+                        fantastic{{/if }}
                         {{#unless edgeOrTroubleCurrent}}
                           mv-inactive-link{{/unless}}"
+               data-action="reroll"
                data-die-id="dieM">
               {{#if fantasticResult }}
                 {{localize "MVRPG.rolls.fantasticResultDie"}}
@@ -69,9 +71,10 @@
             </a>
             <a class="roll-single-result
                       {{#if ultimateFantasticResult }}
-                        fantastic{{/if}}
+                        fantastic{{/if }}
                         {{#unless edgeOrTroubleCurrent}}
                           mv-inactive-link{{/unless}}"
+               data-action="reroll"
                data-die-id="die3">
               {{#if ultimateFantasticResult }}
                 {{localize "MVRPG.rolls.fantasticResultDie"}}
@@ -89,10 +92,10 @@
           <div class="roll-success-or-failure">
             {{#mvCompare type "!==" "initiative"}}
             <span class="{{#if isSuccess }}
-                           success{{else}}failure{{/if}}"
+                           success{{else }}failure{{/if}}"
                   data-tooltip="MVRPG.rolls.tooltips.
                                 {{#if isSuccess }}
-                                  success{{else}}failure{{/if}}">
+                                  success{{else }}failure{{/if}}">
               {{localize "MVRPG.rolls.tn"}}: {{tn}}
               {{#if isSuccess }}
                 <i class="fa-solid fa-check"></i>

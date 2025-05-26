@@ -97,7 +97,7 @@ export default class MVChatLog extends ChatLog {
    */
   _getEntryContextOptions() {
     const allowModification = (msgHtml) => {
-      const message = game.messages.get(msgHtml[0].dataset.messageId, {
+      const message = game.messages.get(msgHtml.dataset.messageId, {
         strict: true,
       });
       return message.getFlag(game.system.id, "allowModification");
@@ -110,7 +110,7 @@ export default class MVChatLog extends ChatLog {
         icon: `<i class="fa-solid fa-plus-minus"></i>`,
         condition: allowModification,
         callback: (msgHtml) => {
-          const message = game.messages.get(msgHtml[0].dataset.messageId, {
+          const message = game.messages.get(msgHtml.dataset.messageId, {
             strict: true,
           });
           message.modifyRoll();

@@ -175,10 +175,7 @@ export default class D616 extends Roll {
   async evaluate({ minimize = false, maximize = false } = {}) {
     // Allow user to confirm the roll (which they can skip with ctrl-click).
     if (!MVSettings.skipRollDialog()) {
-      const rollConfirm = await this.confirmRoll().catch(() => {
-        Logger.log("Roll cancelled");
-        return false;
-      });
+      const rollConfirm = await this.confirmRoll();
       if (!rollConfirm) return null;
     }
     const roll = await super.evaluate({ minimize, maximize });
@@ -514,8 +511,8 @@ export default class D616 extends Roll {
     if (this.rerolls.history.length === 0) return null;
 
     if (!skipDialog) {
-      const confirmUndo = await MVDialog.confirm({
-        title: game.i18n.localize("MVRPG.dialog.confirmUndo.title"),
+      const confirmUndo = await MVDialog.wait({
+        window: { title: game.i18n.localize("MVRPG.dialog.confirmUndo.title") },
         content: game.i18n.localize("MVRPG.dialog.confirmUndo.text"),
       });
       if (!confirmUndo) return null;
