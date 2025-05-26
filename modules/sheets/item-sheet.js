@@ -84,16 +84,15 @@ export default class MVItemSheet extends MVSheetMixin(ItemSheetV2) {
   /** @inheritdoc */
   async _prepareContext(options) {
     const context = await super._prepareContext(options);
-
-    const { system } = this.document;
+    const { item } = this;
 
     const TextEditor = foundry.applications.ux.TextEditor.implementation;
     context.description = {
-      field: system.schema.getField("description"),
-      value: system.description,
-      enriched: await TextEditor.enrichHTML(this.document.system.description, {
-        rollData: this.document.getRollData(),
-        relativeTo: this.document,
+      field: item.system.schema.getField("description"),
+      value: item.system.description,
+      enriched: await TextEditor.enrichHTML(item.system.description, {
+        rollData: item.getRollData(),
+        relativeTo: item,
       }),
     };
     return context;

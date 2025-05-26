@@ -128,11 +128,16 @@ export default class SuperSheet extends MVSheetMixin(ActorSheetV2) {
     );
     context.rollableItems = rollableItems;
 
+    // Prepare notes.
     const TextEditor = foundry.applications.ux.TextEditor.implementation;
-    context.enrichedNotes = await TextEditor.enrichHTML(
-      actor.system.identity.notes,
-      { async: true },
-    );
+    context.notes = {
+      field: actor.system.schema.getField("identity.notes"),
+      value: actor.system.identity.notes,
+      enriched: await TextEditor.enrichHTML(actor.system.identity.notes, {
+        rollData: actor.getRollData(),
+        relativeTo: actor,
+      }),
+    };
 
     const allEffects = Array.from(this.actor.allApplicableEffects());
     context.allEffects = allEffects;

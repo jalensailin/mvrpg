@@ -137,6 +137,11 @@ section {
     .editor,
     .editor.prosemirror {
       height: 100%;
+
+      menu {
+        padding: 2px;
+        gap: 0;
+      }
     }
   }
 

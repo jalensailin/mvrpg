@@ -106,6 +106,6 @@
   </div>
   <section class="identity-notes">
     <div class="identity-label">{{localize "MVRPG.sheets.superSheet.identity.notes"}}:</div>
-    {{editor enrichedNotes target="system.identity.notes" button="true" engine="prosemirror"}}
+    {{formInput notes.field value=notes.value enriched=notes.enriched toggled=true}}
   </section>
 </div>
