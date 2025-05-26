@@ -5,7 +5,9 @@
   </div>
 
   <div class="speed-section flexcol">
-    <div class="panel-title panel-header">{{localize "MVRPG.sheets.superSheet.titles.speed"}}</div>
+    <header>
+      {{localize "MVRPG.sheets.superSheet.titles.speed"}}
+    </header>
     <div class="speed-content comic-bubble-background flexcol">
       <select class="bubble-label speed-selector"
               name="flags.mvrpg.displaySpeed"
@@ -22,7 +24,9 @@
   </div>
 
   <div class="karma-section flexcol">
-    <div class="panel-title panel-header">{{localize "MVRPG.sheets.superSheet.titles.karma"}}</div>
+    <header>
+      {{localize "MVRPG.sheets.superSheet.titles.karma"}}
+    </header>
     <div class="karma-content comic-bubble-background flexcol">
       <input class="karma-input"
              name="system.karma"
@@ -38,9 +42,9 @@
              type="number"
              value="{{actor.system.initiative.value}}">
     </div>
-    <div class="panel-title panel-footer">
+    <footer>
       {{localize "MVRPG.sheets.superSheet.titles.initiative"}}
-    </div>
+    </footer>
   </div>
 
   <div class="rank-section flexcol">
@@ -50,6 +54,8 @@
              type="number"
              value="{{actor.system.rank}}">
     </div>
-    <div class="panel-title panel-footer">{{localize "MVRPG.sheets.superSheet.titles.rank"}}</div>
+    <footer>
+      {{localize "MVRPG.sheets.superSheet.titles.rank"}}
+    </footer>
   </div>
 </div>

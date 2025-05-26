@@ -1,6 +1,8 @@
 <div class="lifepool-panel comic-frame">
   <div class="health-section flexcol">
-    <div class="panel-title panel-header">{{localize "MVRPG.sheets.superSheet.titles.health"}}</div>
+    <header>
+      {{localize "MVRPG.sheets.superSheet.titles.health"}}
+    </header>
     <div class="health-content flexrow">
       <div class="health-max comic-bubble-background flexcol"
            data-tooltip="{{localize "MVRPG.sheets.superSheet.lifepool.tooltips.maxHealth"}}"
@@ -53,6 +55,8 @@
         <span class="focus-damage-reduction-value">{{actor.system.lifepool.focus.damageReduction}}</span>
       </div>
     </div>
-    <div class="panel-title panel-footer">{{localize "MVRPG.sheets.superSheet.titles.focus"}}</div>
+    <footer class="panel-title">
+      {{localize "MVRPG.sheets.superSheet.titles.focus"}}
+    </footer>
   </div>
 </div>

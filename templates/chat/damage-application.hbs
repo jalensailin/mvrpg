@@ -1,18 +1,16 @@
 <div class="mvrpg-damage-card comic-frame flexcol">
   <div class="half-tone-overlay"></div>
-  <div class="damage-label panel-header panel-title">
+  <header class="damage-label">
     {{localize "MVRPG.rolls.damageApplication"}}
-  </div>
+  </header>
   <div class="lifepool-target">
     {{localize "MVRPG.rolls.lifepoolTarget" target=(localize (concat "MVRPG.sheets.superSheet.lifepool." lifepoolTarget))}}
   </div>
   <div class="damage-application-list">
-    {{#each damageList as |damageData index|}}
+    {{#each damageList as |damageData index| }}
       {{#with damageData}}
         <div class="damage-application-item flexrow">
-          <div class="damage-index">
-            {{mvMath "sum" index 1}}.
-          </div>
+          <div class="damage-index">{{mvMath "sum" index 1}}.</div>
           <div class="damage-blurb">
             {{localize "MVRPG.rolls.damageApplicationTarget" total=damageTotal target=targetName}}
           </div>

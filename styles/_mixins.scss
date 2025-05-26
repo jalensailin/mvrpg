@@ -1,0 +1,28 @@
+@use "fonts" as *;
+
+@mixin panel-title($footer: false) {
+  $-border-edge: "bottom";
+  $-gradient-rotation: 180deg;
+  @if $footer {
+    $-border-edge: "top";
+    $-gradient-rotation: 0deg;
+  }
+
+  flex: 0;
+
+  font-family: $komika-smallcaps;
+  font-size: var(--header-text-size);
+  line-height: var(--header-text-size);
+
+  font-weight: bold;
+  font-style: italic;
+  text-align: center;
+
+  border-#{$-border-edge}: 3px solid var(--border-black);
+
+  background: linear-gradient(
+    $-gradient-rotation,
+    var(--header-yellow) 0%,
+    var(--header-gray) 100%
+  );
+}

@@ -6,7 +6,9 @@
          title="{{item.name}}" />
   </div>
   <div class="item-data flexcol">
-    <div class="item-type panel-header">{{localize (concat "TYPES.Item." item.type)}}.</div>
+    <header class="item-type">
+      {{localize (concat "TYPES.Item." item.type)}}.
+    </header>
     <input class="name-input" name="name" type="text" value="{{item.name}}">
   </div>
 </div>

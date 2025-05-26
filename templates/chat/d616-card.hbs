@@ -1,89 +1,115 @@
 <div class="mvrpg-roll-card comic-frame flexcol">
   <div class="half-tone-overlay"></div>
-  <div class="roll-label panel-header panel-title">
-    {{rollTitle}} {{#mvCompare type "nonCombat"}}({{localize "MVRPG.rolls.nonCombat"}}){{/mvCompare}}
-  </div>
-  {{#if rollSource}}
-    <div class="roll-source-header">
-      {{rollSource}}
-    </div>
-  {{/if}}
-
-  {{#if against}}{{#mvCompare against "!==" "none"}}
-    <div class="rolling-against">
-      {{localize "MVRPG.rolls.rollingAgainst" target=(localize (concat "MVRPG.sheets.generic.abilities." against))}}
-    </div>
-  {{/mvCompare}}{{/if}}
-
-  {{#if hasEdgesOrTroubles}}
-    <div class="edges-and-troubles">
-      <a class="reroll-history" data-tooltip="{{> (systemFilePath "templates/chat/reroll-history-tooltip.hbs")}}">
-        {{#if hasEvaluatedRerolls}}
-          <i class="fa-solid fa-history"></i>
-        {{/if}}
-      </a>
-      <div class="reroll-count" data-tooltip="{{localize "MVRPG.rolls.edges"}}: {{edges}}<br>{{localize "MVRPG.rolls.troubles"}}: {{troubles}}">
-        {{localize edgeOrTroubleString}}: <span>{{edgeOrTroubleCurrent}} / {{edgeOrTroubleTotal}}</span>
-      </div>
-      {{#if hasEvaluatedRerolls }}
-        <a data-action="undoLastReroll"
-           data-tooltip="MVRPG.rolls.tooltips.undoLastReroll">
-          <i class="fa-solid fa-rotate-left"></i>
-        </a>
-      {{/if}}
-    </div>
-  {{/if}}
-  <div class="roll-results flexrow">
-    <div class="d616-label">
-      <i class="fa-solid fa-dice"></i> {{localize "MVRPG.rolls.d616"}}:
-    </div>
-    <div class="result-container flexrow reroll-links" {{#if edgeOrTroubleCurrent}}data-tooltip="{{localize "MVRPG.rolls.tooltips.rerollDie"}}"{{/if}}>
-      <a class="roll-single-result {{#if ultimateFantasticResult}}fantastic{{/if}} {{#unless edgeOrTroubleCurrent}}mv-inactive-link{{/unless}}" data-die-id="die1">
-        {{#if ultimateFantasticResult}}
-          {{localize "MVRPG.rolls.fantasticResultDie"}}
-        {{else}}
-          {{dice.die1}}
-        {{/if}}      </a>
-      <a class="roll-single-result multiverse-die {{#if fantasticResult}}fantastic{{/if}} {{#unless edgeOrTroubleCurrent}}mv-inactive-link{{/unless}}" data-die-id="dieM">
-        {{#if fantasticResult}}
-          {{localize "MVRPG.rolls.fantasticResultDie"}}
-        {{else}}
-          {{dice.dieM}}
-        {{/if}}
-      </a>
-      <a class="roll-single-result {{#if ultimateFantasticResult}}fantastic{{/if}} {{#unless edgeOrTroubleCurrent}}mv-inactive-link{{/unless}}" data-die-id="die3">
-        {{#if ultimateFantasticResult}}
-          {{localize "MVRPG.rolls.fantasticResultDie"}}
-        {{else}}
-          {{dice.die3}}
-        {{/if}}
-      </a>
-    </div>
-    <div class="roll-modifier">
-      {{localize "MVRPG.rolls.mod"}}: <span class="mod-number">+{{modifier}}</span>
-    </div>
-  </div>
-  <div class="roll-total" data-tooltip="{{dice.die1}} + {{dice.dieM}} + {{dice.die3}} + {{modifier}}">
-    <div class="roll-success-or-failure">
-      {{#mvCompare type "!==" "initiative"}}
-        <span class="{{#if isSuccess}}success{{else}}failure{{/if}}" data-tooltip="MVRPG.rolls.tooltips.{{#if isSuccess}}success{{else}}failure{{/if}}">
-          {{localize "MVRPG.rolls.tn"}}: {{tn}}
-          {{#if isSuccess}}
-            <i class="fa-solid fa-check"></i>
-          {{else}}
-            <i class="fa-solid fa-xmark"></i>
-          {{/if}}
-        </span>
-      {{/mvCompare}}
-    </div>
-    <div>
-      {{localize "MVRPG.rolls.total"}}: <span class="total-number">{{rollTotal}}</span>
-    </div>
-    {{#if displayDamageButton }}
-      <a data-action="createDamageCard"
-         data-tooltip="{{localize "MVRPG.rolls.tooltips.calculateDamage"}}">
-        <i class="fa-solid fa-user-injured"></i>
-      </a>
+  <header class="roll-label">
+    {{rollTitle}}
+    {{#mvCompare type "nonCombat"}}
+      ({{localize "MVRPG.rolls.nonCombat"}}){{/mvCompare}}
+    </header>
+    {{#if rollSource }}
+      <div class="roll-source-header">{{rollSource}}</div>
     {{/if}}
-  </div>
-</div>
+
+    {{#if against }}
+      {{#mvCompare against "!==" "none"}}
+        <div class="rolling-against">
+          {{localize "MVRPG.rolls.rollingAgainst" target=(localize (concat "MVRPG.sheets.generic.abilities." against))}}
+        </div>
+      {{/mvCompare}}{{/if}}
+
+      {{#if hasEdgesOrTroubles }}
+        <div class="edges-and-troubles">
+          <a class="reroll-history"
+             data-tooltip="{{> (systemFilePath "templates/chat/reroll-history-tooltip.hbs")}}">
+            {{#if hasEvaluatedRerolls }}
+              <i class="fa-solid fa-history"></i>
+            {{/if}}
+          </a>
+          <div class="reroll-count"
+               data-tooltip="{{localize "MVRPG.rolls.edges"}}: {{edges}}<br>{{localize "MVRPG.rolls.troubles"}}: {{troubles}}">
+            {{localize edgeOrTroubleString}}: <span>{{edgeOrTroubleCurrent}} / {{edgeOrTroubleTotal}}</span>
+          </div>
+          {{#if hasEvaluatedRerolls }}
+            <a data-action="undoLastReroll"
+               data-tooltip="MVRPG.rolls.tooltips.undoLastReroll">
+              <i class="fa-solid fa-rotate-left"></i>
+            </a>
+          {{/if}}
+        </div>
+      {{/if}}
+      <div class="roll-results flexrow">
+        <div class="d616-label">
+          <i class="fa-solid fa-dice"></i> {{localize "MVRPG.rolls.d616"}}:
+        </div>
+        <div class="result-container flexrow reroll-links"
+             {{#if edgeOrTroubleCurrent }}
+             data-tooltip="{{localize "MVRPG.rolls.tooltips.rerollDie"}}"
+             {{/if}}>
+          <a class="roll-single-result
+                    {{#if ultimateFantasticResult }}
+                      fantastic{{/if}}
+                      {{#unless edgeOrTroubleCurrent}}
+                        mv-inactive-link{{/unless}}"
+             data-die-id="die1">
+            {{#if ultimateFantasticResult }}
+              {{localize "MVRPG.rolls.fantasticResultDie"}}
+            {{else}}
+              {{dice.die1}}
+            {{/if}}      </a>
+            <a class="roll-single-result multiverse-die
+                      {{#if fantasticResult }}
+                        fantastic{{/if}}
+                        {{#unless edgeOrTroubleCurrent}}
+                          mv-inactive-link{{/unless}}"
+               data-die-id="dieM">
+              {{#if fantasticResult }}
+                {{localize "MVRPG.rolls.fantasticResultDie"}}
+              {{else}}
+                {{dice.dieM}}
+              {{/if}}
+            </a>
+            <a class="roll-single-result
+                      {{#if ultimateFantasticResult }}
+                        fantastic{{/if}}
+                        {{#unless edgeOrTroubleCurrent}}
+                          mv-inactive-link{{/unless}}"
+               data-die-id="die3">
+              {{#if ultimateFantasticResult }}
+                {{localize "MVRPG.rolls.fantasticResultDie"}}
+              {{else}}
+                {{dice.die3}}
+              {{/if}}
+            </a>
+          </div>
+          <div class="roll-modifier">
+            {{localize "MVRPG.rolls.mod"}}: <span class="mod-number">+{{modifier}}</span>
+          </div>
+        </div>
+        <div class="roll-total"
+             data-tooltip="{{dice.die1}} + {{dice.dieM}} + {{dice.die3}} + {{modifier}}">
+          <div class="roll-success-or-failure">
+            {{#mvCompare type "!==" "initiative"}}
+            <span class="{{#if isSuccess }}
+                           success{{else}}failure{{/if}}"
+                  data-tooltip="MVRPG.rolls.tooltips.
+                                {{#if isSuccess }}
+                                  success{{else}}failure{{/if}}">
+              {{localize "MVRPG.rolls.tn"}}: {{tn}}
+              {{#if isSuccess }}
+                <i class="fa-solid fa-check"></i>
+              {{else}}
+                <i class="fa-solid fa-xmark"></i>
+              {{/if}}
+            </span>
+          {{/mvCompare}}
+        </div>
+        <div>
+          {{localize "MVRPG.rolls.total"}}: <span class="total-number">{{rollTotal}}</span>
+        </div>
+        {{#if displayDamageButton }}
+          <a data-action="createDamageCard"
+             data-tooltip="{{localize "MVRPG.rolls.tooltips.calculateDamage"}}">
+            <i class="fa-solid fa-user-injured"></i>
+          </a>
+        {{/if}}
+      </div>
+    </div>
