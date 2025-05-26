@@ -8,63 +8,66 @@
 </div>
 
 {{#if item.system.roll.hasRoll }}
-  <div class="dialog-item item-roll-data flexrow">
-    <div class="dialog-label">{{localize "MVRPG.sheets.itemSheet.settings.labels.rollType"}}</div>
-    <select class="dialog-input" name="system.roll.type">
-      {{selectOptions (mvGetConfigObj "rollTypes") selected=item.system.roll.type localize=true}}
-    </select>
-  </div>
+  <div class="dialog-subsection">
 
-  <div class="dialog-item item-roll-data flexrow">
-    <div class="dialog-label">{{localize "MVRPG.sheets.itemSheet.settings.labels.rollAbility"}}</div>
-    <select class="dialog-input" name="system.roll.ability">
-      {{selectOptions (mvGetConfigObj "abilities") selected=item.system.roll.ability localize=true}}
-    </select>
-  </div>
-
-  <div class="dialog-item item-roll-data flexrow">
-    <div class="dialog-label">{{localize "MVRPG.sheets.itemSheet.settings.labels.against"}}</div>
-    <select class="dialog-input" name="system.roll.against">
-      {{selectOptions (mvGetConfigObj "abilities") selected=item.system.roll.against localize=true}}
-    </select>
-  </div>
-
-  {{#mvCompare item.system.roll.type "combat"}}
     <div class="dialog-item item-roll-data flexrow">
-      <div class="dialog-label">
-        {{localize "MVRPG.sheets.itemSheet.settings.labels.lifepoolTarget"}}
-      </div>
-      <select class="dialog-input" name="system.roll.lifepoolTarget">
-        <option value="none">{{localize "MVRPG.sheets.generic.none"}}</option>
-        {{selectOptions (mvGetConfigObj "lifepoolTargets") selected=item.system.roll.lifepoolTarget localize=true}}
+      <div class="dialog-label">{{localize "MVRPG.sheets.itemSheet.settings.labels.rollType"}}</div>
+      <select class="dialog-input" name="system.roll.type">
+        {{selectOptions (mvGetConfigObj "rollTypes") selected=item.system.roll.type localize=true}}
       </select>
     </div>
-  {{/mvCompare}}
 
-  <div class="dialog-item item-roll-data flexrow">
-    <div class="dialog-label">{{localize "MVRPG.sheets.itemSheet.settings.labels.rollBonus"}}</div>
-    <div class="dialog-input">
-      <input name="system.roll.bonus"
-             type="number"
-             value="{{item.system.roll.bonus}}">
+    <div class="dialog-item item-roll-data flexrow">
+      <div class="dialog-label">{{localize "MVRPG.sheets.itemSheet.settings.labels.rollAbility"}}</div>
+      <select class="dialog-input" name="system.roll.ability">
+        {{selectOptions (mvGetConfigObj "abilities") selected=item.system.roll.ability localize=true}}
+      </select>
     </div>
-  </div>
 
-  <div class="dialog-item item-roll-data flexrow">
-    <div class="dialog-label">{{localize "MVRPG.sheets.itemSheet.settings.labels.edges"}}</div>
-    <div class="dialog-input">
-      <input name="system.roll.edges"
-             type="number"
-             value="{{item.system.roll.edges}}">
+    <div class="dialog-item item-roll-data flexrow">
+      <div class="dialog-label">{{localize "MVRPG.sheets.itemSheet.settings.labels.against"}}</div>
+      <select class="dialog-input" name="system.roll.against">
+        {{selectOptions (mvGetConfigObj "abilities") selected=item.system.roll.against localize=true}}
+      </select>
     </div>
-  </div>
 
-  <div class="dialog-item item-roll-data flexrow">
-    <div class="dialog-label">{{localize "MVRPG.sheets.itemSheet.settings.labels.troubles"}}</div>
-    <div class="dialog-input">
-      <input name="system.roll.troubles"
-             type="number"
-             value="{{item.system.roll.troubles}}">
+    {{#mvCompare item.system.roll.type "combat"}}
+      <div class="dialog-item item-roll-data flexrow">
+        <div class="dialog-label">
+          {{localize "MVRPG.sheets.itemSheet.settings.labels.lifepoolTarget"}}
+        </div>
+        <select class="dialog-input" name="system.roll.lifepoolTarget">
+          <option value="none">{{localize "MVRPG.sheets.generic.none"}}</option>
+          {{selectOptions (mvGetConfigObj "lifepoolTargets") selected=item.system.roll.lifepoolTarget localize=true}}
+        </select>
+      </div>
+    {{/mvCompare}}
+
+    <div class="dialog-item item-roll-data flexrow">
+      <div class="dialog-label">{{localize "MVRPG.sheets.itemSheet.settings.labels.rollBonus"}}</div>
+      <div class="dialog-input">
+        <input name="system.roll.bonus"
+               type="number"
+               value="{{item.system.roll.bonus}}">
+      </div>
+    </div>
+
+    <div class="dialog-item item-roll-data flexrow">
+      <div class="dialog-label">{{localize "MVRPG.sheets.itemSheet.settings.labels.edges"}}</div>
+      <div class="dialog-input">
+        <input name="system.roll.edges"
+               type="number"
+               value="{{item.system.roll.edges}}">
+      </div>
+    </div>
+
+    <div class="dialog-item item-roll-data flexrow">
+      <div class="dialog-label">{{localize "MVRPG.sheets.itemSheet.settings.labels.troubles"}}</div>
+      <div class="dialog-input">
+        <input name="system.roll.troubles"
+               type="number"
+               value="{{item.system.roll.troubles}}">
+      </div>
     </div>
   </div>
 {{/if}}

@@ -4,21 +4,23 @@
     <span class="mvrpg-label-hint">[{{localize "MVRPG.sheets.itemSheet.settings.labels.rangeUnit"}}]</span>
   </div>
   <div class="dialog-input range-input">
-    <input name="system.range.value"
+    <input name="system.range._value"
            type="text"
            value="{{item.system.range.value}}">
   </div>
 </div>
 
 {{#if item.system.range.rangeIsInt }}
-  <div class="dialog-item flexrow">
-    <div class="dialog-label">
-      {{localize "MVRPG.sheets.itemSheet.settings.labels.multiplyByRank"}}
-    </div>
-    <div class="dialog-input">
-      <input name="system.range.multiplyByRank"
-             type="checkbox"
-             {{checked item.system.range.multiplyByRank}}>
+  <div class="dialog-subsection">
+    <div class="dialog-item flexrow">
+      <div class="dialog-label">
+        {{localize "MVRPG.sheets.itemSheet.settings.labels.multiplyByRank"}}
+      </div>
+      <div class="dialog-input">
+        <input name="system.range.multiplyByRank"
+               type="checkbox"
+               {{checked item.system.range.multiplyByRank}}>
+      </div>
     </div>
   </div>
 {{/if}}

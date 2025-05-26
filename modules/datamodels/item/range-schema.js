@@ -47,7 +47,6 @@ export default class RangeSchema extends foundry.abstract.DataModel {
    *
    * @returns {boolean} - True if the range value is a valid integer, false otherwise.
    */
-
   get rangeIsInt() {
     const { parseInt, isNaN } = Number;
     return !isNaN(parseInt(this._value));
