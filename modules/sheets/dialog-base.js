@@ -3,22 +3,13 @@ import MVRPG from "../config.js";
 const { Dialog } = foundry.applications.api;
 
 export default class MVDialog extends Dialog {
-  /**
-   * Default button for all dialogs.
-   *
-   * @typedef {Object} DefaultButton
-   * @property {"confirm"} action - The action to perform when the button is clicked.
-   * @property {"fas fa-spider"} icon - The icon to display on the button.
-   * @property {"dialog-button"} class - The CSS class to apply to the button.
-   * @property {"MVRPG.dialog.buttons.confirm"} label - The label to display on the button.
-   */
-  /** @type {DefaultButton} */
-  static DEFAULT_BUTTON = {
+  /** Default button for all dialogs. */
+  static DEFAULT_BUTTON = /** @type {const} */ ({
     action: "confirm",
     icon: "fas fa-spider",
     class: "dialog-button",
     label: "MVRPG.dialog.buttons.confirm",
-  };
+  });
 
   /** @inheritdoc */
   static DEFAULT_OPTIONS = {

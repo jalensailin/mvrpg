@@ -1,4 +1,3 @@
-import MVRPG from "../config.js";
 import D616 from "../rolls/d616.js";
 import EffectUtils from "../documents/effects.js";
 import { MVSettings } from "../utils/settings.js";
@@ -36,7 +35,13 @@ export default class SuperSheet extends MVSheetMixin(ActorSheetV2) {
   static DEFAULT_OPTIONS = {
     classes: ["actor"],
     position: { width: 600, height: 670 },
-    // actions: {},
+    actions: {
+      rollable: SuperSheet.onRoll,
+      openConfig: SuperSheet.showConfig,
+      docAction: SuperSheet.onItemAction,
+      // effectAction: EffectUtils.onEffectAction,
+      toggleManeuver: SuperSheet.toggleManeuver,
+    },
   };
 
   /** @inheritdoc */
@@ -65,12 +70,6 @@ export default class SuperSheet extends MVSheetMixin(ActorSheetV2) {
    */
   _prepareTabs(group) {
     const tabs = super._prepareTabs(group);
-
-    // Don't show settings tab for simple Items.
-    // const itemsWithSettingsTab = ["power", "simpleItem"];
-    // if (!itemsWithSettingsTab.includes(this.document.type))
-    //   delete tabs.settings;
-
     return tabs;
   }
 
@@ -152,11 +151,6 @@ export default class SuperSheet extends MVSheetMixin(ActorSheetV2) {
     super.activateListeners(html);
 
     if (!this.options.editable) return;
-    html.find(".rollable").click((event) => this.onRoll(event));
-
-    html.find(".open-config").click(() => this.showConfig());
-
-    html.find(".doc-action").click((event) => this.onItemAction(event));
 
     html
       .find(".effect-action")
@@ -174,22 +168,21 @@ export default class SuperSheet extends MVSheetMixin(ActorSheetV2) {
     //   element.setAttribute("draggable", true);
     //   element.addEventListener("dragstart", handler, false);
     // });
-
-    html.find(".toggle-maneuver").click(() => this.toggleManeuver());
   }
 
   /**
    * Handles different actions for items.
    *
-   * @param {event} event - the event triggering the action
+   * @param {Event} event - the event triggering the action
+   * @param {HTMLElement} target - The target element
    * @return {void}
    */
-  onItemAction(event) {
-    const { action, docType } = event.currentTarget.dataset;
-    const itemId = MVUtils.getClosestAttribute(event.currentTarget, "item-id");
+  static onItemAction(event, target) {
+    const { docAction, docType } = target.dataset;
+    const itemId = MVUtils.getClosestAttribute(target, "item-id");
     const doc = this.actor.items.get(itemId);
 
-    switch (action) {
+    switch (docAction) {
       case "create":
         this.actor.createEmbeddedDocuments("Item", [
           {
@@ -234,13 +227,14 @@ export default class SuperSheet extends MVSheetMixin(ActorSheetV2) {
    * Handle the roll event and execute associated actions.
    *
    * @param {Event} event - The roll event
+   * @param {HTMLElement} target - The target element
    * @return {Promise} A promise that resolves when the roll event is handled
    */
-  async onRoll(event) {
-    const itemId = MVUtils.getClosestAttribute(event.currentTarget, "item-id");
+  static async onRoll(event, target) {
+    const itemId = MVUtils.getClosestAttribute(target, "item-id");
     if (itemId) return D616.createItemRoll(this.actor, itemId);
 
-    const { rollType, ability } = event.currentTarget.dataset;
+    const { rollType, ability } = target.dataset;
     const actorData = this.actor.system;
 
     let modifier;
@@ -268,10 +262,10 @@ export default class SuperSheet extends MVSheetMixin(ActorSheetV2) {
     });
   }
 
-  async showConfig() {
+  static async showConfig() {
     const { renderTemplate } = foundry.applications.handlebars;
     const content = await renderTemplate(
-      `systems/${game.system.id}/templates/dialogs/init-speed-dialog.hbs`,
+      `${SuperSheet.TEMPLATE_PATH}/dialogs/init-speed-dialog.hbs`,
       { actor: this.actor },
     );
 
@@ -300,7 +294,7 @@ export default class SuperSheet extends MVSheetMixin(ActorSheetV2) {
     ChatMessage.create(chatData);
   }
 
-  toggleManeuver() {
+  static toggleManeuver() {
     const { active } = this.actor.system.teamManeuver;
     this.actor.update({ "system.teamManeuver": { active: !active } });
   }

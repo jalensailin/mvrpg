@@ -25,18 +25,21 @@
       {{#each rollableItems as |item| }}
         <div class="rollable-item doc-entry flexrow" data-item-id="{{item.id}}">
           <a class="doc-action doc-icon"
-             data-action="toChat"
+             data-action="docAction"
+             data-doc-action="toChat"
              data-tooltip="{{localize "MVRPG.sheets.generic.tooltips.toChat"}}">
             <img src="{{item.img}}" title="{{item.name}}" />
             <i class="overlay fa-solid fa-comment"></i>
           </a>
           <a class="doc-action doc-data flexcol"
-             data-action="edit"
+             data-action="docAction"
+             data-doc-action="edit"
              data-tooltip="{{localize "MVRPG.sheets.generic.tooltips.edit"}}">
             <div class="doc-name">{{item.name}}</div>
           </a>
           <div class="action-icons flexrow">
             <a class="doc-action rollable"
+               data-action="rollable"
                data-tooltip="{{localize "MVRPG.sheets.superSheet.tooltips.rollFromItem"}}">
               <i class="fa-solid fa-dice"></i>
             </a>
@@ -55,9 +58,11 @@
       <div class="team-maneuver-data flexrow">
         {{#if actor.system.teamManeuver.active }}
           <a class="toggle-maneuver"
+             data-action="toggleManeuver"
              data-tooltip="{{localize "MVRPG.sheets.superSheet.tooltips.deactivateManeuver"}}"><i class="fa-solid fa-handshake-simple-slash"></i> </a>
         {{else}}
           <a class="toggle-maneuver"
+             data-action="toggleManeuver"
              data-tooltip="{{localize "MVRPG.sheets.superSheet.tooltips.activateManeuver"}}"><i class="fa-solid fa-handshake-simple"></i> </a>
         {{/if}}
         <input class="team-maneuver-average-rank"

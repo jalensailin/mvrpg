@@ -2,7 +2,8 @@
   <div class="doc-icon-dummy"></div>
   <div class="doc-data">{{localize (concat "MVRPG.sheets.superSheet.dataHeaders." type)}}</div>
   <a class="doc-action doc-create"
-     data-action="create"
+     data-action="docAction"
+     data-doc-action="create"
      data-doc-type="{{type}}"
      data-tooltip="{{localize (concat "MVRPG.sheets.superSheet.tooltips.createItem." type)}}">
     <i class="fa-solid fa-plus"></i>
@@ -12,19 +13,21 @@
 {{#each docList as |doc| }}
   <div class="doc-entry flexrow" data-item-id="{{doc.id}}">
     <a class="doc-action doc-icon"
-       data-action="toChat"
+       data-action="docAction"
+       data-doc-action="toChat"
        data-tooltip="{{localize "MVRPG.sheets.generic.tooltips.toChat"}}">
       <img src="{{doc.img}}" title="{{doc.name}}" />
       <i class="overlay fa-solid fa-comment"></i>
     </a>
     <a class="doc-action doc-data flexcol"
-       data-action="edit"
+       data-action="docAction"
+       data-doc-action="edit"
        data-tooltip="{{localize "MVRPG.sheets.generic.tooltips.edit"}}">
       <div class="doc-name">{{doc.name}}</div>
       {{#mvCompare doc.type "power"}}
         <div class="power-data">
           <span class="info-pill">{{localize "MVRPG.sheets.superSheet.pillLabels.action"}}:
-            {{#each doc.system.actions as |action|~ }}
+            {{#each doc.system.actions as |action| }}
               {{localize (mvGetConfigProperty "actions" action)}}
               {{~#unless @last}}/{{~/unless~}}
               {{~/each~}}
@@ -46,12 +49,14 @@
       <div class="action-icons flexrow">
         {{#if doc.system.roll.hasRoll }}
           <a class="doc-action rollable"
+             data-action="rollable"
              data-tooltip="{{localize "MVRPG.sheets.superSheet.tooltips.rollFromItem"}}">
             <i class="fa-solid fa-dice"></i>
           </a>
         {{/if}}
         <a class="doc-action doc-delete"
-           data-action="delete"
+           data-action="docAction"
+           data-doc-action="delete"
            data-tooltip="{{localize "MVRPG.sheets.generic.tooltips.delete"}}">
           <i class="fa-solid fa-trash"></i>
         </a>

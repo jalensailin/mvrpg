@@ -10,7 +10,9 @@ const MVSheetMixin = (Base) => {
       form: { submitOnChange: true },
     };
 
-    static TEMPLATE_PATH = `systems/${MVRPG.ID}/templates`;
+    static TEMPLATE_PATH = /** @type {const} */ (
+      `systems/${MVRPG.ID}/templates`
+    );
 
     /** @inheritdoc */
     async _prepareContext(options) {
