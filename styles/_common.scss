@@ -191,8 +191,8 @@ section {
 
 /** Glow Combatant if Fantastic Result **/
 .combatant.is-fantastic {
-  div.token-name h4,
-  div.token-initiative span {
+  div.token-name .name,
+  div.token-initiative input {
     animation: glow 1s infinite alternate;
   }
 }

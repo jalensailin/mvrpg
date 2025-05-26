@@ -52,13 +52,16 @@ Hooks.on("renderCombatTracker", (app, html) => {
   const tooltip = game.i18n.localize("MVRPG.combatant.isFantastic");
 
   for (const combatant of combatants) {
-    const combatantEntry = html.find(`[data-combatant-id="${combatant.id}"]`);
-    const initNumber = combatantEntry.find(".token-initiative");
+    const combatantEntry = html.querySelector(
+      `[data-combatant-id="${combatant.id}"]`,
+    );
+    const initNumber = combatantEntry.querySelector(".token-initiative");
 
-    combatantEntry.addClass("is-fantastic");
-    initNumber.addClass("is-fantastic");
+    combatantEntry.classList.add("is-fantastic");
 
-    combatantEntry.find("div.token-name h4").attr("data-tooltip", tooltip);
-    initNumber.attr("data-tooltip", tooltip);
+    combatantEntry
+      .querySelector("div.token-name > .name")
+      .setAttribute("data-tooltip", tooltip);
+    initNumber.setAttribute("data-tooltip", tooltip);
   }
 });
