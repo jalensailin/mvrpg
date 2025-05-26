@@ -1,8 +1,10 @@
 @use "fonts" as *;
 
 .mvrpg.actor {
-  min-width: 360px;
-  min-height: 594px;
+  &:not(.minimized, .minimizing, .maximizing) {
+    min-width: 360px;
+    min-height: 594px;
+  }
 
   .super-sheet-grid {
     display: grid;
