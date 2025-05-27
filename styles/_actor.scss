@@ -293,7 +293,8 @@
       position: relative;
       grid-area: tabbed-panel;
 
-      [data-group="primary"][data-tab="powers"]::after {
+      // Add period after Powers tab in primary tab group.
+      nav.sheet-tabs [data-group="primary"][data-tab="powers"]::after {
         content: ".";
       }
 

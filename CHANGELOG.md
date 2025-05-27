@@ -2,6 +2,12 @@
 
 # Multiverse RPG for Foundry - Changelog
 
+## Version 3.0.1 (2025-05-27)
+
+### Bug Fixes
+
+- Fix weird trailing period in powers tab.
+
 ## Version 3.0.0 (2025-05-27)
 
 ### General
