@@ -37,10 +37,6 @@
         transform: translateY(-9px) rotate(180deg);
       }
     }
-
-    &:focus {
-      outline-color: var(--spider-red);
-    }
   }
 }
 
@@ -55,6 +51,7 @@
     font-size: 0.9rem;
     text-align: center;
     padding: 4px;
+    background-color: var(--thing-orange);
   }
 
   .dialog-container {

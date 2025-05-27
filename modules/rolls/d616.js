@@ -532,7 +532,7 @@ export default class D616 extends Roll {
     if (this.rerolls.history.length === 0) return null;
 
     if (!skipDialog) {
-      const confirmUndo = await MVDialog.wait({
+      const confirmUndo = await MVDialog.prompt({
         window: { title: game.i18n.localize("MVRPG.dialog.confirmUndo.title") },
         content: game.i18n.localize("MVRPG.dialog.confirmUndo.text"),
       });

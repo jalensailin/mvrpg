@@ -62,7 +62,7 @@ export default class MVEffect extends ActiveEffect {
       case "delete": {
         const skipDialog = MVSettings.skipDeleteDialog();
         if (!skipDialog) {
-          const confirmDelete = await MVDialog.wait({
+          const confirmDelete = await MVDialog.prompt({
             window: { title: "MVRPG.dialog.deleteOwnedItem.title" },
             content: game.i18n.format("MVRPG.dialog.deleteOwnedItem.text", {
               itemType: game.i18n.translations.DOCUMENT.ActiveEffect,

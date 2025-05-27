@@ -41,6 +41,13 @@ section {
     text-align: center;
   }
 
+  input,
+  button {
+    &:focus {
+      outline-color: var(--spider-red);
+    }
+  }
+
   select,
   input[type="text"],
   input[type="number"] {

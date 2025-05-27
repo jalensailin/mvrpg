@@ -121,7 +121,7 @@ export default class MVEffectConfig extends ActiveEffectConfig {
         const selectOptions = MVEffect.getEffectKeys();
         // Warn the user before swapping back to <select> if the value is not in the list of options (since it will get lost).
         if (!selectOptions.includes(value)) {
-          const confirmInput = await MVDialog.wait({
+          const confirmInput = await MVDialog.prompt({
             window: { title: "MVRPG.dialog.confirmTextInput.title" },
             content: game.i18n.localize("MVRPG.dialog.confirmTextInput.text"),
           });
