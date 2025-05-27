@@ -10,25 +10,25 @@ const { ItemSheetV2 } = foundry.applications.sheets;
  */
 export default class MVItemSheet extends MVSheetMixin(ItemSheetV2) {
   /** @inheritdoc */
-  static DEFAULT_OPTIONS = {
+  static DEFAULT_OPTIONS = /** @type {const} */ ({
     classes: ["item"],
     position: { width: 580, height: 370 },
     actions: {
       configureMultipleSelections: MVItemSheet.#configureMultipleSelections,
     },
-  };
+  });
 
   /** @inheritdoc */
-  static TABS = {
+  static TABS = /** @type {const} */ ({
     primary: {
       initial: "description",
       labelPrefix: "MVRPG.sheets.itemSheet.titles",
       tabs: [{ id: "description" }, { id: "settings" }, { id: "effects" }],
     },
-  };
+  });
 
   /** @inheritdoc */
-  static PARTS = {
+  static PARTS = /** @type {const} */ ({
     header: {
       template: `${this.TEMPLATE_PATH}/item/header.hbs`,
     },
@@ -51,7 +51,7 @@ export default class MVItemSheet extends MVSheetMixin(ItemSheetV2) {
       template: `${this.TEMPLATE_PATH}/item/effects.hbs`,
       scrollable: [""],
     },
-  };
+  });
 
   /**
    * Manipulate which parts of the sheet are rendered.

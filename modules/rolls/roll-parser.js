@@ -8,8 +8,7 @@ export default class MVRollParser extends RollParser {
    * If it doesn't match, it falls back to the Foundry default without breaking
    * expected behavior.
    *
-   * @override
-   * @returns {Object} - Object with data about the DiceTerm.
+   * @inheritdoc
    */
   _onDiceTerm(number, faces, modifiers, flavor, formula) {
     const term = super._onDiceTerm(number, faces, modifiers, flavor, formula);

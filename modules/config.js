@@ -1,5 +1,4 @@
-const MVRPG = {
-  /** @type {"mvrpg"} */
+const MVRPG = /** @type {const} */ ({
   ID: "mvrpg",
   abilities: {
     melee: "MVRPG.sheets.generic.abilities.melee",
@@ -150,6 +149,6 @@ const MVRPG = {
     offensive: "MVRPG.sheets.superSheet.teamManeuvers.offensive",
     rally: "MVRPG.sheets.superSheet.teamManeuvers.rally",
   },
-};
+});
 
 export default MVRPG;

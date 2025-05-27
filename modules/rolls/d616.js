@@ -59,11 +59,13 @@ export default class D616 extends Roll {
 
   /**
    * The label for the "fantastic" result die
+   * @type {string}
    */
   fantasticResultLabel = game.i18n.localize("MVRPG.rolls.fantasticResultDie");
 
   /**
    * Return the (re)roll history for each die in a single object.
+   * @returns {Object}
    */
   get allDiceHistory() {
     if (!this._evaluated) return null; // Early return if the roll has not been evaluted;
@@ -117,6 +119,8 @@ export default class D616 extends Roll {
 
   /**
    * Whether or not the roll was a success (beat the target number).
+   *
+   * @returns {Boolean}
    */
   get isSuccess() {
     if (!this._evaluated) return null; // Early return if the roll has not been evaluted;
@@ -156,6 +160,11 @@ export default class D616 extends Roll {
     return this.edgeOrTroubleTotal - this.rerolls.history.length;
   }
 
+  /**
+   * The combatant associated with this roll.
+   *
+   * @type {Combatant|undefined}
+   */
   get combatant() {
     return fromUuidSync(this.combatantUuid);
   }
@@ -169,7 +178,7 @@ export default class D616 extends Roll {
    * @param {object} [options={}]     Options which inform how the Roll is evaluated
    * @param {boolean} [options.minimize=false]    Minimize the result, obtaining the smallest possible value.
    * @param {boolean} [options.maximize=false]    Maximize the result, obtaining the largest possible value.
-   * @returns {Roll|Promise<Roll>}    The evaluated Roll instance
+   * @returns {Promise<Roll>}    The evaluated Roll instance
    *
    */
   async evaluate({ minimize = false, maximize = false } = {}) {
@@ -314,6 +323,11 @@ export default class D616 extends Roll {
     });
   }
 
+  /**
+   * Prepares the data needed to render a chat template for a D616 roll.
+   *
+   * @returns {Object}
+   */
   prepareChatTemplateData() {
     let rollTitleSlug = `MVRPG.sheets.superSheet.abilities.${this.ability}`;
     if (this.type === "initiative") rollTitleSlug = "MVRPG.rolls.initiative";
@@ -381,7 +395,7 @@ export default class D616 extends Roll {
    * Return the "active" die for the roll, considering rerolls.
    * I.e., the die that has the highest or lowest result (considering Fantastic results).
    *
-   * @param {*} dieId - The identifier of the die (die1, dieM, or die3)
+   * @param {"die1"|"dieM"|"die3"} dieId - The identifier of the die (die1, dieM, or die3)
    * @returns {Die|MultiverseDie} The die representing the final result of all (re)rolls
    */
   activeResultDie(dieId) {
@@ -469,6 +483,13 @@ export default class D616 extends Roll {
     });
   }
 
+  /**
+   * Handle the event to reroll one of the dice in a D616.
+   *
+   * @param {"die1"|"dieM"|"die3"} dieID - The die ID to reroll.
+   * @param {Message} message - The original message with the D616 roll.
+   * @return {Promise<Message>}
+   */
   async mvReroll(dieID, message) {
     const chat = document.querySelector("#chat");
     const messageHTML = chat.querySelector(`[data-message-id="${message.id}"]`);
@@ -535,6 +556,12 @@ export default class D616 extends Roll {
     return message.update({ rolls: [this], content });
   }
 
+  /**
+   * Automatically reroll all troubles on a D616 roll.
+   *
+   * @param {ChatMessage} message - The ChatMessage object associated with the roll.
+   * @returns {Promise<void>} A promise that resolves when all rerolls have been completed.
+   */
   async automaticallyRerollTroubles(message) {
     if (this.ultimateFantasticResult) return; // Ultimate Fantastic results automatically succeed.
     /* eslint-disable no-await-in-loop, no-continue */ // We want the the for-loop to wait for each reroll.
@@ -583,6 +610,8 @@ export default class D616 extends Roll {
   /**
    * Quick utility function to update the initiative tracker
    * with the results of the roll. Used in rerolls (and undos).
+   *
+   * @returns {Promise<Combatant>}
    */
   async updateInitiative() {
     await this.combatant.setFlag(
@@ -597,7 +626,7 @@ export default class D616 extends Roll {
    * Calculate damage, taking into account damage resistance.
    *
    * @param {*} damageResistance
-   * @returns
+   * @returns {object}
    */
   calculateDamage(damageResistance = 0) {
     // Make a dummy actor so we can use its getters

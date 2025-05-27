@@ -9,19 +9,19 @@ const { ActiveEffectConfig } = foundry.applications.sheets;
  */
 export default class MVEffectConfig extends ActiveEffectConfig {
   /** @inheritdoc */
-  static DEFAULT_OPTIONS = {
+  static DEFAULT_OPTIONS = /** @type {const} */ ({
     actions: {
       toggleInput: MVEffectConfig.toggleInput,
     },
-  };
+  });
 
   /**
    * Open AE config on the "changes" tab.
    * @inheritdoc
    */
-  static TABS = {
+  static TABS = /** @type {const} */ ({
     sheet: { ...super.TABS.sheet, initial: "changes" },
-  };
+  });
 
   /** @inheritdoc */
   async _onRender(context, options) {

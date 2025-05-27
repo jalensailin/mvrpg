@@ -12,11 +12,11 @@ export default class MVDialog extends Dialog {
   });
 
   /** @inheritdoc */
-  static DEFAULT_OPTIONS = {
+  static DEFAULT_OPTIONS = /** @type {const} */ ({
     position: { width: 300 },
     classes: [MVRPG.ID, "dialog"],
     buttons: [this.DEFAULT_BUTTON],
-  };
+  });
 
   /**
    * Retrieves and processes the form data from the dialog element.

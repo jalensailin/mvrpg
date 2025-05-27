@@ -6,12 +6,14 @@ const HbsAppMixin = foundry.applications.api.HandlebarsApplicationMixin;
 
 const MVSheetMixin = (Base) => {
   return class MVDocumentSheet extends HbsAppMixin(Base) {
-    static DEFAULT_OPTIONS = {
+    /** @inheritdoc */
+    static DEFAULT_OPTIONS = /** @type {const} */ ({
       window: { resizable: true },
       classes: [MVRPG.ID, "sheet"],
       form: { submitOnChange: true },
-    };
+    });
 
+    /** @inheritdoc */
     static TEMPLATE_PATH = /** @type {const} */ (
       `systems/${MVRPG.ID}/templates`
     );
@@ -63,7 +65,10 @@ const MVSheetMixin = (Base) => {
         });
     }
 
-    /** Resets the window's position to its default as specified in the Sheet's options. */
+    /**
+     * Resets the window's position to its default, as specified in the Sheet's options.
+     * @returns {void}
+     */
     resetPosition() {
       this.setPosition(this.options.position);
     }

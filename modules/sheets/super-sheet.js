@@ -182,6 +182,13 @@ export default class SuperSheet extends MVSheetMixin(ActorSheetV2) {
     }
   }
 
+  /**
+   * Handles deleting an owned item.
+   *
+   * @param {Item} doc - The item to delete
+   * @param {boolean} skipDialog - Whether to skip the confirmation dialog
+   * @return {Promise<SuperActor[]>} A promise that resolves when the item is deleted.
+   */
   async deleteOwnedItem(doc, skipDialog) {
     if (!skipDialog) {
       const confirmDelete = await MVDialog.wait({
@@ -235,6 +242,11 @@ export default class SuperSheet extends MVSheetMixin(ActorSheetV2) {
     });
   }
 
+  /**
+   * Render the initiative/speed configuration dialog and wait for the user to close it.
+   *
+   * @return {Promise<void>}
+   */
   static async showConfig() {
     const { renderTemplate } = foundry.applications.handlebars;
     const content = await renderTemplate(
@@ -253,6 +265,12 @@ export default class SuperSheet extends MVSheetMixin(ActorSheetV2) {
     }).render(true);
   }
 
+  /**
+   * Sends an item's description to the chat log.
+   *
+   * @param {Item} item - The item to send to the chat log.
+   * @return {Promise<ChatMessage>}
+   */
   sendItemToChat(item) {
     const { description } = item.system;
     const title = item.name;
@@ -267,6 +285,12 @@ export default class SuperSheet extends MVSheetMixin(ActorSheetV2) {
     ChatMessage.create(chatData);
   }
 
+  /**
+   * Toggle the team maneuver on/off.
+   * Currently only adds a glow effect.
+   *
+   * @return {Promise<SuperActor>}
+   */
   static toggleManeuver() {
     const { active } = this.actor.system.teamManeuver;
     this.actor.update({ "system.teamManeuver": { active: !active } });

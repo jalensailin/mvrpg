@@ -2,7 +2,7 @@ export default class MVChatMessage extends ChatMessage {
   /**
    * Allow user to modify Edges and Troubles on an already rolled D616.
    *
-   * @returns {Promise<void>}
+   * @returns {Promise<MVChatMessage>}
    */
   async modifyRoll() {
     const [roll] = this.rolls;

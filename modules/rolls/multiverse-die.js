@@ -18,6 +18,10 @@ export default class MultiverseDie extends Die {
     return super.total;
   }
 
+  /**
+   * Is the result of the roll a 1?
+   * @type {boolean}
+   */
   get fantasticResult() {
     return super.total === 1;
   }
