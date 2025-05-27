@@ -31,4 +31,21 @@ export default class MVDialog extends Dialog {
     const fd = new FormDataExtended(form);
     return foundry.utils.expandObject(fd.object);
   }
+
+  /**
+   * For simple prompts, wrapper around Dialog.wait.
+   * Injects the provided content into a base dialog template.
+   *
+   * @inheritdoc
+   */
+  static async prompt(options) {
+    const { renderTemplate } = foundry.applications.handlebars;
+
+    const content = await renderTemplate(
+      `systems/${game.system.id}/templates/dialogs/base-dialog.hbs`,
+      { innerText: options.content },
+    );
+
+    return super.wait({ ...options, content });
+  }
 }

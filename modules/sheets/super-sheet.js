@@ -191,7 +191,7 @@ export default class SuperSheet extends MVSheetMixin(ActorSheetV2) {
    */
   async deleteOwnedItem(doc, skipDialog) {
     if (!skipDialog) {
-      const confirmDelete = await MVDialog.wait({
+      const confirmDelete = await MVDialog.prompt({
         window: { title: "MVRPG.dialog.deleteOwnedItem.title" },
         content: game.i18n.format("MVRPG.dialog.deleteOwnedItem.text", {
           itemType: game.i18n.localize(`TYPES.Item.${doc.type}`),

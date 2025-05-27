@@ -37,6 +37,10 @@
         transform: translateY(-9px) rotate(180deg);
       }
     }
+
+    &:focus {
+      outline-color: var(--spider-red);
+    }
   }
 }
 
@@ -44,12 +48,17 @@
 // TODO: Refactor using mixins or something else.
 .mvrpg {
   .standard-form {
-    gap: 0;
+    gap: 8px 0;
+  }
+
+  .dialog-base {
+    font-size: 0.9rem;
+    text-align: center;
+    padding: 4px;
   }
 
   .dialog-container {
     gap: 8px 8px;
-    padding-bottom: 8px;
     font-size: var(--dialog-text-size);
     font-weight: bold;
 
