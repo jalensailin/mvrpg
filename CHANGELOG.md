@@ -2,6 +2,17 @@
 
 # Multiverse RPG for Foundry - Changelog
 
+## Version 3.0.0 (2025-05-27)
+
+### General
+
+- Updated system for compatibility with Foundry v13. Foundry v12 is no longer supported.
+- Add Dice Shake animation to icon on rollable items.
+- The Range input in Item Sheet settings can now accomodate text input in addition to numeric input.
+- Add a Simple Item item-type to keep track of inventory items.
+- Add new power sets options from the x-men book.
+- A ton of improvements to the codebase to make it more robust and maintainable.
+
 ## Version 2.0.0 (2024-07-15)
 
 ### General
