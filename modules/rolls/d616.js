@@ -2,6 +2,7 @@ import SuperActor from "../documents/actor.js";
 import MVDialog from "../sheets/dialog-base.js";
 import Logger from "../utils/logger.js";
 import { MVSettings } from "../utils/settings.js";
+import MVUtils from "../utils/utils.js";
 import MultiverseDie from "./multiverse-die.js";
 
 export default class D616 extends Roll {
@@ -280,6 +281,9 @@ export default class D616 extends Roll {
       // If using 3d dice, wait for the original message's animation to finish before automatically rerolling.
       if (game.dice3d)
         await game.dice3d.waitFor3DAnimationByMessageID(message.id);
+
+      // Slight delay before rerolling, to allow DOM to rerender so that chat message can be interacted with.
+      await MVUtils.delay(100);
       await roll.automaticallyRerollTroubles(message);
     }
   }

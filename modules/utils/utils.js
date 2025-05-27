@@ -56,6 +56,17 @@ export default class MVUtils {
   }
 
   /**
+   * Return a promise that resolves after a given number of milliseconds.
+   * @param {Number} ms - The number of milliseconds to wait.
+   * @returns {Promise<void>} - A promise that resolves after `ms` milliseconds.
+   */
+  static delay(ms) {
+    return new Promise((resolve) => {
+      setTimeout(resolve, ms);
+    });
+  }
+
+  /**
    * Get targeted or selected tokens.
    *
    * @param {Object} options
