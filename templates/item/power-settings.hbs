@@ -38,7 +38,10 @@
     </div>
 
     <div class="dialog-item flexrow">
-      <div class="dialog-label">{{localize "MVRPG.sheets.itemSheet.settings.labels.cost"}}</div>
+      <div class="dialog-label">
+        {{localize "MVRPG.sheets.itemSheet.settings.labels.cost"}}
+        <span class="mvrpg-label-hint">[{{localize "MVRPG.sheets.itemSheet.settings.labels.costUnit"}}]</span>
+      </div>
       <div class="dialog-input">
         <input name="system.cost" type="number" value="{{item.system.cost}}">
       </div>

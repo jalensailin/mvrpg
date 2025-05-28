@@ -36,6 +36,8 @@ export default class D616 extends Roll {
     this.lifepoolTarget =
       this.type !== "combat" ? "none" : options.lifepoolTarget || "health";
 
+    this.focusCost = options.focusCost || 0;
+
     this.troubles = troubles || 0;
     this.edges = edges || 0;
     this.rerolls = options.rerolls || {
@@ -190,6 +192,15 @@ export default class D616 extends Roll {
     }
     const roll = await super.evaluate({ minimize, maximize });
 
+    // Deduct Focus Cost
+    if (this.focusCost > 0) {
+      const focusPath = "system.lifepool.focus.value";
+      const currentFocus = foundry.utils.getProperty(this.actor, focusPath);
+      await this.actor.update({
+        [focusPath]: currentFocus - this.focusCost,
+      });
+    }
+
     // Update the initiative if applicable.
     if (this.combatant) {
       await roll.updateInitiative();
@@ -218,7 +229,6 @@ export default class D616 extends Roll {
     const { renderTemplate } = foundry.applications.handlebars;
     const content = await renderTemplate(this.template, chatData).catch(
       (error) => {
-        // eslint-disable-next-line no-console
         Logger.debug(
           "No template was supplied for this d616 roll. Falling back to default template.",
           error,
@@ -252,6 +262,7 @@ export default class D616 extends Roll {
    * @param {string} options.ability - The key of the ability to use as a modifier for this roll, e.g. "melee" or "ego".
    * @param {number} options.edges - The number of edges for the roll.
    * @param {number} options.troubles - The number of troubles for the roll.
+   * @param {string} options.focusCost - The focus cost for the roll.
    * @param {Actor} options.actor - The actor that the roll originates from.
    * @return {Promise<void>} A promise that resolves when the roll and chat message have been created.
    */
@@ -301,6 +312,7 @@ export default class D616 extends Roll {
 
     const rollType = item.system.roll.type;
     const { ability, against, lifepoolTarget } = item.system.roll;
+    const { cost: focusCost } = item.system;
 
     let modifier =
       rollType === "nonCombat"
@@ -322,6 +334,7 @@ export default class D616 extends Roll {
       modifier,
       edges,
       troubles,
+      focusCost,
       actor,
       item,
     });
@@ -450,6 +463,7 @@ export default class D616 extends Roll {
         lifepoolTarget: this.lifepoolTarget,
         edges: this.edges,
         troubles: this.troubles,
+        focusCost: this.focusCost,
       },
     );
 
