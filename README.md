@@ -4,7 +4,7 @@
 
 ![Supported Foundry Versions](https://img.shields.io/endpoint?url=https%3A%2F%2Ffoundryshields.com%2Fversion%3Fstyle%3Dplastic%26url%3Dhttps%3A%2F%2Fraw.githubusercontent.com%2Fjalensailin%2Fmvrpg%2Fmain%2Fsystem.json)
 
-> **Disclaimer:** This unofficial system for [Foundry VTT](https://foundryvtt.com) is compatible with the [Marvel Multiverse RPG](https://www.marvel.com/rpg), however, you **_must_** buy the Core Rulebook from the previous link in order to use it. Note, this system is independently made, and fully unofficial, with no association with Marvel or associated companies. Also note, I do not provide any content, such as items, powers, traits, tags, pre-generated character sheets, etc.
+> **Disclaimer:** This unofficial system for [Foundry VTT](https://foundryvtt.com) is compatible with the [Marvel Multiverse RPG](https://www.marvel.com/rpg), however, you **_must_** buy the Core Rulebook from an official source. I do not and cannot provide any pre-made content, such as items, powers, traits, tags, characters/npcs, etc. Note, this system is independently made, and fully unofficial, with no association with Marvel or its related entities.
 
 ## Installing the System
 
