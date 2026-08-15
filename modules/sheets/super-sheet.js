@@ -90,7 +90,7 @@ export default class SuperSheet extends MVSheetMixin(ActorSheetV2) {
       );
     });
 
-    // Prepare only data relevant to damage mutipliers for simplicity in the template.
+    // Prepare only data relevant to damage multipliers for simplicity in the template.
     const damageData = Object.entries(actor.system.abilities)
       .filter(([name]) => name !== "resilience" && name !== "vigilance")
       .map(([name, abilityData]) => ({
