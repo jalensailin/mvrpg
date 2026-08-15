@@ -106,10 +106,10 @@ export default class MVChatLog extends ChatLog {
     options.push(
       // Modify properties of an already rolled D616.
       {
-        name: "MVRPG.chat.contextOptions.modifyRoll",
+        label: "MVRPG.chat.contextOptions.modifyRoll",
         icon: `<i class="fa-solid fa-plus-minus"></i>`,
-        condition: allowModification,
-        callback: (msgHtml) => {
+        visible: allowModification,
+        onClick: (event, msgHtml) => {
           const message = game.messages.get(msgHtml.dataset.messageId, {
             strict: true,
           });
