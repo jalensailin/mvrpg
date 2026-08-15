@@ -12,12 +12,12 @@ export default class MVItem extends Item {
           changes: [
             {
               key: "system.abilities.melee.damageMultiplierBonus",
-              mode: 2,
+              type: "add",
               value: "1",
             },
             {
               key: "system.abilities.agility.damageMultiplierBonus",
-              mode: 2,
+              type: "add",
               value: "1",
             },
           ],

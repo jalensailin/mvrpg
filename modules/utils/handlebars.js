@@ -160,16 +160,18 @@ export async function registerHelpers() {
   });
 
   Handlebars.registerHelper("changeModeSymbol", (change) => {
-    switch (change.mode) {
-      case 1:
+    switch (change.type) {
+      case "multiply":
         return "x";
-      case 2:
+      case "add":
         return change.value > 0 ? "+" : "";
-      case 3:
+      case "subtract":
+        return change.value > 0 ? "-" : "";
+      case "downgrade":
         return "<=";
-      case 4:
+      case "upgrade":
         return ">=";
-      case 5:
+      case "override":
         return "=";
       default:
         return "";
